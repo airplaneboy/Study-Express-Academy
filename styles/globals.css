@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+.input {
+  @apply appearance-none block w-full px-5 py-3 bg-gray-300 text-gray-700
+           rounded-2xl shadow-sm placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm font-medium border-transparent;
+}
+
+.register_button {
+  @apply w-full flex justify-center py-4 px-4 border border-transparent rounded-3xl shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+
+.label {
+  @apply hidden md:block text-sm font-medium text-gray-500;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  @apply bg-gray-100;
+}

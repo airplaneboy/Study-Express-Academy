@@ -1,4 +1,4 @@
-import './globals.css';
+import '@/styles/globals.css';
 import Header from '@/components/Header';
 import { Nunito } from 'next/font/google';
 
@@ -11,9 +11,9 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='en'>
-      <body className={nunito.className}>
-        <Header></Header>
+    <html lang='en' className='h-full'>
+      <body className='h-full'>
+        {/* <Header></Header> */}
 
         {children}
       </body>
