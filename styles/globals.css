@@ -29,7 +29,10 @@
   @apply hidden md:block text-sm font-medium text-gray-500;
 }
 
+.absolute_center {
+  @apply absolute left-1/2 -translate-x-1/2;
+}
+
 body {
-  color: rgb(var(--foreground-rgb));
-  @apply bg-gray-100;
+  /* @apply bg-gray-100; */
 }
