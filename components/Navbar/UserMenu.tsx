@@ -7,19 +7,18 @@ const UserMenu = ({
   userNavigation,
   classNames,
   imageUrl,
-  imageAlt,
 }: {
   userNavigation: any;
   classNames: Function;
   imageUrl: string;
-  imageAlt: string;
 }) => {
   return (
     // TODO: Should user menu be hidden on small screens?
+
     <Menu as='div' className='flex-shrink-0 relative max-sm:hidden'>
-      <Menu.Button className='bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+      <Menu.Button className=' bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
         <span className='sr-only'>Open user menu</span>
-        <Image className='h-8 w-8 rounded-full' width={256} height={256} src={imageUrl} alt={imageAlt} />
+        <Image className='h-8 w-8 rounded-full' width={256} height={256} src={imageUrl} alt='Profile image' />
       </Menu.Button>
       <Transition
         as={Fragment}

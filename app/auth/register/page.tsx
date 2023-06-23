@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import Input from '@/components/Input';
-import Button from '@/components/Button';
+import Input from '@/components/Auth/Input';
+import Button from '@/components/Auth/Button';
 import Link from 'next/link';
-import RememberMe from '@/components/RememberMe';
-import SignIn from '@/components/SignIn';
+import RememberMe from '@/components/Auth/RememberMe';
+import SignIn from '@/components/Auth/SignIn';
 import { FcGoogle } from 'react-icons/fc';
 import anim from '@/public/assets/anim.svg';
 

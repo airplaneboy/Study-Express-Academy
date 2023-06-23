@@ -1,12 +1,5 @@
-import React from 'react';
-import Navbar from '@/components/Navbar';
-
 const User = () => {
-  return (
-    <div>
-      <Navbar></Navbar>
-    </div>
-  );
+  return <h2>User</h2>;
 };
 
 export default User;
