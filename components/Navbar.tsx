@@ -8,6 +8,7 @@ import ClickableLogo from './Navbar/ClickableLogo';
 import UserProfile from './Navbar/UserProfile';
 import UserNavigation from './Navbar/UserNavigation';
 import PageNavigation from './Navbar/PageNavigation';
+import Courses from './Navbar/Courses';
 
 const user = {
   name: 'Chelsea Hagen',
@@ -26,6 +27,11 @@ const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
   { name: 'Sign out', href: '#' },
+];
+const courses = [
+  { name: 'Mathematics', href: '#' },
+  { name: 'English', href: '#' },
+  { name: 'Chemistry', href: '#' },
 ];
 
 function classNames(...classes: any) {
@@ -52,7 +58,8 @@ export default function Example() {
               <div className='absolute_center'>
                 <ClickableLogo />
               </div>
-              <div className='flex gap-5 items-center'>
+              <div className='flex gap-12 items-center'>
+                <Courses courses={courses} classNames={classNames} />
                 <MobileMenuButton open={open} />
                 <UserMenu classNames={classNames} imageUrl={user.imageUrl} userNavigation={userNavigation} />
               </div>

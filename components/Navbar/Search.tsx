@@ -2,7 +2,7 @@ import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { RiSearch2Line } from 'react-icons/ri';
 const Search = () => {
   return (
-    <div className='w-1/4 max-sm:w-max'>
+    <div className='w-1/4 max-md:w-1/3 max-sm:w-max'>
       <label htmlFor='search' className='sr-only'>
         Search
       </label>

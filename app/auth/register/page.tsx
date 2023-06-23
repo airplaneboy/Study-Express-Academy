@@ -5,7 +5,6 @@ import Link from 'next/link';
 import RememberMe from '@/components/Auth/RememberMe';
 import SignIn from '@/components/Auth/SignIn';
 import { FcGoogle } from 'react-icons/fc';
-import anim from '@/public/assets/anim.svg';
 
 export default function Register() {
   return (

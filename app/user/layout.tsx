@@ -1,5 +1,6 @@
 import { Nunito } from 'next/font/google';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 const nunito = Nunito({ subsets: ['latin'] });
 
@@ -11,6 +12,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
         </div>
         {children}
+        <div className={nunito.className}>
+          <Footer />
+        </div>
       </body>
     </html>
   );
