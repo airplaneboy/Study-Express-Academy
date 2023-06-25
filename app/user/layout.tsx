@@ -1,9 +1,9 @@
-import { Nunito } from 'next/font/google';
+import { Nunito_Sans } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
 import Footer from '@/components/Footer';
 
-const nunito = Nunito({ subsets: ['latin'] });
+const nunito = Nunito_Sans({ subsets: ['latin'] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,11 +11,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className='h-full'>
         <div className={nunito.className}>
           <Navbar />
+          <main>
+            <Sidebar content={children} />
+          </main>
         </div>
-        <main>
-          <Sidebar content={children} />
-          {/* {children} */}
-        </main>
         <div className={nunito.className}>
           <Footer />
         </div>

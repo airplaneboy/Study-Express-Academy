@@ -12,15 +12,21 @@ import {
   HiOutlineBars3,
   HiOutlineUser,
   HiOutlineXMark,
+  HiCalendar,
+  HiChartBar,
+  HiFolder,
+  HiHome,
+  HiInbox,
+  HiUser,
 } from 'react-icons/hi2';
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HiOutlineHome, current: true },
-  { name: 'Team', href: '#', icon: HiOutlineUser, current: false },
-  { name: 'Projects', href: '#', icon: HiOutlineFolder, current: false },
-  { name: 'Calendar', href: '#', icon: HiOutlineCalendar, current: false },
-  { name: 'Documents', href: '#', icon: HiOutlineInbox, current: false },
-  { name: 'Reports', href: '#', icon: HiOutlineChartBar, current: false },
+  { name: 'Dashboard', href: '#', icon: HiOutlineHome, iconFill: HiHome, current: true },
+  { name: 'Team', href: '#', icon: HiOutlineUser, iconFill: HiUser, current: false },
+  { name: 'Projects', href: '#', icon: HiOutlineFolder, iconFill: HiFolder, current: false },
+  { name: 'Calendar', href: '#', icon: HiOutlineCalendar, iconFill: HiCalendar, current: false },
+  { name: 'Documents', href: '#', icon: HiOutlineInbox, iconFill: HiInbox, current: false },
+  { name: 'Reports', href: '#', icon: HiOutlineChartBar, iconFill: HiChartBar, current: false },
 ];
 
 function classNames(...classes: any) {
@@ -32,7 +38,7 @@ export default function Sidebar({ content }: { content: any }) {
 
   return (
     <>
-      <div className='flex max-w-7xl mx-auto justify-between px-5 lg:px-10'>
+      <div className='flex max-w-7xl mx-auto justify-between md:px-5 lg:px-10'>
         {/* Mobile Sidebar Open */}
         {/* <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as='div' className='fixed inset-0 flex z-40 md:hidden' onClose={setSidebarOpen}>
