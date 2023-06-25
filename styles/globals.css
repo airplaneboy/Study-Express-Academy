@@ -33,6 +33,15 @@
   @apply absolute left-1/2 -translate-x-1/2;
 }
 
+.inherit_width_height {
+  width: inherit;
+  height: inherit;
+}
+
+.inherit_position {
+  position: inherit;
+}
+
 body {
   @apply bg-gray-100;
 }
