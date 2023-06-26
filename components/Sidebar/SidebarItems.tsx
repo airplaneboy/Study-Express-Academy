@@ -15,14 +15,14 @@ const SidebarItems = ({ navigation, classNames }: { navigation: any; classNames:
               href={item.href}
               className={classNames(
                 item.current
-                  ? 'bg-indigo-100 text-indigo-600 font-bold '
+                  ? 'bg-indigo-50 text-indigo-700 font-bold '
                   : 'text-gray-600 hover:bg-gray-200 hover:text-indigo-800 font-medium ',
                 'group flex items-center px-4 py-2 text-md rounded-2xl h-11'
               )}
             >
               {item.current ? (
                 <item.iconFill
-                  className={classNames('mr-3 flex-shrink-0 h-6 w-6 text-indigo-600')}
+                  className={classNames('mr-3 flex-shrink-0 h-6 w-6 text-indigo-700')}
                   aria-hidden='true'
                 />
               ) : (

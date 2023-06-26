@@ -10,6 +10,7 @@ import UserNavigation from './Navbar/UserNavigation';
 import PageNavigation from './Navbar/PageNavigation';
 import Courses from './Navbar/Courses';
 import React from 'react';
+import { RiWindowsFill } from 'react-icons/ri';
 
 const user = {
   name: 'Chelsea Hagen',
@@ -43,14 +44,13 @@ export default function Navbar() {
   return (
     <>
       {/* When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars */}
-
       <div className='w-full sm:h-16 '>
         <Popover
           as='header'
           className={({ open }) =>
             classNames(
               open ? ' inset-0 z-40 overflow-y-auto' : '',
-              'bg-gray-100 py-2 shadow-sm md:fixed inherit_width_height z-10 lg:overflow-y-visible'
+              'bg-gray-100 shadow-md py-2 md:fixed inherit_width_height z-10 lg:overflow-y-visible'
             )
           }
         >
@@ -70,7 +70,6 @@ export default function Navbar() {
 
               {/* Mobile Sidebar */}
               <Popover.Panel as='nav' className='sm:hidden' aria-label='Global'>
-                <PageNavigation classNames={classNames} navigation={navigation} />
                 <div className='border-t border-gray-200 pt-4 pb-3'>
                   <UserProfile user={user} />
                   <UserNavigation userNavigation={userNavigation} />

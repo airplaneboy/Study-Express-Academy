@@ -1,7 +1,6 @@
 'use client';
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import Image from 'next/image';
 import SidebarItems from './Sidebar/SidebarItems';
 import {
   HiOutlineCalendar,
@@ -39,7 +38,7 @@ export default function Sidebar({ content }: { content: any }) {
 
   return (
     <>
-      <div className='flex max-w-7xl mx-auto justify-between md:px-5 lg:px-10'>
+      <div className='flex max-w-7xl mx-auto justify-between md:px-5 lg:px-10 '>
         {/* Mobile Sidebar Open */}
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as='div' className='fixed inset-0 flex z-40 md:hidden' onClose={setSidebarOpen}>
@@ -66,7 +65,7 @@ export default function Sidebar({ content }: { content: any }) {
               leaveFrom='translate-x-0'
               leaveTo='-translate-x-full'
             >
-              <div className='relative flex-1 flex flex-col max-w-xs w-full bg-white'>
+              <div className='relative flex-1 flex flex-col max-w-xs w-full bg-gray-100'>
                 {/* Close Button */}
                 <Transition.Child
                   as={Fragment}
@@ -99,8 +98,8 @@ export default function Sidebar({ content }: { content: any }) {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className='w-64 h-full max-md:hidden'>
-          <div className=' flex flex-col fixed inherit_width_height mt-16 inset-y-0'>
+        <div className='w-64 h-full max-md:hidden '>
+          <div className=' flex flex-col fixed inherit_width_height mt-16 inset-y-0  shadow-indigo-300'>
             <SidebarItems classNames={classNames} navigation={navigation} />
           </div>
         </div>

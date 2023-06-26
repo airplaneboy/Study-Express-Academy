@@ -1,5 +1,7 @@
+import SubjectCard from '@/components/Cards/SubjectCard';
+
 const User = () => {
-  return <div className=' w-full bg-red-400'>user</div>;
+  return <SubjectCard />;
 };
 
 export default User;

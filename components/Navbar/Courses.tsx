@@ -2,7 +2,6 @@ import { MdArrowDropDown } from 'react-icons/md';
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const Courses = ({ courses, classNames }: { courses: any; classNames: Function }) => {
   return (

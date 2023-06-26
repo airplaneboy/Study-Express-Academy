@@ -12,7 +12,10 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-      fontFamily: {},
+      fontFamily: {
+        inter: ['var(--font-inter)', 'sans-serif'],
+        nunito: ['var(--font-nunito)', 'san-serif'],
+      },
       screens: {
         // sm: '640px',
         sm: '480px',
