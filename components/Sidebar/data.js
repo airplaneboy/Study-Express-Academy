@@ -27,6 +27,7 @@ const SidebarItemsList = [
         iconFill: HiGlobeAlt,
         href: '/main/national-courses',
         current: true,
+        color: 'text-red-500',
       },
       {
         name: 'International Courses',
@@ -34,6 +35,7 @@ const SidebarItemsList = [
         iconFill: HiGlobeEuropeAfrica,
         href: '/main/international-courses',
         current: false,
+        color: 'text-blue-500',
       },
     ],
   },
@@ -47,6 +49,7 @@ const SidebarItemsList = [
         iconFill: HiHome,
         href: '/main/main',
         current: false,
+        color: 'text-purple-500',
       },
       {
         name: 'Notification',
@@ -54,6 +57,7 @@ const SidebarItemsList = [
         iconFill: HiBell,
         href: '/main/notifications',
         current: false,
+        color: 'text-green-500',
       },
       {
         name: 'Profile',
@@ -61,6 +65,7 @@ const SidebarItemsList = [
         iconFill: HiUser,
         href: '/main/profile',
         current: false,
+        color: 'text-yellow-500',
       },
       {
         name: 'Settings',
@@ -68,6 +73,7 @@ const SidebarItemsList = [
         iconFill: HiCog,
         href: '/main/settings',
         current: false,
+        color: 'text-pink-500',
       },
     ],
   },
@@ -80,6 +86,7 @@ const SidebarItemsList = [
         iconFill: HiDocumentText,
         href: '/main/test-information',
         current: false,
+        color: 'text-indigo-500',
       },
       {
         name: 'Results',
@@ -87,6 +94,7 @@ const SidebarItemsList = [
         iconFill: HiChartBar,
         href: '/main/results',
         current: false,
+        color: 'text-cyan-500',
       },
     ],
   },

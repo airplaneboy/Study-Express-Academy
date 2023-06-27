@@ -42,7 +42,6 @@ const lessons = [
   { title: 'Pronouns', image: SubjectImage },
   { title: 'Integration', image: SubjectImage },
   { title: 'Addition of letters', image: SubjectImage },
-  { title: 'Functions', image: SubjectImage },
 ];
 
 const RecentTopicsCard = () => {

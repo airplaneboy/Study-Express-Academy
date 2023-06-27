@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { HiChevronRight } from 'react-icons/hi2';
+import Stats from '../Cards/Stats';
 
 const Dashboard = ({
   setSidebarOpen,
@@ -28,6 +29,7 @@ const Dashboard = ({
           <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8'>
             <div className='py-4'>
               {/* <div className='border-4 border-dashed border-gray-200 rounded-lg h-96' /> */}
+              <Stats />
               {content}
             </div>
           </div>

@@ -33,6 +33,10 @@ module.exports = {
         '2xl': '1536px',
         // => @media (min-width: 1536px) { ... }
       },
+      boxShadow: {
+        stats_shadow:
+          'rgb(171 171 171 / 40%) 0px 2px 4px, rgb(115 115 115 / 30%) 0px 7px 13px -3px, rgb(67 67 67 / 20%) 0px -3px 0px inset',
+      },
     },
   },
   plugins: [require('@tailwindcss/forms')],
