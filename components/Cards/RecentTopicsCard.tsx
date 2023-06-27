@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import Image from 'next/image';
 import Link from 'next/link';
 import SubjectImage from '@/public/assets/logo.svg';
@@ -49,7 +48,7 @@ const RecentTopicsCard = () => {
     <div className='grid lg:grid-cols-2 gap-10 sm:px-6'>
       {courses.map((course) => {
         return (
-          <div>
+          <div key={course.title}>
             <div className='h-16 rounded-t-3xl p-6 border bg-gray-100 w-full flex justify-between items-center'>
               <div className='flex items-center gap-5 max-sm:gap-3'>
                 <Image className='max-sm:w-6' src={SubjectImage} alt='subject'></Image>
@@ -65,7 +64,7 @@ const RecentTopicsCard = () => {
                 <ul className='divide-y divide-gray-100'>
                   {lessons.map((lesson) => {
                     return (
-                      <li>
+                      <li key={lesson.title}>
                         <Link
                           href='#'
                           className='flex items-center justify-between py-2 sm:px-4 px-2 my-1 hover:bg-gray-100 rounded-2xl gap-1 '

@@ -11,7 +11,7 @@ const SidebarItems = ({ navigation, classNames }: { navigation: any; classNames:
             return (
               <div key={heading} className='flex flex-col gap-1'>
                 <h1 className='font-semibold uppercase text-xs font-inter text-gray-500'>{heading}</h1>
-                <h1>
+                <div>
                   {items.map((item: any) => (
                     <Link
                       key={item.name}
@@ -39,7 +39,7 @@ const SidebarItems = ({ navigation, classNames }: { navigation: any; classNames:
                       {item.name}
                     </Link>
                   ))}
-                </h1>
+                </div>
               </div>
             );
           })}
