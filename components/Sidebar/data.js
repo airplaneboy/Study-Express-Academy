@@ -1,20 +1,39 @@
-import { Bell, Book, Edit, Mortarboard, Order, Pressure, Setting, User } from '../../assets/Icons';
+import {
+  HiHome,
+  HiBell,
+  HiUser,
+  HiGlobeAlt,
+  HiChartBar,
+  HiDocumentText,
+  HiGlobeEuropeAfrica,
+  HiCog,
+  HiOutlineHome,
+  HiOutlineBell,
+  HiOutlineUser,
+  HiOutlineGlobeAlt,
+  HiOutlineChartBar,
+  HiOutlineDocumentText,
+  HiOutlineGlobeEuropeAfrica,
+  HiOutlineCog,
+} from 'react-icons/hi2';
 
-import { HiHome, HiBell, HiUser, HiGlobeAlt, HiChartBar, HiDocumentText, HiGlobeEuropeAfrica } from 'react-icons/hi2';
-
-export const SidebarItemsList = [
+const SidebarItemsList = [
   {
     heading: 'Courses',
     items: [
       {
         name: 'National Courses',
-        icon: Book,
-        link: '/main/national-courses',
+        icon: HiOutlineGlobeAlt,
+        iconFill: HiGlobeAlt,
+        href: '/main/national-courses',
+        current: true,
       },
       {
         name: 'International Courses',
-        icon: Mortarboard,
-        link: '/main/international-courses',
+        icon: HiOutlineGlobeEuropeAfrica,
+        iconFill: HiGlobeEuropeAfrica,
+        href: '/main/international-courses',
+        current: false,
       },
     ],
   },
@@ -24,23 +43,31 @@ export const SidebarItemsList = [
     items: [
       {
         name: 'Dashboard',
-        icon: Pressure,
-        link: '/main/main',
+        icon: HiOutlineHome,
+        iconFill: HiHome,
+        href: '/main/main',
+        current: false,
       },
       {
         name: 'Notification',
-        icon: Bell,
-        link: '/main/notifications',
+        icon: HiOutlineBell,
+        iconFill: HiBell,
+        href: '/main/notifications',
+        current: false,
       },
       {
         name: 'Profile',
-        icon: User,
-        link: '/main/profile',
+        icon: HiOutlineUser,
+        iconFill: HiUser,
+        href: '/main/profile',
+        current: false,
       },
       {
         name: 'Settings',
-        icon: Setting,
-        link: '/main/settings',
+        icon: HiOutlineCog,
+        iconFill: HiCog,
+        href: '/main/settings',
+        current: false,
       },
     ],
   },
@@ -49,14 +76,20 @@ export const SidebarItemsList = [
     items: [
       {
         name: 'Exam Information',
-        icon: Edit,
-        link: '/main/test-information',
+        icon: HiOutlineDocumentText,
+        iconFill: HiDocumentText,
+        href: '/main/test-information',
+        current: false,
       },
       {
         name: 'Results',
-        icon: Order,
-        link: '/main/results',
+        icon: HiOutlineChartBar,
+        iconFill: HiChartBar,
+        href: '/main/results',
+        current: false,
       },
     ],
   },
 ];
+
+export default SidebarItemsList;

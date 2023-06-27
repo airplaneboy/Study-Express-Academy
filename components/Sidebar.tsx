@@ -19,6 +19,7 @@ import {
   HiUser,
 } from 'react-icons/hi2';
 import Dashboard from './Sidebar/Dashboard';
+import sidebarData from './Sidebar/data';
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HiOutlineHome, iconFill: HiHome, current: true },
@@ -41,7 +42,7 @@ export default function Sidebar({ content }: { content: any }) {
       <div className='flex max-w-7xl mx-auto justify-between md:px-5 lg:px-10 '>
         {/* Mobile Sidebar Open */}
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as='div' className='fixed inset-0 flex z-40 md:hidden' onClose={setSidebarOpen}>
+          <Dialog as='div' className='fixed inset-0 flex z-40 md:hidden max-[350px]:w-72' onClose={setSidebarOpen}>
             {/* Panel Background Overlay */}
             <Transition.Child
               as={Fragment}
@@ -90,7 +91,7 @@ export default function Sidebar({ content }: { content: any }) {
 
                 {/* Contents */}
                 <div className='flex-1 h-0 pt-5 pb-4 overflow-y-auto'>
-                  <SidebarItems navigation={navigation} classNames={classNames} />
+                  <SidebarItems navigation={sidebarData} classNames={classNames} />
                 </div>
               </div>
             </Transition.Child>
@@ -100,7 +101,7 @@ export default function Sidebar({ content }: { content: any }) {
         {/* Static sidebar for desktop */}
         <div className='w-64 h-full max-md:hidden '>
           <div className=' flex flex-col fixed inherit_width_height mt-16 inset-y-0  shadow-indigo-300'>
-            <SidebarItems classNames={classNames} navigation={navigation} />
+            <SidebarItems classNames={classNames} navigation={sidebarData} />
           </div>
         </div>
 

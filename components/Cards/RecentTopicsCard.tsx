@@ -3,8 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import SubjectImage from '@/public/assets/logo.svg';
 import { HiEllipsisHorizontal } from 'react-icons/hi2';
-import SubjectData from './SubjectData';
-import { block, For } from 'million/react';
 
 const subject = [
   {
@@ -49,14 +47,14 @@ const lessons = [
 
 const RecentTopicsCard = () => {
   return (
-    <ul className='grid lg:grid-cols-2 gap-10 sm:px-6'>
+    <div className='grid lg:grid-cols-2 gap-10 sm:px-6'>
       {courses.map((course) => {
         return (
-          <li>
+          <div>
             <div className='h-16 rounded-t-3xl p-6 border bg-gray-100 w-full flex justify-between items-center'>
               <div className='flex items-center gap-5 max-sm:gap-3'>
                 <Image className='max-sm:w-6' src={SubjectImage} alt='subject'></Image>
-                <h1 className='text-gray-600 font-semibold'>{course.title}</h1>
+                <h1 className='text-gray-600 font-bold no_wrap max-h-6'>{course.title}</h1>
               </div>
               <Link href='#'>
                 <HiEllipsisHorizontal size={24} className='text-gray-400 hover:text-gray-600' />
@@ -73,8 +71,15 @@ const RecentTopicsCard = () => {
                           href='#'
                           className='flex items-center justify-between py-2 sm:px-4 px-2 my-1 hover:bg-gray-100 rounded-2xl gap-1 '
                         >
-                          <h1 className='no_wrap max-h-12'>{lesson.title}</h1>
-                          <h1>100%</h1>
+                          <div className='flex w-full items-center gap-2'>
+                            <Image
+                              className='md:w-8 max-sm:w-7 rounded-full bg-indigo-200'
+                              src={SubjectImage}
+                              alt='lesson-image'
+                            />
+                            <h1 className='no_wrap max-h-6 w-full text-gray-600'>{lesson.title}</h1>
+                          </div>
+                          <h1 className='text-gray-400'>100%</h1>
                         </Link>
                       </li>
                     );
@@ -82,10 +87,10 @@ const RecentTopicsCard = () => {
                 </ul>
               </div>
             </div>
-          </li>
+          </div>
         );
       })}
-    </ul>
+    </div>
   );
 };
 
