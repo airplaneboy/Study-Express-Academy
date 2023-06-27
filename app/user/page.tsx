@@ -1,7 +1,7 @@
-import SubjectCard from '@/components/Cards/SubjectCard';
+import RecentTopics from '@/components/Cards/RecentTopicsCard';
 
 const User = () => {
-  return <SubjectCard />;
+  return <RecentTopics />;
 };
 
 export default User;

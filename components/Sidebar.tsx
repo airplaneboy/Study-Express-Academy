@@ -65,7 +65,7 @@ export default function Sidebar({ content }: { content: any }) {
               leaveFrom='translate-x-0'
               leaveTo='-translate-x-full'
             >
-              <div className='relative flex-1 flex flex-col max-w-xs w-full bg-gray-100'>
+              <div className='relative flex-1 flex flex-col max-w-xs w-full bg-white'>
                 {/* Close Button */}
                 <Transition.Child
                   as={Fragment}

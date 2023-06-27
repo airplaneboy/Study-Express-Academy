@@ -33,6 +33,10 @@
   @apply absolute left-1/2 -translate-x-1/2;
 }
 
+.no_wrap {
+  @apply text-ellipsis overflow-hidden;
+}
+
 .inherit_width_height {
   width: inherit;
   height: inherit;
@@ -44,4 +48,13 @@
 
 body {
   /* @apply bg-gray-100; */
+}
+
+* {
+  box-sizing: border-box;
+  list-style: none;
+}
+
+ul {
+  list-style-type: none;
 }

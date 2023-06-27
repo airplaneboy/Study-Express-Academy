@@ -50,7 +50,7 @@ export default function Navbar() {
           className={({ open }) =>
             classNames(
               open ? ' inset-0 z-40 overflow-y-auto' : '',
-              'bg-gray-100 shadow-md py-2 md:fixed inherit_width_height z-10 lg:overflow-y-visible'
+              'bg-white shadow-md py-2 md:fixed inherit_width_height z-10 lg:overflow-y-visible'
             )
           }
         >
