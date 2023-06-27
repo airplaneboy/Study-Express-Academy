@@ -18,19 +18,20 @@ const SidebarItems = ({ navigation, classNames }: { navigation: any; classNames:
                       href={item.href}
                       className={classNames(
                         item.current
-                          ? 'bg-indigo-50 text-indigo-700 font-bold '
-                          : 'text-gray-600  hover:text-indigo-800 font-medium ',
-                        'group flex items-center px-4 py-2 text-md rounded-2xl h-11'
+                          ? ` font-bold ${item.color} ${item.bgColor}`
+                          : `text-gray-600 ${item.hoverColor} font-medium`,
+                        'group flex items-center px-4 py-2 text-md rounded-2xl h-11 mb-1'
                       )}
                     >
+                      {/* Icons */}
                       {item.current ? (
                         <item.iconFill
-                          className={classNames('mr-3 flex-shrink-0 h-6 w-6 text-indigo-700')}
+                          className={classNames(`mr-3 flex-shrink-0 h-6 w-6 ${item.color}`)}
                           aria-hidden='true'
                         />
                       ) : (
                         <item.icon
-                          className={classNames('text-gray-400 group-hover:text-indigo-800 mr-3 flex-shrink-0 h-6 w-6')}
+                          className={classNames(`text-gray-400 mr-3 flex-shrink-0 h-6 w-6 ${item.groupHoverColor}`)}
                           aria-hidden='true'
                         />
                       )}
