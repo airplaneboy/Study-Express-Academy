@@ -1,7 +1,8 @@
 import React from 'react';
+import SidebarLayout from '@/containers/SidebarLayout';
 
 const page = () => {
-  return <div>page</div>;
+  return <SidebarLayout />;
 };
 
 export default page;

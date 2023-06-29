@@ -1,4 +1,3 @@
-import { Nunito } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
