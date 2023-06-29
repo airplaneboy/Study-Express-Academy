@@ -11,6 +11,7 @@ const Dashboard = ({
 }) => {
   return (
     <div className='flex flex-col flex-1  '>
+      {/* Mobile Toggle */}
       <div className='sticky top-0  md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-gray-100 shadow-md border-t-2'>
         <button
           type='button'
@@ -21,6 +22,7 @@ const Dashboard = ({
           <HiChevronRight className='h-6 w-6' aria-hidden='true' />
         </button>
       </div>
+
       <main className='flex-1'>
         <div className='py-6'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8'>

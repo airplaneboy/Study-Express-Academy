@@ -2,7 +2,7 @@ import '@/styles/globals.css';
 import Header from '@/components/Header';
 import { Nunito, Inter } from 'next/font/google';
 
-const nunito = Nunito({ weight: ['400', '500', '700'], subsets: ['latin'], variable: '--font-nunito' });
+const nunito = Nunito({ weight: ['400', '500', '600'], subsets: ['latin'], variable: '--font-nunito' });
 const inter = Inter({ weight: ['700', '800'], subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata = {
