@@ -8,7 +8,7 @@ const CardList = ({
   sidebarHeader,
   contentHeader,
 }: {
-  sidebarArray: { title: string; href: string; icon: any; image: string }[];
+  sidebarArray: { title: string; href: string; image: string }[];
   contentArray: { title: string; href: string }[];
   sidebarHeader: string;
   contentHeader: string;
