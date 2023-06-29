@@ -4,15 +4,17 @@ import { block, For } from 'million/react';
 const CardList = ({
   sidebarArray,
   contentArray,
+  sidebarHeading,
 }: {
   sidebarArray: { title: string; href: string; icon: any }[];
   contentArray: { title: string; href: string }[];
+  sidebarHeading: string;
 }) => {
   return (
     <div className='flex w-full justify-between mx-auto max-w-7xl sm:px-10 py-16 bg-gray-50 p-4 md:rounded-3xl'>
       <nav className='w-72 max-md:hidden h-[54rem] sticky top-48 '>
         <ul role='list' className=' inherit_width_height overflow-y-scroll p-5 '>
-          <h1 className='font-bold font-inter text-gray-700 mb-5  mr-3 text-xl'>Units</h1>
+          <h1 className='font-bold font-inter text-gray-700 mb-5  mr-3 text-xl'>{sidebarHeading}</h1>
           {sidebarArray.map((item) => (
             <li
               key={item.title}

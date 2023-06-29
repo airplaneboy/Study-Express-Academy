@@ -33,5 +33,5 @@ function classNames(...classes: any) {
 }
 
 export default function Courses() {
-  return <CardList contentArray={lessons} sidebarArray={units} />;
+  return <CardList contentArray={lessons} sidebarArray={units} sidebarHeading='Units' />;
 }

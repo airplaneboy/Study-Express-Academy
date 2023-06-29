@@ -6,7 +6,13 @@ const Auth = ({ children }: { children: React.ReactNode }) => {
     <main className='min-h-full flex'>
       {children}
       <div className='hidden lg:block relative w-0 flex-1'>
-        <Image quality={100} className='absolute inset-0 h-full w-full object-cover' src={anim} alt='' />
+        <Image
+          quality={100}
+          className='absolute inset-0 h-full w-full object-cover'
+          src={anim}
+          alt='side image'
+          priority
+        />
       </div>
     </main>
   );
