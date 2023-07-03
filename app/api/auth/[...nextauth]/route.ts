@@ -3,17 +3,24 @@ import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
 import TwitterProvider from 'next-auth/providers/twitter';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import AppleProvider from 'next-auth/providers/apple';
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
-import clientPromise from '@/utils/mongodb';
+import { userAgent } from 'next/server';
+// import clientPromise from '@/utils/mongodb';
 
 export const authOptions: NextAuthOptions = {
   providers: [
     //OAuth Providers
-    GoogleProvider({ clientId: process.env.GOOGLE_CLIENT_ID!, clientSecret: process.env.GOOGLE_SECRET! }),
-    FacebookProvider({ clientId: process.env.FACEBOOK_CLIENT_ID!, clientSecret: process.env.FACEBOOK_SECRET! }),
-    TwitterProvider({ clientId: process.env.TWITTER_CLIENT_ID!, clientSecret: process.env.TWITTER_SECRET! }),
+    // GoogleProvider({ clientId: process.env.GOOGLE_CLIENT_ID!, clientSecret: process.env.GOOGLE_SECRET! }),
+    // FacebookProvider({ clientId: process.env.FACEBOOK_CLIENT_ID!, clientSecret: process.env.FACEBOOK_SECRET! }),
+    // TwitterProvider({ clientId: process.env.TWITTER_CLIENT_ID!, clientSecret: process.env.TWITTER_SECRET! }),
+    // AppleProvider({
+    //   clientId: process.env.APPLE_ID!,
+    //   clientSecret: process.env.APPLE_SECRET!,
+    // }),
     //Credential Provider
     CredentialsProvider({
+      type: 'credentials',
       // The name to display on the sign in form (e.g. "Sign in with...")
       name: 'Credentials',
       // `credentials` is used to generate a form on the sign in page.
@@ -26,7 +33,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const res = await fetch('api/login', {
+        const res = await fetch('http://localhost:3000/api/v1/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -48,6 +55,7 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  session: { strategy: 'jwt', maxAge: 2592000 },
   // adapter: MongoDBAdapter(clientPromise, {}),
   // pages: {
   //   signIn: '/auth/login',

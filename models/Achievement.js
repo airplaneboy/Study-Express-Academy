@@ -7,4 +7,4 @@ const AchievementSchema = new mongoose.Schema({
   requirement: { type: [String], required: true },
 });
 
-module.exports = mongoose.model('Achievement', AchievementSchema);
+export default mongoose.models.Achievement || mongoose.model('Achievement', AchievementSchema);

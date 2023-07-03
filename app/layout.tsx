@@ -1,6 +1,7 @@
 let classNames = require('classnames');
 import '@/styles/globals.css';
 import { Nunito, Inter } from 'next/font/google';
+import Providers from '@/components/Provider';
 import Header from '@/components/Header';
 
 const nunito = Nunito({ weight: ['500', '700'], subsets: ['latin'], variable: '--font-nunito' });
@@ -16,7 +17,9 @@ const classes = classNames(nunito.className, inter.variable, 'h-full');
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html className='h-full' lang='en'>
-      <body className={classes}>{children}</body>
+      <body className={classes}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
