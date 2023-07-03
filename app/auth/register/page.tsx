@@ -5,6 +5,7 @@ import Link from 'next/link';
 import RememberMe from '@/components/Auth/RememberMe';
 import SignIn from '@/components/Auth/SignIn';
 import { FcGoogle } from 'react-icons/fc';
+import { HiUser, HiEnvelope, HiPencil, HiKey } from 'react-icons/hi2';
 
 export default function Register() {
   return (
@@ -82,7 +83,7 @@ export default function Register() {
             <div className='mt-6'>
               <form action='#' method='POST' className='max-md:px-4 '>
                 <div className='space-y-3 '>
-                  <div className='max-md:space-y-3 md:flex  justify-between gap-5 md:items-center '>
+                  <div className='max-md:space-y-3 w-full md:flex  justify-between gap-5 md:items-center '>
                     <Input
                       autoComplete='given-name'
                       id='first-name'
