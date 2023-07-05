@@ -1,15 +1,12 @@
-const Button = ({ value, classValue }: { value: any; classValue: string }) => {
-  let classes = 'register_button';
-  if (classValue) {
-    classes = classValue + ' register_button';
-  }
+interface Button {
+  value: string | number | boolean;
+}
 
+const Button = ({ value }: Button) => {
   return (
-    <div className=''>
-      <button type='submit' className={classes}>
-        {value}
-      </button>
-    </div>
+    <button type='submit' className='register_button'>
+      {value}
+    </button>
   );
 };
 

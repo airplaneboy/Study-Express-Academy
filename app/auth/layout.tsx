@@ -10,7 +10,7 @@ const Auth = ({ children }: { children: React.ReactNode }) => {
           quality={100}
           className='absolute inset-0 h-full w-full object-cover'
           src={anim}
-          alt='side image'
+          alt='Animated image of a bird hovering above the ground'
           priority
         />
       </div>

@@ -8,7 +8,7 @@ const ClickableLogo = () => {
       <Link href='#'>
         <div className='flex items-center md:text-3xl font-bold gap-1 justify-center'>
           <Image className='block h-8 w-auto' src={logo} alt='logo' />
-          <h1 className='max-md:hidden text-indigo-900 font-inter '>Study Express Academy</h1>
+          <h1 className='max-md:hidden text-indigo-900 font-inter tracking-tighter '>Study Express Academy</h1>
         </div>
       </Link>
     </div>

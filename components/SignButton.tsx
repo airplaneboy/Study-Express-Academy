@@ -7,11 +7,9 @@ const SignButton = () => {
 
   if (session?.user) {
     return (
-      <>
-        <button className='py-2 px-4 bg-red-700 my-2 rounded-full text-white' onClick={() => signOut()}>
-          SignOut
-        </button>
-      </>
+      <button className='py-2 px-4 bg-red-700 my-2 rounded-full text-white' onClick={() => signOut()}>
+        SignOut
+      </button>
     );
   }
 
