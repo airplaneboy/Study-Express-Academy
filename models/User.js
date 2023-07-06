@@ -37,9 +37,9 @@ const UserSchema = new mongoose.Schema(
       //     const options = {
       //       minLength: 8,
       //       minLowercase: 1,
-      //       // minUppercase: 1,
       //       minNumbers: 1,
-      //       // minSymbols: 1,
+      //       minUppercase: 0,
+      //       minSymbols: 0,
       //     };
 
       //     return validator.isStrongPassword(value, options);

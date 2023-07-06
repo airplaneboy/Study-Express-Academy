@@ -18,17 +18,18 @@ const nextConfig = {
       },
     ],
   },
-  // experimental: {
-  //   esmExternals: 'loose', // <-- add this
-  //   serverComponentsExternalPackages: ['mongoose'], // <-- and this
-  // },
+  experimental: {
+    esmExternals: 'loose', // <-- add this
+    serverComponentsExternalPackages: ['mongoose'], // <-- and this
+  },
 
-  // webpack: (config) => {
-  //   config.experiments = {
-  //     topLevelAwait: true,
-  //   };
-  //   return config;
-  // },
+  webpack: (config) => {
+    config.experiments = {
+      topLevelAwait: true,
+      layers: true,
+    };
+    return config;
+  },
 };
 
 export default million.next(nextConfig);
