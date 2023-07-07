@@ -8,6 +8,7 @@ import RememberMe from '@/components/Auth/RememberMe';
 import Link from 'next/link';
 import Error from './Auth/Error';
 import registerUser from './Auth/RegisterUser';
+import generateUsernames from '@/utils/generateUsername';
 
 const RegisterForm = () => {
   const firstNameRef = useRef<HTMLInputElement>(null);
@@ -17,13 +18,6 @@ const RegisterForm = () => {
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
   const [passwordMatch, setPasswordMatch] = useState<boolean | null>(null);
   const [content, setContent] = useState<string | null>(null);
-
-  const userData = {
-    firstName: firstNameRef.current?.value,
-    lastName: firstNameRef.current?.value,
-    email: emailRef.current?.value,
-    password: passwordRef.current?.value,
-  };
 
   const passwordColors = () => {
     if (passwordMatch === null) return { validColor: '', invalidColor: '' };
@@ -69,9 +63,17 @@ const RegisterForm = () => {
     if (!passwordMatch) return setContent("Passwords don't match");
     if (!isPasswordValid())
       return setContent('Password must be at least 8 characters long, and must contain a lowercase and a number');
-    console.log('password was valid 👼🏻');
+
+    const userData = {
+      firstName: firstNameRef.current?.value,
+      lastName: firstNameRef.current?.value,
+      email: emailRef.current?.value,
+      password: passwordRef.current?.value,
+    };
+    console.log(userData);
+
     const response = await registerUser(userData);
-    console.log(response);
+    console.log(await response?.json());
   };
 
   return (

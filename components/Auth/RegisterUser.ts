@@ -8,8 +8,8 @@ interface IRegister {
 }
 
 const registerUser = async (props: IRegister) => {
-  const endpoint = '/api/v1/auth/register';
-  return await fetchFormPOST({ endpoint, data: props });
+  const path = '/api/v1/auth/register';
+  return await fetchFormPOST({ path, data: props });
 };
 
 export default registerUser;

@@ -1,4 +1,4 @@
-export async function fetchPOST({ data, token, endpoint }: { data: {}; token?: string; endpoint: string }) {
+export async function fetchPOST({ data, token, path }: { data: {}; token?: string; path: string }) {
   const config = {
     method: 'POST',
     headers: {
@@ -8,14 +8,14 @@ export async function fetchPOST({ data, token, endpoint }: { data: {}; token?: s
     body: JSON.stringify(data),
   };
 
-  const response = await fetch(endpoint, config);
+  const response = await fetch(path, config);
 
   if (!response.ok) return console.log('there was an error');
 
   return response;
 }
 
-export async function fetchFormPOST({ data, token, endpoint }: { data: {}; token?: string; endpoint: string }) {
+export async function fetchFormPOST({ data, token, path }: { data: {}; token?: string; path: string }) {
   const config = {
     method: 'POST',
     headers: {
@@ -25,7 +25,7 @@ export async function fetchFormPOST({ data, token, endpoint }: { data: {}; token
     body: JSON.stringify(data),
   };
 
-  const response = await fetch(endpoint, config);
+  const response = await fetch(path, config);
 
   if (!response.ok) return console.log('there was an error');
 
