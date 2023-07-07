@@ -10,7 +10,7 @@ export async function fetchPOST({ data, token, path }: { data: {}; token?: strin
 
   const response = await fetch(path, config);
 
-  if (!response.ok) return console.log('there was an error');
+  if (!response.ok) return console.log(response.statusText);
 
   return response;
 }
@@ -27,7 +27,7 @@ export async function fetchFormPOST({ data, token, path }: { data: {}; token?: s
 
   const response = await fetch(path, config);
 
-  if (!response.ok) return console.log('there was an error');
+  if (!response.ok) return console.log(response.statusText);
 
   return response;
 }

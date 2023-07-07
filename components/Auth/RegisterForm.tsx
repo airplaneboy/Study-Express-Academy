@@ -6,9 +6,8 @@ import Input from '@/components/Auth/Input';
 import Button from '@/components/Auth/Button';
 import RememberMe from '@/components/Auth/RememberMe';
 import Link from 'next/link';
-import Error from './Auth/Error';
-import registerUser from './Auth/RegisterUser';
-import generateUsernames from '@/utils/generateUsername';
+import ShowError from './Error';
+import registerUser from '../../utils/RegisterUser';
 
 const RegisterForm = () => {
   const firstNameRef = useRef<HTMLInputElement>(null);
@@ -17,7 +16,7 @@ const RegisterForm = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
   const [passwordMatch, setPasswordMatch] = useState<boolean | null>(null);
-  const [content, setContent] = useState<string | null>(null);
+  const [content, setContent] = useState<string>('');
 
   const passwordColors = () => {
     if (passwordMatch === null) return { validColor: '', invalidColor: '' };
@@ -39,19 +38,19 @@ const RegisterForm = () => {
         const password = trim(passwordRef.current?.value!);
         return isStrongPassword(password, {
           //TODO: Don't forget to uncomment this out
-          minLength: 5,
-          minLowercase: 0,
-          minUppercase: 0,
-          minSymbols: 0,
-          minNumbers: 0,
-          // minLength: 8,
-          // minLowercase: 1,
-          // minNumbers: 1,
+          // minLength: 5,
+          // minLowercase: 0,
           // minUppercase: 0,
           // minSymbols: 0,
+          // minNumbers: 0,
+          minLength: 8,
+          minLowercase: 1,
+          minNumbers: 1,
+          minUppercase: 0,
+          minSymbols: 0,
         });
-      } catch (error) {
-        console.log(error);
+      } catch (error: any) {
+        console.log(error?.message);
       }
     }
   };
@@ -68,34 +67,18 @@ const RegisterForm = () => {
       firstName: firstNameRef.current?.value,
       lastName: firstNameRef.current?.value,
       email: emailRef.current?.value,
-      password: passwordRef.current?.value,
+      password: trim(passwordRef.current?.value!),
     };
-    console.log(userData);
 
-    const response = await registerUser(userData);
-    console.log(await response?.json());
+    await registerUser(userData);
   };
 
   return (
     <>
-      {content && <Error content={content} />}
+      {content && <ShowError content={content} />}
 
       <form onSubmit={submitHandler} className='max-md:px-4 '>
         <div className='space-y-3 '>
-          {/* <div className='relative'>
-            <input
-              type='text'
-              id='floating_outlined'
-              className='block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-              placeholder=' '
-            />
-            <label
-              htmlFor='floating_outlined'
-              className='absolute text-sm text-gray-400 font-bold  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-5 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1'
-            >
-              Floating outlined
-            </label>
-          </div> */}
           <div className='max-md:space-y-3 w-full md:flex  justify-between gap-5 md:items-center '>
             <Input
               autoComplete='given-name'

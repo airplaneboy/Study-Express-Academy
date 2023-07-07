@@ -24,7 +24,6 @@ export async function POST(request: Request) {
 
   if (!username) {
     username = generateUsernames();
-    console.log(username);
   }
 
   if (await User.findOne({ email })) throw new CustomErrors.BadRequestError('This user already exist');

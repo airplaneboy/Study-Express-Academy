@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import SignIn from '@/components/Auth/SignIn';
 import { FcGoogle } from 'react-icons/fc';
-import RegisterForm from '@/components/RegisterForm';
+import RegisterForm from '@/components/Auth/RegisterForm';
 
 export default function Register() {
   return (
