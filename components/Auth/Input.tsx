@@ -20,21 +20,20 @@ const Input = ({ placeholder, id, name, type, autoComplete, inputRef, className,
     //   {/* TODO: Decide on leaving label or not */}
     //   {/* <label htmlFor={id} className='label'>{placeholder}</label> */}
 
-    <div className='mt-2'>
-      <input
-        ref={inputRef}
-        autoCapitalize='off'
-        autoCorrect='off'
-        placeholder={placeholder}
-        id={id}
-        name={name}
-        type={type}
-        autoComplete={autoComplete}
-        required
-        className={classes}
-        onChange={onChange}
-      />
-    </div>
+    <input
+      ref={inputRef}
+      autoCapitalize='off'
+      autoCorrect='off'
+      placeholder={placeholder}
+      id={id}
+      name={name}
+      type={type}
+      autoComplete={autoComplete}
+      required
+      className={classes}
+      onChange={onChange}
+    />
+
     /* <div className='relative'>
             <input
               type='text'

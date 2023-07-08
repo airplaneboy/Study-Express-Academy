@@ -6,16 +6,18 @@ import Input from '@/components/Auth/Input';
 import Button from '@/components/Auth/Button';
 import RememberMe from '@/components/Auth/RememberMe';
 import Link from 'next/link';
-import ShowError from './Error';
+import { HiEye, HiEyeSlash } from 'react-icons/hi2';
+// import ShowError from './Error';
 import trim from 'validator/lib/trim';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const LoginForm = () => {
   const router = useRouter();
-  const [content, setContent] = useState<string>('');
+  // const [content, setContent] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const emailOrUsernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const signInUser = async () => {
     const emailOrUsername = emailOrUsernameRef.current?.value;
@@ -29,10 +31,10 @@ const LoginForm = () => {
       callbackUrl: '/',
     });
 
-    if (res?.error) return setContent("Username or Email, and password don't match");
+    if (res?.error) return toast.error("Username or Email, and password don't match");
 
     // if (document.referrer == 'http://localhost:3000/') return router.back();
-
+    toast.success('Login successful', { duration: 3000 });
     return router.push('/');
   };
 
@@ -40,15 +42,25 @@ const LoginForm = () => {
     setLoading(true);
     e.preventDefault();
 
-    setContent('');
-    await signInUser();
+    // setContent('');
+
+    await toast.promise(
+      signInUser(),
+      {
+        success: null,
+        loading: 'Verifying credentials...',
+        error: 'An Error occurred!',
+      },
+      { success: { duration: 50 } }
+    );
     setLoading(false);
   }
+
   return (
     <>
-      {content && <ShowError content={content}></ShowError>}
+      {/* {content && <ShowError content={content}></ShowError>} */}
       <form onSubmit={submitHandler} className=' max-md:px-4 '>
-        {loading && <div className='min-w-full h-full bg-gray-700 opacity-30 absolute top-0 left-0'></div>}
+        {loading && <div className='min-w-full h-full bg-gray-700 opacity-30 absolute top-0 left-0' />}
 
         <div className='space-y-3'>
           <Input
@@ -57,18 +69,30 @@ const LoginForm = () => {
             // label='Email Address or Username'
             name='username'
             placeholder='Email Address or Username'
-            type='username'
+            type='text'
             inputRef={emailOrUsernameRef}
           />
-          <Input
-            autoComplete='current-password'
-            id='password'
-            // label='Password'
-            name='password'
-            placeholder='Password'
-            type='password'
-            inputRef={passwordRef}
-          />
+          <div className='w-full flex items-center mt-2 relative'>
+            <Input
+              autoComplete='current-password'
+              id='password'
+              // label='Password'
+              name='password'
+              placeholder='Password'
+              type={showPassword ? 'text' : 'password'}
+              inputRef={passwordRef}
+            />
+            <button
+              className=' right-5 flex items-center justify-center absolute'
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <HiEyeSlash size={20} className='text-gray-700' />
+              ) : (
+                <HiEye size={20} className='text-gray-700' />
+              )}
+            </button>
+          </div>
         </div>
 
         <div className='space-y-3 mt-10'>

@@ -6,8 +6,9 @@ import Input from '@/components/Auth/Input';
 import Button from '@/components/Auth/Button';
 import RememberMe from '@/components/Auth/RememberMe';
 import Link from 'next/link';
-import ShowError from './Error';
 import registerUser from '../../utils/RegisterUser';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const RegisterForm = () => {
   const firstNameRef = useRef<HTMLInputElement>(null);
@@ -16,7 +17,7 @@ const RegisterForm = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
   const [passwordMatch, setPasswordMatch] = useState<boolean | null>(null);
-  const [content, setContent] = useState<string>('');
+  const router = useRouter();
 
   const passwordColors = () => {
     if (passwordMatch === null) return { validColor: '', invalidColor: '' };
@@ -57,11 +58,10 @@ const RegisterForm = () => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setContent('');
 
-    if (!passwordMatch) return setContent("Passwords don't match");
+    if (!passwordMatch) return toast.error("Passwords don't match");
     if (!isPasswordValid())
-      return setContent('Password must be at least 8 characters long, and must contain a lowercase and a number');
+      return toast.error('Password must be at least 8 characters long, and must contain a lowercase and a number');
 
     const userData = {
       firstName: firstNameRef.current?.value,
@@ -70,13 +70,17 @@ const RegisterForm = () => {
       password: trim(passwordRef.current?.value!),
     };
 
-    await registerUser(userData);
+    await toast.promise(registerUser(userData), {
+      error: 'An error occurred. Try again',
+      loading: 'Signing you up...',
+      success: 'Sign up successful. Welcome!',
+    });
+
+    router.push('/');
   };
 
   return (
     <>
-      {content && <ShowError content={content} />}
-
       <form onSubmit={submitHandler} className='max-md:px-4 '>
         <div className='space-y-3 '>
           <div className='max-md:space-y-3 w-full md:flex  justify-between gap-5 md:items-center '>

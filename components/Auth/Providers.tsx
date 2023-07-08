@@ -9,7 +9,7 @@ interface IProvidersOptions {
 const googleSignIn = async () => {
   console.log('sign in was called');
 
-  const res = await signIn('google', { callbackUrl: '/', redirect: true });
+  const res = await signIn('google', { callbackUrl: '/', redirect: false });
   console.log(res);
 };
 const facebookSignIn = async () => {

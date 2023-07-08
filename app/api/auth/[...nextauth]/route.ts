@@ -4,6 +4,7 @@ import FacebookProvider from 'next-auth/providers/facebook';
 import TwitterProvider from 'next-auth/providers/twitter';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import AppleProvider from 'next-auth/providers/apple';
+import User from '@/models/User';
 // import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 // import clientPromise from '@/lib/mongodb';
 
@@ -49,10 +50,6 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt', maxAge: 2592000 },
   pages: {
     signIn: '/auth/login',
-    // signOut: '/auth/signout',
-    // error: '/auth/error', // Error code passed in query string as ?error=
-    // verifyRequest: '/auth/verify-request', // (used for check email message)
-    // newUser: '/auth/new-user', // New users will be directed here on first sign in (leave the property out if not of interest)
   },
 
   // adapter: MongoDBAdapter(clientPromise, {
