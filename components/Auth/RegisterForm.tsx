@@ -8,6 +8,7 @@ import RememberMe from '@/components/Auth/RememberMe';
 import Link from 'next/link';
 import registerUser from '../../utils/RegisterUser';
 import toast from 'react-hot-toast';
+import { HiEye, HiEyeSlash } from 'react-icons/hi2';
 import { useRouter } from 'next/navigation';
 
 const RegisterForm = () => {
@@ -17,6 +18,8 @@ const RegisterForm = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
   const [passwordMatch, setPasswordMatch] = useState<boolean | null>(null);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
   const router = useRouter();
 
   const passwordColors = () => {
@@ -115,27 +118,51 @@ const RegisterForm = () => {
           {/* TODO:Make final decision on using username */}
           {/* <Input autoComplete='username'id='username'  inputRef={} name='username' placeholder='Username' type='text'/> */}
 
-          <Input
-            autoComplete='off'
-            id='password'
-            inputRef={passwordRef}
-            name='password'
-            placeholder='Password'
-            type='password'
-            className={passwordMatch ? passwordColors().validColor : passwordColors().invalidColor}
-            onChange={isPasswordMatch}
-          />
+          <div className='w-full flex items-center mt-2 relative'>
+            <Input
+              autoComplete='off'
+              id='password'
+              inputRef={passwordRef}
+              name='password'
+              placeholder='Password'
+              type={showPassword ? 'text' : 'password'}
+              className={passwordMatch ? passwordColors().validColor : passwordColors().invalidColor}
+              onChange={isPasswordMatch}
+            />
+            <button
+              className=' right-5 flex items-center justify-center absolute'
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <HiEyeSlash size={20} className='text-gray-700' />
+              ) : (
+                <HiEye size={20} className='text-gray-700' />
+              )}
+            </button>
+          </div>
 
-          <Input
-            autoComplete='off'
-            id='confirm-password'
-            inputRef={confirmPasswordRef}
-            name='password'
-            placeholder='Confirm Password'
-            type='password'
-            className={passwordMatch ? passwordColors().validColor : passwordColors().invalidColor}
-            onChange={isPasswordMatch}
-          />
+          <div className='w-full flex items-center mt-2 relative'>
+            <Input
+              autoComplete='off'
+              id='confirm-password'
+              inputRef={confirmPasswordRef}
+              name='confirm-password'
+              placeholder='Confirm Password'
+              type={showConfirmPassword ? 'text' : 'password'}
+              className={passwordMatch ? passwordColors().validColor : passwordColors().invalidColor}
+              onChange={isPasswordMatch}
+            />
+            <button
+              className=' right-5 flex items-center justify-center absolute'
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            >
+              {showConfirmPassword ? (
+                <HiEyeSlash size={20} className='text-gray-700' />
+              ) : (
+                <HiEye size={20} className='text-gray-700' />
+              )}
+            </button>
+          </div>
         </div>
 
         <div className='space-y-3 mt-10'>
