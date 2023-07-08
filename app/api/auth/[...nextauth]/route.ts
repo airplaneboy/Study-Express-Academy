@@ -5,7 +5,7 @@ import TwitterProvider from 'next-auth/providers/twitter';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import AppleProvider from 'next-auth/providers/apple';
 // import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
-// import clientPromise from '@/utils/mongodb';
+// import clientPromise from '@/lib/mongodb';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -39,14 +39,13 @@ export const authOptions: NextAuthOptions = {
 
         const user = await res.json();
 
-        if (user) {
-          return user;
-        } else {
-          return null;
-        }
+        if (user) return user;
+
+        return null;
       },
     }),
   ],
+
   session: { strategy: 'jwt', maxAge: 2592000 },
   pages: {
     signIn: '/auth/login',
@@ -56,7 +55,9 @@ export const authOptions: NextAuthOptions = {
     // newUser: '/auth/new-user', // New users will be directed here on first sign in (leave the property out if not of interest)
   },
 
-  // adapter: MongoDBAdapter(clientPromise, {}),
+  // adapter: MongoDBAdapter(clientPromise, {
+  //   databaseName: 'ProvidersAuthentication',
+  // }),
 };
 
 const handler = NextAuth(authOptions);

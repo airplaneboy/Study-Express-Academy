@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import connectMongoose from '@/utils/mongooseConnect';
+import connectMongoose from '@/lib/mongooseConnect';
 import User from '@/models/User.js';
 import { StatusCodes } from 'http-status-codes';
 import CustomErrors from '@/errors';
@@ -20,5 +20,5 @@ export async function POST(request: Request) {
   const user = await User.findOne({ $or: [{ username }, { email }] });
   if (!user) throw new CustomErrors.NotFoundError(`User "${username}" was not found)`);
   if (!(await user.verifyPassword(password))) throw new CustomErrors.UnauthenticatedError('Password is incorrect');
-  return NextResponse.json({ user }, { status: StatusCodes.OK });
+  return NextResponse.json(user, { status: StatusCodes.OK });
 }

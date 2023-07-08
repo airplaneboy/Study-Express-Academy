@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import connectMongoose from '@/utils/mongooseConnect';
+import connectMongoose from '@/lib/mongooseConnect';
 import CustomErrors from '@/errors';
 import { StatusCodes } from 'http-status-codes';
 import User from '@/models/User';
