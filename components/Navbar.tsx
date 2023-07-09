@@ -7,9 +7,8 @@ import MobileMenuButton from './Navbar/MobileMenuButton';
 import ClickableLogo from './Navbar/ClickableLogo';
 import UserProfile from './Navbar/UserProfile';
 import UserNavigation from './Navbar/UserNavigation';
-import PageNavigation from './Navbar/PageNavigation';
 import Courses from './Navbar/Courses';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { RiWindowsFill } from 'react-icons/ri';
 
 const user = {
@@ -41,6 +40,20 @@ function classNames(...classes: any) {
 }
 
 export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setIsScrolled(scrollTop > 0); // Set isScrolled to true if scrollTop is greater than 0
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <>
       {/* When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars */}
@@ -50,7 +63,9 @@ export default function Navbar() {
           className={({ open }) =>
             classNames(
               open ? ' inset-0 z-40 overflow-y-auto' : '',
-              'bg-white shadow-md py-2 md:fixed inherit_width_height z-10 lg:overflow-y-visible'
+              `bg-white py-2 md:fixed inherit_width_height z-10 lg:overflow-y-visible transition-shadow duration-300  ${
+                isScrolled ? 'shadow-md' : 'shadow-sm'
+              }`
             )
           }
         >
