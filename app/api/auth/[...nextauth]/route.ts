@@ -4,10 +4,10 @@ import FacebookProvider from 'next-auth/providers/facebook';
 import TwitterProvider from 'next-auth/providers/twitter';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import AppleProvider from 'next-auth/providers/apple';
-import User from '@/models/User';
+import { fetchPOST } from '../../../../utils/fetchOption';
 // import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 // import clientPromise from '@/lib/mongodb';
-
+let count = 1;
 export const authOptions: NextAuthOptions = {
   providers: [
     //OAuth Providers
@@ -50,6 +50,54 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt', maxAge: 2592000 },
   pages: {
     signIn: '/auth/login',
+  },
+  callbacks: {
+    async session({ session, token, user }) {
+      return session;
+    },
+
+    async signIn({ account, user, credentials, email, profile }) {
+      const userData = {
+        email: profile?.email,
+        firstName: profile?.given_name,
+        lastName: profile!.family_name,
+        providerId: account?.providerAccountId,
+        provider: account?.provider,
+        providerType: account?.type,
+      };
+
+      const loginData = { email: profile?.email };
+
+      if (account?.type === 'oauth') {
+        console.log('auth started');
+
+        try {
+          await fetchPOST({
+            data: loginData,
+            path: 'http://localhost:3000/api/v1/auth/login',
+            headers: { 'X-Auth-Method': account?.type },
+          });
+
+          return true;
+        } catch (error) {
+          console.log(error);
+        }
+
+        try {
+          await fetchPOST({
+            data: userData,
+            path: 'http://localhost:3000/api/v1/auth/register',
+            headers: { 'X-Auth-Method': account?.type },
+          });
+
+          return true;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      return false;
+    },
   },
 
   // adapter: MongoDBAdapter(clientPromise, {

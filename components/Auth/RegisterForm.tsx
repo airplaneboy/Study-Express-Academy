@@ -26,8 +26,8 @@ const RegisterForm = () => {
     if (passwordMatch === null) return { validColor: '', invalidColor: '' };
 
     return {
-      validColor: ' focus:ring-green-500 focus:border-green-500 border-green-500',
-      invalidColor: ' focus:ring-red-500 focus:border-red-500  border-red-500',
+      validColor: ' focus:ring-green-500 focus:border-green-500 border-green-500  input_password',
+      invalidColor: ' focus:ring-red-500 focus:border-red-500  border-red-500 input_password',
     };
   };
 
@@ -131,7 +131,7 @@ const RegisterForm = () => {
             />
             <button
               className=' right-5 flex items-center justify-center absolute'
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() => setShowPassword((prev) => !prev)}
             >
               {showPassword ? (
                 <HiEyeSlash size={20} className='text-gray-700' />
@@ -154,7 +154,7 @@ const RegisterForm = () => {
             />
             <button
               className=' right-5 flex items-center justify-center absolute'
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              onClick={() => setShowConfirmPassword((prev) => !prev)}
             >
               {showConfirmPassword ? (
                 <HiEyeSlash size={20} className='text-gray-700' />

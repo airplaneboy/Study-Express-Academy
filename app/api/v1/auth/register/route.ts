@@ -7,28 +7,55 @@ import generateUsernames from '@/utils/generateUsername';
 
 interface RequestBody {
   username: string;
-  password: string;
+  password?: string;
   email: string;
   firstName: string;
   lastName: string;
+  providerId?: string;
+  provider?: string;
+  providerType?: string;
 }
 
 export async function POST(request: Request) {
   await connectMongoose();
+  const isProvider = request.headers.has('X-Auth-Method');
   const body: RequestBody = await request.json();
 
-  const { email, password, firstName, lastName } = body;
   let username = body.username;
+  if (!username) username = generateUsernames();
 
-  if (!email || !password || !firstName || !lastName) throw new CustomErrors.BadRequestError('Fill in all credential');
+  //#region Provider Registration
+  if (isProvider) {
+    const { email, providerId, provider, providerType, firstName, lastName } = body;
 
-  if (!username) {
-    username = generateUsernames();
+    if (!email || !providerId || !firstName || !lastName)
+      return NextResponse.json({ error: 'Fill in all provider credential' }, { status: StatusCodes.BAD_REQUEST });
+
+    if (await User.findOne({ email }))
+      return NextResponse.json({ error: 'This provider email already exist' }, { status: StatusCodes.BAD_REQUEST });
+
+    await User.create({
+      email,
+      provider: { id: providerId, name: provider, type: providerType },
+      username,
+      profile: { firstName, lastName },
+    });
+
+    return NextResponse.json({ msg: 'Successfully created provider user' }, { status: StatusCodes.CREATED });
   }
+  //#endregion
 
-  if (await User.findOne({ email })) throw new CustomErrors.BadRequestError('This user already exist');
+  //#region Default registration
+  const { email, password, firstName, lastName } = body;
 
-  const user = await User.create({ email, password, username, profile: { firstName, lastName } });
+  if (!email || !password || !firstName || !lastName)
+    return NextResponse.json({ error: 'Fill in all credential' }, { status: StatusCodes.BAD_REQUEST });
 
-  return NextResponse.json({ msg: 'Successfully created user', user }, { status: StatusCodes.CREATED });
+  if (await User.findOne({ email }))
+    return NextResponse.json({ error: 'This user already exist' }, { status: StatusCodes.BAD_REQUEST });
+
+  await User.create({ email, password, username, profile: { firstName, lastName } });
+
+  return NextResponse.json({ msg: 'Successfully created user' }, { status: StatusCodes.CREATED });
+  //#endregion
 }

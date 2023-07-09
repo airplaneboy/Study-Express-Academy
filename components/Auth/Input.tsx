@@ -13,7 +13,7 @@ interface Input {
 const Input = ({ placeholder, id, name, type, autoComplete, inputRef, className, onChange }: Input) => {
   const classes = className
     ? classNames('input', className)
-    : 'input border-transparent focus:ring-indigo-500 focus:border-indigo-500 ';
+    : 'input border-transparent focus:ring-indigo-500 focus:border-indigo-500  ';
 
   return (
     // <div className='flex flex-col '>

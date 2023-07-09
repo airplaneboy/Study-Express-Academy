@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: [true, 'Input a valid password'],
+      // required: [true, 'Input a valid password'],
       maxlength: 300,
       trim: true,
       //TODO: comment out before prod
@@ -47,6 +47,13 @@ const UserSchema = new mongoose.Schema(
       //   message: 'Password does not meet the strength requirements',
       // },
     },
+
+    provider: {
+      name: String,
+      id: String,
+      providerType: String,
+    },
+
     profile: {
       firstName: { type: String, trim: true },
       lastName: { type: String, trim: true },

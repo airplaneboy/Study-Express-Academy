@@ -81,15 +81,16 @@ const LoginForm = () => {
               placeholder='Password'
               type={showPassword ? 'text' : 'password'}
               inputRef={passwordRef}
+              className=' input_password border-transparent focus:ring-indigo-500 focus:border-indigo-500 '
             />
             <button
               className=' right-5 flex items-center justify-center absolute'
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() => setShowPassword((prev) => !prev)}
             >
               {showPassword ? (
-                <HiEyeSlash size={20} className='text-gray-700' />
+                <HiEyeSlash size={20} className='text-gray-700 bg-gray-200' />
               ) : (
-                <HiEye size={20} className='text-gray-700' />
+                <HiEye size={20} className='text-gray-700 bg-gray-200' />
               )}
             </button>
           </div>

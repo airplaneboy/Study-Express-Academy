@@ -1,25 +1,63 @@
-export async function fetchPOST({ data, token, path }: { data: {}; token?: string; path: string }) {
+export async function fetchPOST({
+  data,
+  token,
+  path,
+  headers,
+}: {
+  data: {};
+  token?: string;
+  path: string;
+  headers?: {};
+}) {
   const config = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       // Authorization: `Bearer ${token}`,
+      ...headers,
     },
     body: JSON.stringify(data),
   };
 
   const response = await fetch(path, config);
 
-  if (!response.ok) return console.log(response.statusText);
+  if (!response.ok) throw new Error(JSON.stringify((await response.json()).error));
 
-  return response;
+  return await response.json();
 }
 
-export async function fetchFormPOST({ data, token, path }: { data: {}; token?: string; path: string }) {
+export async function fetchGET({ token, path }: { token?: string; path: string }) {
+  const config = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      // Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await fetch(path, config);
+
+  if (!response.ok) throw new Error(JSON.stringify((await response.json()).error));
+
+  return await response.json();
+}
+
+export async function fetchFormPOST({
+  data,
+  token,
+  path,
+  headers,
+}: {
+  data: {};
+  token?: string;
+  path: string;
+  headers: {};
+}) {
   const config = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
+      ...headers,
       // Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data),
@@ -27,7 +65,7 @@ export async function fetchFormPOST({ data, token, path }: { data: {}; token?: s
 
   const response = await fetch(path, config);
 
-  if (!response.ok) return console.log(response.statusText);
+  if (!response.ok) throw new Error(JSON.stringify((await response.json()).error));
 
-  return response;
+  return await response.json();
 }
