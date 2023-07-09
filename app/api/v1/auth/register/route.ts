@@ -11,6 +11,7 @@ interface RequestBody {
   email: string;
   firstName: string;
   lastName: string;
+  name: string;
   providerId?: string;
   provider?: string;
   providerType?: string;
@@ -26,9 +27,17 @@ export async function POST(request: Request) {
 
   //#region Provider Registration
   if (isProvider) {
-    const { email, providerId, provider, providerType, firstName, lastName } = body;
+    const { email, providerId, provider, providerType, name } = body;
+    let { firstName, lastName } = body;
 
-    if (!email || !providerId || !firstName || !lastName)
+    if (!(firstName || lastName) && name) {
+      const nameArray = name.trim().split(' ');
+
+      firstName = nameArray[0];
+      lastName = nameArray.slice(1).join(' ');
+    }
+
+    if (!email || !providerId)
       return NextResponse.json({ error: 'Fill in all provider credential' }, { status: StatusCodes.BAD_REQUEST });
 
     if (await User.findOne({ email }))

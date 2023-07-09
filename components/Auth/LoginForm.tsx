@@ -60,7 +60,7 @@ const LoginForm = () => {
     <>
       {/* {content && <ShowError content={content}></ShowError>} */}
       <form onSubmit={submitHandler} className=' max-md:px-4 '>
-        {loading && <div className='min-w-full h-full bg-gray-700 opacity-30 absolute top-0 left-0' />}
+        {loading && <div className='min-w-full h-full bg-gray-700 opacity-30 absolute top-0 left-0 z-50' />}
 
         <div className='space-y-3'>
           <Input
