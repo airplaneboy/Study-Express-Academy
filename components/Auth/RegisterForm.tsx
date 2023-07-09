@@ -130,6 +130,7 @@ const RegisterForm = () => {
               onChange={isPasswordMatch}
             />
             <button
+              type='button'
               className=' right-5 flex items-center justify-center absolute'
               onClick={() => setShowPassword((prev) => !prev)}
             >
@@ -153,6 +154,7 @@ const RegisterForm = () => {
               onChange={isPasswordMatch}
             />
             <button
+              type='button'
               className=' right-5 flex items-center justify-center absolute'
               onClick={() => setShowConfirmPassword((prev) => !prev)}
             >

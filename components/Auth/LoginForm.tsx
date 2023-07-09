@@ -10,9 +10,11 @@ import { HiEye, HiEyeSlash } from 'react-icons/hi2';
 // import ShowError from './Error';
 import trim from 'validator/lib/trim';
 import toast from 'react-hot-toast';
+import { PrefetchKind } from 'next/dist/client/components/router-reducer/router-reducer-types';
 
 const LoginForm = () => {
   const router = useRouter();
+  router.prefetch('/', { kind: PrefetchKind.FULL });
   // const [content, setContent] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const emailOrUsernameRef = useRef<HTMLInputElement>(null);
@@ -84,6 +86,7 @@ const LoginForm = () => {
               className=' input_password border-transparent focus:ring-indigo-500 focus:border-indigo-500 '
             />
             <button
+              type='button'
               className=' right-5 flex items-center justify-center absolute'
               onClick={() => setShowPassword((prev) => !prev)}
             >
