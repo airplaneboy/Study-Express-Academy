@@ -45,7 +45,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      setIsScrolled(scrollTop > 0); // Set isScrolled to true if scrollTop is greater than 0
+      setIsScrolled(scrollTop > 0);
     };
 
     window.addEventListener('scroll', handleScroll);

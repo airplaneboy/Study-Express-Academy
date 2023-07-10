@@ -73,13 +73,20 @@ const RegisterForm = () => {
       password: trim(passwordRef.current?.value!),
     };
 
-    await toast.promise(registerUser(userData), {
-      error: 'An error occurred. Try again',
-      loading: 'Signing you up...',
-      success: 'Sign up successful. Welcome!',
-    });
-
-    router.push('/');
+    try {
+      await toast.promise(
+        registerUser(userData),
+        {
+          error: 'An error occurred. Try again',
+          loading: 'Signing you up...',
+          success: 'Sign up successful. Welcome!',
+        },
+        { error: { duration: 500 } }
+      );
+      router.push('/auth/login');
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   return (

@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Input from '@/components/Auth/Input';
@@ -9,12 +9,16 @@ import Link from 'next/link';
 import { HiEye, HiEyeSlash } from 'react-icons/hi2';
 // import ShowError from './Error';
 import trim from 'validator/lib/trim';
+import blacklist from 'validator/lib/blacklist';
 import toast from 'react-hot-toast';
 import { PrefetchKind } from 'next/dist/client/components/router-reducer/router-reducer-types';
 
 const LoginForm = () => {
   const router = useRouter();
-  router.prefetch('/', { kind: PrefetchKind.FULL });
+  useEffect(() => {
+    router.prefetch('/', { kind: PrefetchKind.AUTO });
+  }, [router]);
+
   // const [content, setContent] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const emailOrUsernameRef = useRef<HTMLInputElement>(null);
@@ -33,7 +37,7 @@ const LoginForm = () => {
       callbackUrl: '/',
     });
 
-    if (res?.error) return toast.error("Username or Email, and password don't match");
+    if (res?.error) return toast.error(blacklist(res.error, '"'));
 
     // if (document.referrer == 'http://localhost:3000/') return router.back();
     toast.success('Login successful', { duration: 3000 });

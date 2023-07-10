@@ -2,8 +2,6 @@ import { NextResponse } from 'next/server';
 import connectMongoose from '@/lib/mongooseConnect';
 import User from '@/models/User.js';
 import { StatusCodes } from 'http-status-codes';
-import CustomErrors from '@/errors';
-
 interface RequestBody {
   username: string;
   password: string;
@@ -42,6 +40,8 @@ export async function POST(request: Request) {
   if (!(await user.verifyPassword(password)))
     return NextResponse.json({ error: 'Password is incorrect' }, { status: StatusCodes.UNAUTHORIZED });
 
-  return NextResponse.json(user, { status: StatusCodes.OK });
+  const finalUser = { username: user.username, email: user.email, role: user.role, id: user._id, image: user?.image };
+
+  return NextResponse.json(finalUser, { status: StatusCodes.OK });
   //#endregion
 }

@@ -4,9 +4,11 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
 
   const sessionLog = () => console.log(session);
+
+  const sessionUpdate = async () => await update({ email: 'james' });
 
   return (
     <main>
@@ -17,6 +19,11 @@ export default function Home() {
       <br />
       <button className='text-blue-500 hover:text-blue-700' onClick={() => sessionLog()}>
         log session
+      </button>
+      <br />
+      <br />
+      <button className='text-green-500 hover:text-green-700' onClick={() => sessionUpdate()}>
+        update session
       </button>
       <br />
       <SignButton />

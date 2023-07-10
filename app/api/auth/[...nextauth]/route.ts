@@ -29,19 +29,14 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials, req) {
-        const res = await fetch('http://localhost:3000/api/v1/auth/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
+        const user = await fetchPOST({
+          data: {
             username: credentials?.username,
             email: credentials?.email,
             password: credentials?.password,
-          }),
+          },
+          path: 'http://localhost:3000/api/v1/auth/login',
         });
-
-        const user = await res.json();
 
         if (user) return user;
 
@@ -55,27 +50,31 @@ export const authOptions: NextAuthOptions = {
     signIn: '/auth/login',
   },
   callbacks: {
-    async session({ session, token, user }) {
+    async jwt({ token, user, trigger }) {
+      if (trigger === 'signIn' || trigger === 'signUp') token = { ...token, ...user };
+
+      return token;
+    },
+
+    async session({ session, token }) {
+      session.user = token;
       return session;
     },
 
-    async signIn({ account, user, profile }) {
-      console.log(account);
-      console.log(profile);
-
-      const userData = {
-        email: profile?.email,
-        firstName: profile?.given_name,
-        lastName: profile?.family_name,
-        name: profile?.name,
-        providerId: account?.providerAccountId,
-        provider: account?.provider,
-        providerType: account?.type,
-      };
-
-      const loginData = { email: profile?.email };
-
+    async signIn({ account, profile, credentials, user }) {
       if (account?.type === 'oauth') {
+        const userData = {
+          email: profile?.email,
+          firstName: profile?.given_name,
+          lastName: profile?.family_name,
+          name: profile?.name,
+          providerId: account?.providerAccountId,
+          provider: account?.provider,
+          providerType: account?.type,
+        };
+
+        const loginData = { email: profile?.email };
+
         try {
           await fetchPOST({
             data: loginData,
@@ -98,10 +97,11 @@ export const authOptions: NextAuthOptions = {
           return true;
         } catch (error) {
           console.log(error);
+          return false;
         }
       }
 
-      return false;
+      return true;
     },
   },
 
