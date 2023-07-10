@@ -20,6 +20,7 @@ const RegisterForm = () => {
   const [passwordMatch, setPasswordMatch] = useState<boolean | null>(null);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const passwordColors = () => {
@@ -61,6 +62,7 @@ const RegisterForm = () => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     if (!passwordMatch) return toast.error("Passwords don't match");
     if (!isPasswordValid())
@@ -88,10 +90,12 @@ const RegisterForm = () => {
     } catch (error: any) {
       toast.error(error.message);
     }
+    setLoading(false);
   };
 
   return (
     <>
+      {loading && <div className='min-w-full h-full bg-gray-700 opacity-30 absolute top-0 left-0 z-50' />}
       <form onSubmit={submitHandler} className='max-md:px-4 '>
         <div className='space-y-3 '>
           <div className='max-md:space-y-3 w-full md:flex  justify-between gap-5 md:items-center '>

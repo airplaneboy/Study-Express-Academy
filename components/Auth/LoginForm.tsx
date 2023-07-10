@@ -11,13 +11,12 @@ import { HiEye, HiEyeSlash } from 'react-icons/hi2';
 import trim from 'validator/lib/trim';
 import blacklist from 'validator/lib/blacklist';
 import toast from 'react-hot-toast';
-import { PrefetchKind } from 'next/dist/client/components/router-reducer/router-reducer-types';
 
 const LoginForm = () => {
   const router = useRouter();
-  useEffect(() => {
-    router.prefetch('/', { kind: PrefetchKind.AUTO });
-  }, [router]);
+  // useEffect(() => {
+  //   router.prefetch('/', { kind: PrefetchKind.AUTO });
+  // }, [router]);
 
   // const [content, setContent] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -45,8 +44,8 @@ const LoginForm = () => {
   };
 
   async function submitHandler(e: React.FormEvent<HTMLFormElement>) {
-    setLoading(true);
     e.preventDefault();
+    setLoading(true);
 
     // setContent('');
 

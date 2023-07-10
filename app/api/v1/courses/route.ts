@@ -13,11 +13,12 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     await connectMongoose();
+
     const body = await request.json();
 
-    const { title, description, instructor } = body;
+    const { title, description, instructor, subject } = body;
 
-    if (!title || !description || !instructor)
+    if (!title || !description || !instructor || !subject)
       return jsonResponse({ error: 'Course needs title, description, and instructor' }, 'BAD_REQUEST');
 
     if (await Course.findOne({ title }))
