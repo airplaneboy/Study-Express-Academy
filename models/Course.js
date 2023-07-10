@@ -6,7 +6,12 @@ const CourseSchema = new mongoose.Schema(
     description: { type: String, required: [true, 'Course description cannot be empty'], maxlength: 500 },
     tags: [String],
     instructor: { type: String, required: true },
-    subject: { type: mongoose.Schema.Types.ObjectId, ref: 'Subject', required: true },
+    subject: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Subject',
+      required: true,
+      validate: { validator: isSubject, message: 'Invalid subject. Please provide a valid subject ID.' },
+    },
     units: { type: [mongoose.Schema.ObjectId], ref: 'Unit' },
   },
   { timestamps: true }
@@ -15,5 +20,10 @@ const CourseSchema = new mongoose.Schema(
 CourseSchema.pre('save', async function () {
   if (this.isNew) await mongoose.model('Subject').updateOne({ _id: this.subject }, { $push: { courses: this._id } });
 });
+
+async function isSubject(value) {
+  const subject = await mongoose.model('Subject').findById(value);
+  return subject !== null;
+}
 
 export default mongoose.models.Course || mongoose.model('Course', CourseSchema);

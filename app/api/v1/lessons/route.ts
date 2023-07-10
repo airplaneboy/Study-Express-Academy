@@ -3,7 +3,7 @@ import Lesson from '@/models/Lesson';
 import jsonResponse from '@/utils/jsonResponse';
 
 export async function GET(request: Request) {
-  connectMongoose();
+  await connectMongoose();
   const lessons = await Lesson.find({});
 
   if (!lessons) return jsonResponse({ error: 'There was an error' }, 'BAD_REQUEST');
@@ -15,15 +15,15 @@ export async function POST(request: Request) {
   try {
     await connectMongoose();
     const body = await request.json();
-    const { title, description, courseId } = body;
+    const { title, description, unit } = body;
 
-    if (!title || !description || !courseId)
+    if (!title || !description || !unit)
       return jsonResponse({ error: 'Lesson title, description, and courseId is required' }, 'BAD_REQUEST');
 
     if (await Lesson.findOne({ title }))
       return jsonResponse({ error: 'Lesson with same title already exists. Choose a different title' }, 'BAD_REQUEST');
 
-    const lesson = await Lesson.create({ ...body, course: courseId });
+    const lesson = await Lesson.create(body);
 
     return jsonResponse({ msg: 'Successfully created lesson', lesson }, 'OK');
   } catch (error: any) {

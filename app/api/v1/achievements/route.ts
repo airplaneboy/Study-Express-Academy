@@ -3,7 +3,7 @@ import Achievement from '@/models/Achievement';
 import jsonResponse from '@/utils/jsonResponse';
 
 export async function GET(request: Request) {
-  connectMongoose();
+  await connectMongoose();
   const achievements = await Achievement.find({});
 
   if (!achievements) return jsonResponse({ error: 'There was an error' }, 'BAD_REQUEST');
