@@ -99,11 +99,11 @@ export default function Sidebar({ content }: { content: any }) {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className='w-64 h-full max-md:hidden '>
-          <div className=' flex flex-col fixed inherit_width_height mt-16 inset-y-0  shadow-indigo-300'>
-            <SidebarItems classNames={classNames} navigation={sidebarData} />
-          </div>
+        {/* <div className='w-64 h-full max-md:hidden '> */}
+        <div className=' flex flex-col  inset-y-0  shadow-indigo-300  w-64 h-[calc(100vh-128px)] sticky top-16 max-md:hidden'>
+          <SidebarItems classNames={classNames} navigation={sidebarData} />
         </div>
+        {/* </div> */}
 
         {/* Dashboard */}
         <Dashboard content={content} setSidebarOpen={setSidebarOpen} />
