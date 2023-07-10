@@ -34,7 +34,7 @@ export async function PATCH(request: Request, { params }: { params: any }) {
       '-provider',
       '-completedLessons',
       '-currentLesson',
-      '-enrolledCourses',
+      '-courses',
       '-completedCourses',
       '-achievements',
     ]);
@@ -46,7 +46,7 @@ export async function PATCH(request: Request, { params }: { params: any }) {
       delete body?.provider &&
       delete body?.completedCourses &&
       delete body?.currentLesson &&
-      delete body?.enrolledCourses &&
+      delete body?.courses &&
       delete body?.completedCourses &&
       delete body?.achievements;
 

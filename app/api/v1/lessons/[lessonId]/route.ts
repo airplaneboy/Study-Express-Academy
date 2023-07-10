@@ -38,8 +38,8 @@ export async function DELETE(request: Request, { params }: { params: any }) {
     await connectMongoose();
     const lessonId = params.lessonId;
 
+    if (!lessonId) return jsonResponse({ error: `No lesson with ID ${lessonId} was not found` }, 'NOT_FOUND');
     const lesson = await Lesson.findByIdAndDelete(lessonId);
-    if (!lesson) return jsonResponse({ error: `Lesson with ID ${lessonId} was not found` }, 'NOT_FOUND');
     return jsonResponse({ msg: 'Lesson was successfully deleted' }, 'OK');
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');

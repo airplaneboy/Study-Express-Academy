@@ -93,7 +93,7 @@ const UserSchema = new mongoose.Schema(
 
     currentLesson: { type: mongoose.Schema.Types.ObjectId, ref: 'Lesson' },
 
-    enrolledCourses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Courses' },
+    courses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Courses' },
 
     completedCourses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Courses' },
 
