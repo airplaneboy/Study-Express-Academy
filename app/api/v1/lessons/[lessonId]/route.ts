@@ -13,7 +13,7 @@ export async function GET(request: Request, { params }: { params: any }) {
 
     return jsonResponse(lesson, 'OK');
   } catch (error: any) {
-    return jsonResponse({ error: error.message }, 'BAD_REQUEST');
+    return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }
 
@@ -29,7 +29,7 @@ export async function PATCH(request: Request, { params }: { params: any }) {
     await lesson.save();
     return jsonResponse(lesson, 'OK');
   } catch (error: any) {
-    return jsonResponse({ error: error.message }, 'BAD_REQUEST');
+    return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }
 
@@ -42,6 +42,6 @@ export async function DELETE(request: Request, { params }: { params: any }) {
     if (!lesson) return jsonResponse({ error: `Lesson with ID ${lessonId} was not found` }, 'NOT_FOUND');
     return jsonResponse({ msg: 'Lesson was successfully deleted' }, 'OK');
   } catch (error: any) {
-    return jsonResponse({ error: error.message }, 'BAD_REQUEST');
+    return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }

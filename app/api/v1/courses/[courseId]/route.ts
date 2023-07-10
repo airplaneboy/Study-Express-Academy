@@ -17,7 +17,7 @@ export async function GET(request: Request, { params }: { params: any }) {
 
     return jsonResponse(course, 'OK');
   } catch (error: any) {
-    return jsonResponse({ error: error.message }, 'BAD_REQUEST');
+    return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }
 
@@ -38,7 +38,7 @@ export async function PATCH(request: Request, { params }: { params: any }) {
     await course.save();
     return jsonResponse(course, 'OK');
   } catch (error: any) {
-    return jsonResponse({ error: error.message }, 'BAD_REQUEST');
+    return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }
 
@@ -52,6 +52,6 @@ export async function DELETE(request: Request, { params }: { params: any }) {
 
     return jsonResponse({ msg: 'Course was successfully deleted' }, 'OK');
   } catch (error: any) {
-    return jsonResponse({ error: error.message }, 'BAD_REQUEST');
+    return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }

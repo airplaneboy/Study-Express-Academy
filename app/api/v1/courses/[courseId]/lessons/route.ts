@@ -10,6 +10,6 @@ export async function GET(request: Request, { params }: { params: any }) {
     if (!lessons) return jsonResponse({ error: `Lessons with course ID ${courseId} was not found` }, 'NOT_FOUND');
     return jsonResponse({ lessons, nbHits: lessons.length }, 'OK');
   } catch (error: any) {
-    return jsonResponse({ error: error.message }, 'BAD_REQUEST');
+    return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }

@@ -27,6 +27,6 @@ export async function POST(request: Request) {
 
     return jsonResponse(course, 'OK');
   } catch (error: any) {
-    return jsonResponse({ error: error.message }, 'BAD_REQUEST');
+    return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }

@@ -19,6 +19,6 @@ export async function GET(request: Request) {
 
     return jsonResponse({ nbHits: results.length, results }, 'OK');
   } catch (error: any) {
-    return jsonResponse({ error: error.message }, 'BAD_REQUEST');
+    return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }
