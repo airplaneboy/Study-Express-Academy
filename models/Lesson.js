@@ -8,9 +8,13 @@ const LessonSchema = new mongoose.Schema(
     duration: String,
     sequence: Number,
     image: String,
-    course: { type: mongoose.Types.ObjectId, required: true, ref: 'Course' },
+    unit: { type: Schema.Types.ObjectId, ref: 'Unit' },
   },
   { timestamps: true }
 );
+
+LessonSchema.pre('save', async function () {
+  if (this.isNew) await model('Unit').updateOne({ _id: this.unit }, { $push: { lessons: this._id } });
+});
 
 export default mongoose.models.Lesson || mongoose.model('Lesson', LessonSchema);
