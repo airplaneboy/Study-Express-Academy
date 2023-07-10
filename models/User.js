@@ -65,11 +65,6 @@ const UserSchema = new mongoose.Schema(
         number: String,
         verified: Boolean,
       },
-      socials: {
-        twitter: String,
-        github: String,
-        facebook: String,
-      },
       birthday: Date,
     },
     role: {
