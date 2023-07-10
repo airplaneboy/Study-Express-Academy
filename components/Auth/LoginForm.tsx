@@ -114,7 +114,7 @@ const LoginForm = () => {
             </div>
           </div>
 
-          <Button value='Sign In' />
+          <Button value='Sign In' onClick={() => toast.dismiss()} />
         </div>
       </form>
     </>

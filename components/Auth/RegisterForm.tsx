@@ -84,6 +84,7 @@ const RegisterForm = () => {
         { error: { duration: 500 } }
       );
       router.push('/auth/login');
+      toast.loading('Please login to continue!');
     } catch (error: any) {
       toast.error(error.message);
     }

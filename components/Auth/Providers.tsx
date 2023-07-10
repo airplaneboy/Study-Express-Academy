@@ -13,38 +13,54 @@ const Providers = ({ option = '#', providerImage, providerName }: IProvidersOpti
 
   const googleSignIn = async () => {
     setLoading(true);
-    await toast.promise(signIn('google', { callbackUrl: '/', redirect: false }), {
-      error: 'An error occurred',
-      loading: 'Authenticating with google...',
-      success: 'Redirecting to google...',
-    });
+    await toast.promise(
+      signIn('google', { callbackUrl: '/', redirect: false }),
+      {
+        error: 'An error occurred',
+        loading: 'Authenticating with google...',
+        success: 'Redirecting to google...',
+      },
+      { success: { duration: 3000 } }
+    );
   };
 
   const facebookSignIn = async () => {
     setLoading(true);
-    await toast.promise(signIn('facebook', { callbackUrl: '/', redirect: false }), {
-      error: 'An error occurred',
-      loading: 'Authenticating with facebook...',
-      success: 'Redirecting to facebook...',
-    });
+    await toast.promise(
+      signIn('facebook', { callbackUrl: '/', redirect: false }),
+      {
+        error: 'An error occurred',
+        loading: 'Authenticating with facebook...',
+        success: 'Redirecting to facebook...',
+      },
+      { success: { duration: 3000 } }
+    );
   };
 
   const appleSignIn = async () => {
     setLoading(true);
-    await toast.promise(signIn('apple', { callbackUrl: '/', redirect: false }), {
-      error: 'An error occurred',
-      loading: 'Authenticating with apple...',
-      success: 'Redirecting to apple...',
-    });
+    await toast.promise(
+      signIn('apple', { callbackUrl: '/', redirect: false }),
+      {
+        error: 'An error occurred',
+        loading: 'Authenticating with apple...',
+        success: 'Redirecting to apple...',
+      },
+      { success: { duration: 3000 } }
+    );
   };
 
   const githubSignIn = async () => {
     setLoading(true);
-    await toast.promise(signIn('github', { callbackUrl: '/', redirect: false }), {
-      error: 'An error occurred',
-      loading: 'Authenticating with github...',
-      success: 'Redirecting to github...',
-    });
+    await toast.promise(
+      signIn('github', { callbackUrl: '/', redirect: false }),
+      {
+        error: 'An error occurred',
+        loading: 'Authenticating with github...',
+        success: 'Redirecting to github...',
+      },
+      { success: { duration: 3000 } }
+    );
     setLoading(false);
   };
 

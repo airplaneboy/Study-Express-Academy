@@ -1,10 +1,11 @@
 interface Button {
   value: string | number | boolean;
+  onClick?: any;
 }
 
-const Button = ({ value }: Button) => {
+const Button = ({ value, onClick }: Button) => {
   return (
-    <button type='submit' className='register_button'>
+    <button type='submit' onClick={onClick} className='register_button'>
       {value}
     </button>
   );

@@ -20,7 +20,7 @@ export async function GET(request: Request, { params }: { params: any }) {
   }
 }
 
-export async function PATCH(request: Request, { params }: { params: any }) {
+export async function POST(request: Request, { params }: { params: any }) {
   try {
     await connectMongoose();
     const body = await request.json();
@@ -36,6 +36,7 @@ export async function PATCH(request: Request, { params }: { params: any }) {
     if (!Array.isArray(courseIds)) return jsonResponse({ error: 'courseIds takes an array' }, 'BAD_REQUEST');
 
     const errors = [];
+    const validCourses = [];
     for (const courseId of courseIds) {
       const course = await Course.findById(courseId).catch((err) => {
         errors.push(err.message);
@@ -48,19 +49,21 @@ export async function PATCH(request: Request, { params }: { params: any }) {
         errors.push(`msg: User is already enrolled to course with ID: ${courseId} (${course.title})`);
         continue;
       }
+      validCourses.push(`${course.title}. ID: ${courseId}`);
       user.courses.push(courseId);
     }
 
     await user.save();
-    return jsonResponse({ msg: 'Successfully enrolled to course', errors }, 'OK');
+    return jsonResponse({ msg: 'Successfully enrolled to valid courses', validCourses: validCourses, errors }, 'OK');
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: any }) {
+export async function PATCH(request: Request, { params }: { params: any }) {
   try {
     await connectMongoose();
+
     const body = await request.json();
     const userId = params.userId;
     const courseIds = body.courseIds;
@@ -70,6 +73,7 @@ export async function DELETE(request: Request, { params }: { params: any }) {
 
     if (!Array.isArray(courseIds)) return jsonResponse({ error: 'courseIds takes an array' }, 'BAD_REQUEST');
 
+    const validCourses = [];
     const errors = [];
     for (const courseId of courseIds) {
       const course = await Course.findById(courseId).catch((err) => {
@@ -85,11 +89,15 @@ export async function DELETE(request: Request, { params }: { params: any }) {
         continue;
       }
 
+      validCourses.push(`${course.title}. ID: ${courseId}`);
       user.courses.pull(courseId);
     }
     await user.save();
 
-    return jsonResponse({ msg: 'Successfully removed user from course(s)', errors }, 'OK');
+    return jsonResponse(
+      { msg: 'Successfully removed user from valid course(s)', validCourses: validCourses, errors },
+      'OK'
+    );
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
