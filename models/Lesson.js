@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+import Unit from './Unit';
 
 const LessonSchema = new mongoose.Schema(
   {
@@ -19,11 +20,11 @@ const LessonSchema = new mongoose.Schema(
 );
 
 LessonSchema.pre('save', async function () {
-  if (this.isNew) await mongoose.model('Unit').updateOne({ _id: this.unit }, { $push: { lessons: this._id } });
+  if (this.isNew) await Unit.updateOne({ _id: this.unit }, { $push: { lessons: this._id } });
 });
 
 async function isUnit(value) {
-  const unit = await mongoose.model('Unit').findById(value);
+  const unit = await Unit.findById(value);
   return unit !== null;
 }
 // async function isUnitValid(value) {

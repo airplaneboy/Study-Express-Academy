@@ -88,9 +88,11 @@ const UserSchema = new mongoose.Schema(
 
     currentLesson: { type: mongoose.Schema.Types.ObjectId, ref: 'Lesson' },
 
-    courses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Courses' },
+    courses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Course' },
 
-    completedCourses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Courses' },
+    completedCourses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Course' },
+
+    completedUnits: { type: [mongoose.Schema.Types.ObjectId], ref: 'Unit' },
 
     achievements: { type: [mongoose.Schema.Types.ObjectId], ref: 'Achievement' },
   },

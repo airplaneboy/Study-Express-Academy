@@ -6,8 +6,9 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/Thumbs.db": true
-    // "node_modules": true
+    "**/Thumbs.db": true,
+    "node_modules": true
   },
-  "cSpell.ignoreWords": ["Searchbar"]
+  "cSpell.ignoreWords": ["Searchbar"],
+  "svg.preview.background": "editor"
 }

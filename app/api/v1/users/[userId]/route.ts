@@ -48,7 +48,8 @@ export async function PATCH(request: Request, { params }: { params: any }) {
       delete body?.currentLesson &&
       delete body?.courses &&
       delete body?.completedCourses &&
-      delete body?.achievements;
+      delete body?.achievements &&
+      delete body?.completedUnits;
 
     user = merge(user, body);
     await user.save();

@@ -42,13 +42,13 @@ export default function Example() {
     <div className='mb-24'>
       <h3 className='text-md leading-6 font-extrabold text-gray-300 font-inter uppercase'>Last 30 days</h3>
 
-      <div className='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+      <div className='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 -z-10 relative'>
         {stats.map((item) => (
           <div
             key={item.id}
             className={`flex items-center justify-center gap-2 flex-col relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-stats_shadow shadow-${item.color} rounded-lg overflow-hidden`}
           >
-            <div className='sm:ml-16 mb-2 flex gap-2 items-center'>
+            <div className=' mb-2 flex gap-2 items-center '>
               <item.icon size={25} className={` ${item.imageColor}`} aria-hidden='true' />
               <p className='text-sm font-medium text-gray-500 truncate'>{item.name}</p>
             </div>

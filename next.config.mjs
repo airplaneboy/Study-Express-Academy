@@ -9,7 +9,14 @@ import million from 'million/compiler';
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    remotePatterns: [],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
   experimental: {
     esmExternals: 'loose', // <-- add this
@@ -21,6 +28,26 @@ const nextConfig = {
       topLevelAwait: true,
       layers: true,
     };
+
+    // config.module.rules.push(
+    //   {
+    //     test: /\.svg$/i,
+    //     issuer: /\.[jt]sx?$/,
+    //     use: ['@svgr/webpack'],
+    //   },
+    //   {
+    //     test: /\.svg$/i,
+    //     type: 'asset',
+    //     resourceQuery: /url/, // *.svg?url
+    //   },
+    //   {
+    //     test: /\.svg$/i,
+    //     issuer: /\.[jt]sx?$/,
+    //     resourceQuery: { not: [/url/] }, // exclude react component if *.svg?url
+    //     use: ['@svgr/webpack'],
+    //   }
+    // );
+
     return config;
   },
 };

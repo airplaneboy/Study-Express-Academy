@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Course from './Course';
 
 const UnitSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -14,11 +15,11 @@ const UnitSchema = new mongoose.Schema({
 });
 
 UnitSchema.pre('save', async function () {
-  if (this.isNew) await mongoose.model('Course').updateOne({ _id: this.course }, { $push: { units: this._id } });
+  if (this.isNew) await Course.updateOne({ _id: this.course }, { $push: { units: this._id } });
 });
 
 async function isCourse(value) {
-  const course = await mongoose.model('Course').findById(value);
+  const course = await Course.findById(value);
   return course !== null;
 }
 

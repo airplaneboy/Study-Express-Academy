@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+import Subject from './Subject';
 
 const CourseSchema = new mongoose.Schema(
   {
@@ -12,17 +13,18 @@ const CourseSchema = new mongoose.Schema(
       required: true,
       validate: { validator: isSubject, message: 'Invalid subject. Please provide a valid subject ID.' },
     },
+    level: { type: String, enum: ['international', 'domestic'] },
     units: { type: [mongoose.Schema.ObjectId], ref: 'Unit' },
   },
   { timestamps: true }
 );
 
 CourseSchema.pre('save', async function () {
-  if (this.isNew) await mongoose.model('Subject').updateOne({ _id: this.subject }, { $push: { courses: this._id } });
+  if (this.isNew) await Subject.updateOne({ _id: this.subject }, { $push: { courses: this._id } });
 });
 
 async function isSubject(value) {
-  const subject = await mongoose.model('Subject').findById(value);
+  const subject = await Subject.findById(value);
   return subject !== null;
 }
 
