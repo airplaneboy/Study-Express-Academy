@@ -13,7 +13,11 @@ const CourseSchema = new mongoose.Schema(
       required: true,
       validate: { validator: isSubject, message: 'Invalid subject. Please provide a valid subject ID.' },
     },
-    level: { type: String, enum: ['international', 'domestic'] },
+    level: {
+      type: String,
+      enum: ['international', 'domestic'],
+      required: [true, 'You need to specify if this a "domestic" or an "international" course'],
+    },
     units: { type: [mongoose.Schema.ObjectId], ref: 'Unit' },
   },
   { timestamps: true }

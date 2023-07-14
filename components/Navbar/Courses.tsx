@@ -34,13 +34,14 @@ const Courses = ({ courses, classNames }: { courses: any; classNames: Function }
         >
           <Menu.Items className='origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-1 focus:outline-none'>
             {courses.map((item: any) => (
-              <Menu.Item key={item.name}>
+              <Menu.Item key={item.title}>
                 {({ active }) => (
                   <Link
-                    href={item.href}
+                    // href={item.href}
+                    href='#'
                     className={classNames(active ? 'bg-indigo-100' : '', 'block py-2 px-4 text-sm text-gray-700')}
                   >
-                    {item.name}
+                    {item.title}
                   </Link>
                 )}
               </Menu.Item>

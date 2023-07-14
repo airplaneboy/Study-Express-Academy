@@ -35,6 +35,7 @@ const UserMenu = ({
               {({ active }) => (
                 <Link
                   href={item.href}
+                  onClick={item.onClick}
                   className={classNames(active ? 'bg-gray-100' : '', 'block py-2 px-4 text-sm text-gray-700')}
                 >
                   {item.name}

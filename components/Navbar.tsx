@@ -1,6 +1,7 @@
 'use client';
+import getCourses from './data/Courses';
 import { Popover } from '@headlessui/react';
-
+import { signOut } from 'next-auth/react';
 import UserMenu from './Navbar/UserMenu';
 import Search from './Navbar/Search';
 import MobileMenuButton from './Navbar/MobileMenuButton';
@@ -18,37 +19,44 @@ const user = {
     'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 };
 
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Teams', href: '#', current: false },
-  { name: 'Directory', href: '#', current: false },
-];
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign out', href: '#', onClick: signOut },
 ];
-const courses = [
-  { name: 'Mathematics', href: '#' },
-  { name: 'English', href: '#' },
-  { name: 'Chemistry', href: '#' },
-];
+// const courses = [
+//   { title: 'Mathematics', href: '#' },
+//   { title: 'English', href: '#' },
+//   { title: 'Chemistry', href: '#' },
+// ];
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Navbar() {
+export default async function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [courses, setCourses] = useState([]);
 
   useEffect(() => {
+    //Navbar Scroll Shadow
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       setIsScrolled(scrollTop > 0);
     };
 
     window.addEventListener('scroll', handleScroll);
+
+    //Get Courses
+
+    const getCourse = async () => {
+      const courses = await getCourses();
+      console.log(courses);
+      return setCourses(courses);
+    };
+
+    getCourse();
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -71,7 +79,7 @@ export default function Navbar() {
         >
           {({ open }) => (
             <>
-              <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-full items-center'>
+              <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-full items-center '>
                 <Search />
                 <div className='absolute_center'>
                   <ClickableLogo />
@@ -84,8 +92,8 @@ export default function Navbar() {
               </div>
 
               {/* Mobile Sidebar */}
-              <Popover.Panel as='nav' className='sm:hidden' aria-label='Global'>
-                <div className='border-t border-gray-200 pt-4 pb-3'>
+              <Popover.Panel as='nav' className='sm:hidden mt-3' aria-label='Global'>
+                <div className='border-t border-gray-200 pt-4 pb-3 '>
                   <UserProfile user={user} />
                   <UserNavigation userNavigation={userNavigation} />
                 </div>

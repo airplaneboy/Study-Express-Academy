@@ -16,10 +16,10 @@ export async function POST(request: Request) {
 
     const body = await request.json();
 
-    const { title, description, instructor, subject } = body;
+    const { title, description, instructor, subject, level } = body;
 
-    if (!title || !description || !instructor || !subject)
-      return jsonResponse({ error: 'Course needs title, description, and instructor' }, 'BAD_REQUEST');
+    if (!title || !description || !instructor || !subject || !level)
+      return jsonResponse({ error: 'Course needs title, description, level, and instructor' }, 'BAD_REQUEST');
 
     if (await Course.findOne({ title }))
       return jsonResponse({ error: 'Course with same title already exists. Choose a different title' }, 'BAD_REQUEST');
