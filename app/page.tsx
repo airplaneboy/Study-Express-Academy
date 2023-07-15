@@ -2,30 +2,19 @@
 import SignButton from '@/components/SignButton';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import courses from '@/components/data/Courses';
-import { useEffect } from 'react';
-import getUsers from '@/lib/getSomedata';
+import courses from '@/lib/data/courses';
 
-console.log('i was here ');
 export default function Home() {
-  console.log('no i inside');
+  const { data: session, update } = useSession();
 
-  // const { data: session, update } = useSession();
+  const sessionLog = () => console.log(session);
 
-  // const sessionLog = () => console.log(session);
-
-  // const sessionUpdate = async () => await update({ email: 'james' });
+  const sessionUpdate = async () => await update({ email: 'james' });
 
   return (
     <main>
-      {/* <div>
-        {coursesData.map((items: any) => {
-          return <h1 key={items.title}>{items.title}</h1>;
-        })}
-      </div> */}
-
       <h1>Homepage</h1>
-      {/* <Link href='/protected' className='text-blue-500 hover:text-blue-700  my-10'>
+      <Link href='/protected' className='text-blue-500 hover:text-blue-700  my-10'>
         Protected Page
       </Link>
       <br />
@@ -47,7 +36,7 @@ export default function Home() {
       </button>
       <br />
       <br />
-      <SignButton /> */}
+      <SignButton />
     </main>
   );
 }

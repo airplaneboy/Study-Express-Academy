@@ -10,5 +10,6 @@
     "node_modules": true
   },
   "cSpell.ignoreWords": ["Searchbar"],
-  "svg.preview.background": "editor"
+  "svg.preview.background": "editor",
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

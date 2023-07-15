@@ -1,3 +1,19 @@
+export async function fetchGET({ token, path }: { token?: string; path: string }) {
+  const config = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      // Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await fetch(path, config);
+
+  if (!response.ok) throw new Error(JSON.stringify((await response.json()).error));
+
+  return await response.json();
+}
+
 export async function fetchPOST({
   data,
   token,
@@ -45,22 +61,6 @@ export async function fetchPATCH({
       ...headers,
     },
     body: JSON.stringify(data),
-  };
-
-  const response = await fetch(path, config);
-
-  if (!response.ok) throw new Error(JSON.stringify((await response.json()).error));
-
-  return await response.json();
-}
-
-export async function fetchGET({ token, path }: { token?: string; path: string }) {
-  const config = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      // Authorization: `Bearer ${token}`,
-    },
   };
 
   const response = await fetch(path, config);

@@ -2,7 +2,7 @@ let classNames = require('classnames');
 import '@/styles/globals.css';
 import { Nunito, Inter } from 'next/font/google';
 import Providers from '@/context/Provider';
-import Header from '@/components/Header';
+// import Header from '@/components/Header';
 import ToasterContext from '@/context/Toaster';
 
 const nunito = Nunito({ weight: ['500', '700'], subsets: ['latin'], variable: '--font-nunito' });
@@ -11,7 +11,6 @@ const inter = Inter({ weight: ['700', '800'], subsets: ['latin'], variable: '--f
 export const metadata = {
   title: process.env.TITLE,
   description: `Explore a wide range of educational subjects and courses on ${process.env.TITLE}. Learn math, science, and more. Access free interactive lessons, and practice exercises. Start your learning journey today.`,
-  link: 'hello this is a link',
 };
 
 const classes = classNames(nunito.className, inter.variable, 'h-full');

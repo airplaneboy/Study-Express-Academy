@@ -1,5 +1,5 @@
 import { MdArrowDropDown } from 'react-icons/md';
-import { Fragment } from 'react';
+import { Fragment, Suspense } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import Link from 'next/link';
 
@@ -32,14 +32,16 @@ const Courses = ({ courses, classNames }: { courses: any; classNames: Function }
           leaveFrom='transform opacity-100 scale-100'
           leaveTo='transform opacity-0 scale-95'
         >
-          <Menu.Items className='origin-top-right absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-1 focus:outline-none'>
+          <Menu.Items className='z-50 origin-top-right fixed left-1/2 -translate-x-1/2 mt-2 max-w-8xl w-4/5 rounded-md shadow-xl grid lg:grid-cols-3 md:grid-cols-2  gap-3 bg-white ring-1 ring-black ring-opacity-5 py-5 px-2 focus:outline-none'>
             {courses.map((item: any) => (
-              <Menu.Item key={item.title}>
+              <Menu.Item key={item._id}>
                 {({ active }) => (
                   <Link
-                    // href={item.href}
                     href='#'
-                    className={classNames(active ? 'bg-indigo-100' : '', 'block py-2 px-4 text-sm text-gray-700')}
+                    className={classNames(
+                      active ? 'bg-indigo-100 rounded-2xl text-indigo-900 underline ' : '',
+                      'flex py-2 px-4 text-sm text-gray-700 items-center justify-start'
+                    )}
                   >
                     {item.title}
                   </Link>
