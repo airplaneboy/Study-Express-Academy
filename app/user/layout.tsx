@@ -1,7 +1,10 @@
-// import NavbarContent from '@/components/NavbarContent';
 import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
 import Footer from '@/components/Footer';
+
+export const metadata = {
+  title: 'Homepage',
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
