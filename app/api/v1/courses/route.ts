@@ -1,6 +1,7 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Course from '@/models/Course';
 import jsonResponse from '@/utils/jsonResponse';
+import isAlpha from 'validator/lib/isAlpha';
 
 export async function GET() {
   await connectMongoose();
@@ -20,6 +21,12 @@ export async function POST(request: Request) {
 
     if (!title || !description || !instructor || !subject || !level)
       return jsonResponse({ error: 'Course needs title, description, level, and instructor' }, 'BAD_REQUEST');
+
+    if (!isAlpha(title, 'en-US', { ignore: ' -:' }))
+      return jsonResponse(
+        { error: "Course's title can only contain alphabets and the following characters: '-' ':' " },
+        'BAD_REQUEST'
+      );
 
     if (await Course.findOne({ title }))
       return jsonResponse({ error: 'Course with same title already exists. Choose a different title' }, 'BAD_REQUEST');

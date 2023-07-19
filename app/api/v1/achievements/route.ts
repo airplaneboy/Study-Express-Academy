@@ -1,6 +1,7 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Achievement from '@/models/Achievement';
 import jsonResponse from '@/utils/jsonResponse';
+import isAlpha from 'validator/lib/isAlpha';
 
 export async function GET(request: Request) {
   await connectMongoose();
@@ -20,12 +21,18 @@ export async function POST(request: Request) {
     if (!title || !description || !requirement)
       return jsonResponse({ error: 'Achievement title, description, and requirement is required' }, 'BAD_REQUEST');
 
+    if (!isAlpha(title, 'en-US', { ignore: ' -:' }))
+      return jsonResponse(
+        { error: "Achievement's title can only contain alphabets and the following characters: '-' ':' " },
+        'BAD_REQUEST'
+      );
+
     if (await Achievement.findOne({ title }))
       return jsonResponse(
         { error: 'Achievement with same title already exists. Choose a different title' },
         'BAD_REQUEST'
       );
-    // const achievement = body;
+
     const achievement = await Achievement.create(body);
 
     return jsonResponse({ msg: 'Successfully created achievement', achievement: achievement }, 'OK');

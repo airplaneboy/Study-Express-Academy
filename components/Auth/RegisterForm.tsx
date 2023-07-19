@@ -42,12 +42,6 @@ const RegisterForm = () => {
       try {
         const password = trim(passwordRef.current?.value!);
         return isStrongPassword(password, {
-          //TODO: Don't forget to uncomment this out
-          // minLength: 5,
-          // minLowercase: 0,
-          // minUppercase: 0,
-          // minSymbols: 0,
-          // minNumbers: 0,
           minLength: 8,
           minLowercase: 1,
           minNumbers: 1,

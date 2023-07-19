@@ -1,6 +1,7 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Subject from '@/models/Subject';
 import jsonResponse from '@/utils/jsonResponse';
+import isAlpha from 'validator/lib/isAlpha';
 
 export async function GET() {
   await connectMongoose();
@@ -18,6 +19,12 @@ export async function POST(request: Request) {
     const { title, description } = body;
 
     if (!title || !description) return jsonResponse({ error: 'Subject needs title, and description' }, 'BAD_REQUEST');
+
+    if (!isAlpha(title, 'en-US', { ignore: ' -:' }))
+      return jsonResponse(
+        { error: "Subject's title can only contain alphabets and the following characters: '-' ':' " },
+        'BAD_REQUEST'
+      );
 
     if (await Subject.findOne({ title }))
       return jsonResponse({ error: 'Subject with same title already exists. Choose a different title' }, 'BAD_REQUEST');

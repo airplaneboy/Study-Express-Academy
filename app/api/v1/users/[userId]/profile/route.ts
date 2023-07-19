@@ -1,6 +1,6 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import User from '@/models/User';
-import { merge } from 'lodash';
+import merge from 'lodash.merge';
 import jsonResponse from '@/utils/jsonResponse';
 
 export async function GET(request: Request, { params }: { params: any }) {

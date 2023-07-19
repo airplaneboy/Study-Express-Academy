@@ -19,6 +19,7 @@ const UserSchema = new mongoose.Schema(
       maxlength: [254, 'Email is too long'],
       verified: Boolean,
       trim: true,
+      lowercase: true,
       validate: {
         validator: (value) => {
           return validator.isEmail(value);
@@ -55,8 +56,8 @@ const UserSchema = new mongoose.Schema(
     },
 
     profile: {
-      firstName: { type: String, trim: true },
-      lastName: { type: String, trim: true },
+      firstName: { type: String, trim: true, lowercase: true },
+      lastName: { type: String, trim: true, lowercase: true },
       pictureUrl: String, //why not use buffer?
       bio: String,
       country: String,

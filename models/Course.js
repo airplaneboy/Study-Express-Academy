@@ -3,8 +3,15 @@ import Subject from './Subject';
 
 const CourseSchema = new mongoose.Schema(
   {
-    title: { type: String, trim: true, required: [true, 'Course title cannot be empty'], maxlength: 300, unique: true },
-    description: { type: String, required: [true, 'Course description cannot be empty'], maxlength: 500 },
+    title: {
+      type: String,
+      trim: true,
+      required: [true, 'Course title cannot be empty'],
+      maxlength: 300,
+      unique: true,
+      lowercase: true,
+    },
+    description: { type: String, required: [true, 'Course description cannot be empty'], maxlength: 500, trim: true },
     tags: [String],
     instructor: { type: String, required: true },
     subject: {

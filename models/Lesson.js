@@ -3,7 +3,7 @@ import Unit from './Unit';
 
 const LessonSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true, unique: true },
+    title: { type: String, required: true, unique: true, trim: true, lowercase: true },
     description: { type: String, required: true },
     videoURL: { type: String },
     duration: String,

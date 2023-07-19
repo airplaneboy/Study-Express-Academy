@@ -1,8 +1,8 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Unit from '@/models/Unit';
-import { merge } from 'lodash';
-
+import merge from 'lodash.merge';
 import jsonResponse from '@/utils/jsonResponse';
+import isAlpha from 'validator/lib/isAlpha';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -11,7 +11,11 @@ export async function GET(request: Request, { params }: { params: any }) {
 
     if (!unitId) return jsonResponse({ error: 'Please add unit id' }, 'BAD_REQUEST');
 
-    const unit = await Unit.findById(unitId);
+    let unit;
+
+    mongoose.Types.ObjectId.isValid(unitId)
+      ? (unit = await Unit.findById(unitId))
+      : (unit = await Unit.findOne({ title: unitId }));
 
     if (!unit) return jsonResponse({ error: `Unit with ID ${unitId} was not found` }, 'NOT_FOUND');
 
@@ -32,6 +36,13 @@ export async function PATCH(request: Request, { params }: { params: any }) {
     let unit = await Unit.findById(unitId);
 
     if (!unit) return jsonResponse({ error: 'No unit was found' }, 'NOT_FOUND');
+
+    if (body?.title)
+      if (!isAlpha(body.title, 'en-US', { ignore: ' -:' }))
+        return jsonResponse(
+          { error: "Unit's title can only contain alphabets and the following characters: '-' ':' " },
+          'BAD_REQUEST'
+        );
 
     unit = merge(unit, body);
     await unit.save();

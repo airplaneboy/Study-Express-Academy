@@ -1,8 +1,9 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Course from '@/models/Course';
-import { merge } from 'lodash';
+import merge from 'lodash.merge';
 
 import jsonResponse from '@/utils/jsonResponse';
+import isAlpha from 'validator/lib/isAlpha';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -11,9 +12,13 @@ export async function GET(request: Request, { params }: { params: any }) {
 
     if (!courseId) return jsonResponse({ error: 'Please add course id' }, 'BAD_REQUEST');
 
-    const course = await Course.findById(courseId);
+    let course;
 
-    if (!course) return jsonResponse({ error: `Course with ID ${courseId} was not found` }, 'NOT_FOUND');
+    mongoose.Types.ObjectId.isValid(courseId)
+      ? (course = await Course.findById(courseId))
+      : (course = await Course.findOne({ title: courseId }));
+
+    if (!course) return jsonResponse({ error: `Course with ID or title "${courseId}" was not found` }, 'NOT_FOUND');
 
     return jsonResponse(course, 'OK');
   } catch (error: any) {
@@ -33,6 +38,13 @@ export async function PATCH(request: Request, { params }: { params: any }) {
     let course = await Course.findById(courseId);
 
     if (!course) return jsonResponse({ error: 'No course was found' }, 'NOT_FOUND');
+
+    if (body?.title)
+      if (!isAlpha(body.title, 'en-US', { ignore: ' -:' }))
+        return jsonResponse(
+          { error: "Course's title can only contain alphabets and the following characters: '-' ':' " },
+          'BAD_REQUEST'
+        );
 
     course = merge(course, body);
     await course.save();

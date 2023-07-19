@@ -37,7 +37,7 @@ const Courses = ({ courses, classNames }: { courses: any; classNames: Function }
               <Menu.Item key={item._id}>
                 {({ active }) => (
                   <Link
-                    href={`/subjects/${item._id}`}
+                    href={`/${item.title}/${item._id}`}
                     className={classNames(
                       active ? 'bg-indigo-100 rounded-2xl text-indigo-900 underline ' : '',
                       'flex py-2 px-4 text-sm text-gray-700 items-center justify-start'

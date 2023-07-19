@@ -1,6 +1,7 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Unit from '@/models/Unit';
 import jsonResponse from '@/utils/jsonResponse';
+import isAlphanumeric from 'validator/lib/isAlphanumeric';
 
 export async function GET() {
   await connectMongoose();
@@ -19,6 +20,12 @@ export async function POST(request: Request) {
 
     if (!title || !description || !course)
       return jsonResponse({ error: 'Unit needs title, description, and course' }, 'BAD_REQUEST');
+
+    if (!isAlphanumeric(title, 'en-US', { ignore: ' -:' }))
+      return jsonResponse(
+        { error: "Unit's title can only contain alphabets, numbers and the following characters: '-' ':' " },
+        'BAD_REQUEST'
+      );
 
     if (await Unit.findOne({ title }))
       return jsonResponse({ error: 'Unit with same title already exists. Choose a different title' }, 'BAD_REQUEST');

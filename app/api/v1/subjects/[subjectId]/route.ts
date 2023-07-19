@@ -1,19 +1,25 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Subject from '@/models/Subject';
-import { merge } from 'lodash';
+import merge from 'lodash.merge';
+import mongoose from 'mongoose';
 
 import jsonResponse from '@/utils/jsonResponse';
+import isAlpha from 'validator/lib/isAlpha';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
     await connectMongoose();
-    const subjectId = params.subjectId;
+    const subjectId: string = params.subjectId;
 
     if (!subjectId) return jsonResponse({ error: 'Please add subject id' }, 'BAD_REQUEST');
 
-    const subject = await Subject.findById(subjectId);
+    let subject;
 
-    if (!subject) return jsonResponse({ error: `Subject with ID ${subjectId} was not found` }, 'NOT_FOUND');
+    mongoose.Types.ObjectId.isValid(subjectId)
+      ? (subject = await Subject.findById(subjectId))
+      : (subject = await Subject.findOne({ title: subjectId }));
+
+    if (!subject) return jsonResponse({ error: `Subject with ID or title "${subjectId}" was not found` }, 'NOT_FOUND');
 
     return jsonResponse(subject, 'OK');
   } catch (error: any) {
@@ -33,6 +39,13 @@ export async function PATCH(request: Request, { params }: { params: any }) {
     let subject = await Subject.findById(subjectId);
 
     if (!subject) return jsonResponse({ error: 'No subject was found' }, 'NOT_FOUND');
+
+    if (body?.title)
+      if (!isAlpha(body.title, 'en-US', { ignore: ' -:' }))
+        return jsonResponse(
+          { error: "Subject's title can only contain alphabets and the following characters: '-' ':' " },
+          'BAD_REQUEST'
+        );
 
     subject = merge(subject, body);
     await subject.save();

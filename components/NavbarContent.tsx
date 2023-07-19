@@ -54,7 +54,7 @@ export default function NavbarContent({ coursesData }: { coursesData: any }) {
           className={({ open }) =>
             classNames(
               open ? ' inset-0 z-40 overflow-y-auto' : '',
-              `bg-white py-2 md:fixed inherit_width_height z-10 lg:overflow-y-visible transition-shadow duration-300  ${
+              `bg-white py-2 md:fixed inherit_width_height z-20 lg:overflow-y-visible transition-shadow duration-300  ${
                 isScrolled ? 'shadow-md' : 'shadow-sm'
               }`
             )
