@@ -5,20 +5,8 @@ import getUnits from '@/lib/data/units';
 
 const Subjects = async ({ params }: { params: { subject: string } }) => {
   const subject = await getSubject({ subjectId: params.subject });
-  console.log(subject);
-  console.log(subject.courses);
 
-  // const courses = await getCourses();
-  const units = await getUnits();
-
-  return (
-    <CardList
-      contentArray={units}
-      contentHeader={subject.title}
-      sidebarArray={subject.courses}
-      sidebarHeader='Courses'
-    />
-  );
+  return <CardList contentHeader={subject.title} sidebarArray={subject.courses} sidebarHeader='Courses' />;
 };
 
 export default Subjects;

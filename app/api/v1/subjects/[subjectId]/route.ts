@@ -1,7 +1,8 @@
+import mongoose from 'mongoose';
 import connectMongoose from '@/lib/mongooseConnect';
 import Subject from '@/models/Subject';
 import merge from 'lodash.merge';
-import mongoose from 'mongoose';
+import Course from '@/models/Course';
 
 import jsonResponse from '@/utils/jsonResponse';
 import isAlpha from 'validator/lib/isAlpha';
@@ -9,6 +10,7 @@ import isAlpha from 'validator/lib/isAlpha';
 export async function GET(request: Request, { params }: { params: any }) {
   try {
     await connectMongoose();
+
     const subjectId: string = params.subjectId;
 
     if (!subjectId) return jsonResponse({ error: 'Please add subject id' }, 'BAD_REQUEST');
@@ -16,8 +18,18 @@ export async function GET(request: Request, { params }: { params: any }) {
     let subject;
 
     mongoose.Types.ObjectId.isValid(subjectId)
-      ? (subject = await Subject.findById(subjectId))
-      : (subject = await Subject.findOne({ title: subjectId }));
+      ? (subject = await Subject.findById(subjectId).populate({
+          path: 'courses',
+          select: 'title _id units',
+          model: Course,
+          populate: { path: 'units', select: 'title _id' },
+        }))
+      : (subject = await Subject.findOne({ title: subjectId }).populate({
+          path: 'courses',
+          select: 'title _id units',
+          model: Course,
+          populate: { path: 'units', select: 'title _id' },
+        }));
 
     if (!subject) return jsonResponse({ error: `Subject with ID or title "${subjectId}" was not found` }, 'NOT_FOUND');
 

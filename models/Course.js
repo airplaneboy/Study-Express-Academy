@@ -25,7 +25,7 @@ const CourseSchema = new mongoose.Schema(
       enum: ['international', 'domestic'],
       required: [true, 'You need to specify if this a "domestic" or an "international" course'],
     },
-    units: { type: [mongoose.Schema.ObjectId], ref: 'Unit' },
+    units: { type: [mongoose.Schema.Types.ObjectId], ref: 'Unit' },
   },
   { timestamps: true }
 );
