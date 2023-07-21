@@ -1,4 +1,5 @@
 'use client';
+import kebabcase from 'lodash.kebabcase';
 import NextLink from 'next/link';
 import Image from 'next/image';
 import { Link } from 'react-scroll';
@@ -6,12 +7,12 @@ import CollapsibleHeader from '@/components/CollapsibleHeader';
 
 const CardList = ({
   sidebarArray,
-  // contentArray,
+  contentArray,
   sidebarHeader,
   contentHeader,
 }: {
   sidebarArray: { title: string; image: string; _id: string; units: { title: string; _id: string }[] }[];
-  // contentArray: { title: string; href: string; _id: string }[];
+  contentArray?: { title: string; href: string; _id: string }[];
   sidebarHeader: string;
   contentHeader: string;
 }) => {
@@ -62,7 +63,10 @@ const CardList = ({
               <li key={headerItem._id} id={headerItem.title} className='pb-4'>
                 <div className='bg-white border rounded-lg'>
                   <div className='px-4 py-5 sm:px-6 font-bold text-gray-700 flex items-center gap-2 text-lg max-sm:text-base '>
-                    <NextLink className='max-md:truncate' href={`/${contentHeader}/${headerItem.title}`}>
+                    <NextLink
+                      className='max-md:truncate'
+                      href={`/${kebabcase(contentHeader)}/${kebabcase(headerItem.title)}`}
+                    >
                       {headerItem.title}
                     </NextLink>
                   </div>
@@ -75,7 +79,12 @@ const CardList = ({
                           key={listItem._id}
                           className='text-gray-600 text-md max-sm:text-sm hover:underline truncate'
                         >
-                          <NextLink href={`/${contentHeader}/${headerItem.title}/${listItem.title}`} className=''>
+                          <NextLink
+                            href={`/${kebabcase(contentHeader)}/${kebabcase(headerItem.title)}/${kebabcase(
+                              listItem.title
+                            )}`}
+                            className=''
+                          >
                             {listItem.title}
                           </NextLink>
                         </li>
