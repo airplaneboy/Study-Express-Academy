@@ -1,12 +1,13 @@
 import { MdArrowDropDown } from 'react-icons/md';
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
+import kebabCase from 'lodash.kebabcase';
 import Link from 'next/link';
 
 const Courses = ({ courses, classNames }: { courses: any; classNames: Function }) => {
   return (
     <div>
-      <Menu as='div' className='flex-shrink-0 relative max-sm:hidden'>
+      <Menu as='div' className='flex-shrink-0  max-sm:hidden'>
         <Menu.Button
           type='button'
           className='max-sm:hidden inline-flex items-center px-4 py-2 border border-transparent  text-md font-bold rounded-md text-indigo-700 bg-transparent hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
@@ -32,19 +33,25 @@ const Courses = ({ courses, classNames }: { courses: any; classNames: Function }
           leaveFrom='transform opacity-100 scale-100'
           leaveTo='transform opacity-0 scale-95'
         >
-          <Menu.Items className='z-50 origin-top-right fixed left-1/2 -translate-x-1/2 mt-2 max-w-8xl w-4/5 rounded-md shadow-xl grid lg:grid-cols-3 md:grid-cols-2  gap-3 bg-white ring-1 ring-black ring-opacity-5 py-5 px-2 focus:outline-none'>
-            {courses.map((item: any) => (
-              <Menu.Item key={item._id}>
+          <Menu.Items className='max-h-full overflow-auto h-[90%] z-50 origin-top-right fixed left-1/2 -translate-x-1/2 mt-2 max-w-8xl w-4/5 rounded-md shadow-xl grid lg:grid-cols-3 md:grid-cols-2 gap-3 bg-white ring-1 ring-black ring-opacity-5 py-5 px-2 focus:outline-none'>
+            {courses.map((subject: any) => (
+              <Menu.Item key={subject._id}>
                 {({ active }) => (
-                  <Link
-                    href={`/${item.title}/${item._id}`}
-                    className={classNames(
-                      active ? 'bg-indigo-100 rounded-2xl text-indigo-900 underline ' : '',
-                      'flex py-2 px-4 text-sm text-gray-700 items-center justify-start'
-                    )}
-                  >
-                    {item.title}
-                  </Link>
+                  <div className='flex py-4 px-8 text-sm text-gray-700 flex-col capitalize rounded-md'>
+                    <Link
+                      href={`/${kebabCase(subject.title)}`}
+                      className={classNames(active ? 'text-blue-800 ' : '', 'mb-4 ')}
+                    >
+                      {subject.title}
+                    </Link>
+                    <ul>
+                      {subject.courses.map((course: { _id: string; title: string }) => (
+                        <li key={course._id} className='text-blue-500 truncate hover:underline py-2 text-base'>
+                          <Link href={`/${kebabCase(subject.title)}/${kebabCase(course.title)}`}>{course.title}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </Menu.Item>
             ))}

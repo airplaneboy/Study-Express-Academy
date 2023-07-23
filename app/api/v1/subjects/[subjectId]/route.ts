@@ -3,6 +3,7 @@ import connectMongoose from '@/lib/mongooseConnect';
 import Subject from '@/models/Subject';
 import merge from 'lodash.merge';
 import Course from '@/models/Course';
+import Unit from '@/models/Unit';
 
 import jsonResponse from '@/utils/jsonResponse';
 import isAlpha from 'validator/lib/isAlpha';
@@ -20,14 +21,14 @@ export async function GET(request: Request, { params }: { params: any }) {
     mongoose.Types.ObjectId.isValid(subjectId)
       ? (subject = await Subject.findById(subjectId).populate({
           path: 'courses',
-          select: 'title _id units',
+          select: 'title units',
           model: Course,
-          populate: { path: 'units', select: 'title _id' },
+          populate: { path: 'units', select: 'title' },
         }))
       : (subject = await Subject.findOne({ title: subjectId }).populate({
           path: 'courses',
           select: 'title _id units',
-          model: Course,
+          model: Unit,
           populate: { path: 'units', select: 'title _id' },
         }));
 

@@ -1,11 +1,12 @@
 import connectMongoose from '@/lib/mongooseConnect';
+import Course from '@/models/Course';
 import Subject from '@/models/Subject';
 import jsonResponse from '@/utils/jsonResponse';
 import isAlpha from 'validator/lib/isAlpha';
 
 export async function GET() {
   await connectMongoose();
-  const subjects = await Subject.find({});
+  const subjects = await Subject.find({}).populate({ path: 'courses', select: 'title', model: Course });
   if (!subjects) return jsonResponse({ error: 'There was an error' }, 'NOT_FOUND');
 
   return jsonResponse({ nbHits: subjects.length, subjects }, 'OK');
