@@ -23,13 +23,13 @@ export async function GET(request: Request, { params }: { params: any }) {
           path: 'courses',
           select: 'title units',
           model: Course,
-          populate: { path: 'units', select: 'title' },
+          populate: { path: 'units', select: 'title', model: Unit },
         }))
       : (subject = await Subject.findOne({ title: subjectId }).populate({
           path: 'courses',
-          select: 'title _id units',
-          model: Unit,
-          populate: { path: 'units', select: 'title _id' },
+          select: 'title  units',
+          model: Course,
+          populate: { path: 'units', select: 'title ', model: Unit },
         }));
 
     if (!subject) return jsonResponse({ error: `Subject with ID or title "${subjectId}" was not found` }, 'NOT_FOUND');

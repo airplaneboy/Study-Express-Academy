@@ -10,8 +10,7 @@ const Courses = ({ courses, classNames }: { courses: any; classNames: Function }
       <Menu as='div' className='flex-shrink-0  max-sm:hidden'>
         <Menu.Button
           type='button'
-          className='max-sm:hidden relative inline-flex items-center px-4 py-2 border border-transparent  text-md font-bold rounded-md text-indigo-700 bg-transparent hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-        >
+          className='max-sm:hidden relative inline-flex items-center px-4 py-2 border border-transparent  text-md font-bold rounded-md text-indigo-700 bg-transparent hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
           {({ open }) => (
             <>
               <span className='sr-only'>Open courses menu</span>
@@ -31,17 +30,16 @@ const Courses = ({ courses, classNames }: { courses: any; classNames: Function }
           enterTo='transform opacity-100 scale-100'
           leave='transition ease-in duration-75'
           leaveFrom='transform opacity-100 scale-100'
-          leaveTo='transform opacity-0 scale-95'
-        >
-          <Menu.Items className='max-h-full overflow-auto h-[90%] z-50 origin-top-right fixed left-1/2 -translate-x-1/2 mt-2 max-w-8xl w-4/5 rounded-md shadow-xl grid lg:grid-cols-3 md:grid-cols-2 gap-3 bg-white py-5 px-2 '>
+          leaveTo='transform opacity-0 scale-95'>
+          {/* */}
+          <Menu.Items className='border overflow-scroll max-h-full h-[90%] z-50 origin-top-right fixed left-1/2 -translate-x-1/2 mt-2 max-w-8xl w-[90%] rounded-md shadow-xl grid lg:grid-cols-3 md:grid-cols-2 gap-3 bg-white px-2 '>
             {courses.map((subject: any) => (
               <Menu.Item key={subject._id}>
                 {({ active }) => (
-                  <div className='flex py-4 px-8 text-sm text-gray-700 flex-col capitalize rounded-md'>
+                  <div className='flex px-8 text-sm text-gray-700 flex-col capitalize pt-5'>
                     <Link
                       href={`/${kebabCase(subject.title)}`}
-                      className={classNames(active ? 'text-blue-800 underline' : '', 'mb-4 ')}
-                    >
+                      className={classNames(active ? 'text-blue-800 underline' : '', 'mb-4 ')}>
                       {subject.title}
                     </Link>
                     <ul>
