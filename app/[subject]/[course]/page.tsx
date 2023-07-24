@@ -3,7 +3,7 @@ import { getCourse } from '@/lib/data/courses';
 import lowercase from 'lodash.lowercase';
 import { notFound } from 'next/navigation';
 
-const Subjects = async ({ params }: { params: { course: string } }) => {
+const Courses = async ({ params }: { params: { course: string } }) => {
   try {
     const course = await getCourse({ courseId: lowercase(params.course) });
 
@@ -15,4 +15,4 @@ const Subjects = async ({ params }: { params: { course: string } }) => {
   }
 };
 
-export default Subjects;
+export default Courses;

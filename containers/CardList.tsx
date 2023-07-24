@@ -18,12 +18,13 @@ interface SidebarItem {
 
 interface ICardList {
   sidebarArray: SidebarItem[];
-  contentArray: string;
+  contentArray?: string;
+  contentDescription?: string;
   sidebarHeader: string;
   contentHeader: string;
 }
 
-const CardList = ({ sidebarArray, contentArray, sidebarHeader, contentHeader }: ICardList) => {
+const CardList = ({ sidebarArray, contentArray, sidebarHeader, contentHeader, contentDescription }: ICardList) => {
   return (
     <>
       {/* Header */}
@@ -35,75 +36,69 @@ const CardList = ({ sidebarArray, contentArray, sidebarHeader, contentHeader }: 
         </h1>
       </CollapsibleHeader>
 
-      <div className='flex mx-auto sm:px-10 py-16 bg-white p-4 md:top-32 relative'>
-        {/* Sidebar */}
-        <aside className='max-md:hidden'>
-          <nav className=' h-[45rem] sticky top-44 lg:w-80 md:w-72 overflow-y-auto rounded-2xl border-gray-300 border'>
-            <ul role='list' className='h-max p-5'>
-              <h1 className='font-extrabold font-inter text-gray-700 mb-5 mr-3 text-3xl'>{sidebarHeader}</h1>
-              {sidebarArray.map((sidebarItems) => (
-                <li
-                  key={sidebarItems._id}
-                  className=' px-4 py-3 sm:px-0 text-md text-gray-500 hover:text-indigo-500 focus:text-indigo-600 no_wrap'>
-                  <Link
-                    to={sidebarItems.title}
-                    spy={true}
-                    smooth={true}
-                    duration={300}
-                    offset={-130}
-                    activeClass='active'
-                    className='cursor-pointer'>
-                    {sidebarItems.title}
-                  </Link>
+      <div className='flex flex-col mx-auto bg-white sm:px-10 py-8 md:top-32 relative'>
+        {contentDescription && <h3 className='border-b text-gray-500 bg-white text-lg p-4'>{contentDescription}</h3>}
+
+        <div className='flex mt-10 p-4'>
+          {/* Sidebar */}
+          <aside className='max-md:hidden'>
+            <nav className=' h-[45rem] sticky top-44 lg:w-80 md:w-72 overflow-y-auto rounded-2xl border-gray-300 border'>
+              <ul role='list' className='h-max p-5'>
+                <h1 className='font-extrabold font-inter text-gray-700 mb-5 mr-3 text-3xl'>{sidebarHeader}</h1>
+                {sidebarArray.map((sidebarItems) => (
+                  <li
+                    key={sidebarItems._id}
+                    className=' px-4 py-3 sm:px-0 text-md text-gray-500 hover:text-indigo-500 focus:text-indigo-600 no_wrap'>
+                    <Link
+                      to={sidebarItems.title}
+                      spy={true}
+                      smooth={true}
+                      duration={300}
+                      offset={-130}
+                      activeClass='active'
+                      className='cursor-pointer'>
+                      {sidebarItems.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </aside>
+
+          {/* Content Header */}
+          <div className='border-gray-300 lg:px-10 md:pl-10 w-full'>
+            <ul role='list'>
+              {sidebarArray.map((headerItem) => (
+                <li key={headerItem._id} id={headerItem.title} className='pb-4'>
+                  <div className='bg-white border rounded-lg'>
+                    <div className='px-4 py-5 sm:px-6 font-bold text-gray-700 flex items-center gap-2 text-lg max-sm:text-base '>
+                      {headerItem.image && (
+                        <Image src={headerItem.image} alt={headerItem.title + ' image'} width={30} height={30}></Image>
+                      )}
+
+                      <CustomLink pathStrings={[contentHeader, headerItem.title]}>{headerItem.title}</CustomLink>
+                    </div>
+
+                    {/* Content List */}
+                    <div className='px-4 py-5 sm:p-6 bg-gray-50'>
+                      <ul className=' grid grid-cols-2 gap-2'>
+                        {contentArray &&
+                          (headerItem as any)[contentArray].map((listItem: any) => (
+                            <li
+                              key={listItem._id}
+                              className='text-gray-600 text-md max-sm:text-sm hover:underline truncate'>
+                              <CustomLink pathStrings={[contentHeader, headerItem.title, listItem.title]}>
+                                {listItem.title}
+                              </CustomLink>
+                            </li>
+                          ))}
+                      </ul>
+                    </div>
+                  </div>
                 </li>
               ))}
             </ul>
-          </nav>
-        </aside>
-
-        {/* Content Header */}
-        <div className='border-gray-300 lg:px-10 md:pl-10 w-full'>
-          <ul role='list'>
-            {sidebarArray.map((headerItem) => (
-              <li key={headerItem._id} id={headerItem.title} className='pb-4'>
-                <div className='bg-white border rounded-lg'>
-                  <div className='px-4 py-5 sm:px-6 font-bold text-gray-700 flex items-center gap-2 text-lg max-sm:text-base '>
-                    {headerItem.image && (
-                      <Image src={headerItem.image} alt={headerItem.title + ' image'} width={30} height={30}></Image>
-                    )}
-                    {/* <NextLink
-                      className='max-md:truncate'
-                      href={`/${kebabcase(contentHeader)}/${kebabcase(headerItem.title)}`}>
-                      {headerItem.title}
-                    </NextLink> */}
-
-                    <CustomLink pathStrings={[contentHeader, headerItem.title]}>{headerItem.title}</CustomLink>
-                  </div>
-
-                  {/* Content List */}
-                  <div className='px-4 py-5 sm:p-6 bg-gray-50'>
-                    <ul className=' grid sm:grid-cols-2 gap-2'>
-                      {(headerItem as any)[contentArray].map((listItem: any) => (
-                        <li
-                          key={listItem._id}
-                          className='text-gray-600 text-md max-sm:text-sm hover:underline truncate'>
-                          {/* <NextLink
-                            href={`/${kebabcase(contentHeader)}/${kebabcase(headerItem.title)}/${kebabcase(
-                              listItem.title
-                            )}`}>
-                            {listItem.title}
-                          </NextLink> */}
-                          <CustomLink pathStrings={[contentHeader, headerItem.title, listItem.title]}>
-                            {listItem.title}
-                          </CustomLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+          </div>
         </div>
       </div>
     </>

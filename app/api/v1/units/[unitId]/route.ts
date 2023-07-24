@@ -4,6 +4,7 @@ import merge from 'lodash.merge';
 import jsonResponse from '@/utils/jsonResponse';
 import isAlpha from 'validator/lib/isAlpha';
 import mongoose from 'mongoose';
+import Lesson from '@/models/Lesson';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -15,8 +16,16 @@ export async function GET(request: Request, { params }: { params: any }) {
     let unit;
 
     mongoose.Types.ObjectId.isValid(unitId)
-      ? (unit = await Unit.findById(unitId))
-      : (unit = await Unit.findOne({ title: unitId }));
+      ? (unit = await Unit.findById(unitId).populate({
+          path: 'lessons',
+          select: 'title',
+          model: Lesson,
+        }))
+      : (unit = await Unit.findOne({ title: unitId }).populate({
+          path: 'lessons',
+          select: 'title',
+          model: Lesson,
+        }));
 
     if (!unit) return jsonResponse({ error: `Unit with ID ${unitId} was not found` }, 'NOT_FOUND');
 
