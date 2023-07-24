@@ -3,6 +3,7 @@ import Lesson from '@/models/Lesson';
 import jsonResponse from '@/utils/jsonResponse';
 import merge from 'lodash.merge';
 import isAlpha from 'validator/lib/isAlpha';
+import mongoose from 'mongoose';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {

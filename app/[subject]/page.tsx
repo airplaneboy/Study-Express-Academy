@@ -7,7 +7,14 @@ const Subjects = async ({ params }: { params: { subject: string } }) => {
   try {
     const subject = await getSubject({ subjectId: lowercase(params.subject) });
 
-    return <CardList contentHeader={subject.title} sidebarArray={subject.courses} sidebarHeader='Courses' />;
+    return (
+      <CardList
+        contentHeader={subject.title}
+        sidebarArray={subject.courses}
+        contentArray='units'
+        sidebarHeader='Courses'
+      />
+    );
   } catch (error) {
     notFound();
   }

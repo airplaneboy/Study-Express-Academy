@@ -1,13 +1,17 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Course from '@/models/Course';
 import merge from 'lodash.merge';
-
+import mongoose from 'mongoose';
 import jsonResponse from '@/utils/jsonResponse';
 import isAlpha from 'validator/lib/isAlpha';
+import Lesson from '@/models/Lesson';
+import Unit from '@/models/Unit';
+import Subject from '@/models/Subject';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
     await connectMongoose();
+
     const courseId = params.courseId;
 
     if (!courseId) return jsonResponse({ error: 'Please add course id' }, 'BAD_REQUEST');
@@ -15,8 +19,20 @@ export async function GET(request: Request, { params }: { params: any }) {
     let course;
 
     mongoose.Types.ObjectId.isValid(courseId)
-      ? (course = await Course.findById(courseId))
-      : (course = await Course.findOne({ title: courseId }));
+      ? (course = await Course.findById(courseId).populate({
+          path: 'units',
+          select: 'title lessons',
+          model: Unit,
+          populate: { path: 'lessons', select: 'title', model: Lesson },
+        }))
+      : (course = await Course.findOne({ title: courseId })
+          .populate({
+            path: 'units',
+            select: 'title lessons',
+            model: Unit,
+            populate: { path: 'lessons', select: 'title', model: Lesson },
+          })
+          .populate({ path: 'subject', select: 'title', model: Subject }));
 
     if (!course) return jsonResponse({ error: `Course with ID or title "${courseId}" was not found` }, 'NOT_FOUND');
 
