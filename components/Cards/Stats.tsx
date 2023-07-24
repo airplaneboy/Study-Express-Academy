@@ -46,15 +46,13 @@ export default function Example() {
         {stats.map((item) => (
           <div
             key={item.id}
-            className={`flex items-center justify-center gap-2 flex-col relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-stats_shadow shadow-${item.color} rounded-lg overflow-hidden`}
-          >
+            className={`flex items-center justify-center gap-2 flex-col relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-stats_shadow shadow-${item.color} rounded-lg overflow-hidden`}>
             <div className=' mb-2 flex gap-2 items-center '>
               <item.icon size={25} className={` ${item.imageColor}`} aria-hidden='true' />
               <p className='text-sm font-medium text-gray-500 truncate'>{item.name}</p>
             </div>
             <p
-              className={`text-5xl font-extrabold font-inter text-gray-600 underline decoration-from-font ${item.color}`}
-            >
+              className={`text-5xl font-extrabold font-inter text-gray-800 underline decoration-from-font ${item.color}`}>
               {item.stat}
             </p>
           </div>

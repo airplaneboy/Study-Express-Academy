@@ -14,7 +14,7 @@ const Providers = ({ option = '#', providerImage, providerName }: IProvidersOpti
   const googleSignIn = async () => {
     setLoading(true);
     await toast.promise(
-      signIn('google', { callbackUrl: '/', redirect: false }),
+      signIn('google', { callbackUrl: '/user', redirect: false }),
       {
         error: 'An error occurred',
         loading: 'Authenticating with google...',
@@ -40,7 +40,7 @@ const Providers = ({ option = '#', providerImage, providerName }: IProvidersOpti
   const appleSignIn = async () => {
     setLoading(true);
     await toast.promise(
-      signIn('apple', { callbackUrl: '/', redirect: false }),
+      signIn('apple', { callbackUrl: '/user', redirect: false }),
       {
         error: 'An error occurred',
         loading: 'Authenticating with apple...',
@@ -53,7 +53,7 @@ const Providers = ({ option = '#', providerImage, providerName }: IProvidersOpti
   const githubSignIn = async () => {
     setLoading(true);
     await toast.promise(
-      signIn('github', { callbackUrl: '/', redirect: false }),
+      signIn('github', { callbackUrl: '/user', redirect: false }),
       {
         error: 'An error occurred',
         loading: 'Authenticating with github...',
@@ -76,8 +76,7 @@ const Providers = ({ option = '#', providerImage, providerName }: IProvidersOpti
 
       <button
         onClick={signInOptions[option]}
-        className=' w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
-      >
+        className=' w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'>
         {providerImage}
         <span className='sr-only'>{providerName}</span>
       </button>

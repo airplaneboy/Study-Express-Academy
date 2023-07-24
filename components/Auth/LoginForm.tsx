@@ -40,7 +40,7 @@ const LoginForm = () => {
 
     // if (document.referrer == 'http://localhost:3000/') return router.back();
     toast.success('Login successful', { duration: 3000 });
-    return router.push('/');
+    return router.push('/user');
   };
 
   async function submitHandler(e: React.FormEvent<HTMLFormElement>) {
@@ -71,7 +71,6 @@ const LoginForm = () => {
           <Input
             autoComplete='username'
             id='username'
-            // label='Email Address or Username'
             name='username'
             placeholder='Email Address or Username'
             type='text'
@@ -81,7 +80,6 @@ const LoginForm = () => {
             <Input
               autoComplete='current-password'
               id='password'
-              // label='Password'
               name='password'
               placeholder='Password'
               type={showPassword ? 'text' : 'password'}
@@ -91,8 +89,7 @@ const LoginForm = () => {
             <button
               type='button'
               className=' right-5 flex items-center justify-center absolute'
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
+              onClick={() => setShowPassword((prev) => !prev)}>
               {showPassword ? (
                 <HiEyeSlash size={20} className='text-gray-700 bg-gray-200' />
               ) : (

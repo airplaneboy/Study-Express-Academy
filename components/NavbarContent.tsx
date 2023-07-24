@@ -10,17 +10,11 @@ import UserProfile from './Navbar/UserProfile';
 import UserNavigation from './Navbar/UserNavigation';
 import Courses from './Navbar/Courses';
 import React, { useEffect, useState } from 'react';
-
-const user = {
-  name: 'Chelsea Hagen',
-  email: 'chelsea.hagon@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-};
+import { useSession } from 'next-auth/react';
 
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
+  { name: 'Your Profile', href: '/user/profile' },
+  { name: 'Settings', href: '/user/settings' },
   { name: 'Sign out', href: '#', onClick: signOut },
 ];
 
@@ -30,6 +24,7 @@ function classNames(...classes: any) {
 
 export default function NavbarContent({ coursesData }: { coursesData: any }) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { data: session } = useSession();
 
   useEffect(() => {
     //Navbar Scroll Shadow
@@ -58,8 +53,7 @@ export default function NavbarContent({ coursesData }: { coursesData: any }) {
                 isScrolled ? 'shadow-md' : 'shadow-sm'
               }`
             )
-          }
-        >
+          }>
           {({ open }) => (
             <>
               <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-full items-center '>
@@ -70,14 +64,19 @@ export default function NavbarContent({ coursesData }: { coursesData: any }) {
                 <div className='flex gap-12 items-center'>
                   <Courses courses={coursesData} classNames={classNames} />
                   <MobileMenuButton open={open} />
-                  <UserMenu classNames={classNames} imageUrl={user.imageUrl} userNavigation={userNavigation} />
+                  <UserMenu
+                    classNames={classNames}
+                    imageUrl={session?.user?.image}
+                    userNavigation={userNavigation}
+                    name={session?.user?.name}
+                  />
                 </div>
               </div>
 
               {/* Mobile Sidebar */}
               <Popover.Panel as='nav' className='sm:hidden mt-3' aria-label='Global'>
                 <div className='border-t border-gray-200 pt-4 pb-3 '>
-                  <UserProfile user={user} />
+                  <UserProfile user={session?.user} />
                   <UserNavigation userNavigation={userNavigation} />
                 </div>
               </Popover.Panel>
