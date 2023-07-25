@@ -39,8 +39,10 @@ function classNames(...classes: any) {
 
 export default function Example() {
   return (
-    <div className='mb-24'>
-      <h3 className='text-md leading-6 font-extrabold text-gray-300 font-inter uppercase'>Last 30 days</h3>
+    <div className='sm:mb-24 mb-12'>
+      <h3 className='text-md leading-6 font-extrabold text-gray-300 font-inter uppercase max-sm:hidden'>
+        Last 30 days
+      </h3>
 
       <div className='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 -z-10 relative'>
         {stats.map((item) => (

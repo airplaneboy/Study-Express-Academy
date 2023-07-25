@@ -2,15 +2,14 @@
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import SidebarItems from './Sidebar/SidebarItems';
-import Dashboard from './Sidebar/Dashboard';
 import sidebarData from './Sidebar/data';
-import { HiOutlineXMark } from 'react-icons/hi2';
+import { HiChevronRight, HiOutlineXMark } from 'react-icons/hi2';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function SidebarContent({ content }: { content: any }) {
+export default function SidebarContent({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -71,14 +70,26 @@ export default function SidebarContent({ content }: { content: any }) {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        {/* <div className='w-64 h-full max-md:hidden '> */}
         <div className=' flex flex-col  inset-y-0  shadow-indigo-300  w-64 h-[calc(100vh-128px)] sticky top-16 max-md:hidden'>
           <SidebarItems classNames={classNames} navigation={sidebarData} />
         </div>
-        {/* </div> */}
 
-        {/* Dashboard */}
-        <Dashboard content={content} setSidebarOpen={setSidebarOpen} />
+        {/* Mobile Toggle */}
+
+        <div className='flex flex-col flex-1'>
+          <div className='sticky top-0 w-full md:hidden p-1 px-6 bg-white shadow-md border-t-2'>
+            <button
+              type='button'
+              className='p-2 w-max -ml-0.5 -mt-0.5 h-12 inline-flex items-center justify-center rounded-md text-indigo-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'
+              onClick={() => setSidebarOpen(true)}>
+              <span className='sr-only'>Open sidebar</span>
+              <h4>Sidebar</h4>
+              <HiChevronRight className='h-6 w-6 ml-1' aria-hidden='true' />
+            </button>
+          </div>
+          {/* Content */}
+          {children}
+        </div>
       </aside>
     </>
   );

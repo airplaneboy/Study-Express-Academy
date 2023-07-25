@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Sidebar from '@/components/Sidebar';
+import Sidebar from '@/containers/Sidebar';
 
 export const metadata = {
   title: 'Homepage',
@@ -9,15 +9,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className='h-full'>
-      <div>
-        <Navbar />
-        <main>
-          <Sidebar>{children}</Sidebar>
-        </main>
-      </div>
-      <div>
-        <Footer />
-      </div>
+      <Navbar />
+      <Sidebar>{children}</Sidebar>
+      <Footer />
     </div>
   );
 }

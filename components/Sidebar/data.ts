@@ -51,7 +51,7 @@ const SidebarItemsList = [
         name: 'Dashboard',
         icon: HiOutlineHome,
         iconFill: HiHome,
-        href: '/user',
+        href: '/user/dashboard',
         color: 'text-purple-500',
         bgColor: 'bg-purple-50',
         hoverColor: 'hover:text-purple-500',
