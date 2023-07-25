@@ -2,6 +2,8 @@ import connectMongoose from '@/lib/mongooseConnect';
 import User from '@/models/User';
 import merge from 'lodash.merge';
 import jsonResponse from '@/utils/jsonResponse';
+import { revalidatePath } from 'next/cache';
+import { NextRequest } from 'next/server';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -20,7 +22,7 @@ export async function GET(request: Request, { params }: { params: any }) {
   }
 }
 
-export async function PATCH(request: Request, { params }: { params: any }) {
+export async function PATCH(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const body = await request.json();
@@ -35,6 +37,10 @@ export async function PATCH(request: Request, { params }: { params: any }) {
 
     user.profile = merge(user.profile, body);
     await user.save();
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
+
     return jsonResponse({ msg: 'Successfully updated profile', user }, 'OK');
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');

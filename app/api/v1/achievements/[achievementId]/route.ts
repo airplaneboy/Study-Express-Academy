@@ -4,6 +4,8 @@ import jsonResponse from '@/utils/jsonResponse';
 import merge from 'lodash.merge';
 import isAlpha from 'validator/lib/isAlpha';
 import mongoose from 'mongoose';
+import { NextRequest } from 'next/server';
+import { revalidatePath } from 'next/cache';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -29,7 +31,7 @@ export async function GET(request: Request, { params }: { params: any }) {
   }
 }
 
-export async function PATCH(request: Request, { params }: { params: any }) {
+export async function PATCH(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const achievementId = params.achievementId;
@@ -47,19 +49,27 @@ export async function PATCH(request: Request, { params }: { params: any }) {
 
     achievement = merge(achievement, body);
     await achievement.save();
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
+
     return jsonResponse(achievement, 'OK');
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: any }) {
+export async function DELETE(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const achievementId = params.achievementId;
 
     const achievement = await Achievement.findByIdAndDelete(achievementId);
     if (!achievement) return jsonResponse({ error: `achievement with ID ${achievementId} was not found` }, 'NOT_FOUND');
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
+
     return jsonResponse({ msg: 'achievement was successfully deleted' }, 'OK');
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');

@@ -7,6 +7,8 @@ import isAlpha from 'validator/lib/isAlpha';
 import Lesson from '@/models/Lesson';
 import Unit from '@/models/Unit';
 import Subject from '@/models/Subject';
+import { revalidatePath } from 'next/cache';
+import { NextRequest } from 'next/server';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -42,7 +44,7 @@ export async function GET(request: Request, { params }: { params: any }) {
   }
 }
 
-export async function PATCH(request: Request, { params }: { params: any }) {
+export async function PATCH(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const body = await request.json();
@@ -64,19 +66,26 @@ export async function PATCH(request: Request, { params }: { params: any }) {
 
     course = merge(course, body);
     await course.save();
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
+
     return jsonResponse(course, 'OK');
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: any }) {
+export async function DELETE(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const courseId = params.courseId;
 
     if (!courseId) return jsonResponse({ error: `No course with ID: ${courseId}` }, 'NOT_FOUND');
     await Course.findByIdAndDelete(courseId);
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
 
     return jsonResponse({ msg: 'Course was successfully deleted' }, 'OK');
   } catch (error: any) {

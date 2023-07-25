@@ -3,6 +3,8 @@ import User from '@/models/User';
 import Course from '@/models/Course';
 
 import jsonResponse from '@/utils/jsonResponse';
+import { revalidatePath } from 'next/cache';
+import { NextRequest } from 'next/server';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -21,7 +23,7 @@ export async function GET(request: Request, { params }: { params: any }) {
   }
 }
 
-export async function PATCH(request: Request, { params }: { params: any }) {
+export async function PATCH(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const body = await request.json();
@@ -43,6 +45,9 @@ export async function PATCH(request: Request, { params }: { params: any }) {
 
     user.completedCourses.push(courseId);
     await user.save();
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
 
     return jsonResponse({ msg: 'Successfully added course to user completed courses', course }, 'OK');
   } catch (error: any) {

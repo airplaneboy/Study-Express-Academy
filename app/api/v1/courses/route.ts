@@ -1,6 +1,8 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Course from '@/models/Course';
 import jsonResponse from '@/utils/jsonResponse';
+import { revalidatePath } from 'next/cache';
+import { NextRequest } from 'next/server';
 import isAlpha from 'validator/lib/isAlpha';
 
 export async function GET() {
@@ -11,7 +13,7 @@ export async function GET() {
   return jsonResponse({ nbHits: courses.length, courses }, 'OK');
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     await connectMongoose();
 
@@ -32,6 +34,9 @@ export async function POST(request: Request) {
       return jsonResponse({ error: 'Course with same title already exists. Choose a different title' }, 'BAD_REQUEST');
 
     const course = await Course.create(body);
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
 
     return jsonResponse(course, 'OK');
   } catch (error: any) {

@@ -1,6 +1,8 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Achievement from '@/models/Achievement';
 import jsonResponse from '@/utils/jsonResponse';
+import { revalidatePath } from 'next/cache';
+import { NextRequest } from 'next/server';
 import isAlpha from 'validator/lib/isAlpha';
 
 export async function GET(request: Request) {
@@ -12,7 +14,7 @@ export async function GET(request: Request) {
   return jsonResponse({ nbHits: achievements.length, achievements }, 'OK');
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     await connectMongoose();
     const body = await request.json();
@@ -34,6 +36,9 @@ export async function POST(request: Request) {
       );
 
     const achievement = await Achievement.create(body);
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
 
     return jsonResponse({ msg: 'Successfully created achievement', achievement: achievement }, 'OK');
   } catch (error: any) {

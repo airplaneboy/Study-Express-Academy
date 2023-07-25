@@ -1,6 +1,8 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Unit from '@/models/Unit';
 import jsonResponse from '@/utils/jsonResponse';
+import { revalidatePath } from 'next/cache';
+import { NextRequest } from 'next/server';
 import isAlphanumeric from 'validator/lib/isAlphanumeric';
 
 export async function GET() {
@@ -11,7 +13,7 @@ export async function GET() {
   return jsonResponse({ nbHits: units.length, units }, 'OK');
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     await connectMongoose();
     const body = await request.json();
@@ -31,6 +33,9 @@ export async function POST(request: Request) {
       return jsonResponse({ error: 'Unit with same title already exists. Choose a different title' }, 'BAD_REQUEST');
 
     const unit = await Unit.create(body);
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
 
     return jsonResponse(unit, 'OK');
   } catch (error: any) {

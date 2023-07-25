@@ -3,6 +3,8 @@ import Course from '@/models/Course';
 import Subject from '@/models/Subject';
 import jsonResponse from '@/utils/jsonResponse';
 import isAlpha from 'validator/lib/isAlpha';
+import { revalidatePath } from 'next/cache';
+import { NextRequest } from 'next/server';
 
 export async function GET() {
   await connectMongoose();
@@ -12,7 +14,7 @@ export async function GET() {
   return jsonResponse({ nbHits: subjects.length, subjects }, 'OK');
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     await connectMongoose();
     const body = await request.json();
@@ -32,6 +34,8 @@ export async function POST(request: Request) {
 
     const subject = await Subject.create(body);
 
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
     return jsonResponse(subject, 'OK');
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');

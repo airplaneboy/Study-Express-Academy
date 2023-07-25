@@ -4,6 +4,8 @@ import jsonResponse from '@/utils/jsonResponse';
 import merge from 'lodash.merge';
 import isAlpha from 'validator/lib/isAlpha';
 import mongoose from 'mongoose';
+import { revalidatePath } from 'next/cache';
+import { NextRequest } from 'next/server';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -26,7 +28,7 @@ export async function GET(request: Request, { params }: { params: any }) {
   }
 }
 
-export async function PATCH(request: Request, { params }: { params: any }) {
+export async function PATCH(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const lessonId = params.lessonId;
@@ -44,19 +46,27 @@ export async function PATCH(request: Request, { params }: { params: any }) {
 
     lesson = merge(lesson, body);
     await lesson.save();
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
+
     return jsonResponse(lesson, 'OK');
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: any }) {
+export async function DELETE(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const lessonId = params.lessonId;
 
     if (!lessonId) return jsonResponse({ error: `No lesson with ID ${lessonId} was not found` }, 'NOT_FOUND');
     const lesson = await Lesson.findByIdAndDelete(lessonId);
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
+
     return jsonResponse({ msg: 'Lesson was successfully deleted' }, 'OK');
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');

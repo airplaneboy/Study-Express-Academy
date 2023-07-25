@@ -2,6 +2,8 @@ import connectMongoose from '@/lib/mongooseConnect';
 import User from '@/models/User';
 import merge from 'lodash.merge';
 import jsonResponse from '@/utils/jsonResponse';
+import { revalidatePath } from 'next/cache';
+import { NextRequest } from 'next/server';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -20,7 +22,7 @@ export async function GET(request: Request, { params }: { params: any }) {
   }
 }
 
-export async function PATCH(request: Request, { params }: { params: any }) {
+export async function PATCH(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const body = await request.json();
@@ -53,19 +55,26 @@ export async function PATCH(request: Request, { params }: { params: any }) {
 
     user = merge(user, body);
     await user.save();
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
+
     return jsonResponse(user, 'OK');
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: any }) {
+export async function DELETE(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const userId = params.userId;
 
     if (!userId) return jsonResponse({ error: `No user with ID: ${userId}` }, 'NOT_FOUND');
     await User.findByIdAndDelete(userId);
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
 
     return jsonResponse({ msg: 'User was successfully deleted' }, 'OK');
   } catch (error: any) {

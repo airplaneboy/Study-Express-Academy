@@ -7,6 +7,8 @@ import Unit from '@/models/Unit';
 
 import jsonResponse from '@/utils/jsonResponse';
 import isAlpha from 'validator/lib/isAlpha';
+import { revalidatePath } from 'next/cache';
+import { NextRequest } from 'next/server';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -40,7 +42,7 @@ export async function GET(request: Request, { params }: { params: any }) {
   }
 }
 
-export async function PATCH(request: Request, { params }: { params: any }) {
+export async function PATCH(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const body = await request.json();
@@ -62,19 +64,26 @@ export async function PATCH(request: Request, { params }: { params: any }) {
 
     subject = merge(subject, body);
     await subject.save();
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
+
     return jsonResponse(subject, 'OK');
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: any }) {
+export async function DELETE(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const subjectId = params.subjectId;
 
     if (!subjectId) return jsonResponse({ error: `No subject with ID: ${subjectId}` }, 'NOT_FOUND');
     await Subject.findByIdAndDelete(subjectId);
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
 
     return jsonResponse({ msg: 'Subject was successfully deleted' }, 'OK');
   } catch (error: any) {

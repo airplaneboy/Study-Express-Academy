@@ -1,8 +1,10 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import User from '@/models/User';
 import jsonResponse from '@/utils/jsonResponse';
+import { revalidatePath } from 'next/cache';
+import { NextRequest } from 'next/server';
 
-export async function PATCH(request: Request, { params }: { params: any }) {
+export async function PATCH(request: NextRequest, { params }: { params: any }) {
   try {
     await connectMongoose();
     const body = await request.json();
@@ -24,6 +26,9 @@ export async function PATCH(request: Request, { params }: { params: any }) {
 
     user.password = newPassword;
     await user.save();
+
+    const path = request.nextUrl.searchParams.get('path') || '/';
+    revalidatePath(path);
 
     return jsonResponse({ msg: 'Password successfully updated' }, 'OK');
   } catch (error: any) {
