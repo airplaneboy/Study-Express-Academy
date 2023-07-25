@@ -37,7 +37,11 @@ const CardList = ({ sidebarArray, contentArray, sidebarHeader, contentHeader, co
       </CollapsibleHeader>
 
       <div className='flex flex-col mx-auto bg-white sm:px-10 py-8 md:top-32 relative'>
-        {contentDescription && <h3 className='border-b text-gray-500 bg-white text-lg p-4'>{contentDescription}</h3>}
+        {contentDescription && (
+          <h3 className='border-b text-gray-500 bg-white lg:text-2xl sm:text-xl max-sm:text-center max-sm:pb-2 sm:p-4 '>
+            {contentDescription}
+          </h3>
+        )}
 
         <div className='flex mt-10 p-4'>
           {/* Sidebar */}

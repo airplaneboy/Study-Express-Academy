@@ -1,7 +1,15 @@
 import CardList from '@/containers/CardList';
-import { getSubject } from '@/lib/data/subjects';
+import getSubjects, { getSubject } from '@/lib/data/subjects';
 import lowercase from 'lodash.lowercase';
 import { notFound } from 'next/navigation';
+
+export async function generateStaticParams() {
+  const subjects = await getSubjects();
+
+  return subjects.map((subject: { _id: string; title?: string }) => ({
+    subject: subject.title ? subject.title : subject._id,
+  }));
+}
 
 const Subjects = async ({ params }: { params: { subject: string } }) => {
   try {
@@ -13,6 +21,7 @@ const Subjects = async ({ params }: { params: { subject: string } }) => {
         sidebarArray={subject.courses}
         contentArray='units'
         sidebarHeader='Courses'
+        contentDescription={subject.description}
       />
     );
   } catch (error) {
