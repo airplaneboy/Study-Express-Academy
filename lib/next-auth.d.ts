@@ -1,4 +1,4 @@
-import { Profile } from 'next-auth';
+import { Profile, DefaultSession } from 'next-auth';
 
 declare module 'next-auth' {
   interface Profile {

@@ -6,6 +6,7 @@ import GitHubProvider from 'next-auth/providers/github';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import AppleProvider from 'next-auth/providers/apple';
 import { fetchPOST } from '../../../../utils/fetchOption';
+import jsonResponse from '@/utils/jsonResponse';
 // import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 // import clientPromise from '@/lib/mongodb';
 
@@ -83,8 +84,8 @@ export const authOptions: NextAuthOptions = {
           });
 
           return true;
-        } catch (error) {
-          console.log(error);
+        } catch (error: any) {
+          jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
         }
 
         try {
@@ -95,8 +96,9 @@ export const authOptions: NextAuthOptions = {
           });
 
           return true;
-        } catch (error) {
-          console.log(error);
+        } catch (error: any) {
+          jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
+
           return false;
         }
       }

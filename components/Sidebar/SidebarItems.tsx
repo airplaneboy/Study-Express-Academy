@@ -5,7 +5,7 @@ const SidebarItems = ({ navigation, classNames }: { navigation: any; classNames:
   const pathname = usePathname();
 
   return (
-    <div className='flex-1 flex flex-col min-h-0  '>
+    <aside className='flex-1 flex flex-col min-h-0  '>
       <div className='flex-1 flex flex-col pt-8 pb-4 overflow-y-auto border-r border-gray-200'>
         <nav className='mt-5 flex-1 px-2 max-md:px-7 lg:space-y-5 space-y-1'>
           {navigation.map((object: any) => {
@@ -50,7 +50,7 @@ const SidebarItems = ({ navigation, classNames }: { navigation: any; classNames:
           })}
         </nav>
       </div>
-    </div>
+    </aside>
   );
 };
 

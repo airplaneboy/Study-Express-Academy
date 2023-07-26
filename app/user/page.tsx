@@ -1,7 +1,5 @@
-import RecentTopics from '@/components/Cards/RecentTopicsCard';
-
 const User = () => {
-  return <RecentTopics />;
+  return <h1>You have come to the wrong page</h1>;
 };
 
 export default User;

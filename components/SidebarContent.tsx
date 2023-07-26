@@ -14,7 +14,7 @@ export default function SidebarContent({ children }: { children: React.ReactNode
 
   return (
     <>
-      <aside className='flex max-w-7xl mx-auto justify-between md:px-5 lg:px-10 '>
+      <div className='flex max-w-7xl mx-auto justify-between md:px-5 lg:px-10'>
         {/* Mobile Sidebar Open */}
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as='div' className='fixed inset-0 flex z-40 md:hidden max-[350px]:w-72' onClose={setSidebarOpen}>
@@ -90,7 +90,7 @@ export default function SidebarContent({ children }: { children: React.ReactNode
           {/* Content */}
           {children}
         </div>
-      </aside>
+      </div>
     </>
   );
 }

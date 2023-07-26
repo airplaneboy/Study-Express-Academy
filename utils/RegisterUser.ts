@@ -1,4 +1,4 @@
-import { fetchFormPOST } from '@/utils/fetchOption';
+import { fetchFormPOST, fetchPOST } from '@/utils/fetchOption';
 
 interface IRegister {
   firstName: string | undefined;
@@ -8,8 +8,8 @@ interface IRegister {
 }
 
 const registerUser = async (props: IRegister) => {
-  const path = '/api/v1/auth/register';
-  return await fetchFormPOST({ path, data: props });
+  const path = 'http://localhost:3000/api/v1/auth/register';
+  return await fetchPOST({ path, data: props });
 };
 
 export default registerUser;

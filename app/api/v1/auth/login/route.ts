@@ -40,7 +40,15 @@ export async function POST(request: Request) {
   if (!(await user.verifyPassword(password)))
     return NextResponse.json({ error: 'Password is incorrect' }, { status: StatusCodes.UNAUTHORIZED });
 
-  const finalUser = { username: user.username, email: user.email, role: user.role, id: user._id, image: user?.image };
+  const finalUser = {
+    username: user.username,
+    email: user.email,
+    role: user.role,
+    id: user._id,
+    image: user?.image,
+    firstName: user.profile?.firstName,
+    lastName: user.profile?.lastName,
+  };
 
   return NextResponse.json(finalUser, { status: StatusCodes.OK });
   //#endregion

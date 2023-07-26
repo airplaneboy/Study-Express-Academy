@@ -7,6 +7,15 @@ import million from 'million/compiler';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/user',
+        destination: '/user/dashboard',
+        permanent: true,
+      },
+    ];
+  },
   reactStrictMode: true,
   images: {
     remotePatterns: [

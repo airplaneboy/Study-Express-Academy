@@ -96,7 +96,7 @@ export async function fetchFormPOST({
   data: {};
   token?: string;
   path: string;
-  headers: {};
+  headers?: {};
 }) {
   const config = {
     method: 'POST',

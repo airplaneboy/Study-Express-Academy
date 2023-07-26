@@ -8,7 +8,7 @@ import courses from '@/lib/data/courses';
 export default function Home() {
   const { data: session, update } = useSession();
 
-  const sessionLog = () => console.log(session);
+  const sessionLog = () => console.log(session?.user);
 
   const sessionUpdate = async () => await update({ email: 'james' });
 
@@ -34,8 +34,7 @@ export default function Home() {
       <br />
       <button
         className='py-2 px-4 bg-green-700 my-2 rounded-full text-white'
-        onClick={async () => console.log(await courses())}
-      >
+        onClick={async () => console.log(await courses())}>
         get courses
       </button>
       <br />

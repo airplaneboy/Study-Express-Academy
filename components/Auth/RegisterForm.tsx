@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import isStrongPassword from 'validator/lib/isStrongPassword';
 import trim from 'validator/lib/trim';
 import Input from '@/components/Auth/Input';
@@ -64,7 +64,7 @@ const RegisterForm = () => {
 
     const userData = {
       firstName: firstNameRef.current?.value,
-      lastName: firstNameRef.current?.value,
+      lastName: lastNameRef.current?.value,
       email: emailRef.current?.value,
       password: trim(passwordRef.current?.value!),
     };
@@ -138,8 +138,7 @@ const RegisterForm = () => {
             <button
               type='button'
               className=' right-5 flex items-center justify-center absolute'
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
+              onClick={() => setShowPassword((prev) => !prev)}>
               {showPassword ? (
                 <HiEyeSlash size={20} className='text-gray-700' />
               ) : (
@@ -162,8 +161,7 @@ const RegisterForm = () => {
             <button
               type='button'
               className=' right-5 flex items-center justify-center absolute'
-              onClick={() => setShowConfirmPassword((prev) => !prev)}
-            >
+              onClick={() => setShowConfirmPassword((prev) => !prev)}>
               {showConfirmPassword ? (
                 <HiEyeSlash size={20} className='text-gray-700' />
               ) : (

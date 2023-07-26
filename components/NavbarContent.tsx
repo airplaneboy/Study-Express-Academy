@@ -68,7 +68,7 @@ export default function NavbarContent({ coursesData }: { coursesData: any }) {
                     classNames={classNames}
                     imageUrl={session?.user?.image}
                     userNavigation={userNavigation}
-                    name={session?.user?.name}
+                    name={session?.user?.name ? session?.user?.name : (session?.user as any)?.username}
                   />
                 </div>
               </div>

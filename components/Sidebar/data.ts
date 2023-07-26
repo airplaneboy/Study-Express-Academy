@@ -58,7 +58,7 @@ const SidebarItemsList = [
         groupHoverColor: 'group-hover:text-purple-500',
       },
       {
-        name: 'Notification',
+        name: 'Notifications',
         icon: HiOutlineBell,
         iconFill: HiBell,
         href: '/user/notifications',
@@ -93,10 +93,10 @@ const SidebarItemsList = [
     heading: 'Tests and Exams',
     items: [
       {
-        name: 'Exam Information',
+        name: 'Tests Overview',
         icon: HiOutlineDocumentText,
         iconFill: HiDocumentText,
-        href: '/user/test-information',
+        href: '/user/tests-overview',
         color: 'text-indigo-500',
         bgColor: 'bg-indigo-50',
         hoverColor: 'hover:text-indigo-500',

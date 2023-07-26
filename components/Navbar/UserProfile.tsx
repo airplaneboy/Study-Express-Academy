@@ -12,12 +12,12 @@ const UserProfile = ({ user }: { user: any }) => {
         ) : (
           // <HiUser className='h-8 w-8 rounded-full bg-indigo-700 p-1 text-white' width={256} height={256} />
           <h1 className='flex items-center justify-center bg-purple-800 h-8 w-8 rounded-full text-white uppercase text-lg text-center'>
-            {user.name?.charAt(0)}
+            {user.name ? user.name?.charAt(0) : user.username?.charAt(0)}
           </h1>
         )}
       </div>
       <div className='ml-3'>
-        <div className='text-base font-medium text-gray-800'>{user.name}</div>
+        <div className='text-base font-medium text-gray-800'>{user.name ? user.name : user.username}</div>
         <div className='text-sm font-medium text-gray-500'>{user.email}</div>
       </div>
     </div>
