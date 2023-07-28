@@ -6,6 +6,7 @@ import { revalidatePath } from 'next/cache';
 import { NextRequest } from 'next/server';
 import mongoose from 'mongoose';
 import Course from '@/models/Course';
+import Achievement from '@/models/Achievement';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -16,10 +17,14 @@ export async function GET(request: Request, { params }: { params: any }) {
 
     let user: any;
     mongoose.Types.ObjectId.isValid(userId)
-      ? (user = await User.findById(userId).select(['-password', '-provider']))
+      ? (user = await User.findById(userId)
+          .select(['-password', '-provider'])
+          .populate({ path: 'courses', select: '-_id title', model: Course })
+          .populate({ path: 'achievements', select: '-_id title', model: Achievement }))
       : (user = await User.findOne({ $or: [{ email: userId }, { username: userId }] })
           .select(['-password', '-provider'])
-          .populate({ path: 'courses', select: '-_id title', model: Course }));
+          .populate({ path: 'courses completedCourses', select: '-_id title', model: Course })
+          .populate({ path: 'achievements', select: '-_id title', model: Achievement }));
 
     if (!user) return jsonResponse({ error: `User with ID ${userId} was not found` }, 'NOT_FOUND');
 

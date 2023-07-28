@@ -63,7 +63,7 @@ const UserSchema = new mongoose.Schema(
         type: String,
         trim: true,
         lowercase: false,
-        maxlength: [500, ['Bio can only take a maximum of 500 characters']],
+        maxlength: [500, 'Bio can only take a maximum of 500 characters'],
       },
       // country: String,
       // language: String,

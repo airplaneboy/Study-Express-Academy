@@ -1,6 +1,7 @@
 import ProfileItem from '@/components/ProfileItem';
 import getUser from '@/lib/data/user';
 import { getServerSession } from 'next-auth';
+import { format } from 'date-fns';
 
 const ProfileContent = async () => {
   const session = await getServerSession();
@@ -10,9 +11,9 @@ const ProfileContent = async () => {
   let user;
   try {
     user = await getUser({ userId: session.user.email });
-
-    console.log(user);
   } catch (error) {
+    console.log(error);
+
     return (
       <h1>
         Your information could not be fetched. Try logging in again, or try again later. If error persists, contact our
@@ -70,15 +71,30 @@ const ProfileContent = async () => {
       value: user?.achievements?.length,
     },
     {
+      property: 'Date Joined',
+      value: format(new Date(user?.createdAt), 'EEEE, dd MMMM yyyy'),
+    },
+    {
       property: 'Bio',
       value: user?.bio,
     },
   ];
 
+  const achievementData = user?.achievements.map((achievement: any) => {
+    return { property: achievement.title, value: 'completed' };
+  });
+
+  const CourseData = user?.completedCourses.map((course: any) => {
+    return { property: course.title, value: 'completed' };
+  });
+
   return (
-    <div className='lg:flex justify-between gap-5'>
+    <div className='lg:flex justify-between gap-5 flex-wrap'>
       <ProfileItem title='User statistics ' stats={userData} />
-      <ProfileItem title='Achievements ' stats={[{ property: 'Date Created', value: '13th June, 2022', id: 1 }]} />
+      <div className='flex-1'>
+        <ProfileItem title='Achievements ' stats={achievementData} />
+        <ProfileItem title='Courses' stats={CourseData} />
+      </div>
     </div>
   );
 };
