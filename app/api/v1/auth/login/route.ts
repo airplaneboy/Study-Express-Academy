@@ -43,11 +43,8 @@ export async function POST(request: Request) {
   const finalUser = {
     username: user.username,
     email: user.email,
-    role: user.role,
     id: user._id,
     image: user?.image,
-    firstName: user.profile?.firstName,
-    lastName: user.profile?.lastName,
   };
 
   return NextResponse.json(finalUser, { status: StatusCodes.OK });

@@ -59,14 +59,19 @@ const UserSchema = new mongoose.Schema(
       firstName: { type: String, trim: true, lowercase: true },
       lastName: { type: String, trim: true, lowercase: true },
       pictureUrl: String, //why not use buffer?
-      bio: String,
-      country: String,
-      language: String,
-      phone: {
-        number: String,
-        verified: Boolean,
+      bio: {
+        type: String,
+        trim: true,
+        lowercase: false,
+        maxlength: [500, ['Bio can only take a maximum of 500 characters']],
       },
-      birthday: Date,
+      // country: String,
+      // language: String,
+      // phone: {
+      //   number: String,
+      //   verified: Boolean,
+      // },
+      // birthday: Date,
     },
     role: {
       required: true,
@@ -78,11 +83,11 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    status: {
-      type: String,
-      enum: ['active', 'inactive', 'blocked'],
-      default: 'active',
-    },
+    // status: {
+    //   type: String,
+    //   enum: ['active', 'inactive', 'blocked'],
+    //   default: 'active',
+    // },
 
     //Additional
     completedLessons: { type: [mongoose.Schema.Types.ObjectId], ref: 'Lesson' },

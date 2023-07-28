@@ -17,7 +17,7 @@ export async function GET(request: Request, { params }: { params: any }) {
     let user: any;
     mongoose.Types.ObjectId.isValid(userId)
       ? (user = await User.findById(userId).select(['-password', '-provider']))
-      : (user = await User.findOne({ email: userId })
+      : (user = await User.findOne({ $or: [{ email: userId }, { username: userId }] })
           .select(['-password', '-provider'])
           .populate({ path: 'courses', select: '-_id title', model: Course }));
 

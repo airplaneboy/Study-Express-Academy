@@ -47,14 +47,16 @@ export const authOptions: NextAuthOptions = {
   ],
 
   session: { strategy: 'jwt', maxAge: 2592000 },
+  jwt: { maxAge: 2592000 },
   pages: {
     signIn: '/auth/login',
   },
   callbacks: {
     async jwt({ token, user, trigger }) {
-      if (trigger === 'signIn' || trigger === 'signUp') token = { ...token, ...user };
+      // if (trigger === 'signIn' || trigger === 'signUp') token = { ...token, ...user };
 
-      return token;
+      return { ...token, ...user };
+      // return token;
     },
 
     async session({ session, token }) {
