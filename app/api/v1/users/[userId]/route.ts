@@ -4,15 +4,22 @@ import merge from 'lodash.merge';
 import jsonResponse from '@/utils/jsonResponse';
 import { revalidatePath } from 'next/cache';
 import { NextRequest } from 'next/server';
+import mongoose from 'mongoose';
+import Course from '@/models/Course';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
     await connectMongoose();
     const userId = params.userId;
 
-    if (!userId) return jsonResponse({ error: 'Please add user id' }, 'BAD_REQUEST');
+    if (!userId) return jsonResponse({ error: 'Please add user id or email' }, 'BAD_REQUEST');
 
-    const user = await User.findById(userId).select(['-password', '-provider']);
+    let user: any;
+    mongoose.Types.ObjectId.isValid(userId)
+      ? (user = await User.findById(userId).select(['-password', '-provider']))
+      : (user = await User.findOne({ email: userId })
+          .select(['-password', '-provider'])
+          .populate({ path: 'courses', select: '-_id title', model: Course }));
 
     if (!user) return jsonResponse({ error: `User with ID ${userId} was not found` }, 'NOT_FOUND');
 

@@ -31,7 +31,7 @@ const CardList = ({ sidebarArray, contentArray, sidebarHeader, contentHeader, co
       <CollapsibleHeader
         initialHeight='h-28 text-6xl max-sm:text-3xl max-sm:h-24 max-md:text-center '
         finalHeight='h-20 text-3xl text-center'>
-        <h1 className='py-4 no_wrap mx-auto w-full px-10 capitalize text-left font-bold font-inter inherit_text ease-linear transition-transform duration-300'>
+        <h1 className='py-4 no_wrap mx-auto w-full px-10 capitalize text-left font-extrabold font-inter inherit_text ease-linear transition-transform duration-300'>
           {contentHeader}
         </h1>
       </CollapsibleHeader>

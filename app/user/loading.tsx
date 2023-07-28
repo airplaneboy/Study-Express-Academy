@@ -1,5 +1,7 @@
+import Loading from '@/components/Loading';
+
 const loading = () => {
-  return <div>loading segment...</div>;
+  return <Loading />;
 };
 
 export default loading;

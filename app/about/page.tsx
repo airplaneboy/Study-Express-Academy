@@ -2,6 +2,7 @@
 import { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { HiEnvelope, HiBars3, HiPhone, HiXMark } from 'react-icons/hi2';
+import Image from 'next/image';
 
 const navigation = [
   { name: 'Changelog', href: '#' },
@@ -112,15 +113,14 @@ export default function Example() {
         <div className='bg-warm-gray-50'>
           <nav
             className='relative max-w-7xl mx-auto flex items-center justify-between pt-6 px-6 xl:px-8'
-            aria-label='Global'
-          >
+            aria-label='Global'>
             <div className='flex items-center flex-1'>
               <div className='flex items-center justify-between w-full lg:w-auto'>
                 <a href='#'>
                   <span className='sr-only'>Workflow</span>
-                  <img
+                  <Image
                     className='h-8 w-auto sm:h-10'
-                    src='https://tailwindui.com/img/logos/workflow-mark.svg?color=teal&shade=500'
+                    src='https://tailwindui.com/Image/logos/workflow-mark.svg?color=teal&shade=500'
                     alt=''
                   />
                 </a>
@@ -136,8 +136,7 @@ export default function Example() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className='text-base font-medium text-warm-gray-500 hover:text-warm-gray-900'
-                  >
+                    className='text-base font-medium text-warm-gray-500 hover:text-warm-gray-900'>
                     {item.name}
                   </a>
                 ))}
@@ -146,8 +145,7 @@ export default function Example() {
             <div className='hidden lg:flex lg:items-center lg:space-x-6'>
               <a
                 href='#'
-                className='py-2 px-6 bg-warm-gray-100 border border-transparent rounded-md text-base font-medium text-warm-gray-900 hover:bg-warm-gray-200'
-              >
+                className='py-2 px-6 bg-warm-gray-100 border border-transparent rounded-md text-base font-medium text-warm-gray-900 hover:bg-warm-gray-200'>
                 Login
               </a>
             </div>
@@ -161,15 +159,14 @@ export default function Example() {
           enterTo='opacity-100 scale-100'
           leave='duration-100 ease-in'
           leaveFrom='opacity-100 scale-100'
-          leaveTo='opacity-0 scale-95'
-        >
+          leaveTo='opacity-0 scale-95'>
           <Popover.Panel focus className='absolute z-30 top-0 inset-x-0 p-2 transition transform origin-top lg:hidden'>
             <div className='rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 overflow-hidden'>
               <div className='px-5 pt-4 flex items-center justify-between'>
                 <div>
-                  <img
+                  <Image
                     className='h-8 w-auto'
-                    src='https://tailwindui.com/img/logos/workflow-mark.svg?color=teal&shade=500'
+                    src='https://tailwindui.com/Image/logos/workflow-mark.svg?color=teal&shade=500'
                     alt=''
                   />
                 </div>
@@ -186,8 +183,7 @@ export default function Example() {
                     <a
                       key={item.name}
                       href={item.href}
-                      className='block px-3 py-2 rounded-md text-base font-medium text-warm-gray-900 hover:bg-warm-gray-50'
-                    >
+                      className='block px-3 py-2 rounded-md text-base font-medium text-warm-gray-900 hover:bg-warm-gray-50'>
                       {item.name}
                     </a>
                   ))}
@@ -195,8 +191,7 @@ export default function Example() {
                 <div className='mt-6 px-5'>
                   <a
                     href='#'
-                    className='block text-center w-full py-2 px-4 border border-transparent rounded-md shadow bg-teal-500 text-white font-medium hover:bg-teal-600'
-                  >
+                    className='block text-center w-full py-2 px-4 border border-transparent rounded-md shadow bg-teal-500 text-white font-medium hover:bg-teal-600'>
                     Login
                   </a>
                 </div>
@@ -233,8 +228,7 @@ export default function Example() {
               height={384}
               fill='none'
               viewBox='0 0 404 384'
-              aria-hidden='true'
-            >
+              aria-hidden='true'>
               <defs>
                 <pattern
                   id='64e643ad-2176-4f86-b3d7-f2c5da3b6a6d'
@@ -242,8 +236,7 @@ export default function Example() {
                   y={0}
                   width={20}
                   height={20}
-                  patternUnits='userSpaceOnUse'
-                >
+                  patternUnits='userSpaceOnUse'>
                   <rect x={0} y={0} width={4} height={4} className='text-warm-gray-200' fill='currentColor' />
                 </pattern>
               </defs>
@@ -268,8 +261,7 @@ export default function Example() {
                       viewBox='0 0 343 388'
                       fill='none'
                       preserveAspectRatio='xMidYMid slice'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
+                      xmlns='http://www.w3.org/2000/svg'>
                       <path
                         d='M-99 461.107L608.107-246l707.103 707.107-707.103 707.103L-99 461.107z'
                         fill='url(#linear1)'
@@ -282,8 +274,7 @@ export default function Example() {
                           y1='107.554'
                           x2='961.66'
                           y2='814.66'
-                          gradientUnits='userSpaceOnUse'
-                        >
+                          gradientUnits='userSpaceOnUse'>
                           <stop stopColor='#fff' />
                           <stop offset={1} stopColor='#fff' stopOpacity={0} />
                         </linearGradient>
@@ -292,8 +283,7 @@ export default function Example() {
                   </div>
                   <div
                     className='hidden absolute top-0 right-0 bottom-0 w-1/2 pointer-events-none sm:block lg:hidden'
-                    aria-hidden='true'
-                  >
+                    aria-hidden='true'>
                     <svg
                       className='absolute inset-0 w-full h-full'
                       width={359}
@@ -301,8 +291,7 @@ export default function Example() {
                       viewBox='0 0 359 339'
                       fill='none'
                       preserveAspectRatio='xMidYMid slice'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
+                      xmlns='http://www.w3.org/2000/svg'>
                       <path
                         d='M-161 382.107L546.107-325l707.103 707.107-707.103 707.103L-161 382.107z'
                         fill='url(#linear2)'
@@ -315,8 +304,7 @@ export default function Example() {
                           y1='28.553'
                           x2='899.66'
                           y2='735.66'
-                          gradientUnits='userSpaceOnUse'
-                        >
+                          gradientUnits='userSpaceOnUse'>
                           <stop stopColor='#fff' />
                           <stop offset={1} stopColor='#fff' stopOpacity={0} />
                         </linearGradient>
@@ -325,8 +313,7 @@ export default function Example() {
                   </div>
                   <div
                     className='hidden absolute top-0 right-0 bottom-0 w-1/2 pointer-events-none lg:block'
-                    aria-hidden='true'
-                  >
+                    aria-hidden='true'>
                     <svg
                       className='absolute inset-0 w-full h-full'
                       width={160}
@@ -334,8 +321,7 @@ export default function Example() {
                       viewBox='0 0 160 678'
                       fill='none'
                       preserveAspectRatio='xMidYMid slice'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
+                      xmlns='http://www.w3.org/2000/svg'>
                       <path
                         d='M-161 679.107L546.107-28l707.103 707.107-707.103 707.103L-161 679.107z'
                         fill='url(#linear3)'
@@ -348,8 +334,7 @@ export default function Example() {
                           y1='325.553'
                           x2='899.66'
                           y2='1032.66'
-                          gradientUnits='userSpaceOnUse'
-                        >
+                          gradientUnits='userSpaceOnUse'>
                           <stop stopColor='#fff' />
                           <stop offset={1} stopColor='#fff' stopOpacity={0} />
                         </linearGradient>
@@ -515,8 +500,7 @@ export default function Example() {
                     <div className='sm:col-span-2 sm:flex sm:justify-end'>
                       <button
                         type='submit'
-                        className='mt-2 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 sm:w-auto'
-                      >
+                        className='mt-2 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 sm:w-auto'>
                         Submit
                       </button>
                     </div>
@@ -562,9 +546,9 @@ export default function Example() {
         <div className='max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8'>
           <div className='xl:grid xl:grid-cols-3 xl:gap-8'>
             <div className='space-y-8 xl:col-span-1'>
-              <img
+              <Image
                 className='h-10'
-                src='https://tailwindui.com/img/logos/workflow-mark.svg?color=warmGray&shade=400'
+                src='https://tailwindui.com/Image/logos/workflow-mark.svg?color=warmGray&shade=400'
                 alt='Company name'
               />
               <p className='text-warm-gray-400 text-base'>

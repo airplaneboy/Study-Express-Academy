@@ -6,7 +6,7 @@ import Providers from '@/context/Provider';
 import ToasterContext from '@/context/Toaster';
 
 const nunito = Nunito({ weight: ['500', '700'], subsets: ['latin'], variable: '--font-nunito' });
-const inter = Inter({ weight: ['700', '800'], subsets: ['latin'], variable: '--font-inter' });
+const inter = Inter({ weight: ['800'], subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata = {
   title: process.env.TITLE,

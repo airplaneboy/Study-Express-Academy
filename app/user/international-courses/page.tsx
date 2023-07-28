@@ -1,5 +1,5 @@
 const InternationalCourses = () => {
-  return <div>page</div>;
+  return <div>International Courses</div>;
 };
 
 export default InternationalCourses;

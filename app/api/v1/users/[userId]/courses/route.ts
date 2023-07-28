@@ -48,10 +48,10 @@ export async function POST(request: NextRequest, { params }: { params: any }) {
         continue;
       }
       if (user.courses.includes(courseId)) {
-        errors.push(`msg: User is already enrolled to course with ID: ${courseId} (${course.title})`);
+        errors.push({ msg: 'User is already enrolled to this course', id: courseId, course: course.title });
         continue;
       }
-      validCourses.push(`${course.title}. ID: ${courseId}`);
+      validCourses.push({ course: course.title, id: courseId });
       user.courses.push(courseId);
     }
 
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest, { params }: { params: any }) {
     const path = request.nextUrl.searchParams.get('path') || '/';
     revalidatePath(path);
 
-    return jsonResponse({ msg: 'Successfully enrolled to valid courses', validCourses: validCourses, errors }, 'OK');
+    return jsonResponse({ msg: 'Successfully enrolled to valid courses', EnrolledCourses: validCourses, errors }, 'OK');
   } catch (error: any) {
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
@@ -91,17 +91,17 @@ export async function PATCH(request: NextRequest, { params }: { params: any }) {
       }
 
       if (!user.courses.includes(courseId)) {
-        errors.push(`msg: User is not enrolled to course with ID: ${courseId} (${course.title})`);
+        errors.push({ msg: ' User is not enrolled to this course', id: courseId, course: course.title });
         continue;
       }
 
-      validCourses.push(`${course.title}. ID: ${courseId}`);
+      validCourses.push({ course: course.title, id: courseId });
       user.courses.pull(courseId);
     }
     await user.save();
 
     return jsonResponse(
-      { msg: 'Successfully removed user from valid course(s)', validCourses: validCourses, errors },
+      { msg: 'Successfully removed user from valid course(s)', DeletedCourses: validCourses, errors },
       'OK'
     );
   } catch (error: any) {
