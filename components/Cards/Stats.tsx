@@ -1,34 +1,31 @@
-import { HiRectangleStack, HiAcademicCap, HiTrophy } from 'react-icons/hi2';
+import { HiOutlineRectangleStack, HiOutlineAcademicCap, HiOutlineTrophy } from 'react-icons/hi2';
 
 const stats = [
   {
     id: 1,
     name: 'Achievements',
     stat: '71,897',
-    icon: HiTrophy,
-    change: '122',
+    icon: HiOutlineTrophy,
     changeType: 'increase',
-    color: 'decoration-pink-500 shadow-pink-200 ',
+    color: 'bg-pink-700 decoration-pink-500 shadow-pink-200',
     imageColor: 'text-pink-500',
   },
   {
     id: 2,
     name: 'Enrolled Courses',
-    stat: '58.16%',
-    icon: HiRectangleStack,
-    change: '5.4%',
+    stat: '56%',
+    icon: HiOutlineRectangleStack,
     changeType: 'increase',
-    color: 'decoration-purple-500 shadow-purple-200 ',
+    color: 'bg-purple-700 decoration-purple-500 shadow-purple-200 ',
     imageColor: 'text-purple-500',
   },
   {
     id: 3,
     name: 'Completed Courses',
-    stat: '24.57%',
-    icon: HiAcademicCap,
-    change: '3.2%',
+    stat: '27%',
+    icon: HiOutlineAcademicCap,
     changeType: 'decrease',
-    color: 'decoration-green-500 shadow-green-200 ',
+    color: 'bg-green-700 decoration-green-500 shadow-green-200 ',
     imageColor: 'text-green-500',
   },
 ];
@@ -37,7 +34,7 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Example() {
+export default function Stats() {
   return (
     <div className='sm:mb-24 mb-12'>
       <h3 className='text-md leading-6 font-extrabold text-gray-300 font-inter uppercase max-sm:hidden'>
@@ -53,10 +50,10 @@ export default function Example() {
               <item.icon size={25} className={` ${item.imageColor}`} aria-hidden='true' />
               <p className='text-sm font-medium text-gray-500 truncate'>{item.name}</p>
             </div>
-            <p
-              className={`text-5xl font-extrabold font-inter text-gray-800 underline decoration-from-font ${item.color}`}>
+            <h2
+              className={`text-6xl font-extrabold font-plusJakartaSans text-gray-800 text_inset underline decoration-from-font ${item.color}`}>
               {item.stat}
-            </p>
+            </h2>
           </div>
         ))}
       </div>

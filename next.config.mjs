@@ -29,6 +29,9 @@ const nextConfig = {
       {
         hostname: '**.googleusercontent.com',
       },
+      {
+        hostname: 'flagcdn.com/**',
+      },
     ],
   },
   experimental: {
