@@ -9,7 +9,7 @@ export default function PhoneNumberInput({ value, setValue }: { value: any; setV
       containerComponent='div'
       inputComponent='input'
       autoComplete='tel'
-      numberInputProps={{}}
+      numberInputProps={{ id: 'telephone' }}
       limitMaxLength={true}
       defaultCountry='NG'
       international

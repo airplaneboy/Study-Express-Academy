@@ -1,5 +1,5 @@
 'use client';
-import PhoneInput from '@/components/PhoneInput';
+import DatePicker from '@/components/DatePicker';
 import PhoneNumberInput from '@/components/PhoneNumberInput';
 import React, { useState } from 'react';
 
@@ -10,12 +10,13 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [birthday, setBirthday] = useState<any>();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     console.log(
-      `Gender: ${gender}\nFirst Name: ${firstName}\nLast Name: ${lastName}\nUsername: ${username}\nEmail: ${email}\nPhone Number: ${phoneNumber}`
+      `Gender: ${gender}\nFirst Name: ${firstName}\nLast Name: ${lastName}\nUsername: ${username}\nEmail: ${email}\nPhone Number: ${phoneNumber}\nBirthday: ${typeof birthday?.startDate}`
     );
   };
 
@@ -27,7 +28,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
           <div className='md:col-span-1'>
             <div className='px-4 sm:px-0'>
               <h3 className='text-lg font-medium leading-6 text-gray-900'>Personal Information</h3>
-              <p className='mt-1 text-sm text-gray-600'>Ensure your email, and phone number are accurate</p>
+              <p className='mt-1 text-sm text-gray-600'>Ensure your email, and phone number are accurate.</p>
             </div>
           </div>
 
@@ -47,6 +48,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         type='text'
                         name='first-name'
                         id='first-name'
+                        placeholder='Your given name'
                         autoComplete='given-name'
                         className='mt-1 border-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-2xl'
                       />
@@ -63,12 +65,13 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         type='text'
                         name='last-name'
                         id='last-name'
+                        placeholder='Your surname or family name'
                         autoComplete='family-name'
                         className='mt-1 border-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-2xl'
                       />
                     </div>
                     <div className='col-span-6 sm:col-span-3 lg:col-span-3'>
-                      <label htmlFor='region' className='block text-sm font-medium text-gray-700'>
+                      <label htmlFor='username' className='block text-sm font-medium text-gray-700'>
                         Username
                       </label>
                       <input
@@ -77,13 +80,14 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         onChange={(e) => setUsername(e.target.value)}
                         type='text'
                         name='username'
+                        placeholder='A nickname'
                         id='username'
                         autoComplete='off'
                         className='mt-1 border-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-2xl'
                       />
                     </div>
                     <div className='col-span-6 sm:col-span-3 lg:col-span-3'>
-                      <label htmlFor='postal-code' className='block text-sm font-medium text-gray-700'>
+                      <label htmlFor='telephone' className='block text-sm font-medium text-gray-700'>
                         Phone Number
                       </label>
 
@@ -94,6 +98,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         Email address
                       </label>
                       <input
+                        placeholder='Your email address'
                         maxLength={100}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -106,12 +111,13 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                     </div>
 
                     <div className='col-span-6 sm:col-span-6 lg:col-span-2'>
-                      <label htmlFor='country' className='block text-sm font-medium text-gray-700'>
+                      <label htmlFor='gender' className='block text-sm font-medium text-gray-700'>
                         Gender
                       </label>
                       <select
                         className='text-start mt-1 block w-full px-3 border-2 border-gray-300 bg-white rounded-2xl focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                         value={gender}
+                        id='gender'
                         onChange={(e) => setGender(e.target.value)}>
                         <option value=''>Select</option>
                         <option value='male'>Male</option>
@@ -120,7 +126,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                       </select>
                     </div>
 
-                    <div className='col-span-6 sm:col-span-3'>
+                    <div className='col-span-6 sm:col-span-4'>
                       <label htmlFor='country' className='block text-sm font-medium text-gray-700'>
                         Country
                       </label>
@@ -128,17 +134,10 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                     </div>
 
                     <div className='col-span-6 sm:col-span-6 lg:col-span-2'>
-                      <label htmlFor='city' className='block text-sm font-medium text-gray-700'>
-                        City
+                      <label htmlFor='datepicker' className='block text-sm font-medium text-gray-700'>
+                        Birthday
                       </label>
-                      <input
-                        maxLength={100}
-                        type='text'
-                        name='city'
-                        id='city'
-                        autoComplete='address-level2'
-                        className='mt-1 border-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-2xl'
-                      />
+                      <DatePicker value={birthday} setValue={setBirthday} />
                     </div>
                   </div>
                 </div>

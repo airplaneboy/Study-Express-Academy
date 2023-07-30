@@ -1,44 +1,27 @@
 'use client';
-import 'react-phone-number-input/style.css';
-import PhoneInput, {
-  formatPhoneNumber,
-  formatPhoneNumberIntl,
-  isValidPhoneNumber,
-  isPossiblePhoneNumber,
-  parsePhoneNumber,
-} from 'react-phone-number-input';
-import { useState } from 'react';
-import PhoneNumberInput from '@/components/PhoneInput';
+import React, { useState } from 'react';
+import Datepicker from 'react-tailwindcss-datepicker';
 
-export default function Example() {
-  const [value, setValue] = useState<any>();
-  const [parsedNumber, setParsedNumber] = useState();
+const DatePicker = () => {
+  const [value, setValue] = useState({
+    startDate: null,
+    endDate: null,
+  });
+
+  const handleValueChange = (newValue: any) => {
+    console.log('newValue:', newValue);
+    setValue(newValue);
+  };
 
   return (
-    <div className='flex items-center justify-center flex-col'>
-      <PhoneNumberInput></PhoneNumberInput>
-      <PhoneInput
-        containerComponent='div'
-        inputComponent='input'
-        autoComplete='tel'
-        numberInputProps={{}}
-        limitMaxLength={true}
-        defaultCountry='NG'
-        international
-        countryCallingCodeEditable={false}
-        placeholder='Enter phone number'
-        value={value}
-        className='!w-full  !rounded-2xl relative'
-        onChange={(E164) => setValue(E164)}
-      />
-
-      <h1>{value}</h1>
-      <br />
-      <h1>National: {value && formatPhoneNumber(value)}</h1>
-      <h1>International: {value && formatPhoneNumberIntl(value)}</h1>
-      <br />
-      <h1>Valid Number: {value && isValidPhoneNumber(value).toString()}</h1>
-      <h1>Possible Number: {value && isPossiblePhoneNumber(value).toString()}</h1>
-    </div>
+    <Datepicker
+      inputClassName='!h-auto !py-2 focus:!ring-indigo-500 !border-2 focus:!border-indigo-500 !block !w-full sm:!text-sm !text-gray-700 !border-gray-300 !rounded-2xl'
+      toggleClassName='text-gray-400 px-3 h-full right-0 absolute top-0'
+      useRange={false}
+      asSingle={true}
+      value={value}
+      onChange={handleValueChange}
+    />
   );
-}
+};
+export default DatePicker;

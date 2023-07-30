@@ -18,7 +18,7 @@ export default function ComboBox({ comboBoxArray }: { comboBoxArray: any[] }) {
 
   return (
     <Combobox value={selected} onChange={setSelected}>
-      <div className='relative mt-1'>
+      <div className='relative mt-1' id='country'>
         <div className='text-start mt-1 block w-full px-3 border-2 border-gray-300 bg-white rounded-2xl focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'>
           <div className='flex items-center gap-2 '>
             <Image

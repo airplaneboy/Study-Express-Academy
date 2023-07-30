@@ -74,10 +74,10 @@ const ProfileContent = async () => {
       property: 'Date Joined',
       value: format(new Date(user?.createdAt), 'EEEE, dd MMMM yyyy'),
     },
-    {
-      property: 'Bio',
-      value: user?.bio,
-    },
+    // {
+    //   property: 'Bio',
+    //   value: user?.bio,
+    // },
   ];
 
   const achievementData = user?.achievements.map((achievement: any) => {

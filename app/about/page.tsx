@@ -106,7 +106,7 @@ const footerNavigation = {
   ],
 };
 
-export default function Example() {
+export default function About() {
   return (
     <div className='bg-white'>
       <Popover as='header' className='relative'>
