@@ -55,6 +55,7 @@ const UserSchema = new mongoose.Schema(
     },
 
     profile: {
+      sex: { type: String, enum: ['male', 'female', 'other'] },
       firstName: { type: String, trim: true, lowercase: true },
       lastName: { type: String, trim: true, lowercase: true },
       pictureUrl: String, //why not use buffer?
@@ -64,12 +65,12 @@ const UserSchema = new mongoose.Schema(
         lowercase: false,
         maxlength: [500, 'Bio can only take a maximum of 500 characters'],
       },
-      // country: String,
+      country: String,
       // language: String,
-      // phone: {
-      //   number: String,
-      //   verified: Boolean,
-      // },
+      phone: {
+        number: String,
+        verified: Boolean,
+      },
       // birthday: Date,
     },
     role: {

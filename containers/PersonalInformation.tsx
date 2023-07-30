@@ -1,6 +1,24 @@
-import ComboBoxContent from './ComboBoxContent';
+'use client';
+import PhoneInput from '@/components/PhoneInput';
+import PhoneNumberInput from '@/components/PhoneNumberInput';
+import React, { useState } from 'react';
 
-const PersonalInformation = async () => {
+const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.ReactNode }) => {
+  const [gender, setGender] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    console.log(
+      `Gender: ${gender}\nFirst Name: ${firstName}\nLast Name: ${lastName}\nUsername: ${username}\nEmail: ${email}\nPhone Number: ${phoneNumber}`
+    );
+  };
+
   return (
     <>
       {/* Personal Information */}
@@ -12,8 +30,9 @@ const PersonalInformation = async () => {
               <p className='mt-1 text-sm text-gray-600'>Ensure your email, and phone number are accurate</p>
             </div>
           </div>
+
           <div className='mt-5 md:mt-0 md:col-span-2'>
-            <form action='#' method='POST'>
+            <form onSubmit={handleSubmit}>
               <div className=''>
                 <div className='px-4 py-5 bg-white sm:p-6 rounded-t-2xl border-x-2 border-t-2'>
                   <div className='grid grid-cols-6 gap-6'>
@@ -22,6 +41,9 @@ const PersonalInformation = async () => {
                         First name
                       </label>
                       <input
+                        maxLength={100}
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
                         type='text'
                         name='first-name'
                         id='first-name'
@@ -35,6 +57,9 @@ const PersonalInformation = async () => {
                         Last name
                       </label>
                       <input
+                        maxLength={100}
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                         type='text'
                         name='last-name'
                         id='last-name'
@@ -47,6 +72,9 @@ const PersonalInformation = async () => {
                         Username
                       </label>
                       <input
+                        maxLength={100}
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         type='text'
                         name='username'
                         id='username'
@@ -58,19 +86,17 @@ const PersonalInformation = async () => {
                       <label htmlFor='postal-code' className='block text-sm font-medium text-gray-700'>
                         Phone Number
                       </label>
-                      <input
-                        type='tel'
-                        name='telephone'
-                        id='telephone'
-                        autoComplete='Phone'
-                        className='mt-1 focus:ring-indigo-500 border-2 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-2xl'
-                      />
+
+                      <PhoneNumberInput value={phoneNumber} setValue={setPhoneNumber} />
                     </div>
                     <div className='col-span-6 sm:col-span-4'>
                       <label htmlFor='email-address' className='block text-sm font-medium text-gray-700'>
                         Email address
                       </label>
                       <input
+                        maxLength={100}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         type='text'
                         name='email-address'
                         id='email-address'
@@ -79,11 +105,26 @@ const PersonalInformation = async () => {
                       />
                     </div>
 
+                    <div className='col-span-6 sm:col-span-6 lg:col-span-2'>
+                      <label htmlFor='country' className='block text-sm font-medium text-gray-700'>
+                        Gender
+                      </label>
+                      <select
+                        className='text-start mt-1 block w-full px-3 border-2 border-gray-300 bg-white rounded-2xl focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                        value={gender}
+                        onChange={(e) => setGender(e.target.value)}>
+                        <option value=''>Select</option>
+                        <option value='male'>Male</option>
+                        <option value='female'>Female</option>
+                        <option value='other'>Other</option>
+                      </select>
+                    </div>
+
                     <div className='col-span-6 sm:col-span-3'>
                       <label htmlFor='country' className='block text-sm font-medium text-gray-700'>
                         Country
                       </label>
-                      <ComboBoxContent />
+                      {countryComboBox}
                     </div>
 
                     <div className='col-span-6 sm:col-span-6 lg:col-span-2'>
@@ -91,6 +132,7 @@ const PersonalInformation = async () => {
                         City
                       </label>
                       <input
+                        maxLength={100}
                         type='text'
                         name='city'
                         id='city'

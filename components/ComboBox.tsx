@@ -24,13 +24,14 @@ export default function ComboBox({ comboBoxArray }: { comboBoxArray: any[] }) {
             <Image
               src={selected.flag.image}
               alt={selected.flag.alt}
-              style={{ objectFit: 'cover' }}
+              style={{ objectFit: 'contain', height: '20px', width: '20px' }}
               width={20}
               height={20}
             />
             <Combobox.Input
-              className='w-full border-none py-2 pl-0 pr-10 text-sm leading-5 text-gray-900 focus:ring-0'
-              displayValue={(country: any) => country.name}
+              className='w-full border-none py-2 pl-0 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 '
+              // displayValue={(country: any) => country.name}
+              placeholder={selected.name}
               onChange={(event) => setQuery(event.target.value)}
             />
             <Combobox.Button className='absolute inset-y-0 right-0 flex items-center pr-2'>
@@ -63,7 +64,7 @@ export default function ComboBox({ comboBoxArray }: { comboBoxArray: any[] }) {
                         <Image
                           src={country.flag.image}
                           alt={country.flag.alt}
-                          style={{ objectFit: 'cover' }}
+                          style={{ objectFit: 'contain', width: '18px', height: '18px' }}
                           width={16}
                           height={16}
                         />
