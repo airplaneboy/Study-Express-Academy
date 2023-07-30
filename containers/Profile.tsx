@@ -1,3 +1,6 @@
+'use client';
+import Image from 'next/image';
+
 const Profile = () => {
   return (
     <>
@@ -14,6 +17,24 @@ const Profile = () => {
               <div className='sm:rounded-md sm:overflow-hidden'>
                 <div className='px-4 py-5 bg-white space-y-6 sm:p-6'>
                   <div>
+                    <label className='block text-sm font-medium text-gray-700'>Photo</label>
+                    <div className='mt-1 flex flex-col gap-5 items-center'>
+                      <Image
+                        src='/assets/profile-pics/Asset 1.svg'
+                        className='bg-gray-200 rounded-full pt-2'
+                        alt='user profile picture'
+                        style={{ width: 100, height: 100 }}
+                        width={100}
+                        height={100}
+                      />
+                      <button
+                        type='button'
+                        className=' bg-white py-2 px-3 border-2 border-gray-300 rounded-md  text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+                        Change
+                      </button>
+                    </div>
+                  </div>
+                  <div>
                     <label htmlFor='about' className='block text-sm font-medium text-gray-400'>
                       About
                     </label>
@@ -23,26 +44,10 @@ const Profile = () => {
                         id='about'
                         name='about'
                         rows={3}
-                        className=' focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-2 border-gray-200 rounded-2xl placeholder-gray-400'
+                        className='min-h-[4rem] focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-2 border-gray-200 rounded-2xl placeholder-gray-400'
                         placeholder='Bio is currently unavailable'
                         defaultValue={''}
                       />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className='block text-sm font-medium text-gray-700'>Photo</label>
-                    <div className='mt-1 flex items-center'>
-                      <span className='inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100'>
-                        <svg className='h-full w-full text-gray-300' fill='currentColor' viewBox='0 0 24 24'>
-                          <path d='M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z' />
-                        </svg>
-                      </span>
-                      <button
-                        type='button'
-                        className='ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md  text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
-                        Change
-                      </button>
                     </div>
                   </div>
                 </div>
