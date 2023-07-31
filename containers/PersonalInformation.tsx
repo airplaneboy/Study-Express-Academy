@@ -1,27 +1,55 @@
 'use client';
 import DatePicker from '@/components/DatePicker';
 import PhoneNumberInput from '@/components/PhoneNumberInput';
+import { parsePhoneNumber, isPossiblePhoneNumber } from 'react-phone-number-input';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+
+const countryState: { country: any; setCountry: any } = { country: null, setCountry: null };
+export const PersonalInformationContext = React.createContext(countryState);
 
 const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.ReactNode }) => {
-  const [gender, setGender] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [gender, setGender] = useState('not specified');
+  const [firstName, setFirstName] = useState<any>();
+  const [lastName, setLastName] = useState<any>();
+  const [username, setUsername] = useState<any>();
+  const [email, setEmail] = useState<any>();
+  const [phoneNumber, setPhoneNumber] = useState<any>('');
   const [birthday, setBirthday] = useState<any>();
+  const [country, setCountry] = useState<any>();
+
+  const validateNumber = () => {
+    if (!phoneNumber) return;
+
+    const validNumber = isPossiblePhoneNumber(phoneNumber);
+
+    if (!validNumber) {
+      toast.error('Please input a valid phone number');
+      return;
+    }
+
+    return parsePhoneNumber(phoneNumber);
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(
-      `Gender: ${gender}\nFirst Name: ${firstName}\nLast Name: ${lastName}\nUsername: ${username}\nEmail: ${email}\nPhone Number: ${phoneNumber}\nBirthday: ${typeof birthday?.startDate}`
-    );
+    const userDataUpdate = { email };
+    const userProfileUpdate = {
+      firstName,
+      lastName,
+      country,
+      gender,
+      phone: validateNumber(),
+      birthday: birthday?.startDate,
+    };
+
+    console.log(JSON.stringify(userDataUpdate, null, 2));
+    console.log(JSON.stringify(userProfileUpdate, null, 2));
   };
 
   return (
-    <>
+    <PersonalInformationContext.Provider value={{ country, setCountry }}>
       {/* Personal Information */}
       <div className='mt-10 sm:mt-0'>
         <div className='lg:grid lg:grid-cols-3 lg:gap-6'>
@@ -43,7 +71,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                       </label>
                       <input
                         maxLength={100}
-                        value={firstName}
+                        value={firstName || ''}
                         onChange={(e) => setFirstName(e.target.value)}
                         type='text'
                         name='first-name'
@@ -60,7 +88,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                       </label>
                       <input
                         maxLength={100}
-                        value={lastName}
+                        value={lastName || ''}
                         onChange={(e) => setLastName(e.target.value)}
                         type='text'
                         name='last-name'
@@ -71,19 +99,20 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                       />
                     </div>
                     <div className='col-span-6 sm:col-span-3 lg:col-span-3'>
-                      <label htmlFor='username' className='block text-sm font-medium text-gray-700'>
+                      <label htmlFor='username' className='block disabled text-sm font-medium text-gray-700'>
                         Username
                       </label>
                       <input
+                        disabled
                         maxLength={100}
-                        value={username}
+                        value={username || ''}
                         onChange={(e) => setUsername(e.target.value)}
                         type='text'
                         name='username'
-                        placeholder='A nickname'
+                        placeholder='A nickname (Unavailable)'
                         id='username'
                         autoComplete='off'
-                        className='mt-1 border-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-2xl'
+                        className='mt-1 border-2 disabled focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-2xl'
                       />
                     </div>
                     <div className='col-span-6 sm:col-span-3 lg:col-span-3'>
@@ -91,7 +120,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         Phone Number
                       </label>
 
-                      <PhoneNumberInput value={phoneNumber} setValue={setPhoneNumber} />
+                      <PhoneNumberInput value={phoneNumber || ''} setValue={setPhoneNumber} />
                     </div>
                     <div className='col-span-6 sm:col-span-4'>
                       <label htmlFor='email-address' className='block text-sm font-medium text-gray-700'>
@@ -100,7 +129,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                       <input
                         placeholder='Your email address'
                         maxLength={100}
-                        value={email}
+                        value={email || ''}
                         onChange={(e) => setEmail(e.target.value)}
                         type='text'
                         name='email-address'
@@ -116,7 +145,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                       </label>
                       <select
                         className='text-start mt-1 block w-full px-3 border-2 border-gray-300 bg-white rounded-2xl focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-                        value={gender}
+                        value={gender || ''}
                         id='gender'
                         onChange={(e) => setGender(e.target.value)}>
                         <option value=''>Select</option>
@@ -137,7 +166,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                       <label htmlFor='datepicker' className='block text-sm font-medium text-gray-700'>
                         Birthday
                       </label>
-                      <DatePicker value={birthday} setValue={setBirthday} />
+                      <DatePicker value={birthday || ''} setValue={setBirthday} />
                     </div>
                   </div>
                 </div>
@@ -153,7 +182,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
           </div>
         </div>
       </div>
-    </>
+    </PersonalInformationContext.Provider>
   );
 };
 

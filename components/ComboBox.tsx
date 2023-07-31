@@ -1,13 +1,24 @@
 'use client';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext, useEffect } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { HiCheck, HiChevronUpDown } from 'react-icons/hi2';
 import Image from 'next/image';
+import { PersonalInformationContext } from '@/containers/PersonalInformation';
 
 export default function ComboBox({ comboBoxArray }: { comboBoxArray: any[] }) {
+  const [canChangeState, setCanChangeState] = useState(false);
   const countries = comboBoxArray;
   const [selected, setSelected] = useState(countries[0]);
   const [query, setQuery] = useState('');
+
+  const context = useContext(PersonalInformationContext);
+
+  useEffect(() => {
+    context.setCountry(selected);
+    if (selected?.name?.includes('American Samoa') && canChangeState == false) context.setCountry();
+
+    return () => {};
+  }, [context, selected, canChangeState]);
 
   const filteredCountries =
     query === ''
@@ -21,18 +32,23 @@ export default function ComboBox({ comboBoxArray }: { comboBoxArray: any[] }) {
       <div className='relative mt-1' id='country'>
         <div className='text-start mt-1 block w-full px-3 border-2 border-gray-300 bg-white rounded-2xl focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'>
           <div className='flex items-center gap-2 '>
-            <Image
-              src={selected.flag.image}
-              alt={selected.flag.alt}
-              style={{ objectFit: 'contain', height: '20px', width: '20px' }}
-              width={20}
-              height={20}
-            />
+            {selected && (
+              <Image
+                src={selected.flag.image}
+                alt={selected.flag.alt}
+                style={{ objectFit: 'contain', height: '20px', width: '20px' }}
+                width={20}
+                height={20}
+              />
+            )}
             <Combobox.Input
-              className='w-full border-none py-2 pl-0 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 '
               // displayValue={(country: any) => country.name}
-              placeholder={selected.name}
-              onChange={(event) => setQuery(event.target.value)}
+              className='w-full border-none py-2 pl-0 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 '
+              placeholder={selected?.name}
+              onChange={(event) => {
+                setCanChangeState(true);
+                setQuery(event.target.value);
+              }}
             />
             <Combobox.Button className='absolute inset-y-0 right-0 flex items-center pr-2'>
               <HiChevronUpDown className='h-5 w-5 text-gray-400' aria-hidden='true' />
