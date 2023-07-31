@@ -4,12 +4,14 @@ import PhoneNumberInput from '@/components/PhoneNumberInput';
 import { parsePhoneNumber, isPossiblePhoneNumber } from 'react-phone-number-input';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import { updateProfile } from '@/lib/data/userProfile';
+import { useSession } from 'next-auth/react';
 
 const countryState: { country: any; setCountry: any } = { country: null, setCountry: null };
 export const PersonalInformationContext = React.createContext(countryState);
 
 const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.ReactNode }) => {
-  const [gender, setGender] = useState('not specified');
+  const [gender, setGender] = useState<any>();
   const [firstName, setFirstName] = useState<any>();
   const [lastName, setLastName] = useState<any>();
   const [username, setUsername] = useState<any>();
@@ -17,6 +19,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
   const [phoneNumber, setPhoneNumber] = useState<any>('');
   const [birthday, setBirthday] = useState<any>();
   const [country, setCountry] = useState<any>();
+  const { data: session } = useSession();
 
   const validateNumber = () => {
     if (!phoneNumber) return;
@@ -31,7 +34,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
     return parsePhoneNumber(phoneNumber);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const userDataUpdate = { email };
@@ -44,8 +47,19 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
       birthday: birthday?.startDate,
     };
 
-    console.log(JSON.stringify(userDataUpdate, null, 2));
-    console.log(JSON.stringify(userProfileUpdate, null, 2));
+    try {
+      await toast.promise(
+        updateProfile({ data: userProfileUpdate, userId: session?.user?.email }),
+        {
+          error: 'An error occurred. Try again or contact support',
+          loading: 'Updating your profile..',
+          success: 'Update successful!',
+        },
+        { error: { duration: 500 } }
+      );
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   return (

@@ -43,12 +43,12 @@ const images = [
   },
 ];
 
-export function Gallery() {
-  const [selected, setSelected] = useState(images[0]);
+export function Gallery({ selected, setSelected }: { selected: any; setSelected?: any }) {
+  // const [selected, setSelected] = useState(images[0]);
 
   return (
     <RadioGroup value={selected} onChange={setSelected}>
-      <RadioGroup.Label className='sr-only'>Avatars</RadioGroup.Label>{' '}
+      <RadioGroup.Label className='sr-only'>Avatars</RadioGroup.Label>
       <ul
         role='list'
         className='py-4 px-4 max-h-96 overflow-auto  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 sm:gap-x-6 gap-y-4 sm:gap-y-8 xl:gap-x-8'>
@@ -107,8 +107,8 @@ export function Gallery() {
   );
 }
 
-export default function AvatarSelectModal() {
-  let [isOpen, setIsOpen] = useState(true);
+export default function AvatarSelectModal({ value, setValue }: { value?: any; setValue?: any }) {
+  let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
@@ -123,7 +123,7 @@ export default function AvatarSelectModal() {
       <button
         type='button'
         onClick={openModal}
-        className='rounded-2xl bg-indigo-900 bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
+        className=' bg-white py-2 px-3 border-2 border-gray-300 rounded-2xl  text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
         Change Avatar
       </button>
 
@@ -155,7 +155,7 @@ export default function AvatarSelectModal() {
                     Choose your avatar
                   </Dialog.Title>
                   <div className='mt-2'>
-                    <Gallery />
+                    <Gallery selected={value} setSelected={setValue} />
                   </div>
 
                   <div className='mt-4'>

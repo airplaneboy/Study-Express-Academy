@@ -1,4 +1,4 @@
-import { fetchFormPOST, fetchPOST } from '@/utils/fetchOption';
+import { fetchPOST } from '@/utils/fetchOption';
 
 interface IRegister {
   firstName: string | undefined;

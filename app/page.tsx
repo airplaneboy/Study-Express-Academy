@@ -12,6 +12,15 @@ export default function Home() {
 
   const sessionUpdate = async () => await update({ email: 'james' });
 
+  const sendPatch = async () => {
+    const response = await fetch('http://localhost:3000/api/v1/users/agarasulaimany1000@gmail.com/profile', {
+      method: 'PATCH',
+      body: JSON.stringify({ firstName: 'jake' }),
+      cache: 'no-store',
+    });
+    console.log(await response.json());
+  };
+
   return (
     <main>
       <h1>Homepage</h1>
@@ -40,6 +49,18 @@ export default function Home() {
       <br />
       <br />
       <SignButton />
+      <br />
+
+      <div>
+        <button
+          className='py-2 px-4 bg-purple-700 my-2 rounded-full text-white'
+          onClick={() => {
+            sendPatch();
+          }}>
+          send patch request
+        </button>
+      </div>
+
       <div className='bg-black text-white h-screen' id='first'>
         this is the content
       </div>

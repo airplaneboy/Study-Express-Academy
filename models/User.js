@@ -57,7 +57,7 @@ const UserSchema = new mongoose.Schema(
     profile: {
       firstName: { type: String, trim: true, lowercase: true },
       lastName: { type: String, trim: true, lowercase: true },
-      pictureUrl: String, //why not use buffer?
+      image: String, //why not use buffer?
       bio: {
         type: String,
         trim: true,

@@ -19,11 +19,15 @@ export async function fetchPOST({
   token,
   path,
   headers,
+  cache = true,
+  revalidate,
 }: {
   data: {};
   token?: string;
   path: string;
   headers?: {};
+  cache?: boolean;
+  revalidate?: number;
 }) {
   const config = {
     method: 'POST',
@@ -33,9 +37,11 @@ export async function fetchPOST({
       ...headers,
     },
     body: JSON.stringify(data),
+    cache: cache || 'no-store',
+    next: { revalidate: revalidate && revalidate },
   };
 
-  const response = await fetch(path, config);
+  const response = await fetch(path, config as any);
 
   if (!response.ok) throw new Error(JSON.stringify((await response.json()).error));
 
