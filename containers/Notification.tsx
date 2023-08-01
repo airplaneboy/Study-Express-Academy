@@ -1,17 +1,42 @@
 'use client';
 import { useState } from 'react';
+import { updateUser } from '@/lib/data/user';
+import toast from 'react-hot-toast';
+import { useSession } from 'next-auth/react';
 
 const Notification = () => {
   const [commentNotification, setCommentNotification] = useState(true);
   const [authenticationNotification, setAuthenticationNotification] = useState(true);
   const [offersNotification, setOffersNotification] = useState(true);
   const [pushNotification, setPushNotification] = useState('');
+  const { data: session } = useSession();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(
-      `comments: ${commentNotification}\nauthentication: ${authenticationNotification}\noffers: ${offersNotification}\npush: ${pushNotification}`
-    );
+
+    const userUpdate = {
+      notificationSettings: {
+        commentNotification,
+        authenticationNotification,
+        offersNotification,
+        pushNotification: pushNotification == '' ? undefined : pushNotification,
+      },
+    };
+
+    //Patch request
+    try {
+      await toast.promise(
+        updateUser({ data: userUpdate, userId: session?.user?.email }),
+        {
+          error: 'An error occurred. Try again or contact support',
+          loading: 'Updating your settings..',
+          success: 'Update successful!',
+        },
+        { error: { duration: 500 } }
+      );
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   return (

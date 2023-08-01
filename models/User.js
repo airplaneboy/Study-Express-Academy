@@ -93,7 +93,16 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-
+    notificationSettings: {
+      commentNotification: { type: Boolean, default: true },
+      authenticationNotification: { type: Boolean, default: true },
+      offersNotification: { type: Boolean, default: true },
+      pushNotification: {
+        type: String,
+        enum: ['everything', 'important', 'nothing'],
+        default: 'everything',
+      },
+    },
     // status: {
     //   type: String,
     //   enum: ['active', 'inactive', 'blocked'],
