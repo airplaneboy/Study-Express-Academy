@@ -3,7 +3,7 @@ import User from '@/models/User';
 import Achievement from '@/models/Achievement';
 import jsonResponse from '@/utils/jsonResponse';
 import { NextRequest } from 'next/server';
-import { revalidatePath } from 'next/cache';
+// import { revalidatePath } from 'next/cache';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -45,8 +45,8 @@ export async function PATCH(request: NextRequest, { params }: { params: any }) {
     user.achievements.push(achievementId);
     await user.save();
 
-    const path = request.nextUrl.searchParams.get('path') || '/';
-    revalidatePath(path);
+    // const path = request.nextUrl.searchParams.get('path') || '/';
+    // revalidatePath(path);
 
     return jsonResponse({ msg: 'Successfully added achievement to user', achievement }, 'OK');
   } catch (error: any) {

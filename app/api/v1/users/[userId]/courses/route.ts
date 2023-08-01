@@ -2,7 +2,7 @@ import connectMongoose from '@/lib/mongooseConnect';
 import User from '@/models/User';
 import jsonResponse from '@/utils/jsonResponse';
 import Course from '@/models/Course';
-import { revalidatePath } from 'next/cache';
+// import { revalidatePath } from 'next/cache';
 import { NextRequest } from 'next/server';
 
 export async function GET(request: Request, { params }: { params: any }) {
@@ -57,8 +57,8 @@ export async function POST(request: NextRequest, { params }: { params: any }) {
 
     await user.save();
 
-    const path = request.nextUrl.searchParams.get('path') || '/';
-    revalidatePath(path);
+    // const path = request.nextUrl.searchParams.get('path') || '/';
+    // revalidatePath(path);
 
     return jsonResponse({ msg: 'Successfully enrolled to valid courses', EnrolledCourses: validCourses, errors }, 'OK');
   } catch (error: any) {

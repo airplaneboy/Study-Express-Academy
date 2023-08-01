@@ -64,6 +64,8 @@ export async function PATCH(request: NextRequest, { params }: { params: any }) {
 
     return jsonResponse(unit, 'OK');
   } catch (error: any) {
+    if (error.message.toString().includes('E11000 duplicate key error collection'))
+      error.message = 'This unit title already exists, try something else';
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }

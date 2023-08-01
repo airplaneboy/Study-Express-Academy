@@ -19,7 +19,7 @@ export async function GET(request: Request, { params }: { params: any }) {
     mongoose.Types.ObjectId.isValid(userId)
       ? (user = await User.findById(userId)
           .select(['-password', '-provider'])
-          .populate({ path: 'courses', select: '-_id title', model: Course })
+          .populate({ path: 'courses completedCourses', select: '-_id title', model: Course })
           .populate({ path: 'achievements', select: '-_id title', model: Achievement }))
       : (user = await User.findOne({ $or: [{ email: userId }, { username: userId }] })
           .select(['-password', '-provider'])
@@ -85,6 +85,8 @@ export async function PATCH(request: NextRequest, { params }: { params: any }) {
 
     return jsonResponse(user, 'OK');
   } catch (error: any) {
+    if (error.message.toString().includes('E11000 duplicate key error collection'))
+      error.message = 'This email already exists, try something else';
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }

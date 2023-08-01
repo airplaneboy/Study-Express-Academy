@@ -3,7 +3,7 @@ import User from '@/models/User';
 import Lesson from '@/models/Lesson';
 
 import jsonResponse from '@/utils/jsonResponse';
-import { revalidatePath } from 'next/cache';
+// import { revalidatePath } from 'next/cache';
 import { NextRequest } from 'next/server';
 
 export async function GET(request: Request, { params }: { params: any }) {
@@ -46,8 +46,8 @@ export async function PATCH(request: NextRequest, { params }: { params: any }) {
     user.currentLesson = lessonId;
     await user.save();
 
-    const path = request.nextUrl.searchParams.get('path') || '/';
-    revalidatePath(path);
+    // const path = request.nextUrl.searchParams.get('path') || '/';
+    // revalidatePath(path);
 
     return jsonResponse({ msg: 'Successfully updated current lesson', lesson }, 'OK');
   } catch (error: any) {

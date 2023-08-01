@@ -5,6 +5,7 @@ import { parsePhoneNumber, isPossiblePhoneNumber } from 'react-phone-number-inpu
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { updateProfile } from '@/lib/data/userProfile';
+import { updateUser } from '@/lib/data/user';
 import { useSession } from 'next-auth/react';
 
 const countryState: { country: any; setCountry: any } = { country: null, setCountry: null };
@@ -37,25 +38,34 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const userDataUpdate = { email };
+    const userUpdate = { email: email == '' ? undefined : email };
     const userProfileUpdate = {
-      firstName,
-      lastName,
-      country,
-      gender,
+      firstName: firstName == '' ? undefined : firstName,
+      lastName: lastName == '' ? undefined : lastName,
+      country: country == '' ? undefined : country,
+      gender: gender == '' ? undefined : gender,
       phone: validateNumber(),
-      birthday: birthday?.startDate,
+      birthday: birthday == '' ? undefined : birthday?.startDate,
     };
 
     try {
       await toast.promise(
-        updateProfile({ data: userProfileUpdate, userId: session?.user?.email }),
+        updateProfile({ data: userProfileUpdate, userId: (session?.user as any).id }),
         {
           error: 'An error occurred. Try again or contact support',
           loading: 'Updating your profile..',
           success: 'Update successful!',
         },
-        { error: { duration: 500 } }
+        { error: { duration: 1 } }
+      );
+      await toast.promise(
+        updateUser({ data: userUpdate, userId: (session?.user as any).id }),
+        {
+          error: 'An error occurred. Try again or contact support',
+          loading: 'Updating your email..',
+          success: 'Update successful!',
+        },
+        { error: { duration: 1 } }
       );
     } catch (error: any) {
       toast.error(error.message);
@@ -145,7 +155,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         maxLength={100}
                         value={email || ''}
                         onChange={(e) => setEmail(e.target.value)}
-                        type='text'
+                        type='email'
                         name='email-address'
                         id='email-address'
                         autoComplete='email'

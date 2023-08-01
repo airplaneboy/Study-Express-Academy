@@ -77,7 +77,7 @@ const RegisterForm = () => {
           loading: 'Signing you up...',
           success: 'Sign up successful. Welcome!',
         },
-        { error: { duration: 500 } }
+        { error: { duration: 1 } }
       );
       router.push('/auth/login');
       toast.loading('Please login to continue!');

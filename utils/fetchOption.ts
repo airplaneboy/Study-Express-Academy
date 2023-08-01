@@ -37,8 +37,8 @@ export async function fetchPOST({
       ...headers,
     },
     body: JSON.stringify(data),
-    cache: cache || 'no-store',
-    next: { revalidate: revalidate && revalidate },
+    cache: cache ? undefined : 'no-store',
+    // next: { revalidate: revalidate && revalidate >= 0 ? revalidate : undefined },
   };
 
   const response = await fetch(path, config as any);

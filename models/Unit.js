@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import Course from './Course';
 
 const UnitSchema = new mongoose.Schema({
-  title: { type: String, required: true, trim: true, lowercase: true },
+  title: { type: String, required: true, trim: true, lowercase: true, unique: true },
   description: { type: String, trim: true },
   course: {
     type: mongoose.Schema.Types.ObjectId,

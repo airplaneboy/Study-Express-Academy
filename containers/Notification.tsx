@@ -26,13 +26,13 @@ const Notification = () => {
     //Patch request
     try {
       await toast.promise(
-        updateUser({ data: userUpdate, userId: session?.user?.email }),
+        updateUser({ data: userUpdate, userId: (session?.user as any).id }),
         {
           error: 'An error occurred. Try again or contact support',
           loading: 'Updating your settings..',
           success: 'Update successful!',
         },
-        { error: { duration: 500 } }
+        { error: { duration: 1 } }
       );
     } catch (error: any) {
       toast.error(error.message);

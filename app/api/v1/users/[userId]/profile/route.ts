@@ -47,6 +47,8 @@ export async function PATCH(request: Request, { params }: { params: any }) {
 
     return jsonResponse({ msg: 'Successfully updated profile', user }, 'OK');
   } catch (error: any) {
+    if (error.message.toString().includes('E11000 duplicate key error collection'))
+      error.message = 'This value already exists, try something else';
     return jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
   }
 }

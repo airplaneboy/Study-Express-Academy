@@ -1,25 +1,29 @@
 import ProfileItem from '@/components/ProfileItem';
 import getUser from '@/lib/data/user';
 import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { format } from 'date-fns';
 
 const ProfileContent = async () => {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   if (!session?.user) return <h1>You need to login to view profile</h1>;
 
   let user;
   try {
-    user = await getUser({ userId: session.user.email });
+    user = await getUser({ userId: (session.user as any).id });
   } catch (error) {
-    console.log(error);
-
-    return (
-      <h1>
-        Your information could not be fetched. Try logging in again, or try again later. If error persists, contact our
-        support.
-      </h1>
-    );
+    try {
+      user = await getUser({ userId: (session.user as any).username });
+    } catch (error) {
+      console.log(error);
+      return (
+        <h1>
+          Your information could not be fetched. Try logging in again, or try again later. If error persists, contact
+          our support.
+        </h1>
+      );
+    }
   }
 
   const userData = [
