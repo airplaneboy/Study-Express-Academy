@@ -22,7 +22,14 @@ const UserMenu = ({
       <Menu.Button className=' bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
         <span className='sr-only'>Open user menu</span>
         {imageUrl ? (
-          <Image className='h-8 w-8 rounded-full' width={256} height={256} src={imageUrl} alt='Profile image' />
+          <Image
+            className='h-8 w-8 rounded-full bg-gray-300 pt-1'
+            width={50}
+            height={50}
+            src={imageUrl}
+            alt='Profile image'
+            style={{ objectFit: 'cover', width: '50px', height: '50px' }}
+          />
         ) : (
           // <HiUser className='h-8 w-8 rounded-full bg-indigo-700 p-1 text-white' width={256} height={256} />
           <h1 className='flex items-center justify-center bg-purple-800 h-8 w-8 rounded-full text-white uppercase text-lg text-center'>

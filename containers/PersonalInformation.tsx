@@ -50,7 +50,6 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
 
     try {
       //Update user
-
       if (JSON.stringify(userUpdate) !== '{}') {
         await toast.promise(
           updateUser({ data: userUpdate, userId: (session?.user as any).id }),

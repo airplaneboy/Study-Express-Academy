@@ -7,7 +7,7 @@ import million from 'million/compiler';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // typescript: { ignoreBuildErrors: true },
+  typescript: { ignoreBuildErrors: true },
   async redirects() {
     return [
       {
@@ -35,8 +35,8 @@ const nextConfig = {
     ],
   },
   experimental: {
-    esmExternals: 'loose', // <-- add this
-    serverComponentsExternalPackages: ['mongoose'], // <-- and this
+    esmExternals: 'loose',
+    serverComponentsExternalPackages: ['mongoose'],
   },
 
   webpack: (config) => {

@@ -22,7 +22,13 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function NavbarContent({ coursesData }: { coursesData: any }) {
+export default function NavbarContent({
+  coursesData,
+  userData,
+}: {
+  coursesData: { [key: string]: any };
+  userData: { [key: string]: any };
+}) {
   const [isScrolled, setIsScrolled] = useState(false);
   const { data: session } = useSession();
 
@@ -66,7 +72,7 @@ export default function NavbarContent({ coursesData }: { coursesData: any }) {
                   <MobileMenuButton open={open} />
                   <UserMenu
                     classNames={classNames}
-                    imageUrl={session?.user?.image}
+                    imageUrl={userData?.profile?.image}
                     userNavigation={userNavigation}
                     name={session?.user?.name ? session?.user?.name : (session?.user as any)?.username}
                   />
