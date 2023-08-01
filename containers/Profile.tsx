@@ -18,18 +18,18 @@ const Profile = () => {
 
     //Patch request
     try {
-      await toast.promise(
-        updateProfile({ data: userProfileUpdate, userId: (session?.user as any).id }),
-        {
-          error: 'An error occurred. Try again or contact support',
-          loading: 'Updating your profile..',
-          success: 'Update successful!',
-        },
-        { error: { duration: 1 } }
-      );
+      if (JSON.stringify(userProfileUpdate) != '{}') {
+        await toast.promise(
+          updateProfile({ data: userProfileUpdate, userId: (session?.user as any).id }),
+          {
+            error: 'An error occurred. Try again or contact support',
+            loading: 'Updating your profile..',
+            success: 'Update successful!',
+          },
+          { error: { duration: 1 } }
+        );
+      }
     } catch (error: any) {
-      console.log(error);
-
       toast.error(error.message);
     }
   };

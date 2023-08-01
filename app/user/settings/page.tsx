@@ -4,7 +4,7 @@ import Profile from '@/containers/Profile';
 import Separator from '@/components/Separator';
 import ComboBoxContent from '@/containers/ComboBoxContent';
 
-export default async function Settings() {
+export default function Settings() {
   return (
     <>
       <PersonalInformation countryComboBox={<ComboBoxContent />} />

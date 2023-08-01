@@ -38,35 +38,43 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const userUpdate = { email: email == '' ? undefined : email };
+    const userUpdate: { email: string } = { email: email == '' ? undefined : email };
     const userProfileUpdate = {
       firstName: firstName == '' ? undefined : firstName,
       lastName: lastName == '' ? undefined : lastName,
       country: country == '' ? undefined : country,
       gender: gender == '' ? undefined : gender,
       phone: validateNumber(),
-      birthday: birthday == '' ? undefined : birthday?.startDate,
+      birthday: birthday == '' || birthday?.startDate == null ? undefined : birthday?.startDate,
     };
 
     try {
-      await toast.promise(
-        updateProfile({ data: userProfileUpdate, userId: (session?.user as any).id }),
-        {
-          error: 'An error occurred. Try again or contact support',
-          loading: 'Updating your profile..',
-          success: 'Update successful!',
-        },
-        { error: { duration: 1 } }
-      );
-      await toast.promise(
-        updateUser({ data: userUpdate, userId: (session?.user as any).id }),
-        {
-          error: 'An error occurred. Try again or contact support',
-          loading: 'Updating your email..',
-          success: 'Update successful!',
-        },
-        { error: { duration: 1 } }
-      );
+      //Update user
+
+      if (JSON.stringify(userUpdate) !== '{}') {
+        await toast.promise(
+          updateUser({ data: userUpdate, userId: (session?.user as any).id }),
+          {
+            error: 'An error occurred. Try again or contact support',
+            loading: 'Updating your email..',
+            success: 'Update successful!',
+          },
+          { error: { duration: 1 } }
+        );
+      }
+
+      //Update user's profile
+      if (JSON.stringify(userProfileUpdate) != '{}') {
+        await toast.promise(
+          updateProfile({ data: userProfileUpdate, userId: (session?.user as any).id }),
+          {
+            error: 'An error occurred. Try again or contact support',
+            loading: 'Updating your profile...',
+            success: 'Update successful!',
+          },
+          { error: { duration: 1 } }
+        );
+      }
     } catch (error: any) {
       toast.error(error.message);
     }

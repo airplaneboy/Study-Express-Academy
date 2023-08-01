@@ -60,6 +60,10 @@ const ProfileContent = async () => {
       property: 'Birthday',
       value: format(new Date(user?.profile.birthday), 'EEEE, dd MMMM yyyy'),
     },
+    {
+      property: 'Age',
+      value: user?.profile.age,
+    },
 
     {
       property: 'Role',
@@ -102,11 +106,11 @@ const ProfileContent = async () => {
   ];
 
   const achievementData = user?.achievements.map((achievement: any) => {
-    return { property: achievement.title, value: 'completed' };
+    return { property: achievement.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
   });
 
   const CourseData = user?.completedCourses.map((course: any) => {
-    return { property: course.title, value: 'completed' };
+    return { property: course.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
   });
 
   return (

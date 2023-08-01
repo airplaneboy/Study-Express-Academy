@@ -43,6 +43,24 @@ export async function PATCH(request: Request, { params }: { params: any }) {
     if (!user) return jsonResponse({ error: 'No user was found' }, 'NOT_FOUND');
 
     user.profile = merge(user.profile, body);
+
+    if (body.birthday) {
+      const response = await fetch('http://worldtimeapi.org/api/ip');
+      const currentDate = new Date((await response.json()).utc_datetime);
+      const birthday = new Date(body.birthday);
+
+      let age: number = currentDate.getFullYear() - birthday.getFullYear();
+
+      if (
+        currentDate.getMonth() < birthday.getMonth() ||
+        (currentDate.getMonth() === birthday.getMonth() && currentDate.getDate() < birthday.getDate())
+      ) {
+        +age--;
+      }
+
+      user.profile.age = +age;
+    }
+
     await user.save();
 
     return jsonResponse({ msg: 'Successfully updated profile', user }, 'OK');
