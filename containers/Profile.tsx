@@ -2,17 +2,34 @@
 import Image from 'next/image';
 import AvatarSelectModal from './AvatarSelect';
 import React, { useState } from 'react';
+import { updateProfile } from '@/lib/data/userProfile';
+import { useSession } from 'next-auth/react';
+import toast from 'react-hot-toast';
 
 const Profile = () => {
   const [image, setImage] = useState<any>('');
   const [bio, setBio] = useState<any>();
+  const { data: session } = useSession();
 
-  const submitHandler = (e: React.FormEvent) => {
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const userProfileData = { image, bio };
-    console.log(userProfileData);
-    console.log(JSON.stringify(userProfileData, null, 2));
+    const userProfileUpdate = { image: image == '' ? undefined : image.source, bio: bio == '' ? undefined : bio };
+
+    //Patch request
+    try {
+      await toast.promise(
+        updateProfile({ data: userProfileUpdate, userId: session?.user?.email }),
+        {
+          error: 'An error occurred. Try again or contact support',
+          loading: 'Updating your profile..',
+          success: 'Update successful!',
+        },
+        { error: { duration: 500 } }
+      );
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -62,9 +79,9 @@ const Profile = () => {
                         onChange={(e) => setBio(e.target.value)}
                         id='about'
                         name='about'
-                        maxLength={500}
+                        maxLength={250}
                         rows={3}
-                        className='min-h-[4rem] focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-2 border-gray-300 rounded-2xl placeholder-gray-600'
+                        className='min-h-[4rem] max-h-96 focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-2 border-gray-300 rounded-2xl placeholder-gray-600'
                         placeholder='What would you like everyone to know about you?'
                         defaultValue={''}
                       />

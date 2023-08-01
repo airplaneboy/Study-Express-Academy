@@ -14,7 +14,7 @@ const ProfileItem = ({
             <li key={stat.id ? stat.id : stat.property} className='flex justify-between items-center mb-1 shrink'>
               <h5 className='text-gray-700 capitalize'>{stat.property}:</h5>
               <p
-                className={`text-gray-500 py-2 truncate max-w-[10rem] sm:max-w-[15rem] lg:max-w-lg ${
+                className={`text-gray-500 py-2 lg:pl-5 truncate max-w-[10rem] sm:max-w-[15rem] lg:max-w-lg ${
                   stat?.style && stat?.style
                 }`}>
                 {stat.value}

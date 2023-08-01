@@ -1,5 +1,5 @@
 'use client';
-import { FormEventHandler, useState } from 'react';
+import { useState } from 'react';
 
 const Notification = () => {
   const [commentNotification, setCommentNotification] = useState(true);

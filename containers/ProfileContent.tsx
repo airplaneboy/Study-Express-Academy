@@ -40,6 +40,22 @@ const ProfileContent = async () => {
       value: user?.email,
       style: 'lowercase',
     },
+    {
+      property: 'Country',
+      value: user?.profile.country.name,
+    },
+    {
+      property: 'Phone Number',
+      value: user?.profile.phone.number,
+    },
+    {
+      property: 'Gender',
+      value: user?.profile.gender,
+    },
+    {
+      property: 'Birthday',
+      value: format(new Date(user?.profile.birthday), 'EEEE, dd MMMM yyyy'),
+    },
 
     {
       property: 'Role',
@@ -74,10 +90,11 @@ const ProfileContent = async () => {
       property: 'Date Joined',
       value: format(new Date(user?.createdAt), 'EEEE, dd MMMM yyyy'),
     },
-    // {
-    //   property: 'Bio',
-    //   value: user?.bio,
-    // },
+    {
+      property: 'Bio',
+      value: user?.profile.bio,
+      style: 'whitespace-normal lg:text-justify text-right leading-tight',
+    },
   ];
 
   const achievementData = user?.achievements.map((achievement: any) => {
