@@ -7,7 +7,7 @@ import Image from 'next/image';
 const UserMenu = ({
   userNavigation,
   classNames,
-  imageUrl,
+  imageUrl: image,
   name,
 }: {
   userNavigation: any;
@@ -19,17 +19,19 @@ const UserMenu = ({
     // TODO: Should user menu be hidden on small screens?
 
     <Menu as='div' className='flex-shrink-0 relative max-sm:hidden'>
-      <Menu.Button className=' bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+      <Menu.Button className=' bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 p-[2px] border'>
         <span className='sr-only'>Open user menu</span>
-        {imageUrl ? (
-          <Image
-            className='h-8 w-8 rounded-full bg-gray-300 pt-1'
-            width={50}
-            height={50}
-            src={imageUrl}
-            alt='Profile image'
-            style={{ objectFit: 'cover', width: '50px', height: '50px' }}
-          />
+        {image ? (
+          <div className='w-12 h-12 overflow-hidden rounded-full relative '>
+            <Image
+              className=' bg-gray-300 pt-1 absolute -top-8'
+              width={100}
+              height={100}
+              src={image}
+              alt='Profile image'
+              style={{ objectFit: 'cover', width: '120px', height: '120px' }}
+            />
+          </div>
         ) : (
           // <HiUser className='h-8 w-8 rounded-full bg-indigo-700 p-1 text-white' width={256} height={256} />
           <h1 className='flex items-center justify-center bg-purple-800 h-8 w-8 rounded-full text-white uppercase text-lg text-center'>

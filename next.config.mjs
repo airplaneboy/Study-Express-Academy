@@ -7,7 +7,10 @@ import million from 'million/compiler';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: { ignoreBuildErrors: true },
+  // typescript: { ignoreBuildErrors: true },
+  eslint: {
+    dirs: ['pages', 'utils', 'app', 'models', 'components', 'lib', 'src'], // Only run ESLint on the 'pages' and 'utils' directories during production builds (next build)
+  },
   async redirects() {
     return [
       {

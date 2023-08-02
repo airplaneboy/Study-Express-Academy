@@ -26,6 +26,7 @@ const CourseSchema = new mongoose.Schema(
       required: [true, 'You need to specify if this a "domestic" or an "international" course'],
     },
     units: { type: [mongoose.Schema.Types.ObjectId], ref: 'Unit' },
+    order: { type: Number },
   },
   { timestamps: true }
 );

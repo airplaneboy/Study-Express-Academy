@@ -1,5 +1,5 @@
 const Results = () => {
-  return <div>Results</div>;
+  return <div>Currently Unavailable</div>;
 };
 
 export default Results;

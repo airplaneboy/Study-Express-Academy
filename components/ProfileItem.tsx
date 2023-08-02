@@ -6,7 +6,7 @@ const ProfileItem = ({
   title: string;
 }) => {
   return (
-    <div className='w-full border-2 rounded-2xl p-5  mb-5 capitalize h-max flex-1'>
+    <div className='w-full border-y max-sm:pt-5 sm:border-2 sm:rounded-2xl p-2 sm:p-5  mb-5 capitalize h-max flex-1'>
       <h2 className='text-lg font-bold mb-4 text-gray-700 '>{title}</h2>
       <ul className=''>
         {stats.map((stat) => {

@@ -14,6 +14,9 @@ const LessonSchema = new mongoose.Schema(
       required: true,
       validate: { validator: isUnit, message: 'Invalid unit. Please provide a valid unit ID.' },
     },
+    articles: { type: [mongoose.Schema.Types.ObjectId], ref: 'Article' },
+    tests: { type: [mongoose.Schema.Types.ObjectId], ref: 'Test' },
+    videos: { type: [mongoose.Schema.Types.ObjectId], ref: 'Video' },
   },
   { timestamps: true }
 );
