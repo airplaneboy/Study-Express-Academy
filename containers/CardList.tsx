@@ -45,9 +45,9 @@ const CardList = ({
         </h1>
       </CollapsibleHeader>
 
-      <div className='flex flex-col mx-auto bg-white sm:px-10 py-8 md:top-32 relative sm:mt-4'>
+      <div className='flex flex-col mx-auto bg-white sm:px-5 py-8 md:top-32 relative sm:mt-4'>
         {contentDescription && (
-          <h3 className='sm:border-b border-y-2 text-gray-500 sm:bg-gray-200 sm:rounded-2xl mx-4 my-2  lg:text-2xl text-xl max-sm:px-4 max-sm:py-2 max-sm:pb-2 sm:p-4 '>
+          <h3 className='sm:border-b border-y-2 text-gray-500 sm:bg-gray-200 sm:rounded-2xl mx-4 my-2  lg:text-2xl text-xl max-sm:px-4 max-sm:py-2 max-sm:pb-2 sm:p-4 mt-8'>
             {capitalize(contentDescription)}
           </h3>
         )}
@@ -60,17 +60,17 @@ const CardList = ({
                 <h1 className='font-extrabold font-inter text-gray-700 mb-5 mr-3 text-3xl'>{sidebarHeader}</h1>
                 {sidebarArray?.map((sidebarItems) => (
                   <li
-                    key={sidebarItems._id}
+                    key={sidebarItems?._id}
                     className=' px-4 py-3 sm:px-0 text-md text-gray-500 hover:text-indigo-500 focus:text-indigo-600 no_wrap'>
                     <Link
-                      to={sidebarItems.title}
+                      to={sidebarItems?.title}
                       spy={true}
                       smooth={true}
                       duration={300}
                       offset={-130}
                       activeClass='active'
                       className='cursor-pointer'>
-                      {sidebarItems.title}
+                      {sidebarItems?.title}
                     </Link>
                   </li>
                 ))}
@@ -81,35 +81,41 @@ const CardList = ({
           {/* Content Header */}
           <div className='border-gray-300 lg:px-10 md:pl-10 w-full'>
             <ul role='list'>
-              {sidebarArray?.map((headerItem) => (
-                <li key={headerItem._id} id={headerItem.title} className='pb-4'>
-                  <div className='bg-white border rounded-lg'>
-                    <div className='px-4 py-5 sm:px-6 font-bold text-gray-700 flex items-center gap-2 text-lg max-sm:text-base '>
-                      {headerItem.image && (
-                        <Image src={headerItem.image} alt={headerItem.title + ' image'} width={30} height={30}></Image>
-                      )}
+              {sidebarArray?.map((headerItem) => {
+                return (
+                  <li key={headerItem?._id} id={headerItem?.title} className='pb-4'>
+                    <div className='bg-white border rounded-lg'>
+                      <div className='px-4 py-5 sm:px-6 font-bold text-gray-700 flex items-center gap-2 text-lg max-sm:text-base '>
+                        {headerItem?.image && (
+                          <Image
+                            src={headerItem?.image}
+                            alt={headerItem?.title + ' image'}
+                            width={30}
+                            height={30}></Image>
+                        )}
 
-                      <CustomLink pathStrings={[slug, headerItem.slug]}>{headerItem.title}</CustomLink>
-                    </div>
+                        <CustomLink pathStrings={[slug, headerItem?.slug]}>{headerItem?.title}</CustomLink>
+                      </div>
 
-                    {/* Content List */}
-                    <div className='px-4 py-5 sm:p-6 bg-gray-50'>
-                      <ul className=' grid grid-cols-2 gap-2'>
-                        {contentArray &&
-                          (headerItem as any)[contentArray]?.map((listItem: any) => (
-                            <li
-                              key={listItem._id}
-                              className='text-gray-600 text-md max-sm:text-sm hover:underline truncate'>
-                              <CustomLink pathStrings={[slug, headerItem.slug, listItem.slug]}>
-                                {listItem.title}
-                              </CustomLink>
-                            </li>
-                          ))}
-                      </ul>
+                      {/* Content List */}
+                      <div className='px-4 py-5 sm:p-6 bg-gray-50'>
+                        <ul className=' grid grid-cols-2 gap-2'>
+                          {contentArray &&
+                            (headerItem as any)[contentArray]?.map((listItem: any) => (
+                              <li
+                                key={listItem?._id}
+                                className='text-gray-600 text-md max-sm:text-sm hover:underline truncate'>
+                                <CustomLink pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
+                                  {listItem?.title}
+                                </CustomLink>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

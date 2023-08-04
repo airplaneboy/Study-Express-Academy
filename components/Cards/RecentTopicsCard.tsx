@@ -19,10 +19,11 @@ const RecentTopicsCard = async () => {
               icon: any;
               _id: string;
               slug: string;
+              subject: { slug: string };
               units: { title: string; _id: string; icon: string; slug: string }[];
             }) => {
               return (
-                <div key={course._id}>
+                <div key={course?._id}>
                   <div className='h-16 rounded-t-3xl p-6 border-2 bg-gray-100 w-full flex justify-between items-center'>
                     <div className='flex items-center gap-5 max-sm:gap-3 relative w-full'>
                       <Image
@@ -34,9 +35,9 @@ const RecentTopicsCard = async () => {
                         alt='subject'
                       />
                       <Link
-                        href={course?.slug || 'not-found'}
+                        href={`/${course?.subject?.slug}/${course?.slug}` || 'not-found'}
                         className='text-gray-600 font-bold truncate absolute w-full pl-14 max-h-6 hover:underline '>
-                        {course.title}
+                        {course?.title}
                       </Link>
                     </div>
                     <Link href='#'>
@@ -49,9 +50,9 @@ const RecentTopicsCard = async () => {
                       <ul className='divide-y divide-gray-100'>
                         {course?.units?.map((unit: { title: string; icon: any; _id: string; slug: string }) => {
                           return (
-                            <li key={unit._id}>
+                            <li key={unit?._id}>
                               <Link
-                                href={`/${course?.slug}/${unit?.slug}`}
+                                href={`/${course?.subject?.slug}/${course?.slug}/${unit?.slug}`}
                                 className='flex items-center justify-between py-2 sm:px-4 px-2 my-1 hover:bg-gray-100 rounded-2xl gap-1 '>
                                 <div className='flex w-full items-center gap-2 relative'>
                                   <Image
@@ -63,7 +64,7 @@ const RecentTopicsCard = async () => {
                                     height={36}
                                   />
                                   <h1 className=' max-h-6 w-full text-gray-600 absolute truncate pl-12'>
-                                    {unit.title}
+                                    {unit?.title}
                                   </h1>
                                 </div>
                                 <h1 className='text-gray-400'>100%</h1>

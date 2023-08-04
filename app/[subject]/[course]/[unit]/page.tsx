@@ -1,19 +1,18 @@
 import CardList from '@/containers/CardList';
-import getUnits, { getUnit } from '@/lib/data/units';
-import lowercase from 'lodash.lowercase';
+import { getUnit, getUnits } from '@/sanity/sanity-utils';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const units = await getUnits();
 
-  return units.map((unit: { _id: string; title?: string }) => ({
-    unit: unit.title ? unit.title : unit._id,
+  return units.map((unit: { slug: string }) => ({
+    unit: unit.slug,
   }));
 }
 
 const Units = async ({ params }: { params: { unit: string } }) => {
   try {
-    const unit = await getUnit({ unitId: lowercase(params.unit) });
+    const unit = await getUnit(params.unit);
 
     return (
       <CardList
@@ -21,6 +20,7 @@ const Units = async ({ params }: { params: { unit: string } }) => {
         sidebarArray={unit.lessons}
         sidebarHeader='Lessons'
         contentDescription={unit.description}
+        slug={unit?.slug}
       />
     );
   } catch (error) {
