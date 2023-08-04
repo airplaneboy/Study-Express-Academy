@@ -2,16 +2,14 @@ import Image from 'next/image';
 import { HiUser } from 'react-icons/hi2';
 
 const UserProfile = ({
-  user,
   image,
   username,
-  name,
+  // name,
   email,
 }: {
-  user: any;
   image: string;
   username: string;
-  name: string | undefined | null;
+  // name: string | undefined | null;
   email: string;
 }) => {
   return (
@@ -33,12 +31,12 @@ const UserProfile = ({
         ) : (
           // <HiUser className='h-8 w-8 rounded-full bg-indigo-700 p-1 text-white' width={256} height={256} />
           <h1 className='flex items-center justify-center bg-purple-800 h-8 w-8 rounded-full text-white uppercase text-lg text-center'>
-            {name ? name?.charAt(0) : username?.charAt(0)}
+            {username ? username?.charAt(0) : username?.charAt(0)}
           </h1>
         )}
       </div>
       <div className='ml-3'>
-        <div className='text-base font-medium text-gray-800'>{name ? name : username}</div>
+        <div className='text-base font-medium text-gray-800'>{username}</div>
         <div className='text-sm font-medium text-gray-500'>{email}</div>
       </div>
     </div>

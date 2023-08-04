@@ -5,7 +5,7 @@ const Unit = {
   fields: [
     {
       title: 'Unit Title',
-      name: 'unit',
+      name: 'title',
       type: 'string',
       description: "Name of the unit. Hint: 'Cellular Structure and Function'",
       validation: (Rule: any) => Rule.required(),
@@ -20,6 +20,15 @@ const Unit = {
     //   validation: (Rule: any) => Rule.required(),
     // },
     {
+      title: 'URL Path to Unit',
+      name: 'slug',
+      type: 'slug',
+      options: { source: 'title', maxLength: 300 },
+      description:
+        'The url path that leads to this subject. Hint: A slug of "advanced-math" would have the url: http://sitename/advanced-math. PS: You should auto-generate the slug unless you have a specific route in mind.',
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
       title: 'Course',
       name: 'course',
       type: 'reference',
@@ -28,6 +37,7 @@ const Unit = {
         'The course this unit belongs to. You can reference the subject field on the course menu to learn why this is required',
       validation: (Rule: any) => Rule.required(),
     },
+
     {
       title: 'Unit Lessons',
       name: 'lessons',

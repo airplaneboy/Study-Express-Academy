@@ -10,7 +10,7 @@ import UserProfile from './Navbar/UserProfile';
 import UserNavigation from './Navbar/UserNavigation';
 import Courses from './Navbar/Courses';
 import React, { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 
 const userNavigation = [
   { name: 'Your Profile', href: '/user/profile' },
@@ -30,7 +30,7 @@ export default function NavbarContent({
   userData: { [key: string]: any };
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   useEffect(() => {
     //Navbar Scroll Shadow
@@ -74,7 +74,7 @@ export default function NavbarContent({
                     classNames={classNames}
                     imageUrl={userData?.profile?.image}
                     userNavigation={userNavigation}
-                    name={session?.user?.name ? session?.user?.name : (userData?.profile as any)?.username}
+                    name={(userData?.profile as any)?.username}
                   />
                 </div>
               </div>
@@ -83,10 +83,9 @@ export default function NavbarContent({
               <Popover.Panel as='nav' className='sm:hidden mt-3' aria-label='Global'>
                 <div className='border-t border-gray-200 pt-4 pb-3 '>
                   <UserProfile
-                    user={session?.user}
                     email={userData.email}
                     image={userData.profile.image}
-                    name={session?.user?.name}
+                    // name={session?.user?.name}
                     username={userData?.username}
                   />
                   <UserNavigation userNavigation={userNavigation} />

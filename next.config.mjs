@@ -35,6 +35,9 @@ const nextConfig = {
       {
         hostname: 'flagcdn.com/**',
       },
+      {
+        hostname: 'tailwindui.com/**',
+      },
     ],
   },
   experimental: {

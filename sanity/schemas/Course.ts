@@ -18,6 +18,15 @@ const Courses = {
       description: 'Name of person teaching the course',
       validation: (Rule: any) => Rule.required(),
     },
+    {
+      title: 'URL Path to Course',
+      name: 'slug',
+      type: 'slug',
+      options: { source: 'title', maxLength: 300 },
+      description:
+        'The url path that leads to this subject. Hint: A slug of "advanced-math" would have the url: http://sitename/advanced-math. PS: You should auto-generate the slug unless you have a specific route in mind.',
+      validation: (Rule: any) => Rule.required(),
+    },
     // {
     //   title: 'Order',
     //   name: 'order',

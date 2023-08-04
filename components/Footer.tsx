@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const navigation = {
   main: [
     { name: 'About', href: '#' },
@@ -48,9 +50,9 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className='bg-black border-t border-gray-300 relative w-full mt-28'>
-      <div className='max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8'>
-        <nav className='-mx-5 -my-2 flex flex-wrap justify-center' aria-label='Footer'>
+    <footer className=' border-t-2  border-gray-300 relative w-full mt-28'>
+      <div className='max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8 overflow-hidden flex items-center justify-between max-sm:flex-col'>
+        {/* <nav className='-mx-5 -my-2 flex flex-wrap justify-center' aria-label='Footer'>
           {navigation.main.map((item) => (
             <div key={item.name} className='px-5 py-2'>
               <a href={item.href} className='text-base text-gray-200 hover:text-gray-300 hover:underline'>
@@ -58,16 +60,16 @@ export default function Footer() {
               </a>
             </div>
           ))}
-        </nav>
-        <div className='mt-8 flex justify-center space-x-6'>
+        </nav> */}
+        <div className=' flex justify-center space-x-6 py-2 rounded-3xl w-max'>
           {navigation.social.map((item) => (
-            <a key={item.name} href={item.href} className='text-gray-400 hover:text-gray-500'>
+            <Link key={item.name} href={item.href} className='text-gray-400 hover:text-gray-500'>
               <span className='sr-only'>{item.name}</span>
-              <item.icon className='h-6 w-6' aria-hidden='true' />
-            </a>
+              <item.icon className='sm:h-8 sm:w-8 h-6 w-6' aria-hidden='true' />
+            </Link>
           ))}
         </div>
-        <p className='mt-8 text-center text-base text-gray-300'>
+        <p className='text-center text-base max-sm:text-xs text-gray-500 font-bold pointer-events-none w-max'>
           &copy; 2023 {process.env.TITLE}, Inc. All rights reserved.
         </p>
       </div>

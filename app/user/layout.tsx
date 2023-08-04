@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className='h-full'>
-      <Suspense fallback={<h1>Loading navbar...</h1>}>{<Navbar />}</Suspense>
+      {/* <Suspense fallback={<h1>Loading navbar...</h1>}>{<Navbar />}</Suspense> */}
       <Suspense fallback={<Loading />}>
         <Sidebar>{children}</Sidebar>
       </Suspense>

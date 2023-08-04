@@ -119,6 +119,8 @@ export default function About() {
                 <a href='#'>
                   <span className='sr-only'>Workflow</span>
                   <Image
+                    height={32}
+                    width={32}
                     className='h-8 w-auto sm:h-10'
                     src='https://tailwindui.com/Image/logos/workflow-mark.svg?color=teal&shade=500'
                     alt=''
@@ -165,6 +167,8 @@ export default function About() {
               <div className='px-5 pt-4 flex items-center justify-between'>
                 <div>
                   <Image
+                    width={32}
+                    height={32}
                     className='h-8 w-auto'
                     src='https://tailwindui.com/Image/logos/workflow-mark.svg?color=teal&shade=500'
                     alt=''
@@ -547,6 +551,8 @@ export default function About() {
           <div className='xl:grid xl:grid-cols-3 xl:gap-8'>
             <div className='space-y-8 xl:col-span-1'>
               <Image
+                width={40}
+                height={40}
                 className='h-10'
                 src='https://tailwindui.com/Image/logos/workflow-mark.svg?color=warmGray&shade=400'
                 alt='Company name'
