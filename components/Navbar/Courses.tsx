@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import kebabCase from 'lodash.kebabcase';
 import Link from 'next/link';
+import React from 'react';
 
 const Courses = ({ courses, classNames }: { courses: any; classNames: Function }) => {
   return (
@@ -33,19 +34,19 @@ const Courses = ({ courses, classNames }: { courses: any; classNames: Function }
           leaveTo='transform opacity-0 scale-95'>
           {/* */}
           <Menu.Items className='border overflow-scroll max-h-full h-[90%] z-50 origin-top-right fixed left-1/2 -translate-x-1/2 mt-2 max-w-8xl w-[90%] rounded-md shadow-xl grid lg:grid-cols-3 md:grid-cols-2 gap-3 bg-white px-2 '>
-            {courses.map((subject: any) => (
-              <Menu.Item key={subject._id}>
+            {courses?.map((subject: any) => (
+              <Menu.Item key={subject?._id}>
                 {({ active }) => (
                   <div className='flex px-8 text-sm text-gray-700 flex-col capitalize pt-5'>
                     <Link
-                      href={`/${kebabCase(subject.title)}`}
+                      href={`/${subject?.slug}`}
                       className={classNames(active ? 'text-blue-800 underline' : '', 'mb-4 ')}>
-                      {subject.title}
+                      {subject?.title}
                     </Link>
                     <ul>
-                      {subject.courses.map((course: { _id: string; title: string }) => (
-                        <li key={course._id} className='text-blue-500 truncate hover:underline py-2 text-base'>
-                          <Link href={`/${kebabCase(subject.title)}/${kebabCase(course.title)}`}>{course.title}</Link>
+                      {subject?.courses?.map((course: { _id: string; title: string; slug: string }) => (
+                        <li key={course?._id} className='text-blue-500 truncate hover:underline py-2 text-base'>
+                          <Link href={`/${subject?.slug}/${course?.slug}`}>{course?.title}</Link>
                         </li>
                       ))}
                     </ul>
@@ -60,4 +61,4 @@ const Courses = ({ courses, classNames }: { courses: any; classNames: Function }
   );
 };
 
-export default Courses;
+export default React.memo(Courses);

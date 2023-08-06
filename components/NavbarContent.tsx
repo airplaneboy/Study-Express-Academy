@@ -10,8 +10,7 @@ import UserProfile from './Navbar/UserProfile';
 import UserNavigation from './Navbar/UserNavigation';
 import Courses from './Navbar/Courses';
 import React, { useEffect, useState } from 'react';
-// import { useSession } from 'next-auth/react';
-
+import RouterButton from './Navbar/RouterButton';
 const userNavigation = [
   { name: 'Your Profile', href: '/user/profile' },
   { name: 'Settings', href: '/user/settings' },
@@ -22,7 +21,7 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function NavbarContent({
+function NavbarContent({
   coursesData,
   userData,
 }: {
@@ -30,7 +29,6 @@ export default function NavbarContent({
   userData: { [key: string]: any };
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
-  // const { data: session } = useSession();
 
   useEffect(() => {
     //Navbar Scroll Shadow
@@ -67,29 +65,39 @@ export default function NavbarContent({
                 <div className='absolute_center'>
                   <ClickableLogo />
                 </div>
-                <div className='flex gap-12 items-center'>
-                  <Courses courses={coursesData} classNames={classNames} />
-                  <MobileMenuButton open={open} />
-                  <UserMenu
-                    classNames={classNames}
-                    imageUrl={userData?.profile?.image}
-                    userNavigation={userNavigation}
-                    name={(userData?.profile as any)?.username}
-                  />
-                </div>
+
+                {/* Check if user is logged in to show login button or their profile */}
+                {userData ? (
+                  <div className='flex gap-12 items-center'>
+                    <Courses courses={coursesData} classNames={classNames} />
+                    <MobileMenuButton open={open} />
+                    <UserMenu
+                      classNames={classNames}
+                      imageUrl={userData?.profile?.image}
+                      userNavigation={userNavigation}
+                      name={(userData?.profile as any)?.username}
+                    />
+                  </div>
+                ) : (
+                  <RouterButton route='/auth/login' />
+                )}
               </div>
 
               {/* Mobile Sidebar */}
               <Popover.Panel as='nav' className='sm:hidden mt-3' aria-label='Global'>
-                <div className='border-t border-gray-200 pt-4 pb-3 '>
-                  <UserProfile
-                    email={userData.email}
-                    image={userData.profile.image}
-                    // name={session?.user?.name}
-                    username={userData?.username}
-                  />
-                  <UserNavigation userNavigation={userNavigation} />
-                </div>
+                {userData ? (
+                  <div className='border-t border-gray-200 pt-4 pb-3 '>
+                    <UserProfile
+                      email={userData.email}
+                      image={userData.profile.image}
+                      // name={session?.user?.name}
+                      username={userData?.username}
+                    />
+                    <UserNavigation userNavigation={userNavigation} />
+                  </div>
+                ) : (
+                  <RouterButton route='/auth/login' />
+                )}
               </Popover.Panel>
             </>
           )}
@@ -98,3 +106,5 @@ export default function NavbarContent({
     </>
   );
 }
+
+export default React.memo(NavbarContent);

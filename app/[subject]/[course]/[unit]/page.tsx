@@ -1,9 +1,9 @@
 import CardList from '@/containers/CardList';
-import { getUnit, getUnits } from '@/sanity/sanity-utils';
+import { getUnit, getUnitsSlug } from '@/sanity/sanity-utils';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
-  const units = await getUnits();
+  const units = await getUnitsSlug();
 
   return units.map((unit: { slug: string }) => ({
     unit: unit.slug,

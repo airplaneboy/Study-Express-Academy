@@ -52,19 +52,46 @@ export const authOptions: NextAuthOptions = {
     signIn: '/auth/login',
   },
   callbacks: {
+    //Second
     async jwt({ token, user, trigger }) {
+      // console.log('==============================User==============================');
+      // console.log(user);
+      // console.log('==============================End User==============================');
+
+      // console.log('==============================Token==============================');
+      // console.log(token);
+      // console.log('==============================End Token==============================');
+
       // if (trigger === 'signIn' || trigger === 'signUp') token = { ...token, ...user };
 
       return { ...token, ...user };
       // return token;
     },
 
+    //Last
     async session({ session, token }) {
       session.user = token;
       return session;
     },
 
+    //First?
     async signIn({ account, profile, credentials, user }) {
+      // console.log('==============================Account==============================');
+      // console.log(account);
+      // console.log('==============================End Account==============================');
+
+      // console.log('==============================Profile==============================');
+      // console.log(profile);
+      // console.log('==============================End Profile==============================');
+
+      // console.log('==============================Credentials==============================');
+      // console.log(credentials);
+      // console.log('==============================End Credentials==============================');
+
+      // console.log('==============================User==============================');
+      // console.log(user);
+      // console.log('==============================End User==============================');
+
       if (account?.type === 'oauth') {
         const userData = {
           email: profile?.email,
@@ -79,24 +106,26 @@ export const authOptions: NextAuthOptions = {
         const loginData = { email: profile?.email };
 
         try {
-          await fetchPOST({
+          const loginResponse = await fetchPOST({
             data: loginData,
             path: 'http://localhost:3000/api/v1/auth/login',
             headers: { 'X-Auth-Method': account?.type },
           });
 
+          user.id = loginResponse?.id;
           return true;
         } catch (error: any) {
           jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');
         }
 
         try {
-          await fetchPOST({
+          const registerResponse = await fetchPOST({
             data: userData,
             path: 'http://localhost:3000/api/v1/auth/register',
             headers: { 'X-Auth-Method': account?.type },
           });
 
+          user.id = registerResponse?.id;
           return true;
         } catch (error: any) {
           jsonResponse({ error: error.message }, 'INTERNAL_SERVER_ERROR');

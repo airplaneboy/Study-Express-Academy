@@ -1,7 +1,7 @@
 import { fetchGET, fetchPATCH } from '@/utils/fetchOption';
 
 export const getUser = async ({ userId }: { userId: string | null | undefined }) =>
-  await fetchGET({ path: `http://localhost:3000/api/v1/users/${userId}` });
+  await fetchGET({ path: `http://localhost:3000/api/v1/users/${userId}`, cache: false });
 
 export const updateUser = async ({
   userId,

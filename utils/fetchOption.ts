@@ -1,10 +1,11 @@
-export async function fetchGET({ token, path }: { token?: string; path: string }) {
+export async function fetchGET({ token, path, cache = true }: { token?: string; path: string; cache?: boolean }) {
   const config = {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       // Authorization: `Bearer ${token}`,
     },
+    cache: cache ? (undefined as RequestCache | undefined) : ('no-store' as RequestCache | undefined),
   };
 
   const response = await fetch(path, config);
@@ -20,14 +21,12 @@ export async function fetchPOST({
   path,
   headers,
   cache = true,
-  revalidate,
 }: {
   data: {};
   token?: string;
   path: string;
   headers?: {};
   cache?: boolean;
-  revalidate?: number;
 }) {
   const config = {
     method: 'POST',

@@ -45,9 +45,9 @@ const CardList = ({
         </h1>
       </CollapsibleHeader>
 
-      <div className='flex flex-col mx-auto bg-white sm:px-5 py-8 md:top-32 relative sm:mt-4'>
+      <div className='flex flex-col mx-auto bg-white sm:px-5 py-8 md:top-32 relative '>
         {contentDescription && (
-          <h3 className='sm:border-b border-y-2 text-gray-500 sm:bg-gray-200 sm:rounded-2xl mx-4 my-2  lg:text-2xl text-xl max-sm:px-4 max-sm:py-2 max-sm:pb-2 sm:p-4 mt-8'>
+          <h3 className='sm:border-b border-y-2 text-gray-500 sm:bg-gray-200 sm:rounded-2xl mx-4 lg:text-2xl text-xl max-sm:px-2 max-sm:py-2 max-sm:pb-2 sm:p-4'>
             {capitalize(contentDescription)}
           </h3>
         )}
@@ -55,7 +55,7 @@ const CardList = ({
         <div className='flex sm:mt-10 mt-5 p-4'>
           {/* Sidebar */}
           <aside className='max-md:hidden'>
-            <nav className=' h-[45rem] sticky top-44 lg:w-80 md:w-72 overflow-y-auto rounded-2xl border-gray-300 border'>
+            <nav className=' h-[45rem] sticky top-44 lg:w-80 md:w-72 overflow-y-auto rounded-2xl border-gray-300 border-2'>
               <ul role='list' className='h-max p-5'>
                 <h1 className='font-extrabold font-inter text-gray-700 mb-5 mr-3 text-3xl'>{sidebarHeader}</h1>
                 {sidebarArray?.map((sidebarItems) => (
@@ -79,12 +79,12 @@ const CardList = ({
           </aside>
 
           {/* Content Header */}
-          <div className='border-gray-300 lg:px-10 md:pl-10 w-full'>
+          <div className='border-gray-300  md:pl-10 w-full'>
             <ul role='list'>
               {sidebarArray?.map((headerItem) => {
                 return (
                   <li key={headerItem?._id} id={headerItem?.title} className='pb-4'>
-                    <div className='bg-white border rounded-lg'>
+                    <div className='bg-white border-2 rounded-lg overflow-hidden'>
                       <div className='px-4 py-5 sm:px-6 font-bold text-gray-700 flex items-center gap-2 text-lg max-sm:text-base '>
                         {headerItem?.image && (
                           <Image
@@ -98,7 +98,7 @@ const CardList = ({
                       </div>
 
                       {/* Content List */}
-                      <div className='px-4 py-5 sm:p-6 bg-gray-50'>
+                      <div className='px-4 py-5 sm:p-6 bg-gray-100'>
                         <ul className=' grid grid-cols-2 gap-2'>
                           {contentArray &&
                             (headerItem as any)[contentArray]?.map((listItem: any) => (

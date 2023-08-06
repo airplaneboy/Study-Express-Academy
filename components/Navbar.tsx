@@ -1,17 +1,25 @@
 import getUser from '@/lib/data/user';
 import NavbarContent from './NavbarContent';
-import getSubjects from '@/lib/data/subjects';
+// import getSubjects from '@/lib/data/subjects';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import React from 'react';
+import { getSubjectsAndCourses } from '@/sanity/sanity-utils';
 
 const Navbar = async () => {
-  const session = await getServerSession(authOptions);
+  let session: any;
+
+  try {
+    session = await getServerSession(authOptions);
+  } catch (error) {
+    // console.log(error);
+  }
 
   return (
     <NavbarContent
-      coursesData={await getSubjects()}
-      userData={await getUser({ userId: (session?.user as any).id })}></NavbarContent>
+      coursesData={await getSubjectsAndCourses()}
+      userData={session?.user && (await getUser({ userId: (session?.user as any)?.id }))}></NavbarContent>
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);

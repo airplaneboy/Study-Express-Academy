@@ -1,9 +1,9 @@
 import CardList from '@/containers/CardList';
-import { getCourse, getCourses } from '@/sanity/sanity-utils';
+import { getCourse, getCoursesSlug } from '@/sanity/sanity-utils';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
-  const courses = await getCourses();
+  const courses = await getCoursesSlug();
 
   return courses.map((course: { slug: string }) => ({
     course: course.slug,

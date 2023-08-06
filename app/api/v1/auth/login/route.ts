@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
     if (!user) return NextResponse.json({ error: `User "${email}" was not found)` }, { status: 404 });
 
-    return NextResponse.json({ msg: 'Provider authentication was successful' }, { status: StatusCodes.OK });
+    return NextResponse.json({ id: user._id }, { status: StatusCodes.OK });
   }
   //#endregion
 
