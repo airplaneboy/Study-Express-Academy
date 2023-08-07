@@ -1,3 +1,5 @@
+import { slugifyWithSuffix } from '../sanity-libs';
+
 const Article = {
   title: 'Article',
   name: 'articles',
@@ -13,7 +15,7 @@ const Article = {
       title: 'URL Path to Article',
       name: 'slug',
       type: 'slug',
-      options: { source: 'title', maxLength: 300 },
+      options: { source: 'title', maxLength: 300, slugify: (input: string) => slugifyWithSuffix(input, 'article') },
       description:
         'The url path that leads to this subject. Hint: A slug of "advanced-math" would have the url: http://sitename/advanced-math. PS: You should auto-generate the slug unless you have a specific route in mind.',
       validation: (Rule: any) => Rule.required(),

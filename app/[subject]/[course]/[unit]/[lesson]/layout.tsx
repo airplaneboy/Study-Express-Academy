@@ -17,10 +17,58 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lesson: string };
 }) {
-  // const lesson = await getLesson(params.lesson);
+  const lesson = await getLesson(params.lesson);
 
   const lessonExample = {
     contents: [
+      { _id: 'englishID', title: 'English Lessons', slug: 'second-page-slug' },
+      {
+        _id: 'adjfasdladkj',
+        title: 'longer english title lesson. this is just to test how far this can go.',
+        slug: 'page-slug',
+      },
+      { _id: 'englishID', title: 'English Lessons', slug: 'second-page-slug' },
+      {
+        _id: 'adjfasdladkj',
+        title: 'longer english title lesson. this is just to test how far this can go.',
+        slug: 'page-slug',
+      },
+      { _id: 'englishID', title: 'English Lessons', slug: 'second-page-slug' },
+      {
+        _id: 'adjfasdladkj',
+        title: 'longer english title lesson. this is just to test how far this can go.',
+        slug: 'page-slug',
+      },
+      { _id: 'englishID', title: 'English Lessons', slug: 'second-page-slug' },
+      {
+        _id: 'adjfasdladkj',
+        title: 'longer english title lesson. this is just to test how far this can go.',
+        slug: 'page-slug',
+      },
+      { _id: 'englishID', title: 'English Lessons', slug: 'second-page-slug' },
+      {
+        _id: 'adjfasdladkj',
+        title: 'longer english title lesson. this is just to test how far this can go.',
+        slug: 'page-slug',
+      },
+      { _id: 'englishID', title: 'English Lessons', slug: 'second-page-slug' },
+      {
+        _id: 'adjfasdladkj',
+        title: 'longer english title lesson. this is just to test how far this can go.',
+        slug: 'page-slug',
+      },
+      { _id: 'englishID', title: 'English Lessons', slug: 'second-page-slug' },
+      {
+        _id: 'adjfasdladkj',
+        title: 'longer english title lesson. this is just to test how far this can go.',
+        slug: 'page-slug',
+      },
+      { _id: 'englishID', title: 'English Lessons', slug: 'second-page-slug' },
+      {
+        _id: 'adjfasdladkj',
+        title: 'longer english title lesson. this is just to test how far this can go.',
+        slug: 'page-slug',
+      },
       { _id: 'englishID', title: 'English Lessons', slug: 'second-page-slug' },
       {
         _id: 'adjfasdladkj',
@@ -74,10 +122,10 @@ export default async function RootLayout({
 
   try {
     return (
-      <div className='p-10 flex gap-10'>
-        <LessonSidebar lesson={lessonExample} />
+      <div className='sm:p-10 p-2 flex gap-10'>
+        <LessonSidebar lesson={lesson} params={params as any} />
 
-        <div className='border-2 border-gray-300 flex-1 '>{children}</div>
+        <div className='sm:border-2 border-gray-300 flex-1 sm:p-4 p-0 overflow-hidden rounded-2xl'>{children}</div>
       </div>
     );
   } catch (error) {

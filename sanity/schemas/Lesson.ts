@@ -51,6 +51,7 @@ const Unit = {
       type: 'text',
       description:
         'Hint: In this biology lesson focused on cellular structure and function, students will explore the cell membrane and its essential role in maintaining cellular integrity and regulating the movement of substances in and out of the cell...',
+      // validation: (Rule: any) => Rule.required().max(250),
     },
   ],
 };

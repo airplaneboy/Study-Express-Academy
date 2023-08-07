@@ -11,6 +11,8 @@ import UserNavigation from './Navbar/UserNavigation';
 import Courses from './Navbar/Courses';
 import React, { useEffect, useState } from 'react';
 import RouterButton from './Navbar/RouterButton';
+import isEmpty from 'lodash.isempty';
+
 const userNavigation = [
   { name: 'Your Profile', href: '/user/profile' },
   { name: 'Settings', href: '/user/settings' },
@@ -29,6 +31,7 @@ function NavbarContent({
   userData: { [key: string]: any };
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
     //Navbar Scroll Shadow
@@ -39,10 +42,13 @@ function NavbarContent({
 
     window.addEventListener('scroll', handleScroll);
 
+    //Check if user is logged in
+    if (isEmpty(userData)) setIsLoggedIn(false);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [userData]);
 
   return (
     <>
@@ -54,7 +60,7 @@ function NavbarContent({
             classNames(
               open ? ' inset-0 z-40 overflow-y-auto' : '',
               `bg-white py-2 md:fixed inherit_width_height z-20 lg:overflow-y-visible transition-shadow duration-300  ${
-                isScrolled ? 'shadow-md' : 'shadow-sm'
+                isScrolled ? 'shadow-md' : 'border-b border-gray-300'
               }`
             )
           }>
@@ -67,7 +73,7 @@ function NavbarContent({
                 </div>
 
                 {/* Check if user is logged in to show login button or their profile */}
-                {userData ? (
+                {isLoggedIn ? (
                   <div className='flex gap-12 items-center'>
                     <Courses courses={coursesData} classNames={classNames} />
                     <MobileMenuButton open={open} />
@@ -85,11 +91,11 @@ function NavbarContent({
 
               {/* Mobile Sidebar */}
               <Popover.Panel as='nav' className='sm:hidden mt-3' aria-label='Global'>
-                {userData ? (
+                {isLoggedIn ? (
                   <div className='border-t border-gray-200 pt-4 pb-3 '>
                     <UserProfile
-                      email={userData.email}
-                      image={userData.profile.image}
+                      email={userData?.email}
+                      image={userData?.profile?.image}
                       // name={session?.user?.name}
                       username={userData?.username}
                     />

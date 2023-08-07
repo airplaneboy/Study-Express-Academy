@@ -1,3 +1,5 @@
+import { slugifyWithSuffix } from '../sanity-libs';
+
 const Video = {
   title: 'Video',
   name: 'videos',
@@ -13,7 +15,7 @@ const Video = {
       title: 'URL Path to Video',
       name: 'slug',
       type: 'slug',
-      options: { source: 'title', maxLength: 300 },
+      options: { source: 'title', maxLength: 300, slugify: (input: any) => slugifyWithSuffix(input, 'video') },
       description:
         'The url path that leads to this subject. Hint: A slug of "advanced-math" would have the url: http://sitename/advanced-math. PS: You should auto-generate the slug unless you have a specific route in mind.',
       validation: (Rule: any) => Rule.required(),
@@ -32,6 +34,12 @@ const Video = {
       name: 'url',
       type: 'url',
       validation: (Rule: any) => Rule.required(),
+    },
+    {
+      title: 'Video Description',
+      name: 'description',
+      type: 'text',
+      description: 'Tell the users more about the content of the video, and what they are going to learn from',
     },
   ],
 };

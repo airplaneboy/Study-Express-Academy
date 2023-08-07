@@ -50,9 +50,18 @@ export const getLessonsSlug = async () =>
 
 export const getLesson = async (slug: string) =>
   await client(
-    groq`*[_type =='lessons'&&slug.current==$slug][0]{_id,title,description,unit->{title},contents[]->{title}}`,
+    groq`*[_type =='lessons'&&slug.current==$slug][0]{_id,title,description,unit->{title},contents[]->{title, "slug":slug.current, _id,_type,}}`,
     {
       slug,
     }
   );
+//#endregion
+
+//#region Videos
+export const getVideosSlug = async () => await client(groq`*[_type =='videos']| order(title asc){"slug":slug.current}`);
+
+export const getVideo = async (slug: string) =>
+  await client(groq`*[_type =='videos'&&slug.current==$slug][0]{_id,title,description, url}`, {
+    slug,
+  });
 //#endregion

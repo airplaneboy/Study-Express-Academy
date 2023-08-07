@@ -24,12 +24,12 @@ const UserMenu = ({
         {image ? (
           <div className='w-12 h-12 overflow-hidden rounded-full relative '>
             <Image
-              className=' bg-gray-300 pt-1 absolute -top-8'
+              className=' bg-gray-300 pt-1 absolute -top-3'
               width={100}
               height={100}
               src={image}
               alt='Profile image'
-              style={{ objectFit: 'cover', width: '120px', height: '120px' }}
+              style={{ objectFit: 'cover', width: '100px', height: '100px' }}
             />
           </div>
         ) : (
