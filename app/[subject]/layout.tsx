@@ -1,11 +1,12 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Suspense } from 'react';
+import NavbarSkeleton from '../test/page';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className='h-full'>
-      <Suspense fallback={<h1>Loading navbar...</h1>}>
+      <Suspense fallback={<NavbarSkeleton />}>
         <Navbar></Navbar>
       </Suspense>
       <main>{children}</main>

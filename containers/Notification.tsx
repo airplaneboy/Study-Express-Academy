@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { updateUser } from '@/lib/data/user';
 import toast from 'react-hot-toast';
 import { useSession } from 'next-auth/react';
+import { CgSpinnerTwo } from 'react-icons/cg';
 
 const Notification = () => {
+  const [loading, setLoading] = useState(false);
   const [commentNotification, setCommentNotification] = useState(true);
   const [authenticationNotification, setAuthenticationNotification] = useState(true);
   const [offersNotification, setOffersNotification] = useState(true);
@@ -13,7 +15,7 @@ const Notification = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setLoading(true);
     const userUpdate = {
       notificationSettings: {
         commentNotification,
@@ -37,8 +39,10 @@ const Notification = () => {
         );
       }
     } catch (error: any) {
+      setLoading(false);
       toast.error(error.message);
     }
+    setLoading(false);
   };
 
   return (
@@ -178,7 +182,8 @@ const Notification = () => {
                 <div className='px-4 py-3 bg-gray-200 text-right sm:px-6'>
                   <button
                     type='submit'
-                    className='inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-2xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+                    className={` inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-2xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}>
+                    <CgSpinnerTwo className={`${loading ? 'animate-spin block' : 'hidden'}  h-5 w-5 mr-3  `} />
                     Save
                   </button>
                 </div>

@@ -5,14 +5,17 @@ import React, { useState } from 'react';
 import { updateProfile } from '@/lib/data/userProfile';
 import { useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';
+import { CgSpinnerTwo } from 'react-icons/cg';
 
 const Profile = () => {
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState<any>('');
   const [bio, setBio] = useState<any>();
   const { data: session } = useSession();
 
   const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     const userProfileUpdate = { image: image == '' ? undefined : image.source, bio: bio == '' ? undefined : bio };
 
@@ -30,8 +33,10 @@ const Profile = () => {
         );
       }
     } catch (error: any) {
+      setLoading(false);
       toast.error(error.message);
     }
+    setLoading(false);
   };
 
   return (
@@ -94,6 +99,7 @@ const Profile = () => {
                   <button
                     type='submit'
                     className=' inline-flex justify-center py-2 px-4 border border-transparent  text-sm font-medium rounded-2xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+                    <CgSpinnerTwo className={`${loading ? 'animate-spin block' : 'hidden'}  h-5 w-5 mr-3  `} />
                     Save
                   </button>
                 </div>
