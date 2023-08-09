@@ -18,7 +18,13 @@ const Test = {
       options: { source: 'title', maxLength: 300, slugify: (input: string) => slugifyWithSuffix(input, 'test') },
       description:
         'The url path that leads to this subject. Hint: A slug of "advanced-math" would have the url: http://sitename/advanced-math. PS: You should auto-generate the slug unless you have a specific route in mind.',
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule: any) =>
+        Rule.required().custom((slug: { current: string }) => {
+          if (!slug.current.endsWith('test'))
+            return 'Slug must end with "test." You can use the generate button to get this faster';
+
+          return true;
+        }),
     },
     {
       title: 'Lesson',

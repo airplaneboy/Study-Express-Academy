@@ -19,7 +19,7 @@ interface SidebarItem {
 
 interface ICardList {
   sidebarArray: SidebarItem[];
-  contentArray?: string;
+  contentArray: string;
   contentDescription?: string;
   sidebarHeader: string;
   contentHeader: string;

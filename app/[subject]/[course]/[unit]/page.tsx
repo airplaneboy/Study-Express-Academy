@@ -20,6 +20,7 @@ const Units = async ({ params }: { params: { unit: string } }) => {
         sidebarArray={unit.lessons}
         sidebarHeader='Lessons'
         contentDescription={unit.description}
+        contentArray='contents'
         slug={unit?.slug}
       />
     );

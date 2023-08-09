@@ -11,10 +11,10 @@ const ProfileContent = async () => {
 
   let user;
   try {
-    user = await getUser({ userId: (session.user as any).id });
+    user = await getUser({ userId: (session?.user as any)?.id });
   } catch (error) {
     try {
-      user = await getUser({ userId: (session.user as any).username });
+      user = await getUser({ userId: (session?.user as any)?.username });
     } catch (error) {
       console.log(error);
       return (
@@ -29,11 +29,11 @@ const ProfileContent = async () => {
   const userData = [
     {
       property: 'First Name',
-      value: user?.profile.firstName,
+      value: user?.profile?.firstName,
     },
     {
       property: 'Last Name',
-      value: user?.profile.lastName,
+      value: user?.profile?.lastName,
     },
     {
       property: 'Username',
@@ -46,23 +46,23 @@ const ProfileContent = async () => {
     },
     {
       property: 'Country',
-      value: user?.profile.country.name,
+      value: user?.profile?.country?.name,
     },
     {
       property: 'Phone Number',
-      value: user?.profile.phone.number,
+      value: user?.profile?.phone?.number,
     },
     {
       property: 'Gender',
-      value: user?.profile.gender,
+      value: user?.profile?.gender,
     },
     {
       property: 'Birthday',
-      value: format(new Date(user?.profile.birthday), 'EEEE, dd MMMM yyyy'),
+      value: format(new Date(user?.profile?.birthday), 'EEEE, dd MMMM yyyy'),
     },
     {
       property: 'Age',
-      value: user?.profile.age,
+      value: user?.profile?.age,
     },
 
     {
@@ -100,17 +100,17 @@ const ProfileContent = async () => {
     },
     {
       property: 'Bio',
-      value: user?.profile.bio,
+      value: user?.profile?.bio,
       style: 'whitespace-normal lg:text-justify text-right leading-tight',
     },
   ];
 
-  const achievementData = user?.achievements.map((achievement: any) => {
-    return { property: achievement.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
+  const achievementData = user?.achievements?.map((achievement: any) => {
+    return { property: achievement?.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
   });
 
-  const CourseData = user?.completedCourses.map((course: any) => {
-    return { property: course.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
+  const CourseData = user?.completedCourses?.map((course: any) => {
+    return { property: course?.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
   });
 
   return (

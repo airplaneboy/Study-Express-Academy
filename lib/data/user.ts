@@ -1,7 +1,9 @@
 import { fetchGET, fetchPATCH } from '@/utils/fetchOption';
 
+export const dynamic = 'force-dynamic';
+
 export const getUser = async ({ userId }: { userId: string | null | undefined }) =>
-  await fetchGET({ path: `http://localhost:3000/api/v1/users/${userId}`, cache: false });
+  await fetchGET({ path: `http://localhost:3000/api/v1/users/${userId}`, cache: true });
 
 export const updateUser = async ({
   userId,

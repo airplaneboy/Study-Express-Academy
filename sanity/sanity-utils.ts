@@ -39,7 +39,7 @@ export const getUnitsSlug = async () => await client(groq`*[_type =='units']| or
 
 export const getUnit = async (slug: string) =>
   await client(
-    groq`*[_type =='units'&&slug.current==$slug][0]{_id,title,description,"slug":slug.current,lessons[]->{title,_id,"slug":slug.current}}`,
+    groq`*[_type =='units'&&slug.current==$slug][0]{_id,title,description,"slug":slug.current,lessons[]->{title,_id,"slug":slug.current, contents[]->{title,_id,"slug":slug.current}}}`,
     { slug }
   );
 //#endregion

@@ -9,10 +9,8 @@ import ClickableLogo from './Navbar/ClickableLogo';
 import UserProfile from './Navbar/UserProfile';
 import UserNavigation from './Navbar/UserNavigation';
 import Courses from './Navbar/Courses';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import RouterButton from './Navbar/RouterButton';
-import isEmpty from 'lodash.isempty';
-
 const userNavigation = [
   { name: 'Your Profile', href: '/user/profile' },
   { name: 'Settings', href: '/user/settings' },
@@ -43,7 +41,14 @@ function NavbarContent({
     window.addEventListener('scroll', handleScroll);
 
     //Check if user is logged in
-    if (isEmpty(userData)) setIsLoggedIn(false);
+
+    if (userData) {
+      setIsLoggedIn(true);
+    }
+    if (userData?.error) {
+      setIsLoggedIn(false);
+    }
+    console.log(userData);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -74,7 +79,7 @@ function NavbarContent({
 
                 {/* Check if user is logged in to show login button or their profile */}
                 {isLoggedIn ? (
-                  <div className='flex gap-12 items-center'>
+                  <div className='flex max-[550px]:gap-5 gap-12 items-center'>
                     <Courses courses={coursesData} classNames={classNames} />
                     <MobileMenuButton open={open} />
                     <UserMenu
@@ -93,12 +98,14 @@ function NavbarContent({
               <Popover.Panel as='nav' className='sm:hidden mt-3' aria-label='Global'>
                 {isLoggedIn ? (
                   <div className='border-t border-gray-200 pt-4 pb-3 '>
-                    <UserProfile
-                      email={userData?.email}
-                      image={userData?.profile?.image}
-                      // name={session?.user?.name}
-                      username={userData?.username}
-                    />
+                    <Suspense fallback={<h1>Fetching user&apos;s data...</h1>}>
+                      <UserProfile
+                        email={userData?.email}
+                        image={userData?.profile?.image}
+                        // name={session?.user?.name}
+                        username={userData?.username}
+                      />
+                    </Suspense>
                     <UserNavigation userNavigation={userNavigation} />
                   </div>
                 ) : (
