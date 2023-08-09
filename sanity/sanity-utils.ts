@@ -27,7 +27,7 @@ export const getRecentCourses = async () =>
 
 export const getCourse = async (slug?: string) =>
   await client(
-    groq`*[_type =='courses'&& slug.current==$slug][0]{_id,title,description,"slug":slug.current,units[]->{_id,title,"slug":slug.current,lessons[]->{_id, title,"slug":slug.current}}}`,
+    groq`*[_type =='courses'&& slug.current==$slug][0]{_id,title,description,"slug":slug.current,subject->{"slug":slug.current} units[]->{_id,title,"slug":slug.current,lessons[]->{_id, title,"slug":slug.current}}}`,
     {
       slug,
     }
@@ -39,7 +39,7 @@ export const getUnitsSlug = async () => await client(groq`*[_type =='units']| or
 
 export const getUnit = async (slug: string) =>
   await client(
-    groq`*[_type =='units'&&slug.current==$slug][0]{_id,title,description,"slug":slug.current,lessons[]->{title,_id,"slug":slug.current, contents[]->{title,_id,"slug":slug.current}}}`,
+    groq`*[_type =='units'&&slug.current==$slug][0]{_id,title,description,"slug":slug.current,course->{"slug":slug.current} lessons[]->{title,_id,"slug":slug.current, contents[]->{title,_id,"slug":slug.current}}}`,
     { slug }
   );
 //#endregion
@@ -50,7 +50,7 @@ export const getLessonsSlug = async () =>
 
 export const getLesson = async (slug: string) =>
   await client(
-    groq`*[_type =='lessons'&&slug.current==$slug][0]{_id,title,description,unit->{title},contents[]->{title, "slug":slug.current, _id,_type,}}`,
+    groq`*[_type =='lessons'&&slug.current==$slug][0]{_id,title,description,unit->{title, "slug":slug.current},contents[]->{title, "slug":slug.current, _id,_type,}}`,
     {
       slug,
     }

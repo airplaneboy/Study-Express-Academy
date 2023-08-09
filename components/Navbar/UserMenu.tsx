@@ -19,7 +19,7 @@ const UserMenu = ({
     // TODO: Should user menu be hidden on small screens?
 
     <Menu as='div' className='flex-shrink-0 relative max-sm:hidden'>
-      <Menu.Button className=' bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 p-[2px] border'>
+      <Menu.Button className=' bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
         <span className='sr-only'>Open user menu</span>
         {image ? (
           <div className='w-12 h-12 overflow-hidden rounded-full relative '>

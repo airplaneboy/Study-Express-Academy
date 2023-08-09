@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 import Sidebar from '@/containers/Sidebar';
 import { Suspense } from 'react';
 import Loading from '@/components/Loading';
-import NavbarSkeleton from '../test/page';
+import NavbarSkeleton from '@/components/Navbar/NavbarSkeleton';
 
 export const metadata = {
   title: 'Homepage',

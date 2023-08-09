@@ -10,9 +10,12 @@ export async function generateStaticParams() {
   }));
 }
 
-const Units = async ({ params }: { params: { unit: string } }) => {
+const Units = async ({ params }: { params: { unit: string; course: string } }) => {
   try {
+    const courseSlug = params.course;
     const unit = await getUnit(params.unit);
+
+    if (unit.course.slug !== courseSlug) return notFound();
 
     return (
       <CardList

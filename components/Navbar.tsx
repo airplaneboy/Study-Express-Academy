@@ -18,7 +18,6 @@ const Navbar = async () => {
   // }
   try {
     user = await getUser({ userId: ((await getServerSession(authOptions))?.user as any)?.id });
-    console.log(user);
   } catch (error) {
     console.log(error);
   }

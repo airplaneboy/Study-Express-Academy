@@ -15,9 +15,12 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { lesson: string };
+  params: { lesson: string; unit: string };
 }) {
   const lesson = await getLesson(params.lesson);
+  const unitSlug = params.unit;
+
+  if (lesson.unit.slug !== unitSlug) return notFound();
 
   const lessonExample = {
     contents: [

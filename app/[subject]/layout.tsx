@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Suspense } from 'react';
-import NavbarSkeleton from '../test/page';
+import NavbarSkeleton from '@/components/Navbar/NavbarSkeleton';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -3,8 +3,6 @@ import { getCourse, getCoursesSlug } from '@/sanity/sanity-utils';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams({ params }: { params: { subject: string } }) {
-  console.log(params);
-
   const courses = await getCoursesSlug();
 
   return courses.map((course: { slug: string }) => ({
@@ -12,9 +10,12 @@ export async function generateStaticParams({ params }: { params: { subject: stri
   }));
 }
 
-const Courses = async ({ params }: { params: { course: string } }) => {
+const Courses = async ({ params }: { params: { course: string; subject: string } }) => {
   try {
+    const subjectSlug = params.subject;
     const course = await getCourse(params.course);
+
+    if (course.subject.slug !== subjectSlug) return notFound();
 
     return (
       <CardList

@@ -48,7 +48,6 @@ function NavbarContent({
     if (userData?.error) {
       setIsLoggedIn(false);
     }
-    console.log(userData);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
