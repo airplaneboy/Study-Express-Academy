@@ -2,7 +2,7 @@ import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { schemaTypes } from '@/sanity/schemas/';
 import { visionTool } from '@sanity/vision';
-import AutoFetchChildren from './sanity/actions';
+import FetchChildren from './sanity/actions';
 
 const config = defineConfig({
   projectId: 'vnyz2nrs',
@@ -14,7 +14,7 @@ const config = defineConfig({
   document: {
     actions: (prev, context) => {
       // Only add the action for documents of type "movie"
-      return context.schemaType === 'subjects' ? [AutoFetchChildren, ...prev] : prev;
+      return context.schemaType === 'subjects' ? [FetchChildren, ...prev] : prev;
     },
   },
   schema: { types: schemaTypes },
