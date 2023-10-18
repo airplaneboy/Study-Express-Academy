@@ -14,7 +14,6 @@ const Units = async ({ params }: { params: { unit: string; course: string } }) =
   try {
     const courseSlug = params.course;
     const unit = await getUnit(params.unit);
-    console.log('============================hello3====================');
 
     if (unit.course.slug !== courseSlug) return notFound();
 
