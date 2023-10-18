@@ -1,45 +1,42 @@
 import { HiOutlineRectangleStack, HiOutlineAcademicCap, HiOutlineTrophy } from 'react-icons/hi2';
 
-const stats = [
-  {
-    id: 1,
-    name: 'Achievements',
-    stat: '71,897',
-    icon: HiOutlineTrophy,
-    changeType: 'increase',
-    color: 'bg-pink-700 decoration-pink-500 shadow-pink-200',
-    imageColor: 'text-pink-500',
-  },
-  {
-    id: 2,
-    name: 'Enrolled Courses',
-    stat: '56%',
-    icon: HiOutlineRectangleStack,
-    changeType: 'increase',
-    color: 'bg-purple-700 decoration-purple-500 shadow-purple-200 ',
-    imageColor: 'text-purple-500',
-  },
-  {
-    id: 3,
-    name: 'Completed Courses',
-    stat: '27%',
-    icon: HiOutlineAcademicCap,
-    changeType: 'decrease',
-    color: 'bg-green-700 decoration-green-500 shadow-green-200 ',
-    imageColor: 'text-green-500',
-  },
-];
-
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Stats() {
+export default function Stats({ userStats }: { userStats: any }) {
+  const stats = [
+    {
+      id: 1,
+      name: 'Achievements',
+      stat: userStats.numberOfAchievements,
+      icon: HiOutlineTrophy,
+      color: 'bg-pink-700 decoration-pink-500 shadow-pink-200',
+      imageColor: 'text-pink-500',
+    },
+    {
+      id: 2,
+      name: 'Enrolled Courses',
+      stat: userStats.numberOfCourses,
+      icon: HiOutlineRectangleStack,
+      color: 'bg-purple-700 decoration-purple-500 shadow-purple-200 ',
+      imageColor: 'text-purple-500',
+    },
+    {
+      id: 3,
+      name: 'Completed Courses',
+      stat: `${userStats.percentageOfCompletedCourses}%`,
+      icon: HiOutlineAcademicCap,
+      color: 'bg-green-700 decoration-green-500 shadow-green-200 ',
+      imageColor: 'text-green-500',
+    },
+  ];
+
   return (
     <div className='sm:mb-24 mb-12'>
-      <h3 className='text-md leading-6 font-extrabold text-gray-300 font-inter uppercase max-sm:hidden'>
+      {/* <h3 className='text-md leading-6 font-extrabold text-gray-300 font-inter uppercase max-sm:hidden'>
         Last 30 days
-      </h3>
+      </h3> */}
 
       <div className='mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 -z-10 relative'>
         {stats.map((item) => (
@@ -48,7 +45,7 @@ export default function Stats() {
             className={`flex items-center justify-center gap-2 flex-col relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-stats_shadow shadow-${item.color} rounded-lg overflow-hidden`}>
             <div className=' mb-2 flex gap-2 items-center '>
               <item.icon size={25} className={` ${item.imageColor}`} aria-hidden='true' />
-              <p className='text-sm font-medium text-gray-500 truncate'>{item.name}</p>
+              <p className='text-md font-medium text-gray-500 truncate'>{item.name}</p>
             </div>
             <h2
               className={`text-6xl font-extrabold font-plusJakartaSans text-gray-800 text_inset underline decoration-from-font ${item.color}`}>
