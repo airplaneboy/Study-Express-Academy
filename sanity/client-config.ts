@@ -1,9 +1,9 @@
 import { createClient } from 'next-sanity';
 import { cache } from 'react';
 
-const client = createClient({
-  projectId: '0k6k13xj',
-  dataset: 'production',
+export const client = createClient({
+  projectId: 'vnyz2nrs',
+  dataset: 'development',
   apiVersion: '2023-08-03', // https://www.sanity.io/docs/api-versioning
   useCdn: false, // if you're using ISR or only static generation at build time then you can set this to `false` to guarantee no stale content
 });

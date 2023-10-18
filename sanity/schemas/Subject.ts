@@ -18,6 +18,7 @@ const Subject = {
       of: [{ type: 'reference', to: [{ type: 'courses' }] }],
       description: 'The Courses that belong to this subject.',
       validation: (Rule: any) => Rule.unique(),
+      // hidden: true,
     },
     {
       title: 'URL Path to Subject',
