@@ -9,39 +9,41 @@ const DynamicReactPlayer = dynamic(() => import('react-player/lazy'), {
 
 function VideoPlayer({ url }: { url: string }) {
   const [playerReady, setPlayerReady] = useState(false);
-  const [progress, setProgress] = useState('not-started');
-  const [progressValue, setProgressValue] = useState(0);
 
-  const captureUserProgress = (e: OnProgressProps) => {
-    const progress = e.played;
-    setProgressValue(progress);
-    switch (true) {
-      case progress < 0.25:
-        setProgress('beginning');
+  //#region Track user's progress on a video
+  // const [progress, setProgress] = useState('not-started');
+  // const [progressValue, setProgressValue] = useState(0);
+  // const captureUserProgress = (e: OnProgressProps) => {
+  //   const progress = e.played;
+  //   setProgressValue(progress);
+  //   switch (true) {
+  //     case progress < 0.25:
+  //       setProgress('beginning');
 
-        break;
-      case progress < 0.5:
-        setProgress('first-quarter');
+  //       break;
+  //     case progress < 0.5:
+  //       setProgress('first-quarter');
 
-        break;
-      case progress < 0.75:
-        setProgress('second-quarter');
+  //       break;
+  //     case progress < 0.75:
+  //       setProgress('second-quarter');
 
-        break;
-      case progress < 0.9:
-        setProgress('ending');
+  //       break;
+  //     case progress < 0.9:
+  //       setProgress('ending');
 
-        break;
-      case progress >= 0.9:
-        setProgress('completed');
+  //       break;
+  //     case progress >= 0.9:
+  //       setProgress('completed');
 
-        break;
+  //       break;
 
-      default:
-        "custom: couldn't get user's progress";
-        break;
-    }
-  };
+  //     default:
+  //       "custom: couldn't get user's progress";
+  //       break;
+  //   }
+  // };
+  //#endregion
 
   useEffect(() => {
     setPlayerReady(true); // Mark the player as ready once the component mounts on the client
@@ -51,7 +53,7 @@ function VideoPlayer({ url }: { url: string }) {
     <div className='w-full h-full rounded-lg overflow-hidden flex-1'>
       {playerReady && (
         <DynamicReactPlayer
-          onProgress={(e) => captureUserProgress(e)}
+          // onProgress={(e) => captureUserProgress(e)}
           className='w-full h-full rounded-lg'
           width='100%'
           height='100%'
