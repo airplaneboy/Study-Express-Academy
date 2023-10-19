@@ -32,17 +32,27 @@ const autoFetch = async ({
     );
 
     //Fetch all children in parent array
-    const alreadyExistingIds = await client.fetch(
-      `*[_type=='${parentSchema}' && _id ==$parentId ] | order(_createdAt asc).${childrenSchema}[]._ref`,
-      { parentId }
-    );
+    let alreadyExistingIds: any[] = [];
+    if (childrenSchema == 'tests' || childrenSchema == 'videos' || childrenSchema == 'articles') {
+      alreadyExistingIds = await client.fetch(
+        `*[_type=='${parentSchema}' && _id ==$parentId ] | order(_createdAt asc).contents[]._ref`,
+        { parentId }
+      );
+    } else {
+      alreadyExistingIds = await client.fetch(
+        `*[_type=='${parentSchema}' && _id ==$parentId ] | order(_createdAt asc).${childrenSchema}[]._ref`,
+        { parentId }
+      );
+    }
 
     //Remove children that already exist
     childrenId = pullAll(childrenId, alreadyExistingIds);
 
     //Add children to parents's children array
     childrenId.forEach((childId: string) => {
-      addChildrenToParent(childrenSchema, parentId, childId);
+      if (childrenSchema == 'tests' || childrenSchema == 'videos' || childrenSchema == 'articles') {
+        addChildrenToParent('contents', parentId, childId);
+      } else addChildrenToParent(childrenSchema, parentId, childId);
     });
   });
 };
@@ -55,6 +65,9 @@ const fetchAll = async () => {
   //Units
   await autoFetch({ parentSchema: 'units', childrenSchema: 'lessons', parentRef: 'unit' });
   //Lessons
+  await autoFetch({ parentSchema: 'lessons', childrenSchema: 'videos', parentRef: 'lesson' });
+  await autoFetch({ parentSchema: 'lessons', childrenSchema: 'tests', parentRef: 'lesson' });
+  await autoFetch({ parentSchema: 'lessons', childrenSchema: 'articles', parentRef: 'lesson' });
 };
 
 export default function FetchChildren(props: any) {
