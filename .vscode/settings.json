@@ -1,5 +1,16 @@
 {
-  "cSpell.words": ["datetime", "Dribbble", "headlessui", "isempty", "josefin", "nunito", "revalidates", "Smartech"],
+  "cSpell.words": [
+    "checkmarks",
+    "datetime",
+    "Dribbble",
+    "headlessui",
+    "isempty",
+    "josefin",
+    "nunito",
+    "portabletext",
+    "revalidates",
+    "Smartech"
+  ],
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
