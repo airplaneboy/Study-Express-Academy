@@ -1,5 +1,6 @@
 import VideoPlayer from '@/components/VideoPlayer';
-import { getVideo } from '@/sanity/sanity-utils';
+import { getArticle, getVideo } from '@/sanity/sanity-utils';
+import CustomPortableText from '@/components/CustomPortableText';
 
 // export async function generateStaticParams() {
 //   // const content = await getContentsSlug();
@@ -13,14 +14,28 @@ const Content = async ({ params }: { params: { content: string } }) => {
   if (params.content.endsWith('video')) {
     const video = await getVideo(params.content);
     url = video.url;
+    return (
+      <div className='overflow-y-auto flex flex-col w-full h-full md:px-4 py-2'>
+        <header className='text-3xl font-semibold py-4 font-inter text-gray-700'>{video.title}</header>
+        <VideoPlayer url={url} />
+        <span className='mt-10 md:max-w-[80%] mx-auto md:text-lg text-gray-600 border-t-2 md:px-4 px-2 py-2'>
+          {video.description}
+        </span>
+      </div>
+    );
   }
 
-  // const content = getContent
-  return (
-    <div className='overflow-y-auto flex flex-col w-full h-full'>
-      <VideoPlayer url={url} />
-    </div>
-  );
+  if (params.content.endsWith('article')) {
+    const article = await getArticle(params.content);
+    return (
+      <div className='px-10 py-6 '>
+        <div className='max-w-2xl mx-auto'>
+          <header className='text-center text-3xl mb-12 text-gray-700 font-inter font-semibold'>{article.title}</header>
+          <CustomPortableText value={article.content} />
+        </div>
+      </div>
+    );
+  }
 };
 
 export default Content;

@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { OnProgressProps } from 'react-player/base';
+// import { OnProgressProps } from 'react-player/base';
 
 const DynamicReactPlayer = dynamic(() => import('react-player/lazy'), {
   ssr: true, // This ensures the component is only rendered on the client side

@@ -27,9 +27,10 @@ const LessonSidebar = ({
 
   return (
     <aside className='max-md:hidden'>
-      <nav className=' h-[45rem] sticky top-44 lg:w-80 md:w-72 rounded-2xl border-gray-300 border-2 overflow-hidden'>
+      {/* <nav className=' h-[45rem] sticky top-44 lg:w-80 md:w-72 rounded-2xl border-gray-300 border-2 overflow-hidden'> */}
+      <nav className='sticky top-44 lg:w-80 md:w-72 rounded-2xl border-gray-300 border-2 overflow-hidden'>
         <div
-          className={`absolute w-full  transition-all duration-100 ${
+          className={`absolute w-full  transition-all duration-0 ${
             isScrolled ? 'backdrop-blur-md shadow-md ' : 'border-b-2 -z-10'
           }`}>
           <h1 className='font-extrabold font-inter text-gray-800 text-3xl p-4  '>{lesson?.title || 'Contents'}</h1>
@@ -58,14 +59,14 @@ const LessonSidebar = ({
             </li>
           ))}
         </ul>
-        <div className='bg-gray-300 h-[15rem] relative'>
+        {/* <div className='bg-gray-300 h-[15rem] relative'>
           <FaQuoteRight size={60} className='-top-8 right-3 absolute text-gray-800' />
           <p className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 text-gray-800 overflow-y-auto'>
             Welcome to the lesson details section. Here, you&apos;ll find comprehensive information about the upcoming
             lesson. Dive into the curriculum, objectives, materials, and more to ensure you&apos;re fully prepared for
             an enriching learning experience. Let&apos;s embark on this educational journey together!
           </p>
-        </div>
+        </div> */}
       </nav>
     </aside>
   );
