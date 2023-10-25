@@ -84,8 +84,8 @@
   background-clip: text;
 }
 
-body {
-  /* @apply bg-gray-100; */
+.clip {
+  clip: rect(0, 0, 0, 0) !important;
 }
 
 * {

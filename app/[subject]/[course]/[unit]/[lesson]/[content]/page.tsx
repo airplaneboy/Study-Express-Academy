@@ -1,6 +1,9 @@
 import VideoPlayer from '@/components/VideoPlayer';
-import { getArticle, getVideo } from '@/sanity/sanity-utils';
+import { getArticle, getTest, getVideo } from '@/sanity/sanity-utils';
 import CustomPortableText from '@/components/CustomPortableText';
+import shuffle from 'lodash.shuffle';
+import sampleSize from 'lodash.samplesize';
+import DisplayQuestions from '@/containers/DisplayQuestions';
 
 // export async function generateStaticParams() {
 //   // const content = await getContentsSlug();
@@ -32,6 +35,23 @@ const Content = async ({ params }: { params: { content: string } }) => {
         <div className='max-w-2xl mx-auto'>
           <header className='text-center text-3xl mb-12 text-gray-700 font-inter font-semibold'>{article.title}</header>
           <CustomPortableText value={article.content} />
+        </div>
+      </div>
+    );
+  }
+
+  if (params.content.endsWith('test')) {
+    const test = await getTest(params.content);
+    const questions = test?.questions;
+    const shuffledQuestions = shuffle(questions);
+    const selectedQuestions = sampleSize(shuffledQuestions, 5);
+
+    return (
+      <div className='px-10 py-6 '>
+        <div className='max-w-2xl mx-auto'>
+          <header className='text-center text-2xl mb-12 text-gray-800 font-inter font-semibold'>{test.title}</header>
+          <DisplayQuestions selectedQuestions={selectedQuestions} />
+          {/* <strong>{test.</strong> */}
         </div>
       </div>
     );

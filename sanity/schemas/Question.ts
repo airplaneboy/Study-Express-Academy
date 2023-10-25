@@ -1,6 +1,6 @@
 const Question = {
   title: 'Question',
-  name: 'question',
+  name: 'questions',
   type: 'document',
   fields: [
     {
@@ -16,20 +16,20 @@ const Question = {
       of: [{ type: 'string' }],
       validation: (Rule: any) => Rule.required().unique(),
     },
-    // {
-    //   title: 'Answer',
-    //   name: 'answer',
-    //   type: 'text',
-    //   validation: (Rule: any) => Rule.required(),
-    // },
     {
-      title: 'Correct Answer',
+      title: 'Answer',
       name: 'answer',
-      type: 'array',
-      of: [{ type: 'block' }],
-      description: 'The answer would always be added as an option by default.',
+      type: 'text',
       validation: (Rule: any) => Rule.required(),
     },
+    // {
+    //   title: 'Correct Answer',
+    //   name: 'answer',
+    //   type: 'array',
+    //   of: [{ type: 'block' }],
+    //   description: 'The answer would always be added as an option by default.',
+    //   validation: (Rule: any) => Rule.required(),
+    // },
     {
       title: 'Question Solution',
       name: 'solution',

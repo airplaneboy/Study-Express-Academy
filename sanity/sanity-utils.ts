@@ -76,3 +76,16 @@ export const getArticle = async (slug: string) =>
   await client(groq`*[_type=='articles' && slug.current == $slug ] | order(_createdAt asc)[0]{_id, title, content}`, {
     slug,
   });
+//#endregion
+
+//#region Tests
+export const getTestsSlug = async () => await client(groq`*[_type =='tests'] | order(_createdAt asc).slug.current`);
+
+export const getTest = async (slug: string) =>
+  await client(
+    groq`*[_type=='tests' && slug.current == $slug ] | order(_createdAt asc)[0]{_id,questions[]->{difficulty, answer, _id, question, solution, options[]},title}`,
+    {
+      slug,
+    }
+  );
+//#endregion
