@@ -59,10 +59,33 @@ export const getLesson = async (slug: string) =>
 //#endregion
 
 //#region Videos
-export const getVideosSlug = async () => await client(groq`*[_type =='videos']| order(title asc){"slug":slug.current}`);
+export const getVideosSlug = async () =>
+  await client(groq`*[_type =='videos'] | order(title asc){"slug":slug.current}`);
 
 export const getVideo = async (slug: string) =>
   await client(groq`*[_type =='videos'&&slug.current==$slug][0]{_id,title,description, url}`, {
     slug,
   });
+//#endregion
+
+//#region Articles
+export const getArticlesSlug = async () =>
+  await client(groq`*[_type =='articles'] | order(_createdAt asc).slug.current`);
+
+export const getArticle = async (slug: string) =>
+  await client(groq`*[_type=='articles' && slug.current == $slug ] | order(_createdAt asc)[0]{_id, title, content}`, {
+    slug,
+  });
+//#endregion
+
+//#region Tests
+export const getTestsSlug = async () => await client(groq`*[_type =='tests'] | order(_createdAt asc).slug.current`);
+
+export const getTest = async (slug: string) =>
+  await client(
+    groq`*[_type=='tests' && slug.current == $slug ] | order(_createdAt asc)[0]{_id,questions[]->{difficulty, answer, _id, question, solution, options[]},title}`,
+    {
+      slug,
+    }
+  );
 //#endregion

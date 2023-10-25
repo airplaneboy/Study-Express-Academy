@@ -27,6 +27,14 @@ const Test = {
         }),
     },
     {
+      title: 'Test Questions',
+      name: 'questions',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'questions' }] }],
+      description: 'The questions that belong to this test.',
+      // validation: (Rule: any) => Rule.required(),
+    },
+    {
       title: 'Lesson',
       name: 'lesson',
       type: 'reference',

@@ -68,6 +68,7 @@ const fetchAll = async () => {
   await autoFetch({ parentSchema: 'lessons', childrenSchema: 'videos', parentRef: 'lesson' });
   await autoFetch({ parentSchema: 'lessons', childrenSchema: 'tests', parentRef: 'lesson' });
   await autoFetch({ parentSchema: 'lessons', childrenSchema: 'articles', parentRef: 'lesson' });
+  await autoFetch({ parentSchema: 'tests', childrenSchema: 'questions', parentRef: 'test' });
 };
 
 export default function FetchChildren(props: any) {

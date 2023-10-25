@@ -10,7 +10,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar></Navbar>
       </Suspense>
       <main>{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
