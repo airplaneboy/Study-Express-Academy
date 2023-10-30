@@ -50,7 +50,8 @@ const LessonSidebar = ({
         <nav className='sticky top-44 lg:w-80 md:w-72 rounded-2xl border-gray-300 border-2 overflow-hidden'>
           <div
             className={`absolute w-full  transition-all duration-0 ${
-              isScrolled ? 'backdrop-blur-md shadow-md ' : 'border-b-2 -z-10'
+              isScrolled ? 'backdrop-blur-md shadow-md ' : 'border-b-2 bg-white'
+              // isScrolled ? 'backdrop-blur-md shadow-md ' : 'border-b-2 -z-10'
             }`}>
             <h1 className='font-extrabold font-inter text-gray-800 text-3xl p-4  '>{lesson?.title || 'Contents'}</h1>
           </div>
@@ -67,7 +68,7 @@ const LessonSidebar = ({
                   href={`/${params?.subject}/${params?.course}/${params?.unit}/${params?.lesson}/${content?.slug}`}
                   className={
                     content?.slug === segment
-                      ? 'text-blue-800 bg-blue-100 px-3 py-5 block border-blue-900 border-2 rounded-2xl '
+                      ? 'text-blue-700 font-semibold bg-blue-100 px-3 py-5 block border-blue-700 border-2 rounded-2xl '
                       : 'px-3 py-5 block border-gray-300 border-2 rounded-2xl'
                   }>
                   <div className='flex gap-2 items-center justify-start'>
@@ -93,6 +94,7 @@ const LessonSidebar = ({
         </nav>
       </aside>
       <div className='backdrop-blur-sm border-t-[1px] fixed bottom-0 left-0 right-0 px-4 py-2 max-md:absolute max-md:bottom-0 max-md:w-[90%] max-md:-translate-x-1/2 max-md:left-1/2'>
+        {/* {segment?.endsWith('test') || ( */}
         <Link
           href={nextSlug}
           className='bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-2xl flex items-center justify-center gap-2 ml-auto w-fit max-md:mr-auto max-md:w-[80%]'
@@ -103,6 +105,7 @@ const LessonSidebar = ({
           <span>Next</span>
           <HiArrowRight />
         </Link>
+        {/* )} */}
       </div>
     </div>
   );

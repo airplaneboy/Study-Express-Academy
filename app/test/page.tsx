@@ -1,56 +1,54 @@
-import { PortableText } from '@portabletext/react';
+'use client';
+import 'katex/dist/katex.min.css';
+import { useEffect } from 'react';
+// @ts-ignore
+import renderMathInElement from 'katex/dist/contrib/auto-render';
+import TeX from '@/components/Tex';
 
-const components = {
-  block: {
-    h1: ({ children }: { children: any }) => <h1 className='text-3xl font-semibold'>{children}</h1>,
-    h2: ({ children }: { children: any }) => <h2 className='text-2xl font-semibold'>{children}</h2>,
-    h3: ({ children }: { children: any }) => <h3 className='text-lg font-semibold'>{children}</h3>,
-    h4: ({ children }: { children: any }) => <h4 className='text-base font-semibold'>{children}</h4>,
-    h5: ({ children }: { children: any }) => (
-      <h5 className='text-[13.28px] line-height: 1.25rem font-semibold'>{children}</h5>
-    ),
-    h6: ({ children }: { children: any }) => (
-      <h6 className='text-[10.72px] line-height: 0.85rem font-semibold'>{children}</h6>
-    ),
+// function processTextForKaTeX(text: string) {
+//   // Define regular expressions to match numbers and symbols
+//   const numberRegex = /(\d+(\.\d+)?)/g;
+//   const symbolRegex = /([+\-*/=^()])/g;
+//   const expressionRegex = /(?<!\S)[A-Za-z\s.,?!:;–'"()\[\]/&]+(?!\S)/g;
 
-    blockquote: ({ children }: { children: any }) => (
-      <blockquote className='border-l-purple-500 border-l-4 pl-3 text-gray-600'>{children}</blockquote>
-    ),
-  },
+//   // Replace matched numbers and symbols with KaTeX delimiters
+//   const processedText = text
+//     .replace(numberRegex, (match: any) => `$$${match}$$`)
+//     .replace(symbolRegex, (match: any) => `$$${match}$$`);
 
-  list: {
-    bullet: ({ children }: { children: any }) => <ul className='mt-xl'>{children}</ul>,
-    number: ({ children }: { children: any }) => <ol className='mt-lg'>{children}</ol>,
-  },
+//   // const processedExpression = text.replace(expressionRegex, (match: any) => renderText(match));
+//   // return processedExpression;
+//   return processedText;
+// }
 
-  listItem: {
-    bullet: ({ children }: { children: any }) => (
-      <li style={{ listStyleType: 'disc' }} className='mx-4'>
-        {children}
-      </li>
-    ),
+// function mathRenderer(text: string) {
+//   const processedText = processTextForKaTeX(text);
 
-    number: ({ children }: { children: any }) => (
-      <li style={{ listStyleType: 'counter' }} className='mx-4'>
-        {children}
-      </li>
-    ),
-  },
+//   const renderedMath = katex.renderToString(processedText, { throwOnError: false, displayMode: false });
 
-  marks: {
-    link: ({ value, children }: { value: any; children: any }) => {
-      const target = (value?.href || '').startsWith('http') ? '_blank' : undefined;
-      return (
-        <a href={value?.href} target={target} className='underline text-teal-700 font-bold'>
-          {children}
-        </a>
-      );
-    },
-  },
+//   return <div dangerouslySetInnerHTML={{ __html: renderedMath }}></div>;
+// }
+
+const Page = () => {
+  useEffect(() => {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '\\(', right: '\\)', display: false },
+      ],
+    });
+  }, []);
+
+  return (
+    <>
+      <h1>Hello $5$</h1>
+      <h1>
+        Hello <TeX>5</TeX>, it&apos;s a privilege to meet you!
+      </h1>
+    </>
+  );
 };
 
-const CustomPortableText = ({ value }: { value: any }) => {
-  return <PortableText value={value} components={components as any}></PortableText>;
-};
-
-export default CustomPortableText;
+export default Page;

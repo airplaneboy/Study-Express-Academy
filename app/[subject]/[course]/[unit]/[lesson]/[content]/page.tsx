@@ -47,13 +47,15 @@ const Content = async ({ params }: { params: { content: string } }) => {
     const selectedQuestions = sampleSize(shuffledQuestions, 5);
 
     return (
-      <div className='px-10 py-6 '>
-        <div className='max-w-2xl mx-auto'>
-          <header className='text-center text-2xl mb-12 text-gray-800 font-inter font-semibold'>{test.title}</header>
-          <DisplayQuestions selectedQuestions={selectedQuestions} />
-          {/* <strong>{test.</strong> */}
+      <>
+        <div className='px-10 py-6 relative h-full'>
+          <div className='max-w-2xl mx-auto'>
+            <header className='text-center text-2xl mb-12 text-gray-800 font-inter font-semibold'>{test.title}</header>
+            <DisplayQuestions selectedQuestions={selectedQuestions} />
+            {/* <strong>{test.</strong> */}
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 };

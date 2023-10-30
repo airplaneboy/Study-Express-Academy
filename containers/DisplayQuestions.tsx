@@ -1,13 +1,76 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import shuffle from 'lodash.shuffle';
-
+import { HiArrowRight, HiChevronRight } from 'react-icons/hi2';
+import { HiCheck, HiX } from 'react-icons/hi';
+import LessonNavButton, { SummaryButton } from '@/components/LessonNavButton';
+import CustomPortableText from '@/components/CustomPortableText';
 const DisplayQuestions = ({ selectedQuestions }: { selectedQuestions: any[] }) => {
   const [selectedOption, setSelectedOption] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const correctAnswer = selectedQuestions[currentIndex]?.answer;
-  const answerChoices = [...selectedQuestions[currentIndex]?.options, correctAnswer];
-  const shuffledAnswerChoices = shuffle(answerChoices);
+  const [shuffledAnswerChoices, setShuffledAnswerChoices] = useState<any[]>([]);
+  const [testCompleted, setTestCompleted] = useState(false);
+  const [correctAnswer, setCorrectAnswer] = useState('');
+  const [showSummary, setShowSummary] = useState(false);
+  const [showExplanation, setShowExplanation] = useState<boolean>(false);
+  const answerChoices = useMemo(
+    () => [...selectedQuestions[currentIndex]?.options, correctAnswer],
+    [correctAnswer, currentIndex, selectedQuestions]
+  );
+  const [result, setResult] = useState<{ isCorrect: boolean; id: number }[]>([]);
+
+  useEffect(() => {
+    setShuffledAnswerChoices(shuffle(answerChoices));
+    setCorrectAnswer(selectedQuestions[currentIndex]?.answer);
+    return () => {};
+  }, [answerChoices, currentIndex, selectedQuestions]);
+
+  const handleNextQuestion = () => {
+    if (currentIndex < selectedQuestions.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      setSelectedOption('');
+    }
+    if (currentIndex >= selectedQuestions.length - 1) setTestCompleted(true);
+    return setShowExplanation(false);
+  };
+
+  const check = () => {
+    const id = selectedQuestions[currentIndex]?._id;
+
+    if (correctAnswer == selectedOption) {
+      setResult((prev) => [...prev, { id, isCorrect: true }]);
+    } else {
+      setResult((prev) => [...prev, { id, isCorrect: false }]);
+    }
+
+    setShowExplanation(true);
+    if (currentIndex >= selectedQuestions.length - 1) setTestCompleted(true);
+  };
+
+  const ShowSummary = () => {
+    return (
+      <div className='absolute bg-white inset-x-0 bottom-0 top-[20%] flex flex-col items-center justify-center gap-5'>
+        <span className='text-6xl px-2 text-center capitalize tracking-tighter font-bold bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-transparent'>
+          Embrace the challenge! <br />
+          every step you take brings you closer to your goal?
+        </span>
+        <span className='text-lg font-semibold text-gray-800'>
+          {result.filter((item) => item.isCorrect == true).length}/{result.length} correct!
+        </span>
+      </div>
+    );
+  };
+
+  const Explanation = () => {
+    return (
+      <div className='border-2 bg-gray-100 rounded-2xl px-8 py-8 mt-10 mb-5 text-gray-700 font-plusJakartaSans'>
+        <span className='font-bold text-bg'>Explanation: </span>
+        <br />
+        <br />
+        <CustomPortableText value={selectedQuestions[currentIndex]?.solution} />
+      </div>
+    );
+  };
 
   const choiceLetters = [
     'A',
@@ -37,58 +100,125 @@ const DisplayQuestions = ({ selectedQuestions }: { selectedQuestions: any[] }) =
     'Y',
     'Z',
   ];
-  // var alphabet = [];
-  // for (var i = 65; i <= 90; i++) {
-  //   alphabet.push(String.fromCharCode(i));
-  // }
 
   return (
-    <div>
-      <span className='text-gray-700 font-plusJakartaSans text-lg'>{selectedQuestions[currentIndex].question}</span>
-      <fieldset className='flex flex-col gap-2 mt-6'>
-        <legend className='w-[1px] h-[1px] overflow-hidden m-[-1px] p-0 absolute border-0 text-[0px] clip'>
-          Pick your answer
-        </legend>
+    <>
+      {showSummary ? (
+        <ShowSummary></ShowSummary>
+      ) : (
+        <div>
+          <span className='text-gray-700 font-plusJakartaSans text-lg'>{selectedQuestions[currentIndex].question}</span>
+          <fieldset className='flex flex-col gap-2 mt-6'>
+            <legend className='w-[1px] h-[1px] overflow-hidden m-[-1px] p-0 absolute border-0 text-[0px] clip'>
+              Pick your answer
+            </legend>
 
-        <ul className=' divide-y-2'>
-          {answerChoices.map((answerChoice, index) => {
-            return (
-              <li key={answerChoice}>
-                <label
-                  className={
-                    selectedOption === answerChoice
-                      ? 'border-2 border-blue-600 bg-blue-100 py-3 px-6 block relative'
-                      : `py-3 px-6 block relative border-2 border-transparent`
-                  }>
-                  <span className='z-10 h-7 absolute block top-1/2 -translate-y-1/2'>
-                    <input
-                      className='appearance-none w-[1px] h-[1px] overflow-hidden absolute z-10 inline-block clip'
-                      type='radio'
-                      value={answerChoice}
-                      name='option'
-                      onChange={(e) => setSelectedOption(e.target.value)}
-                      checked={selectedOption === answerChoice}
+            <ul className=' divide-y-2'>
+              {shuffledAnswerChoices.map((answerChoice: any, index: any) => {
+                return (
+                  <li key={index}>
+                    <label
+                      className={
+                        selectedOption === answerChoice
+                          ? showExplanation
+                            ? result[currentIndex]?.isCorrect
+                              ? 'border-2 border-green-600 bg-green-100 py-3 px-6 block relative'
+                              : 'border-2 border-red-600 bg-red-100 py-3 px-6 block relative'
+                            : 'border-2 border-blue-600 bg-blue-100 py-3 px-6 block relative'
+                          : `py-3 px-6 block relative border-2 border-transparent`
+                      }>
+                      <span className='z-10 h-7 absolute block top-1/2 -translate-y-1/2'>
+                        <input
+                          disabled={showExplanation}
+                          className='appearance-none w-[1px] h-[1px] overflow-hidden absolute z-10 inline-block clip'
+                          type='radio'
+                          value={answerChoice}
+                          name='option'
+                          onChange={(e) => setSelectedOption(e.target.value)}
+                          checked={selectedOption === answerChoice}
+                        />
+                        <div className='inline-block relative'>
+                          <div
+                            className={
+                              showExplanation && selectedOption == answerChoice
+                                ? result[currentIndex]?.isCorrect
+                                  ? 'block h-7 w-7 border-2 border-green-600 rounded-full'
+                                  : 'block h-7 w-7 border-2 border-red-600 rounded-full'
+                                : 'block h-7 w-7 border-2 border-blue-600 rounded-full'
+                            }></div>
+                          <div
+                            className={
+                              selectedOption == answerChoice
+                                ? showExplanation
+                                  ? result[currentIndex]?.isCorrect
+                                    ? 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[1px] text-sm bg-green-600 text-white rounded-full'
+                                    : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[1px] text-sm bg-red-600 text-white rounded-full'
+                                  : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[1px] text-sm bg-blue-600 text-white rounded-full'
+                                : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[1px] text-blue-600 text-sm'
+                            }>
+                            {choiceLetters[index]}
+                          </div>
+                        </div>
+                      </span>
+                      <span className='ml-11 text-gray-700 font-plusJakartaSans'>{answerChoice}</span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </fieldset>
+          {showExplanation && <Explanation />}
+
+          <div
+            className={
+              'bg-white border-gray-300 border-t-2 fixed bottom-0 left-0 right-0 px-4 py-2 max-md:absolute max-md:bottom-0 max-md:w-[90%] max-md:-translate-x-1/2 max-md:left-1/2'
+            }>
+            <div className='flex items-center max-w-fit ml-auto gap-8'>
+              <div className='flex items-center gap-2'>
+                <span className='font-bold text-gray-700 mr-2'>
+                  Question {currentIndex + 1} of {selectedQuestions.length}
+                </span>
+                {selectedQuestions.map((question, index) => {
+                  // return currentIndex > index || (currentIndex == index && testCompleted) ? (
+                  return result[index]?.isCorrect != null || (currentIndex == index && testCompleted) ? (
+                    result[index]?.isCorrect ? (
+                      <HiCheck key={index} size='20px' className='text-green-700' />
+                    ) : (
+                      <HiX key={index} size='20px' className='text-red-700' />
+                    )
+                  ) : (
+                    <span
+                      key={index}
+                      className={
+                        currentIndex == index
+                          ? 'border-2 border-gray-700 w-3 h-3 rounded-full inline-block'
+                          : 'border-2 border-gray-500 w-2 h-2 rounded-full inline-block'
+                      }
                     />
-                    <div className='inline-block relative'>
-                      <div className='block h-7 w-7 border-2 border-blue-600 rounded-full'></div>
-                      <div
-                        className={
-                          selectedOption == answerChoice
-                            ? 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[1px] text-sm bg-blue-600 text-white rounded-full'
-                            : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[1px] text-blue-600 text-sm'
-                        }>
-                        {choiceLetters[index]}
-                      </div>
-                    </div>
-                  </span>
-                  <span className='ml-11'>{answerChoice}</span>
-                </label>
-              </li>
-            );
-          })}
-        </ul>
-      </fieldset>
-    </div>
+                  );
+                })}
+              </div>
+              {!showExplanation ? (
+                <LessonNavButton selectedOption={selectedOption} onClick={() => check()}>
+                  Check
+                </LessonNavButton>
+              ) : !testCompleted ? (
+                <LessonNavButton selectedOption={selectedOption} onClick={() => handleNextQuestion()}>
+                  Next Question
+                </LessonNavButton>
+              ) : (
+                <SummaryButton
+                  onClick={() => {
+                    setShowSummary(true);
+                  }}>
+                  Show Summary
+                </SummaryButton>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

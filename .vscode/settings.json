@@ -6,9 +6,11 @@
     "headlessui",
     "isempty",
     "josefin",
+    "katex",
     "nunito",
     "portabletext",
     "revalidates",
+    "samplesize",
     "Smartech"
   ],
   "files.exclude": {
