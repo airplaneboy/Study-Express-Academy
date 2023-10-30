@@ -1,10 +1,11 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
 import shuffle from 'lodash.shuffle';
-import { HiArrowRight, HiChevronRight } from 'react-icons/hi2';
 import { HiCheck, HiX } from 'react-icons/hi';
 import LessonNavButton, { SummaryButton } from '@/components/LessonNavButton';
 import CustomPortableText from '@/components/CustomPortableText';
+import Confetti, { fireWorks, realisticConfetti } from '@/components/Confetti';
+import confetti from 'canvas-confetti';
 const DisplayQuestions = ({ selectedQuestions }: { selectedQuestions: any[] }) => {
   const [selectedOption, setSelectedOption] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -39,6 +40,7 @@ const DisplayQuestions = ({ selectedQuestions }: { selectedQuestions: any[] }) =
 
     if (correctAnswer == selectedOption) {
       setResult((prev) => [...prev, { id, isCorrect: true }]);
+      Confetti();
     } else {
       setResult((prev) => [...prev, { id, isCorrect: false }]);
     }
@@ -210,6 +212,11 @@ const DisplayQuestions = ({ selectedQuestions }: { selectedQuestions: any[] }) =
                 <SummaryButton
                   onClick={() => {
                     setShowSummary(true);
+                    const average = result.filter((item) => item.isCorrect == true).length / result.length;
+                    if (average >= 0.5) {
+                      realisticConfetti();
+                      if (average >= 0.95) fireWorks({ durationValue: 2 });
+                    }
                   }}>
                   Show Summary
                 </SummaryButton>

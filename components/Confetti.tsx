@@ -1,5 +1,10 @@
 'use client';
 import confetti from 'canvas-confetti';
+
+export default function Confetti() {
+  return confetti({ origin: { x: 0.9, y: 0.97 }, zIndex: 1001, startVelocity: 20, spread: 180 });
+}
+
 export const realisticConfetti = () => {
   var count = 200;
   var defaults = {
@@ -38,8 +43,8 @@ export const realisticConfetti = () => {
   });
 };
 
-export const fireWorks = () => {
-  var duration = 15 * 1000;
+export const fireWorks = ({ durationValue = 15 }: { durationValue?: number }) => {
+  var duration = durationValue * 1000;
   var animationEnd = Date.now() + duration;
   var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
@@ -88,20 +93,3 @@ export const schoolPride = () => {
     }
   })();
 };
-
-export const end = () => confetti.reset();
-const Test = () => {
-  return (
-    <div className='flex flex-col gap-5 bg-gray-900 h-full text-white'>
-      <button onClick={() => confetti({ origin: { x: 0.9, y: 0.97 }, zIndex: 1001, startVelocity: 20, spread: 180 })}>
-        Test
-      </button>
-      <button onClick={() => realisticConfetti()}>Realistic</button>
-      <button onClick={() => fireWorks()}>Fire Works</button>
-      <button onClick={() => schoolPride()}>School Pride</button>
-      <button onClick={() => end()}>End</button>
-    </div>
-  );
-};
-
-export default Test;

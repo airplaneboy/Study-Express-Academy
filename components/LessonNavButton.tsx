@@ -5,9 +5,9 @@ export const SummaryButton = ({ children, onClick }: { children: string; onClick
     <button
       onClick={onClick}
       className={
-        'border-blue-600 border-2 hover:bg-blue-700 hover:text-white text-blue-600 px-4 py-2 rounded-2xl flex items-center justify-center gap-2 ml-auto w-fit max-md:mr-auto max-md:w-[80%]'
+        'border-blue-600 border-2 hover:bg-blue-700 hover:text-white text-blue-600 px-4 py-[6px] rounded-2xl flex items-center justify-center gap-2 ml-auto w-fit max-md:mr-auto max-md:w-[80%]'
       }>
-      <span className='font-semibold'>{children}</span>
+      <span className='font-medium'>{children}</span>
       <HiArrowRight className='top-[1px] relative' />
     </button>
   );
