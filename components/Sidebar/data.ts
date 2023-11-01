@@ -22,10 +22,10 @@ const SidebarItemsList = [
     heading: 'Courses',
     items: [
       {
-        name: 'Domestic Courses',
+        name: 'Domestic',
         icon: HiOutlineGlobeAlt,
         iconFill: HiGlobeAlt,
-        href: '/user/domestic-courses',
+        href: '/user/domestic',
         color: 'text-red-500',
         bgColor: 'bg-red-50',
         hoverColor: 'hover:text-red-500',

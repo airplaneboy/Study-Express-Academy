@@ -30,6 +30,16 @@ const Subject = {
       validation: (Rule: any) => Rule.required(),
     },
     {
+      title: 'Subject Icon',
+      name: 'icon',
+      type: 'image',
+      description: 'The icon for this subject. Only SVGs are allowed',
+      options: {
+        // hotspot: true, // <-- Defaults to false
+        accept: '.svg',
+      },
+    },
+    {
       title: 'Subject Description',
       name: 'description',
       type: 'text',

@@ -14,6 +14,11 @@ export const getSubject = async (slug: string) =>
     { slug }
   );
 
+export const getSubjects = async () =>
+  await client(
+    groq`*[_type =='subjects']| order(title asc){courses[]->{title}, title, 'slug':slug.current,_id, description}`
+  );
+
 //#endregion
 
 //#region Courses
@@ -32,6 +37,11 @@ export const getCourse = async (slug?: string) =>
     {
       slug,
     }
+  );
+
+export const getCourses = async () =>
+  await client(
+    groq`*[_type =='courses']| order(title asc){instructor,subject->{title},title,'slug':slug.current, _id}`
   );
 //#endregion
 

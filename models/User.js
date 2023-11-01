@@ -104,6 +104,28 @@ const UserSchema = new mongoose.Schema(
         default: 'everything',
       },
     },
+    contentProgress: {
+      videos: [
+        {
+          id: { type: String, required: true, trim: true, unique: true },
+          durationWatched: { type: Number, trim: true, default: 0, required: true },
+          numberOfTimesWatched: { type: Number, default: 0 },
+        },
+      ],
+      articles: [
+        {
+          id: { type: String, required: true, trim: true, unique: true },
+          numberOfTimesRead: { type: Number, default: 0 },
+        },
+      ],
+      tests: [
+        {
+          id: { type: String, required: true, trim: true, unique: true },
+          numberOfTimesCorrect: { type: Number, trim: true, default: 0, required: true },
+          numberOfTimesTaken: { type: Number, default: 0 },
+        },
+      ],
+    },
     // status: {
     //   type: String,
     //   enum: ['active', 'inactive', 'blocked'],
