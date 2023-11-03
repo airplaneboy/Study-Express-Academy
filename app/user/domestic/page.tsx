@@ -61,6 +61,7 @@ const Domestic = async () => {
               animatedIcon: string;
               courses: { title: string }[];
               description: string;
+              icon: string;
             },
             index: number
           ) => {
@@ -73,6 +74,7 @@ const Domestic = async () => {
                   </button> */}
                   <Suspense fallback={<h1>Loading</h1>}>
                     <LordIcon
+                      icon={subject.icon}
                       src={subject.animatedIcon}
                       style={{ position: 'absolute', left: '-30%', top: '-40%' }}
                       height='500px'

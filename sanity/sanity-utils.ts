@@ -16,7 +16,7 @@ export const getSubject = async (slug: string) =>
 
 export const getSubjects = async () =>
   await client(
-    groq`*[_type =='subjects']| order(title asc){courses[]->{title}, title, 'slug':slug.current,_id, description, animatedIcon}`
+    groq`*[_type =='subjects']| order(title asc){courses[]->{title}, title, 'slug':slug.current,_id, description, animatedIcon, 'icon':icon.asset->url}`
   );
 
 //#endregion
