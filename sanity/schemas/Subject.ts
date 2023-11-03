@@ -40,6 +40,12 @@ const Subject = {
       },
     },
     {
+      title: 'Subject Animated Icon',
+      name: 'animatedIcon',
+      type: 'string',
+      description: 'The animated icon for this subject. Only strings (link to the host) are allowed',
+    },
+    {
       title: 'Subject Description',
       name: 'description',
       type: 'text',

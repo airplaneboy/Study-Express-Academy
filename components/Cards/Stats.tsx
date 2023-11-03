@@ -47,10 +47,10 @@ export default function Stats({ userStats }: { userStats: any }) {
               <item.icon size={25} className={` ${item.imageColor}`} aria-hidden='true' />
               <p className='text-md font-medium text-gray-500 truncate'>{item.name}</p>
             </div>
-            <h2
+            <span
               className={`text-6xl font-extrabold font-plusJakartaSans text-gray-800 text_inset underline decoration-from-font ${item.color}`}>
               {item.stat}
-            </h2>
+            </span>
           </div>
         ))}
       </div>
