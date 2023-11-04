@@ -99,8 +99,8 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
         <div className='lg:grid lg:grid-cols-3 lg:gap-6'>
           <div className='md:col-span-1'>
             <div className='px-4 sm:px-0'>
-              <h3 className='text-lg font-medium leading-6 text-gray-900'>Personal Information</h3>
-              <p className='mt-1 text-sm text-gray-600'>Ensure your email, and phone number are accurate.</p>
+              <span className='text-lg font-medium leading-6 text-gray-900'>Personal Information</span>
+              <span className='mt-1 text-sm text-gray-600'>Ensure your email, and phone number are accurate.</span>
             </div>
           </div>
 

@@ -45,8 +45,8 @@ const Profile = () => {
         <div className='lg:grid lg:grid-cols-3 lg:gap-6'>
           <div className='md:col-span-1'>
             <div className='px-4 sm:px-0'>
-              <h3 className='text-lg font-medium leading-6 text-gray-900'>Profile</h3>
-              <p className='mt-1 text-sm text-gray-600'>This information will be displayed publicly.</p>
+              <span className='text-lg font-medium leading-6 text-gray-900'>Profile</span>
+              <span className='mt-1 text-sm text-gray-600'>This information will be displayed publicly.</span>
             </div>
           </div>
           <div className='mt-5 md:mt-0 md:col-span-2 '>

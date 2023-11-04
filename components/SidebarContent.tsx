@@ -83,7 +83,7 @@ export default function SidebarContent({ children }: { children: React.ReactNode
               className='p-2 w-max -ml-0.5 -mt-0.5 h-12 inline-flex items-center justify-center rounded-md text-indigo-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'
               onClick={() => setSidebarOpen(true)}>
               <span className='sr-only'>Open sidebar</span>
-              <h4>Sidebar</h4>
+              <span>Sidebar</span>
               <HiChevronRight className='h-6 w-6 ml-1' aria-hidden='true' />
             </button>
           </div>

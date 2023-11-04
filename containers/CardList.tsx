@@ -79,7 +79,7 @@ const CardList = ({
               <span className='text-2xl text-gray-600 font-bold font-inter underline decoration-purple-500'>
                 Here<span className='text-purple-500'>&apos;</span>s What you should know!
               </span>
-              <p className='text-base'>{capitalize(contentDescription)}</p>
+              <span className='text-base'>{capitalize(contentDescription)}</span>
             </div>
           )}
           <div className='border-gray-300  md:px-3 w-full'>

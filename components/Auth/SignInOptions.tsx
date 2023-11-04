@@ -6,7 +6,7 @@ const SignInOptions = () => {
   return (
     <div>
       <div>
-        <p className='text-sm font-medium text-gray-700'>Sign in with</p>
+        <span className='text-sm font-medium text-gray-700'>Sign in with</span>
 
         <div className='mt-1 grid grid-cols-3 gap-3'>
           <Providers

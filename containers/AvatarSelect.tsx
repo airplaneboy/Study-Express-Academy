@@ -87,9 +87,9 @@ export function Gallery({ selected, setSelected }: { selected: any; setSelected?
                         <span className='sr-only'>View details for {image.title}</span>
                       </button>
                     </div>
-                    <p className='mt-3 block text-xs font-bold text-white truncate pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 p-1 rounded-lg bg-opacity-40 bg-black '>
+                    <span className='mt-3 block text-xs font-bold text-white truncate pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 p-1 rounded-lg bg-opacity-40 bg-black '>
                       {image.title}
-                    </p>
+                    </span>
                     {/*  */}
                   </div>
                   {checked && (
@@ -151,7 +151,7 @@ export default function AvatarSelectModal({ value, setValue }: { value?: any; se
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'>
                 <Dialog.Panel className='w-full max-w-3xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'>
-                  <Dialog.Title as='h3' className='text-lg font-medium leading-6 text-gray-900'>
+                  <Dialog.Title as='span' className='text-lg font-medium leading-6 text-gray-900'>
                     Choose your avatar
                   </Dialog.Title>
                   <div className='mt-2'>

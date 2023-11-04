@@ -51,8 +51,10 @@ const Notification = () => {
         <div className='lg:grid lg:grid-cols-3 lg:gap-6'>
           <div className='md:col-span-1'>
             <div className='px-4 sm:px-0'>
-              <h3 className='text-lg font-medium leading-6 text-gray-900'>Notifications</h3>
-              <p className='mt-1 text-sm text-gray-600'>Decide which communications you&apos;d like to receive.</p>
+              <span className='text-lg font-medium leading-6 text-gray-900'>Notifications</span>
+              <span className='mt-1 text-sm text-gray-600'>
+                Decide which communications you&apos;d like to receive.
+              </span>
             </div>
           </div>
 
@@ -79,7 +81,9 @@ const Notification = () => {
                           <label htmlFor='comments' className='font-medium text-gray-700'>
                             Comments
                           </label>
-                          <p className='text-gray-500'>Get notified when someones posts a comment on your posts.</p>
+                          <span className='text-gray-500'>
+                            Get notified when someones posts a comment on your posts.
+                          </span>
                         </div>
                       </div>
 
@@ -99,7 +103,7 @@ const Notification = () => {
                           <label htmlFor='authentication' className='font-medium text-gray-700'>
                             Authentication
                           </label>
-                          <p className='text-gray-500'>Get notified every time your account is logged into.</p>
+                          <span className='text-gray-500'>Get notified every time your account is logged into.</span>
                         </div>
                       </div>
 
@@ -119,7 +123,7 @@ const Notification = () => {
                           <label htmlFor='offers' className='font-medium text-gray-700'>
                             Offers
                           </label>
-                          <p className='text-gray-500'>Receive offer messages from us.</p>
+                          <span className='text-gray-500'>Receive offer messages from us.</span>
                         </div>
                       </div>
                     </div>
@@ -128,7 +132,7 @@ const Notification = () => {
                   <fieldset>
                     <div>
                       <legend className='text-base font-medium text-gray-900'>Push Notifications</legend>
-                      <p className='text-sm text-gray-500'>These are delivered via SMS to your mobile phone.</p>
+                      <span className='text-sm text-gray-500'>These are delivered via SMS to your mobile phone.</span>
                     </div>
                     <div className='mt-4 space-y-4'>
                       <div className='flex items-center'>

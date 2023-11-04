@@ -69,9 +69,9 @@ export default function Footer() {
             </Link>
           ))}
         </div>
-        <p className='text-center text-base max-sm:text-xs text-gray-500 font-bold pointer-events-none w-max'>
+        <span className='text-center text-base max-sm:text-xs text-gray-500 font-bold pointer-events-none w-max'>
           &copy; 2023 {process.env.TITLE}, Inc. All rights reserved.
-        </p>
+        </span>
       </div>
     </footer>
   );

@@ -151,12 +151,12 @@ export default function Header() {
                                 </div>
                                 <div className='ml-4 md:flex-1 md:flex md:flex-col md:justify-between lg:ml-0 lg:mt-4'>
                                   <div>
-                                    <p className='text-base font-medium text-gray-900'>{item.name}</p>
-                                    <p className='mt-1 text-sm text-gray-500'>{item.description}</p>
+                                    <span className='text-base font-medium text-gray-900'>{item.name}</span>
+                                    <span className='mt-1 text-sm text-gray-500'>{item.description}</span>
                                   </div>
-                                  <p className='mt-2 text-sm font-medium text-indigo-600 lg:mt-4'>
+                                  <span className='mt-2 text-sm font-medium text-indigo-600 lg:mt-4'>
                                     Learn more <span aria-hidden='true'>&rarr;</span>
-                                  </p>
+                                  </span>
                                 </div>
                               </div>
                             </a>
@@ -221,7 +221,7 @@ export default function Header() {
                         <div className='relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2'>
                           <nav className='grid gap-y-10 px-4 py-8 bg-white sm:grid-cols-2 sm:gap-x-8 sm:py-12 sm:px-6 lg:px-8 xl:pr-12'>
                             <div>
-                              <h3 className='text-sm font-medium tracking-wide text-gray-500 uppercase'>Company</h3>
+                              <span className='text-sm font-medium tracking-wide text-gray-500 uppercase'>Company</span>
                               <ul role='list' className='mt-5 space-y-6'>
                                 {company.map((item) => (
                                   <li key={item.name} className='flow-root'>
@@ -236,7 +236,9 @@ export default function Header() {
                               </ul>
                             </div>
                             <div>
-                              <h3 className='text-sm font-medium tracking-wide text-gray-500 uppercase'>Resources</h3>
+                              <span className='text-sm font-medium tracking-wide text-gray-500 uppercase'>
+                                Resources
+                              </span>
                               <ul role='list' className='mt-5 space-y-6'>
                                 {resources.map((item) => (
                                   <li key={item.name} className='flow-root'>
@@ -253,9 +255,9 @@ export default function Header() {
                           </nav>
                           <div className='bg-gray-50 px-4 py-8 sm:py-12 sm:px-6 lg:px-8 xl:pl-12'>
                             <div>
-                              <h3 className='text-sm font-medium tracking-wide text-gray-500 uppercase'>
+                              <span className='text-sm font-medium tracking-wide text-gray-500 uppercase'>
                                 From the blog
-                              </h3>
+                              </span>
                               <ul role='list' className='mt-6 space-y-6'>
                                 {blogPosts.map((post) => (
                                   <li key={post.id} className='flow-root'>
@@ -268,8 +270,10 @@ export default function Header() {
                                         />
                                       </div>
                                       <div className='w-0 flex-1 sm:ml-8'>
-                                        <h4 className='text-base font-medium text-gray-900 truncate'>{post.name}</h4>
-                                        <p className='mt-1 text-sm text-gray-500'>{post.preview}</p>
+                                        <span className='text-base font-medium text-gray-900 truncate'>
+                                          {post.name}
+                                        </span>
+                                        <span className='mt-1 text-sm text-gray-500'>{post.preview}</span>
                                       </div>
                                     </a>
                                   </li>
@@ -388,12 +392,12 @@ export default function Header() {
                   className='w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700'>
                   Sign up
                 </a>
-                <p className='mt-6 text-center text-base font-medium text-gray-500'>
+                <span className='mt-6 text-center text-base font-medium text-gray-500'>
                   Existing customer?{' '}
                   <a href='#' className='text-indigo-600 hover:text-indigo-500'>
                     Sign in
                   </a>
-                </p>
+                </span>
               </div>
             </div>
           </div>
