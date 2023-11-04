@@ -7,7 +7,7 @@ import Stats from '@/components/Cards/Stats';
 const Dashboard = async () => {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user) return <h1>You need to login to view profile</h1>;
+  if (!session?.user) return <span>You need to login to view profile</span>;
 
   try {
     const user = await getUser({ userId: (session?.user as any)?.id });
@@ -28,10 +28,10 @@ const Dashboard = async () => {
   } catch (error) {
     console.log(error);
     return (
-      <h1>
+      <span>
         Your information could not be fetched. Try logging in again, or try again later. If error persists, contact our
         support.
-      </h1>
+      </span>
     );
   }
 };

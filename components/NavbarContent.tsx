@@ -101,7 +101,7 @@ function NavbarContent({
               <Popover.Panel as='nav' className='sm:hidden mt-3' aria-label='Global'>
                 {isLoggedIn ? (
                   <div className='border-t border-gray-200 pt-4 pb-3 '>
-                    <Suspense fallback={<h1>Fetching user&apos;s data...</h1>}>
+                    <Suspense fallback={<span>Fetching user&apos;s data...</span>}>
                       <UserProfile
                         email={userData?.email}
                         image={userData?.profile?.image}

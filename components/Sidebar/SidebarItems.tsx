@@ -13,7 +13,7 @@ const SidebarItems = ({ navigation, classNames }: { navigation: any; classNames:
 
             return (
               <div key={heading} className='flex flex-col gap-1'>
-                <h1 className='font-extrabold uppercase text-xs font-inter text-gray-500'>{heading}</h1>
+                <span className='font-extrabold uppercase text-xs font-inter text-gray-500'>{heading}</span>
                 <div>
                   {items.map((item: any) => {
                     const isActive = pathname.startsWith(item.href);

@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 const ProfileContent = async () => {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user) return <h1>You need to login to view profile</h1>;
+  if (!session?.user) return <span>You need to login to view profile</span>;
 
   let user;
   try {
@@ -18,10 +18,10 @@ const ProfileContent = async () => {
     } catch (error) {
       console.log(error);
       return (
-        <h1>
+        <span>
           Your information could not be fetched. Try logging in again, or try again later. If error persists, contact
           our support.
-        </h1>
+        </span>
       );
     }
   }

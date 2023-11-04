@@ -40,9 +40,9 @@ const CardList = ({
       <CollapsibleHeader
         initialHeight='h-28 text-6xl max-sm:text-3xl max-sm:h-24 max-md:text-center '
         finalHeight='h-20 text-3xl text-center'>
-        <h1 className='py-4 no_wrap mx-auto w-full px-10 capitalize text-left font-extrabold font-inter inherit_text ease-linear transition-transform duration-300'>
+        <span className='py-4 no_wrap mx-auto w-full px-10 capitalize text-left font-extrabold font-inter inherit_text ease-linear transition-transform duration-300'>
           {contentHeader}
-        </h1>
+        </span>
       </CollapsibleHeader>
 
       <div className='h-full flex flex-row mx-auto bg-white sm:px-5 md:top-28 relative '>
@@ -50,9 +50,9 @@ const CardList = ({
         <aside className='max-md:hidden border-r-2 '>
           <nav className=' h-[70%] sticky top-44 lg:w-80 md:w-72 overflow-y-auto rounded-2xl '>
             <ul role='list' className='h-max p-5'>
-              <h1 className='font-extrabold font-inter text-gray-600 text-xs tracking-widest uppercase'>
+              <span className='font-extrabold font-inter text-gray-600 text-xs tracking-widest uppercase'>
                 {sidebarHeader}
-              </h1>
+              </span>
               {sidebarArray?.map((sidebarItems) => (
                 <li
                   key={sidebarItems?._id}
