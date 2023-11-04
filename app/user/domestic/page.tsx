@@ -84,7 +84,6 @@ const Domestic = async () => {
                   />
 
                   <Link
-                    replace={true}
                     href={`/${subject.slug}`}
                     className='z-10 rounded-2xl bg-gray-200 hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px]'>
                     <div className=' bg-white rounded-2xl'>

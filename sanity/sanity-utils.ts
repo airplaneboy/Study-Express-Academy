@@ -16,12 +16,12 @@ export const getSubject = async (slug: string) =>
 
 export const getSubjects = async () =>
   await client(
-    groq`*[_type =='subjects']| order(title asc){courses[]->{title}, title, 'slug':slug.current,_id, description, animatedIcon, 'icon':icon.asset->url}`
+    groq`*[_type =='subjects']| order(title asc){courses[]->{title}, title, 'slug':slug.current,_id, description, animatedIcon, 'icon':icon.asset->url,_type}`
   );
 
 export const getInternationalSubjects = async () =>
   await client(
-    groq`*[_type =='internationalSubjects']| order(title asc){courses[]->{title}, title, 'slug':slug.current,_id, description, animatedIcon, 'icon':icon.asset->url}`
+    groq`*[_type =='internationalSubjects']| order(title asc){courses[]->{title}, title, 'slug':slug.current,_id, description, animatedIcon, 'icon':icon.asset->url,_type}`
   );
 
 //#endregion
@@ -46,7 +46,7 @@ export const getCourse = async (slug?: string) =>
 
 export const getCourses = async () =>
   await client(
-    groq`*[_type =='courses']| order(title asc){instructor,subject->{title},title,'slug':slug.current, _id}`
+    groq`*[_type =='courses']| order(title asc){instructor,subject->{title},title,'slug':slug.current, _id,_type}`
   );
 //#endregion
 
