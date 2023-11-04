@@ -45,47 +45,50 @@ const CardList = ({
         </h1>
       </CollapsibleHeader>
 
-      <div className='flex flex-col mx-auto bg-white sm:px-5 py-8 md:top-32 relative '>
-        {contentDescription && (
-          <h3 className='sm:border-b border-y-2 text-gray-500 sm:bg-gray-200 sm:rounded-2xl mx-4 lg:text-2xl text-xl max-sm:px-2 max-sm:py-2 max-sm:pb-2 sm:p-4'>
-            {capitalize(contentDescription)}
-          </h3>
-        )}
-
-        <div className='flex sm:mt-10 mt-5 p-4'>
-          {/* Sidebar */}
-          <aside className='max-md:hidden'>
-            <nav className=' h-[45rem] sticky top-44 lg:w-80 md:w-72 overflow-y-auto rounded-2xl border-gray-300 border-2'>
-              <ul role='list' className='h-max p-5'>
-                <h1 className='font-extrabold font-inter text-gray-700 mb-5 mr-3 text-3xl'>{sidebarHeader}</h1>
-                {sidebarArray?.map((sidebarItems) => (
-                  <li
-                    key={sidebarItems?._id}
-                    className=' px-4 py-3 sm:px-0 text-md text-gray-500 hover:text-indigo-500 focus:text-indigo-600 no_wrap'>
-                    <Link
-                      to={sidebarItems?.title}
-                      spy={true}
-                      smooth={true}
-                      duration={300}
-                      offset={-130}
-                      activeClass='active'
-                      className='cursor-pointer'>
-                      {sidebarItems?.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </aside>
-
-          {/* Content Header */}
-          <div className='border-gray-300  md:pl-10 w-full'>
+      <div className='h-full flex flex-row mx-auto bg-white sm:px-5 md:top-28 relative '>
+        {/* Sidebar */}
+        <aside className='max-md:hidden border-r-2 '>
+          <nav className=' h-[70%] sticky top-44 lg:w-80 md:w-72 overflow-y-auto rounded-2xl '>
+            <ul role='list' className='h-max p-5'>
+              <h1 className='font-extrabold font-inter text-gray-600 text-xs tracking-widest uppercase'>
+                {sidebarHeader}
+              </h1>
+              {sidebarArray?.map((sidebarItems) => (
+                <li
+                  key={sidebarItems?._id}
+                  className=' px-4 py-3 sm:px-0 text-md text-gray-500 hover:text-indigo-500 focus:text-indigo-600 no_wrap'>
+                  <Link
+                    to={sidebarItems?.title}
+                    spy={true}
+                    smooth={true}
+                    duration={300}
+                    offset={-130}
+                    activeClass='active'
+                    className='cursor-pointer'>
+                    {sidebarItems?.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+        <div className='items-center flex flex-col sm:pt-5 max-sm:mt-5 p-4 w-full'>
+          {/* Content Header */}{' '}
+          {contentDescription && (
+            <div className='w-full mb-10 flex flex-col gap-5 sm:border-b border-y-2 text-gray-500 sm:bg-gray-200 sm:rounded-2xl mx-4 max-sm:px-2 max-sm:py-2 max-sm:pb-2 sm:p-4'>
+              <span className='text-2xl text-gray-600 font-bold font-inter underline decoration-purple-500'>
+                Here<span className='text-purple-500'>&apos;</span>s What you should know!
+              </span>
+              <p className='text-base'>{capitalize(contentDescription)}</p>
+            </div>
+          )}
+          <div className='border-gray-300  md:px-3 w-full'>
             <ul role='list'>
               {sidebarArray?.map((headerItem) => {
                 return (
                   <li key={headerItem?._id} id={headerItem?.title} className='pb-4'>
                     <div className='bg-white border-2 rounded-lg overflow-hidden'>
-                      <div className='px-4 py-5 sm:px-6 font-bold text-gray-700 flex items-center gap-2 text-lg max-sm:text-base '>
+                      <div className='px-4 py-3 sm:px-6 font-bold text-gray-700 flex items-center gap-2 text-lg max-sm:text-base '>
                         {headerItem?.image && (
                           <Image
                             src={headerItem?.image}
@@ -94,7 +97,11 @@ const CardList = ({
                             height={30}></Image>
                         )}
 
-                        <CustomLink pathStrings={[slug, headerItem?.slug]}>{headerItem?.title}</CustomLink>
+                        <CustomLink pathStrings={[slug, headerItem?.slug]}>
+                          <span className='text-blue-700 hover:text-blue-800 font-plusJakartaSans text-base'>
+                            {headerItem?.title}
+                          </span>
+                        </CustomLink>
                       </div>
 
                       {/* Content List */}

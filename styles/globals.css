@@ -122,6 +122,11 @@ ul {
 
 .active {
   color: blue;
+  /* border-top: 2px solid blue;
+  border-bottom: 2px solid blue;
+  display: inline-block;
+  width: 100%;
+  padding: 4px; */
 }
 .PhoneInputInput {
   @apply !h-auto !pl-16 !py-2 focus:!ring-indigo-500 focus:!border-indigo-500 !border-2 !block !w-full sm:!text-sm !text-gray-700 !border-gray-300  !rounded-2xl;
