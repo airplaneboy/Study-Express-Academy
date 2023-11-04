@@ -1,22 +1,11 @@
-import { getSubjects } from '@/sanity/sanity-utils';
+import { getInternationalSubjects } from '@/sanity/sanity-utils';
 
 import { LordIcon } from '@/components/LordIcon';
 import Link from 'next/link';
 
-const Domestic = async () => {
-  const subjects = await getSubjects();
-
+const International = async () => {
+  const subjects = await getInternationalSubjects();
   const tailwindTextColors = [
-    'text-red-500',
-    'text-blue-500',
-    'text-green-500',
-    'text-yellow-500',
-    'text-indigo-500',
-    'text-pink-500',
-    'text-purple-500',
-    'text-gray-500',
-    'text-teal-500',
-    'text-orange-500',
     'text-red-700',
     'text-blue-700',
     'text-green-700',
@@ -27,18 +16,18 @@ const Domestic = async () => {
     'text-gray-700',
     'text-teal-700',
     'text-orange-700',
+    'text-red-500',
+    'text-blue-500',
+    'text-green-500',
+    'text-yellow-500',
+    'text-indigo-500',
+    'text-pink-500',
+    'text-purple-500',
+    'text-gray-500',
+    'text-teal-500',
+    'text-orange-500',
   ];
   const tailwindShadowColors = [
-    'hover:shadow-red-500',
-    'hover:shadow-blue-500',
-    'hover:shadow-green-500',
-    'hover:shadow-yellow-500',
-    'hover:shadow-indigo-500',
-    'hover:shadow-pink-500',
-    'hover:shadow-purple-500',
-    'hover:shadow-gray-500',
-    'hover:shadow-teal-500',
-    'hover:shadow-orange-500',
     'hover:shadow-red-700',
     'hover:shadow-blue-700',
     'hover:shadow-green-700',
@@ -49,6 +38,16 @@ const Domestic = async () => {
     'hover:shadow-gray-700',
     'hover:shadow-teal-700',
     'hover:shadow-orange-700',
+    'hover:shadow-red-500',
+    'hover:shadow-blue-500',
+    'hover:shadow-green-500',
+    'hover:shadow-yellow-500',
+    'hover:shadow-indigo-500',
+    'hover:shadow-pink-500',
+    'hover:shadow-purple-500',
+    'hover:shadow-gray-500',
+    'hover:shadow-teal-500',
+    'hover:shadow-orange-500',
   ];
 
   return (
@@ -83,15 +82,16 @@ const Domestic = async () => {
                     width='500px'
                   />
 
-                  <Link
-                    replace={true}
-                    href={`/${subject.slug}`}
-                    className='z-10 rounded-2xl bg-gray-200 hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px]'>
+                  <span
+                    // href={`/${subject.slug}`}
+                    className='z-10 rounded-2xl bg-gray-200  p-[2px]'>
+                    {/* className='z-10 rounded-2xl bg-gray-200 hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px]'> */}
                     <div className=' bg-white rounded-2xl'>
-                      {/* <span className='px-2 py-1  text-blue-600 font-inter font-medium inline-block hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500'> */}
-                      <span className='px-2 py-1 text-blue-600 font-inter font-medium inline-block'>Explore</span>
+                      <span className='px-2 py-1 text-gray-600 font-inter font-medium inline-block cursor-default'>
+                        Unavailable
+                      </span>
                     </div>
-                  </Link>
+                  </span>
 
                   <div className='flex flex-col gap-5 items-center justify-center w-full min-h-[200px]'>
                     <span
@@ -101,7 +101,7 @@ const Domestic = async () => {
                   </div>
                   <div>
                     <span className='text-gray-600 font-semibold'>
-                      {subject.courses?.length ?? 0} {subject.courses?.length != 1 ? 'courses' : 'course'}{' '}
+                      {subject.courses?.length ?? 0} {subject.courses?.length != 1 ? 'courses' : 'course'}
                     </span>
                   </div>
                 </div>
@@ -114,4 +114,4 @@ const Domestic = async () => {
   );
 };
 
-export default Domestic;
+export default International;

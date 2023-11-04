@@ -26,9 +26,8 @@ const ScrollHeader = ({
   }, []);
 
   useEffect(() => {
-    setIsCollapsed(scrollPosition > 0);
+    setIsCollapsed(scrollPosition > 50);
   }, [scrollPosition]);
-
   return (
     <div
       className={classNames(

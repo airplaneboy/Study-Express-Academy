@@ -19,6 +19,11 @@ export const getSubjects = async () =>
     groq`*[_type =='subjects']| order(title asc){courses[]->{title}, title, 'slug':slug.current,_id, description, animatedIcon, 'icon':icon.asset->url}`
   );
 
+export const getInternationalSubjects = async () =>
+  await client(
+    groq`*[_type =='internationalSubjects']| order(title asc){courses[]->{title}, title, 'slug':slug.current,_id, description, animatedIcon, 'icon':icon.asset->url}`
+  );
+
 //#endregion
 
 //#region Courses
