@@ -4,7 +4,8 @@ import NavbarContent from './NavbarContent';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import React from 'react';
-import { getSubjectsAndCourses } from '@/sanity/sanity-utils';
+import { getInternationalSubjects, getSubjectsAndCourses, getCourses } from '@/sanity/sanity-utils';
+import { getSubjects } from '@/sanity/sanity-utils';
 
 const Navbar = async () => {
   let user;
@@ -25,6 +26,8 @@ const Navbar = async () => {
   return (
     <NavbarContent
       coursesData={await getSubjectsAndCourses()}
+      courses={await getCourses()}
+      subjects={[...(await getSubjects()), ...(await getInternationalSubjects())]}
       userData={user || { error: 'not-logged-in' }}></NavbarContent>
   );
 };

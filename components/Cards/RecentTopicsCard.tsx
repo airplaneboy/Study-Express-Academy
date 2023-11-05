@@ -9,9 +9,9 @@ const RecentTopicsCard = async () => {
   return (
     <>
       <div className='sm:px-6'>
-        <h1 className='mb-7 max-sm:text-center sm:mb-10 text-2xl lg:text-4xl font-extrabold text-gray-700 font-inter'>
+        <span className='mb-7 max-sm:text-center sm:mb-10 text-2xl lg:text-4xl font-extrabold text-gray-700 font-inter'>
           Recent Courses
-        </h1>
+        </span>
         <div className='grid lg:grid-cols-2 gap-10'>
           {recentCourses.map(
             (course: {
@@ -63,11 +63,11 @@ const RecentTopicsCard = async () => {
                                     width={36}
                                     height={36}
                                   />
-                                  <h1 className=' max-h-6 w-full text-gray-600 absolute truncate pl-12'>
+                                  <span className=' max-h-6 w-full text-gray-600 absolute truncate pl-12'>
                                     {unit?.title}
-                                  </h1>
+                                  </span>
                                 </div>
-                                <h1 className='text-gray-400'>100%</h1>
+                                <span className='text-gray-400'>100%</span>
                               </Link>
                             </li>
                           );

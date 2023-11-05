@@ -24,9 +24,13 @@ function classNames(...classes: any) {
 function NavbarContent({
   coursesData,
   userData,
+  subjects: subject,
+  courses,
 }: {
   coursesData: { [key: string]: any };
   userData: { [key: string]: any };
+  subjects: any[];
+  courses: any[];
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -71,7 +75,7 @@ function NavbarContent({
           {({ open }) => (
             <>
               <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-full items-center '>
-                <Search />
+                <Search searchList={subject} otherLists={courses} options={{ keys: ['title'] }} />
                 <div className='absolute_center'>
                   <ClickableLogo />
                 </div>
@@ -97,7 +101,7 @@ function NavbarContent({
               <Popover.Panel as='nav' className='sm:hidden mt-3' aria-label='Global'>
                 {isLoggedIn ? (
                   <div className='border-t border-gray-200 pt-4 pb-3 '>
-                    <Suspense fallback={<h1>Fetching user&apos;s data...</h1>}>
+                    <Suspense fallback={<span>Fetching user&apos;s data...</span>}>
                       <UserProfile
                         email={userData?.email}
                         image={userData?.profile?.image}

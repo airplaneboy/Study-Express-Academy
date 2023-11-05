@@ -7,18 +7,18 @@ const ProfileItem = ({
 }) => {
   return (
     <div className='w-full border-y max-sm:pt-5 sm:border-2 sm:rounded-2xl p-2 sm:p-5  mb-5 capitalize h-max flex-1'>
-      <h2 className='text-lg font-bold mb-4 text-gray-700 '>{title}</h2>
+      <span className='text-lg font-bold mb-4 text-gray-700 '>{title}</span>
       <ul className=''>
         {stats.map((stat) => {
           return (
             <li key={stat.id ? stat.id : stat.property} className='flex justify-between items-center mb-1 shrink py-2'>
               <h5 className='text-gray-700 capitalize'>{stat.property}:</h5>
-              <p
+              <span
                 className={`text-gray-500 lg:pl-5 truncate max-w-[10rem] sm:max-w-[15rem] lg:max-w-lg ${
                   stat?.style && stat?.style
                 }`}>
                 {stat.value}
-              </p>
+              </span>
             </li>
           );
         })}

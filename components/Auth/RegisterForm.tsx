@@ -177,15 +177,15 @@ const RegisterForm = () => {
         </div>
 
         <div className='space-y-3 mt-10'>
-          <div className='flex items-center justify-between  max-sm:flex-col gap-3'>
+          {/* <div className='flex items-center justify-between  max-sm:flex-col gap-3'>
             <RememberMe />
 
             <div className='text-sm'>
-              <Link href='/login' className='font-medium text-indigo-600 hover:text-indigo-500'>
+              <Link href='/login' className='font-medium text-blue-600 hover:text-blue-500'>
                 already have an account?
               </Link>
             </div>
-          </div>
+          </div> */}
           <Button value='Create Account' />
         </div>
       </form>

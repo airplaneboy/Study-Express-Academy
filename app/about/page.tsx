@@ -210,13 +210,13 @@ export default function About() {
         <div className='bg-warm-gray-50'>
           <div className='py-24 lg:py-32'>
             <div className='relative z-10 max-w-7xl mx-auto pl-4 pr-8 sm:px-6 lg:px-8'>
-              <h1 className='text-4xl font-extrabold tracking-tight text-warm-gray-900 sm:text-5xl lg:text-6xl'>
+              <span className='text-4xl font-extrabold tracking-tight text-warm-gray-900 sm:text-5xl lg:text-6xl'>
                 Get in touch
-              </h1>
-              <p className='mt-6 text-xl text-warm-gray-500 max-w-3xl'>
+              </span>
+              <span className='mt-6 text-xl text-warm-gray-500 max-w-3xl'>
                 Vel nunc non ut montes, viverra tempor. Proin lectus nibh phasellus morbi non morbi. In elementum urna
                 ut volutpat. Sagittis et vel et fermentum amet consequat.
-              </p>
+              </span>
             </div>
           </div>
         </div>
@@ -249,9 +249,9 @@ export default function About() {
           </div>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
             <div className='relative bg-white shadow-xl'>
-              <h2 id='contact-heading' className='sr-only'>
+              <span id='contact-heading' className='sr-only'>
                 Contact us
-              </h2>
+              </span>
 
               <div className='grid grid-cols-1 lg:grid-cols-3'>
                 {/* Contact information */}
@@ -345,11 +345,11 @@ export default function About() {
                       </defs>
                     </svg>
                   </div>
-                  <h3 className='text-lg font-medium text-white'>Contact information</h3>
-                  <p className='mt-6 text-base text-teal-50 max-w-3xl'>
+                  <span className='text-lg font-medium text-white'>Contact information</span>
+                  <span className='mt-6 text-base text-teal-50 max-w-3xl'>
                     Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor
                     lacus arcu.
-                  </p>
+                  </span>
                   <dl className='mt-8 space-y-6'>
                     <dt>
                       <span className='sr-only'>Phone number</span>
@@ -404,7 +404,7 @@ export default function About() {
 
                 {/* Contact form */}
                 <div className='py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12'>
-                  <h3 className='text-lg font-medium text-warm-gray-900'>Send us a message</h3>
+                  <span className='text-lg font-medium text-warm-gray-900'>Send us a message</span>
                   <form action='#' method='POST' className='mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8'>
                     <div>
                       <label htmlFor='first-name' className='block text-sm font-medium text-warm-gray-900'>
@@ -518,24 +518,24 @@ export default function About() {
         {/* Contact grid */}
         <section aria-labelledby='offices-heading'>
           <div className='max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8'>
-            <h2 id='offices-heading' className='text-3xl font-extrabold text-warm-gray-900'>
+            <span id='offices-heading' className='text-3xl font-extrabold text-warm-gray-900'>
               Our offices
-            </h2>
-            <p className='mt-6 text-lg text-warm-gray-500 max-w-3xl'>
+            </span>
+            <span className='mt-6 text-lg text-warm-gray-500 max-w-3xl'>
               Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus
               dui laoreet diam sed lacus, fames.
-            </p>
+            </span>
             <div className='mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4'>
               {offices.map((office) => (
                 <div key={office.id}>
-                  <h3 className='text-lg font-medium text-warm-gray-900'>{office.city}</h3>
-                  <p className='mt-2 text-base text-warm-gray-500'>
+                  <span className='text-lg font-medium text-warm-gray-900'>{office.city}</span>
+                  <span className='mt-2 text-base text-warm-gray-500'>
                     {office.address.map((line) => (
                       <span key={line} className='block'>
                         {line}
                       </span>
                     ))}
-                  </p>
+                  </span>
                 </div>
               ))}
             </div>
@@ -544,9 +544,9 @@ export default function About() {
       </main>
 
       <footer className='bg-warm-gray-900' aria-labelledby='footer-heading'>
-        <h2 id='footer-heading' className='sr-only'>
+        <span id='footer-heading' className='sr-only'>
           Footer
-        </h2>
+        </span>
         <div className='max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8'>
           <div className='xl:grid xl:grid-cols-3 xl:gap-8'>
             <div className='space-y-8 xl:col-span-1'>
@@ -557,9 +557,9 @@ export default function About() {
                 src='https://tailwindui.com/Image/logos/workflow-mark.svg?color=warmGray&shade=400'
                 alt='Company name'
               />
-              <p className='text-warm-gray-400 text-base'>
+              <span className='text-warm-gray-400 text-base'>
                 Making the world a better place through constructing elegant hierarchies.
-              </p>
+              </span>
               <div className='flex space-x-6'>
                 {footerNavigation.social.map((item) => (
                   <a key={item.name} href={item.href} className='text-warm-gray-400 hover:text-warm-gray-300'>
@@ -572,7 +572,7 @@ export default function About() {
             <div className='mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2'>
               <div className='md:grid md:grid-cols-2 md:gap-8'>
                 <div>
-                  <h3 className='text-sm font-semibold text-warm-gray-200 tracking-wider uppercase'>Solutions</h3>
+                  <span className='text-sm font-semibold text-warm-gray-200 tracking-wider uppercase'>Solutions</span>
                   <ul role='list' className='mt-4 space-y-4'>
                     {footerNavigation.solutions.map((item) => (
                       <li key={item.name}>
@@ -584,7 +584,7 @@ export default function About() {
                   </ul>
                 </div>
                 <div className='mt-12 md:mt-0'>
-                  <h3 className='text-sm font-semibold text-warm-gray-200 tracking-wider uppercase'>Support</h3>
+                  <span className='text-sm font-semibold text-warm-gray-200 tracking-wider uppercase'>Support</span>
                   <ul role='list' className='mt-4 space-y-4'>
                     {footerNavigation.support.map((item) => (
                       <li key={item.name}>
@@ -598,7 +598,7 @@ export default function About() {
               </div>
               <div className='md:grid md:grid-cols-2 md:gap-8'>
                 <div>
-                  <h3 className='text-sm font-semibold text-warm-gray-200 tracking-wider uppercase'>Company</h3>
+                  <span className='text-sm font-semibold text-warm-gray-200 tracking-wider uppercase'>Company</span>
                   <ul role='list' className='mt-4 space-y-4'>
                     {footerNavigation.company.map((item) => (
                       <li key={item.name}>
@@ -610,7 +610,7 @@ export default function About() {
                   </ul>
                 </div>
                 <div className='mt-12 md:mt-0'>
-                  <h3 className='text-sm font-semibold text-warm-gray-200 tracking-wider uppercase'>Legal</h3>
+                  <span className='text-sm font-semibold text-warm-gray-200 tracking-wider uppercase'>Legal</span>
                   <ul role='list' className='mt-4 space-y-4'>
                     {footerNavigation.legal.map((item) => (
                       <li key={item.name}>
@@ -625,9 +625,9 @@ export default function About() {
             </div>
           </div>
           <div className='mt-12 border-t border-warm-gray-700 pt-8'>
-            <p className='text-base text-warm-gray-400 xl:text-center'>
+            <span className='text-base text-warm-gray-400 xl:text-center'>
               &copy; 2020 Workflow, Inc. All rights reserved.
-            </p>
+            </span>
           </div>
         </div>
       </footer>

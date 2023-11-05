@@ -99,8 +99,8 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
         <div className='lg:grid lg:grid-cols-3 lg:gap-6'>
           <div className='md:col-span-1'>
             <div className='px-4 sm:px-0'>
-              <h3 className='text-lg font-medium leading-6 text-gray-900'>Personal Information</h3>
-              <p className='mt-1 text-sm text-gray-600'>Ensure your email, and phone number are accurate.</p>
+              <span className='text-lg font-medium leading-6 text-gray-900'>Personal Information</span>
+              <span className='mt-1 text-sm text-gray-600'>Ensure your email, and phone number are accurate.</span>
             </div>
           </div>
 
@@ -122,7 +122,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         id='first-name'
                         placeholder='Your given name'
                         autoComplete='given-name'
-                        className='mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                        className='mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
                       />
                     </div>
 
@@ -139,7 +139,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         id='last-name'
                         placeholder='Your surname or family name'
                         autoComplete='family-name'
-                        className='mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                        className='mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
                       />
                     </div>
                     <div className='col-span-6 sm:col-span-3 lg:col-span-3'>
@@ -156,7 +156,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         placeholder='A nickname (Unavailable)'
                         id='username'
                         autoComplete='off'
-                        className='disabled mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                        className='disabled mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
                       />
                     </div>
                     <div className='col-span-6 sm:col-span-3 lg:col-span-3'>
@@ -179,7 +179,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         name='email-address'
                         id='email-address'
                         autoComplete='email'
-                        className='mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                        className='mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
                       />
                     </div>
 
@@ -188,7 +188,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         Gender
                       </label>
                       <select
-                        className='mt-1 block w-full rounded-2xl border-2 border-gray-300 bg-white px-3 text-start focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
+                        className='mt-1 block w-full rounded-2xl border-2 border-gray-300 bg-white px-3 text-start focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm'
                         value={gender || ''}
                         id='gender'
                         onChange={(e) => setGender(e.target.value)}>
@@ -217,7 +217,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                 <div className='rounded-b-2xl border-x-2 border-b-2 bg-gray-200 px-4 py-3 text-right sm:px-6'>
                   <button
                     type='submit'
-                    className='inline-flex justify-center rounded-2xl border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
+                    className='inline-flex justify-center rounded-2xl border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'>
                     <CgSpinnerTwo className={`${loading ? 'animate-spin block' : 'hidden'}  h-5 w-5 mr-3  `} />
                     Save
                   </button>

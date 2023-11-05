@@ -30,7 +30,7 @@ export default function ComboBox({ comboBoxArray }: { comboBoxArray: any[] }) {
   return (
     <Combobox value={selected} onChange={setSelected}>
       <div className='relative mt-1' id='country'>
-        <div className='text-start mt-1 block w-full px-3 border-2 border-gray-300 bg-white rounded-2xl focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'>
+        <div className='text-start mt-1 block w-full px-3 border-2 border-gray-300 bg-white rounded-2xl focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm'>
           <div className='flex items-center gap-2 '>
             {selected && (
               <Image
@@ -70,7 +70,7 @@ export default function ComboBox({ comboBoxArray }: { comboBoxArray: any[] }) {
                   key={country.id}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-indigo-500 text-white' : 'text-gray-900'
+                      active ? 'bg-blue-500 text-white' : 'text-gray-900'
                     }`
                   }
                   value={country}>
@@ -91,7 +91,7 @@ export default function ComboBox({ comboBoxArray }: { comboBoxArray: any[] }) {
                       {selected ? (
                         <span
                           className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                            active ? 'text-white' : 'text-indigo-600'
+                            active ? 'text-white' : 'text-blue-600'
                           }`}>
                           <HiCheck className='h-5 w-5' aria-hidden='true' />
                         </span>
