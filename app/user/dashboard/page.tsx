@@ -16,7 +16,6 @@ const Dashboard = async () => {
     const numberOfCompletedCourses = user?.completedCourses.length;
     let percentageOfCompletedCourses = Math.round((numberOfCompletedCourses / numberOfCourses) * 100);
     isNaN(percentageOfCompletedCourses) && (percentageOfCompletedCourses = 0);
-    console.log(0 / 0);
     const numberOfAchievements = user?.achievements.length;
 
     const userStats = { percentageOfCompletedCourses, numberOfAchievements, numberOfCourses };

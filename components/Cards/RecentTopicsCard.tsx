@@ -9,10 +9,10 @@ const RecentTopicsCard = async () => {
   return (
     <>
       <div className='sm:px-6'>
-        <span className='mb-7 max-sm:text-center sm:mb-10 text-2xl lg:text-4xl font-extrabold text-gray-700 font-inter'>
-          Recent Courses
+        <span className='block mb-7 max-sm:text-center sm:mb-10 text-2xl lg:text-4xl font-extrabold text-gray-800 font-inter'>
+          Courses
         </span>
-        <div className='grid lg:grid-cols-2 gap-10'>
+        <ul className='columns-1 lg:columns-2 gap-10'>
           {recentCourses.map(
             (course: {
               title: string;
@@ -23,8 +23,8 @@ const RecentTopicsCard = async () => {
               units: { title: string; _id: string; icon: string; slug: string }[];
             }) => {
               return (
-                <div key={course?._id}>
-                  <div className='h-16 rounded-t-3xl p-6 border-2 bg-gray-100 w-full flex justify-between items-center'>
+                <li key={course?._id} className='inline-block w-full mb-4 lg:mb-8'>
+                  <div className=' h-16 rounded-t-3xl p-6 border-2 bg-gray-100 w-full flex justify-between items-center'>
                     <div className='flex items-center gap-5 max-sm:gap-3 relative w-full'>
                       <Image
                         style={{ width: '40px', height: '40px' }}
@@ -36,7 +36,7 @@ const RecentTopicsCard = async () => {
                       />
                       <Link
                         href={`/${course?.subject?.slug}/${course?.slug}` || 'not-found'}
-                        className='text-gray-600 font-bold truncate absolute w-full pl-14 max-h-6 hover:underline '>
+                        className='text-blue-600 font-bold truncate absolute w-full pl-14 max-h-6 hover:underline '>
                         {course?.title}
                       </Link>
                     </div>
@@ -75,11 +75,11 @@ const RecentTopicsCard = async () => {
                       </ul>
                     </div>
                   </div>
-                </div>
+                </li>
               );
             }
           )}
-        </div>
+        </ul>
       </div>
     </>
   );
