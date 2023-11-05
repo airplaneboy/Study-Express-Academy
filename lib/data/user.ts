@@ -1,5 +1,6 @@
 import { fetchGET, fetchPATCH } from '@/utils/fetchOption';
-
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 // export const dynamic = 'force-dynamic';
 
 //#region Use API
@@ -16,4 +17,14 @@ export const updateUser = async ({
 
 export default getUser;
 
+//#endregion
+
+//#region Get Current User
+export const getCurrentUser = async () => {
+  try {
+    return await getUser({ userId: ((await getServerSession(authOptions))?.user as any)?.id });
+  } catch (error) {
+    console.log(error);
+  }
+};
 //#endregion

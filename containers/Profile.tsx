@@ -7,17 +7,20 @@ import { useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';
 import { CgSpinnerTwo } from 'react-icons/cg';
 
-const Profile = () => {
+const Profile = ({ user }: { user: { profile: { image: string; bio: string } } }) => {
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState<any>('');
-  const [bio, setBio] = useState<any>();
+  const [image, setImage] = useState({ source: user?.profile.image, alt: '' } || '');
+  const [bio, setBio] = useState(user?.profile.bio);
   const { data: session } = useSession();
 
   const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    const userProfileUpdate = { image: image == '' ? undefined : image.source, bio: bio == '' ? undefined : bio };
+    const userProfileUpdate = {
+      image: image.source == '' ? undefined : image.source,
+      bio,
+    };
 
     //Patch request
     try {
@@ -46,7 +49,7 @@ const Profile = () => {
           <div className='md:col-span-1'>
             <div className='px-4 sm:px-0'>
               <span className='text-lg font-medium leading-6 text-gray-900'>Profile</span>
-              <span className='mt-1 text-sm text-gray-600'>This information will be displayed publicly.</span>
+              <span className='mt-1 text-sm text-gray-600 block'>This information will be displayed publicly.</span>
             </div>
           </div>
           <div className='mt-5 md:mt-0 md:col-span-2 '>
@@ -88,9 +91,9 @@ const Profile = () => {
                         name='about'
                         maxLength={250}
                         rows={3}
-                        className='min-h-[4rem] max-h-96 focus:ring-blue-500 focus:border-blue-500 mt-1 block w-full sm:text-sm border-2 border-gray-300 rounded-2xl placeholder-gray-600'
+                        className=' min-h-[4rem] max-h-96 focus:ring-blue-500 focus:border-blue-500 mt-1 block w-full sm:text-base text-gray-700 border-2 border-gray-300 rounded-2xl placeholder-gray-600'
                         placeholder='What would you like everyone to know about you?'
-                        defaultValue={''}
+                        // defaultValue={''}
                       />
                     </div>
                   </div>

@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from '@/public/assets/logo.svg';
 
 const ClickableLogo = () => {
   return (
@@ -10,7 +9,7 @@ const ClickableLogo = () => {
           <Image
             className='block h-10 w-auto max-md:hidden'
             src='/assets/logo/logo-alt.svg'
-            width={40}
+            width={305}
             height={40}
             alt='logo'
             priority

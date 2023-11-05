@@ -8,6 +8,7 @@ import { updateProfile } from '@/lib/data/userProfile';
 import { updateUser } from '@/lib/data/user';
 import { useSession } from 'next-auth/react';
 import { CgSpinnerTwo } from 'react-icons/cg';
+import { format } from 'date-fns';
 
 const countryState: { country: any; setCountry: any } = {
   country: null,
@@ -15,16 +16,36 @@ const countryState: { country: any; setCountry: any } = {
 };
 export const PersonalInformationContext = React.createContext(countryState);
 
-const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.ReactNode }) => {
+const PersonalInformation = ({
+  countryComboBox,
+  user,
+}: {
+  countryComboBox?: React.ReactNode;
+  user: {
+    username: string;
+    email: string;
+    profile: {
+      firstName: string;
+      lastName: string;
+      gender: string;
+      country: string;
+      phone: { nationalNumber: string; number: string };
+      birthday: Date;
+    };
+  };
+}) => {
   const [loading, setLoading] = useState(false);
-  const [gender, setGender] = useState<any>();
-  const [firstName, setFirstName] = useState<any>();
-  const [lastName, setLastName] = useState<any>();
-  const [username, setUsername] = useState<any>();
-  const [email, setEmail] = useState<any>();
-  const [phoneNumber, setPhoneNumber] = useState<any>('');
-  const [birthday, setBirthday] = useState<any>();
-  const [country, setCountry] = useState<any>();
+  const [gender, setGender] = useState<any>(user?.profile?.gender);
+  const [firstName, setFirstName] = useState<any>(user?.profile?.firstName);
+  const [lastName, setLastName] = useState<any>(user?.profile?.lastName);
+  const [username, setUsername] = useState(user?.username);
+  const [email, setEmail] = useState<any>(user?.email);
+  const [phoneNumber, setPhoneNumber] = useState<any>(user?.profile?.phone.number || '');
+  const [birthday, setBirthday] = useState<any>(() => {
+    const date = format(new Date(user?.profile?.birthday), 'yyyy-MM-dd');
+    return { startDate: date, endDate: date };
+  });
+  const [country, setCountry] = useState<any>(user?.profile?.country);
   const { data: session } = useSession();
 
   const validateNumber = () => {
@@ -100,7 +121,9 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
           <div className='md:col-span-1'>
             <div className='px-4 sm:px-0'>
               <span className='text-lg font-medium leading-6 text-gray-900'>Personal Information</span>
-              <span className='mt-1 text-sm text-gray-600'>Ensure your email, and phone number are accurate.</span>
+              <span className='mt-1 text-sm text-gray-600 block'>
+                Ensure your email, and phone number are accurate.
+              </span>
             </div>
           </div>
 
@@ -122,7 +145,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         id='first-name'
                         placeholder='Your given name'
                         autoComplete='given-name'
-                        className='mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
+                        className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
                       />
                     </div>
 
@@ -139,7 +162,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         id='last-name'
                         placeholder='Your surname or family name'
                         autoComplete='family-name'
-                        className='mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
+                        className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
                       />
                     </div>
                     <div className='col-span-6 sm:col-span-3 lg:col-span-3'>
@@ -156,7 +179,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         placeholder='A nickname (Unavailable)'
                         id='username'
                         autoComplete='off'
-                        className='disabled mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
+                        className='text-gray-700 disabled mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
                       />
                     </div>
                     <div className='col-span-6 sm:col-span-3 lg:col-span-3'>
@@ -179,7 +202,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         name='email-address'
                         id='email-address'
                         autoComplete='email'
-                        className='mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
+                        className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
                       />
                     </div>
 
@@ -188,7 +211,7 @@ const PersonalInformation = ({ countryComboBox }: { countryComboBox?: React.Reac
                         Gender
                       </label>
                       <select
-                        className='mt-1 block w-full rounded-2xl border-2 border-gray-300 bg-white px-3 text-start focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm'
+                        className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 bg-white px-3 text-start focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm'
                         value={gender || ''}
                         id='gender'
                         onChange={(e) => setGender(e.target.value)}>

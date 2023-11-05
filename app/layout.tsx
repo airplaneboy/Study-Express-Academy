@@ -5,9 +5,25 @@ import Providers from '@/context/Provider';
 // import Header from '@/components/Header';
 import ToasterContext from '@/context/Toaster';
 
-const nunito = Nunito({ weight: ['500', '700'], subsets: ['latin'], variable: '--font-nunito', style: 'normal' });
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', style: 'normal' });
-const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-PlusJakartaSans', style: 'normal' });
+const nunito = Nunito({
+  weight: ['500', '700'],
+  subsets: ['latin'],
+  variable: '--font-nunito',
+  style: 'normal',
+  display: 'swap',
+});
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  style: 'normal',
+  display: 'swap',
+});
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-PlusJakartaSans',
+  style: 'normal',
+  display: 'swap',
+});
 // const josefinSlab = Josefin_Slab({ subsets: ['latin'], variable: '--font-josefinSlab' });
 // const majorMonoDisplay = Major_Mono_Display({
 //   weight: ['400'],

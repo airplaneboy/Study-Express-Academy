@@ -5,12 +5,25 @@ import toast from 'react-hot-toast';
 import { useSession } from 'next-auth/react';
 import { CgSpinnerTwo } from 'react-icons/cg';
 
-const Notification = () => {
+const Notification = ({
+  user,
+}: {
+  user: {
+    notificationSettings: {
+      commentNotification: boolean;
+      authenticationNotification: boolean;
+      offersNotification: boolean;
+      pushNotification: string;
+    };
+  };
+}) => {
   const [loading, setLoading] = useState(false);
-  const [commentNotification, setCommentNotification] = useState(true);
-  const [authenticationNotification, setAuthenticationNotification] = useState(true);
-  const [offersNotification, setOffersNotification] = useState(true);
-  const [pushNotification, setPushNotification] = useState('');
+  const [commentNotification, setCommentNotification] = useState(user.notificationSettings.commentNotification);
+  const [authenticationNotification, setAuthenticationNotification] = useState(
+    user.notificationSettings.authenticationNotification
+  );
+  const [offersNotification, setOffersNotification] = useState(user.notificationSettings.offersNotification);
+  const [pushNotification, setPushNotification] = useState(user.notificationSettings.pushNotification);
   const { data: session } = useSession();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -52,7 +65,7 @@ const Notification = () => {
           <div className='md:col-span-1'>
             <div className='px-4 sm:px-0'>
               <span className='text-lg font-medium leading-6 text-gray-900'>Notifications</span>
-              <span className='mt-1 text-sm text-gray-600'>
+              <span className='mt-1 text-sm text-gray-600 block'>
                 Decide which communications you&apos;d like to receive.
               </span>
             </div>

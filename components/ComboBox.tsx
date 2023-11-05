@@ -5,10 +5,10 @@ import { HiCheck, HiChevronUpDown } from 'react-icons/hi2';
 import Image from 'next/image';
 import { PersonalInformationContext } from '@/containers/PersonalInformation';
 
-export default function ComboBox({ comboBoxArray }: { comboBoxArray: any[] }) {
+export default function ComboBox({ comboBoxArray, initialSelected }: { comboBoxArray: any[]; initialSelected?: {} }) {
   const [canChangeState, setCanChangeState] = useState(false);
   const countries = comboBoxArray;
-  const [selected, setSelected] = useState(countries[0]);
+  const [selected, setSelected] = useState(initialSelected == undefined ? countries[0] : initialSelected);
   const [query, setQuery] = useState('');
 
   const context = useContext(PersonalInformationContext);

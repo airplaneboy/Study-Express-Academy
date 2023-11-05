@@ -10,13 +10,6 @@ import { getSubjects } from '@/sanity/sanity-utils';
 const Navbar = async () => {
   let user;
 
-  // let session: any;
-  // try {
-  //   session = await getServerSession(authOptions);
-  //   console.log(session);
-  // } catch (error) {
-  //   // console.log(error);
-  // }
   try {
     user = await getUser({ userId: ((await getServerSession(authOptions))?.user as any)?.id });
   } catch (error) {

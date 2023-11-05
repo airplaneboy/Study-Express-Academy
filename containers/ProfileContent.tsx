@@ -58,7 +58,10 @@ const ProfileContent = async () => {
     },
     {
       property: 'Birthday',
-      value: format(new Date(user?.profile?.birthday), 'EEEE, dd MMMM yyyy'),
+      value:
+        user?.profile?.birthday == undefined
+          ? 'not set'
+          : format(new Date(user?.profile?.birthday), 'EEEE, dd MMMM yyyy'),
     },
     {
       property: 'Age',
