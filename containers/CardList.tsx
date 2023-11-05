@@ -56,7 +56,7 @@ const CardList = ({
               {sidebarArray?.map((sidebarItems) => (
                 <li
                   key={sidebarItems?._id}
-                  className=' px-4 py-3 sm:px-0 text-md text-gray-500 hover:text-indigo-500 focus:text-indigo-600 no_wrap'>
+                  className=' px-4 py-3 sm:px-0 text-md text-gray-500 hover:text-blue-500 focus:text-blue-600 no_wrap'>
                   <Link
                     to={sidebarItems?.title}
                     spy={true}

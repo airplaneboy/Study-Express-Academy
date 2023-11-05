@@ -59,7 +59,7 @@ export function Gallery({ selected, setSelected }: { selected: any; setSelected?
             value={image}
             className={({ active, checked }) =>
               `${active ? 'ring-2 ring-white ring-opacity-60 ring-offset-2 ring-offset-sky-300' : ''}
-                  ${checked ? 'bg-indigo-900 bg-opacity-20 text-white' : 'bg-white'}
+                  ${checked ? 'bg-blue-900 bg-opacity-20 text-white' : 'bg-white'}
                     relative flex cursor-pointer rounded-2xl overflow-hidden focus:outline-none `
             }>
             {({ active, checked }) => (
@@ -123,7 +123,7 @@ export default function AvatarSelectModal({ value, setValue }: { value?: any; se
       <button
         type='button'
         onClick={openModal}
-        className=' bg-white py-2 px-3 border-2 border-gray-300 rounded-2xl  text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+        className=' bg-white py-2 px-3 border-2 border-gray-300 rounded-2xl  text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'>
         Change Avatar
       </button>
 

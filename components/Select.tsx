@@ -19,7 +19,7 @@ export default function Select({ selectOptions }: { selectOptions?: any[] }) {
     <div className=''>
       <Listbox value={selected} onChange={setSelected}>
         <div className='relative mt-1'>
-          <Listbox.Button className='text-start mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-2xl focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'>
+          <Listbox.Button className='text-start mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-2xl focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm'>
             <span className='block truncate'>{selected.name}</span>
             <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
               <HiChevronUpDown className='h-5 w-5 text-gray-400' aria-hidden='true' />

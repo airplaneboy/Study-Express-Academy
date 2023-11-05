@@ -11,7 +11,7 @@ const Courses = ({ courses, classNames }: { courses: any; classNames: Function }
       <Menu as='div' className='flex-shrink-0  max-sm:hidden'>
         <Menu.Button
           type='button'
-          className='max-sm:hidden relative inline-flex items-center px-4 py-2 border border-transparent  text-md font-bold rounded-md text-indigo-700 bg-transparent hover:bg-indigo-200/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+          className='max-sm:hidden relative inline-flex items-center px-4 py-2 border border-transparent  text-md font-bold rounded-md text-blue-700 bg-transparent hover:bg-blue-200/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'>
           {({ open }) => (
             <>
               <span className='sr-only'>Open courses menu</span>

@@ -65,7 +65,7 @@ const LessonSidebar = ({
                   setNextSlug(getNextSlug(index));
                 }}
                 key={content?._id}
-                className='first:mt-20  text-md text-gray-500 hover:text-indigo-500 focus:text-indigo-600 no_wrap   mb-3 truncate'>
+                className='first:mt-20  text-md text-gray-500 hover:text-blue-500 focus:text-blue-600 no_wrap   mb-3 truncate'>
                 <Link
                   href={`/${params?.subject}/${params?.course}/${params?.unit}/${params?.lesson}/${content?.slug}`}
                   className={

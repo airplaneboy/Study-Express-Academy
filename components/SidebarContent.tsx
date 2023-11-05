@@ -70,7 +70,7 @@ export default function SidebarContent({ children }: { children: React.ReactNode
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className=' flex flex-col  inset-y-0  shadow-indigo-300  w-64 h-[calc(100vh-128px)] sticky top-16 max-md:hidden'>
+        <div className=' flex flex-col  inset-y-0  shadow-blue-300  w-64 h-[calc(100vh-128px)] sticky top-16 max-md:hidden'>
           <SidebarItems classNames={classNames} navigation={sidebarData} />
         </div>
 
@@ -80,7 +80,7 @@ export default function SidebarContent({ children }: { children: React.ReactNode
           <div className='sticky top-0 w-full md:hidden p-1 px-6  shadow-md border-t-2 backdrop-blur-md z-40'>
             <button
               type='button'
-              className='p-2 w-max -ml-0.5 -mt-0.5 h-12 inline-flex items-center justify-center rounded-md text-indigo-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'
+              className='p-2 w-max -ml-0.5 -mt-0.5 h-12 inline-flex items-center justify-center rounded-md text-blue-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500'
               onClick={() => setSidebarOpen(true)}>
               <span className='sr-only'>Open sidebar</span>
               <span>Sidebar</span>
