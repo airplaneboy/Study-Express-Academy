@@ -40,9 +40,9 @@ const PersonalInformation = ({
   const [lastName, setLastName] = useState<any>(user?.profile?.lastName);
   const [username, setUsername] = useState(user?.username);
   const [email, setEmail] = useState<any>(user?.email);
-  const [phoneNumber, setPhoneNumber] = useState<any>(user?.profile?.phone.number || '');
+  const [phoneNumber, setPhoneNumber] = useState<any>(user?.profile?.phone?.number || '');
   const [birthday, setBirthday] = useState<any>(() => {
-    const date = format(new Date(user?.profile?.birthday), 'yyyy-MM-dd');
+    const date = user?.profile?.birthday ? format(new Date(user?.profile?.birthday), 'yyyy-MM-dd') : undefined;
     return { startDate: date, endDate: date };
   });
   const [country, setCountry] = useState<any>(user?.profile?.country);

@@ -116,87 +116,95 @@ const UserSchema = new mongoose.Schema(
     contentProgress: {
       videos: [
         {
-          id: { type: String, required: true, trim: true, unique: true },
+          id: { type: String, trim: true, unique: true },
           durationWatched: { type: Number, trim: true, default: 0, required: true },
           numberOfTimesWatched: { type: Number, default: 0 },
-          timestamps: true,
+          createdAt: { type: Date, default: Date.now },
         },
       ],
       articles: [
         {
-          id: { type: String, required: true, trim: true, unique: true },
+          id: { type: String, trim: true, unique: true },
           numberOfTimesRead: { type: Number, default: 0 },
-          timestamps: true,
+          createdAt: { type: Date, default: Date.now },
         },
       ],
       tests: [
         {
-          id: { type: String, required: true, trim: true, unique: true },
+          id: { type: String, trim: true, unique: true },
           numberOfTimesCorrect: { type: Number, trim: true, default: 0, required: true },
           numberOfTimesTaken: { type: Number, default: 0 },
-          timestamps: true,
+          createdAt: { type: Date, default: Date.now },
         },
       ],
     },
 
     currentProgress: {
       subject: {
-        id: { type: String, required: true, unique: true },
+        id: { type: String, unique: true },
         data: mongoose.Schema.Types.Mixed,
-        timestamps: true,
+        createdAt: { type: Date, default: Date.now },
       },
       lesson: {
-        id: { type: String, required: true, unique: true },
+        id: { type: String, unique: true },
         data: mongoose.Schema.Types.Mixed,
-        timestamps: true,
+        createdAt: { type: Date, default: Date.now },
       },
       course: {
-        id: { type: String, required: true, unique: true },
+        id: { type: String, unique: true },
         data: mongoose.Schema.Types.Mixed,
-        timestamps: true,
+        createdAt: { type: Date, default: Date.now },
       },
-      unit: { id: { type: String, required: true, unique: true }, data: mongoose.Schema.Types.Mixed, timestamps: true },
+      unit: {
+        id: { type: String, unique: true },
+        data: mongoose.Schema.Types.Mixed,
+        createdAt: { type: Date, default: Date.now },
+      },
     },
 
     completedProgress: {
       subjects: [
         {
-          id: { type: String, required: true, unique: true },
+          id: { type: String, unique: true },
           data: mongoose.Schema.Types.Mixed,
-          timestamps: true,
+          createdAt: { type: Date, default: Date.now },
         },
       ],
       lessons: [
         {
-          id: { type: String, required: true, unique: true },
+          id: { type: String, unique: true },
           data: mongoose.Schema.Types.Mixed,
-          timestamps: true,
+          createdAt: { type: Date, default: Date.now },
         },
       ],
       courses: [
         {
-          id: { type: String, required: true, unique: true },
+          id: { type: String, unique: true },
           data: mongoose.Schema.Types.Mixed,
-          timestamps: true,
+          createdAt: { type: Date, default: Date.now },
         },
       ],
       units: [
-        { id: { type: String, required: true, unique: true }, data: mongoose.Schema.Types.Mixed, timestamps: true },
+        {
+          id: { type: String, unique: true },
+          data: mongoose.Schema.Types.Mixed,
+          createdAt: { type: Date, default: Date.now },
+        },
       ],
       achievements: [
         {
-          id: { type: String, required: true, unique: true },
+          id: { type: String, unique: true },
           data: mongoose.Schema.Types.Mixed,
-          timestamps: true,
+          createdAt: { type: Date, default: Date.now },
         },
       ],
     },
 
     selectedCourses: [
       {
-        id: { type: String, required: true, unique: true },
+        id: { type: String, unique: true },
         data: mongoose.Schema.Types.Mixed,
-        timestamps: true,
+        createdAt: { type: Date, default: Date.now },
       },
     ],
 

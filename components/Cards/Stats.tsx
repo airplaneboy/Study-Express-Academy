@@ -45,10 +45,10 @@ export default function Stats({ userStats }: { userStats: any }) {
             className={`flex items-center justify-center gap-2 flex-col relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-stats_shadow shadow-${item.color} rounded-lg overflow-hidden`}>
             <div className=' mb-2 flex gap-2 items-center '>
               <item.icon size={25} className={` ${item.imageColor}`} aria-hidden='true' />
-              <span className='text-md font-medium text-gray-500 truncate'>{item.name}</span>
+              <span className='block text-md font-medium text-gray-500 truncate'>{item.name}</span>
             </div>
             <span
-              className={`text-6xl font-extrabold font-plusJakartaSans text-gray-800 text_inset underline decoration-from-font ${item.color}`}>
+              className={`block text-6xl font-extrabold font-plusJakartaSans text-gray-800 text_inset underline decoration-from-font ${item.color}`}>
               {item.stat}
             </span>
           </div>

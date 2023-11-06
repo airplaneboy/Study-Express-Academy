@@ -10,7 +10,19 @@ export default async function Settings() {
 
   return (
     <>
-      <PersonalInformation user={user} countryComboBox={<ComboBoxContent initialSelected={user?.profile?.country} />} />
+      <PersonalInformation
+        user={user}
+        countryComboBox={
+          <ComboBoxContent
+            initialSelected={
+              user?.profile?.country || {
+                name: 'Select Country',
+                flag: { image: '/assets/icons8-expand-arrow-48.png' },
+              }
+            }
+          />
+        }
+      />
 
       <Separator />
 

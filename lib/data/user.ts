@@ -26,4 +26,9 @@ export const getCurrentUser = async () => {
     console.log(error);
   }
 };
+
+export const updateCurrentUser = async ({ data }: { data: { [key: string]: any } }) => {
+  const userId = ((await getServerSession(authOptions))?.user as any)?.id;
+  return await fetchPATCH({ data, path: `http://localhost:3000/api/v1/users/${userId}` });
+};
 //#endregion

@@ -5,8 +5,8 @@ import jsonResponse from '@/utils/jsonResponse';
 // import { revalidatePath } from 'next/cache';
 import { NextRequest } from 'next/server';
 import mongoose from 'mongoose';
-import Course from '@/models/Course';
-import Achievement from '@/models/Achievement';
+// import Course from '@/models/Course';
+// import Achievement from '@/models/Achievement';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {

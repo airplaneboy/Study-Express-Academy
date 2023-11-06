@@ -94,10 +94,7 @@ const Notification = ({
                           <label htmlFor='comments' className='font-medium text-gray-700'>
                             Comments
                           </label>
-                          <span className='text-gray-500'>
-                            Get notified when someones posts a comment on your posts.
-                          </span>
-                          <span className='text-gray-500'>
+                          <span className='block text-gray-500'>
                             Get notified when someones posts a comment on your posts.
                           </span>
                         </div>
@@ -119,8 +116,9 @@ const Notification = ({
                           <label htmlFor='authentication' className='font-medium text-gray-700'>
                             Authentication
                           </label>
-                          <span className='text-gray-500'>Get notified every time your account is logged into.</span>
-                          <span className='text-gray-500'>Get notified every time your account is logged into.</span>
+                          <span className='block text-gray-500'>
+                            Get notified every time your account is logged into.
+                          </span>
                         </div>
                       </div>
 
@@ -140,8 +138,7 @@ const Notification = ({
                           <label htmlFor='offers' className='font-medium text-gray-700'>
                             Offers
                           </label>
-                          <span className='text-gray-500'>Receive offer messages from us.</span>
-                          <span className='text-gray-500'>Receive offer messages from us.</span>
+                          <span className='block text-gray-500'>Receive offer messages from us.</span>
                         </div>
                       </div>
                     </div>
@@ -150,8 +147,9 @@ const Notification = ({
                   <fieldset>
                     <div>
                       <legend className='text-base font-medium text-gray-900'>Push Notifications</legend>
-                      <span className='text-sm text-gray-500'>These are delivered via SMS to your mobile phone.</span>
-                      <span className='text-sm text-gray-500'>These are delivered via SMS to your mobile phone.</span>
+                      <span className='block text-sm text-gray-500'>
+                        These are delivered via SMS to your mobile phone.
+                      </span>
                     </div>
                     <div className='mt-4 space-y-4'>
                       <div className='flex items-center'>

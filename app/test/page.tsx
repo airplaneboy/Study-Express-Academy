@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 
-const page = () => {
+const page = async () => {
   return (
     <div>
       <Navbar />
