@@ -4,7 +4,7 @@ import validator from 'validator';
 
 const UserSchema = new mongoose.Schema(
   {
-    //Primary
+    //#region Primary
     username: {
       type: String,
       required: [true, 'Input a username'],
@@ -104,18 +104,29 @@ const UserSchema = new mongoose.Schema(
         default: 'everything',
       },
     },
+
+    // status: {
+    //   type: String,
+    //   enum: ['active', 'inactive', 'blocked'],
+    //   default: 'active',
+    // },
+    //#endregion
+
+    //#region Additional
     contentProgress: {
       videos: [
         {
           id: { type: String, required: true, trim: true, unique: true },
           durationWatched: { type: Number, trim: true, default: 0, required: true },
           numberOfTimesWatched: { type: Number, default: 0 },
+          timestamps: true,
         },
       ],
       articles: [
         {
           id: { type: String, required: true, trim: true, unique: true },
           numberOfTimesRead: { type: Number, default: 0 },
+          timestamps: true,
         },
       ],
       tests: [
@@ -123,27 +134,89 @@ const UserSchema = new mongoose.Schema(
           id: { type: String, required: true, trim: true, unique: true },
           numberOfTimesCorrect: { type: Number, trim: true, default: 0, required: true },
           numberOfTimesTaken: { type: Number, default: 0 },
+          timestamps: true,
         },
       ],
     },
-    // status: {
-    //   type: String,
-    //   enum: ['active', 'inactive', 'blocked'],
-    //   default: 'active',
-    // },
 
-    //Additional
-    completedLessons: { type: [mongoose.Schema.Types.ObjectId], ref: 'Lesson' },
+    currentProgress: {
+      subject: {
+        id: { type: String, required: true, unique: true },
+        data: mongoose.Schema.Types.Mixed,
+        timestamps: true,
+      },
+      lesson: {
+        id: { type: String, required: true, unique: true },
+        data: mongoose.Schema.Types.Mixed,
+        timestamps: true,
+      },
+      course: {
+        id: { type: String, required: true, unique: true },
+        data: mongoose.Schema.Types.Mixed,
+        timestamps: true,
+      },
+      unit: { id: { type: String, required: true, unique: true }, data: mongoose.Schema.Types.Mixed, timestamps: true },
+    },
 
-    currentLesson: { type: mongoose.Schema.Types.ObjectId, ref: 'Lesson' },
+    completedProgress: {
+      subjects: [
+        {
+          id: { type: String, required: true, unique: true },
+          data: mongoose.Schema.Types.Mixed,
+          timestamps: true,
+        },
+      ],
+      lessons: [
+        {
+          id: { type: String, required: true, unique: true },
+          data: mongoose.Schema.Types.Mixed,
+          timestamps: true,
+        },
+      ],
+      courses: [
+        {
+          id: { type: String, required: true, unique: true },
+          data: mongoose.Schema.Types.Mixed,
+          timestamps: true,
+        },
+      ],
+      units: [
+        { id: { type: String, required: true, unique: true }, data: mongoose.Schema.Types.Mixed, timestamps: true },
+      ],
+      achievements: [
+        {
+          id: { type: String, required: true, unique: true },
+          data: mongoose.Schema.Types.Mixed,
+          timestamps: true,
+        },
+      ],
+    },
 
-    courses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Course' },
+    courses: [
+      {
+        id: { type: String, required: true, unique: true },
+        data: mongoose.Schema.Types.Mixed,
+        timestamps: true,
+      },
+    ],
 
-    completedCourses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Course' },
+    //#endregion
 
-    completedUnits: { type: [mongoose.Schema.Types.ObjectId], ref: 'Unit' },
+    //#region MongoDB Schemas
 
-    achievements: { type: [mongoose.Schema.Types.ObjectId], ref: 'Achievement' },
+    // completedLessons: { type: [mongoose.Schema.Types.ObjectId], ref: 'Lesson' },
+
+    // currentLesson: { type: mongoose.Schema.Types.ObjectId, ref: 'Lesson' },
+
+    // courses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Course' },
+
+    // completedCourses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Course' },
+
+    // completedUnits: { type: [mongoose.Schema.Types.ObjectId], ref: 'Unit' },
+
+    // achievements: { type: [mongoose.Schema.Types.ObjectId], ref: 'Achievement' },
+
+    //#endregion
   },
   { timestamps: true }
 );
