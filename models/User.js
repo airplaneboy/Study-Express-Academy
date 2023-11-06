@@ -192,7 +192,7 @@ const UserSchema = new mongoose.Schema(
       ],
     },
 
-    courses: [
+    selectedCourses: [
       {
         id: { type: String, required: true, unique: true },
         data: mongoose.Schema.Types.Mixed,
