@@ -64,9 +64,12 @@ const RecentTopicsCard = async () => {
                                     height={36}
                                   />
                                   <span className=' max-h-6 w-full text-gray-600 absolute truncate pl-12'>
-                                    {unit?.title}
+                                    <span className=' max-h-6 w-full text-gray-600 absolute truncate pl-12'>
+                                      {unit?.title}
+                                    </span>
                                   </span>
                                 </div>
+                                <span className='text-gray-400'>100%</span>
                                 <span className='text-gray-400'>100%</span>
                               </Link>
                             </li>
