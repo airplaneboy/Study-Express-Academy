@@ -5,7 +5,7 @@ import { Link } from 'react-scroll';
 import CollapsibleHeader from '@/components/CollapsibleHeader';
 import CustomLink from '@/components/CustomLink';
 import capitalize from 'lodash.capitalize';
-
+import { useState } from 'react';
 interface SidebarItem {
   slug: string;
   title: string;
@@ -34,6 +34,8 @@ const CardList = ({
   contentDescription,
   slug,
 }: ICardList) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <>
       {/* Header */}
@@ -50,21 +52,28 @@ const CardList = ({
         <aside className='max-md:hidden border-r-2 '>
           <nav className=' h-[70%] sticky top-44 lg:w-80 md:w-72 overflow-y-auto rounded-2xl '>
             <ul role='list' className='h-max p-5'>
-              <span className='font-extrabold font-inter text-gray-600 text-xs tracking-widest uppercase'>
+              <span className='inline-block font-extrabold font-inter text-gray-600 text-xs tracking-widest uppercase mb-5'>
                 {sidebarHeader}
               </span>
-              {sidebarArray?.map((sidebarItems) => (
+              {sidebarArray?.map((sidebarItems, index) => (
                 <li
                   key={sidebarItems?._id}
-                  className=' px-4 py-3 sm:px-0 text-md text-gray-500 hover:text-blue-500 focus:text-blue-600 no_wrap'>
+                  className={
+                    activeIndex == index
+                      ? 'bg-blue-100 font-extrabold !text-blue-800 transition-all rounded-2xl border-blue-600 px-4 py-3 text-lg hover:text-blue-500 focus:text-blue-600 no_wrap'
+                      : 'px-4 py-3 text-lg text-gray-500 hover:text-blue-500 focus:text-blue-600 no_wrap'
+                  }>
                   <Link
+                    onClick={() => setActiveIndex(index)}
+                    isDynamic
                     to={sidebarItems?.title}
                     spy={true}
                     smooth={true}
-                    duration={300}
+                    duration={500}
                     offset={-130}
                     activeClass='active'
-                    className='cursor-pointer'>
+                    className='cursor-pointer'
+                    onSetActive={() => setActiveIndex(index)}>
                     {sidebarItems?.title}
                   </Link>
                 </li>

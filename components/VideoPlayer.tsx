@@ -1,10 +1,11 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
+// import ReactPlayer from 'react-player/youtube';
 // import { OnProgressProps } from 'react-player/base';
 
 const DynamicReactPlayer = dynamic(() => import('react-player/lazy'), {
-  ssr: true, // This ensures the component is only rendered on the client side
+  ssr: false, // This ensures the component is only rendered on the client side
 });
 
 function VideoPlayer({ url }: { url: string }) {
@@ -45,22 +46,25 @@ function VideoPlayer({ url }: { url: string }) {
   // };
   //#endregion
 
-  useEffect(() => {
-    setPlayerReady(true); // Mark the player as ready once the component mounts on the client
-  }, []);
+  // useEffect(() => {
+  //   setPlayerReady(true); // Mark the player as ready once the component mounts on the client
+  // }, []);
 
   return (
-    <div className='w-full h-full rounded-lg overflow-hidden flex-1'>
-      {playerReady && (
-        <DynamicReactPlayer
-          // onProgress={(e) => captureUserProgress(e)}
-          className='w-full h-full rounded-lg'
-          width='100%'
-          height='100%'
-          url={url}
-          controls={true}
-        />
-      )}
+    <div
+      className={
+        playerReady
+          ? 'aspect-video rounded-lg overflow-hidden'
+          : 'aspect-video duration-75 animate-pulse bg-gray-200 rounded-lg overflow-hidden'
+      }>
+      <DynamicReactPlayer
+        onReady={() => setPlayerReady(true)}
+        // fallback={<div className='aspect-video animate-pulse bg-gray-300 duration-150' />}
+        // onProgress={(e) => captureUserProgress(e)}
+        className=' aspect-video !w-auto !h-auto'
+        url={url}
+        controls={true}
+      />
     </div>
   );
 }

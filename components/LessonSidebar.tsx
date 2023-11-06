@@ -53,7 +53,7 @@ const LessonSidebar = ({
               isScrolled ? 'backdrop-blur-md shadow-md ' : 'border-b-2 bg-white'
               // isScrolled ? 'backdrop-blur-md shadow-md ' : 'border-b-2 -z-10'
             }`}>
-            <span className='font-extrabold font-inter text-gray-800 text-3xl p-4  '>
+            <span className='block font-extrabold font-inter text-gray-800 text-3xl p-4  '>
               {lesson?.title || 'Contents'}
             </span>
           </div>

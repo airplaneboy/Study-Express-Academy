@@ -18,12 +18,18 @@ const Content = async ({ params }: { params: { content: string } }) => {
     const video = await getVideo(params.content);
     url = video.url;
     return (
-      <div className='overflow-y-auto flex flex-col w-full h-full md:px-4 py-2'>
-        <header className='text-3xl font-semibold py-4 font-inter text-gray-700'>{video.title}</header>
+      <div className='overflow-y-auto flex flex-col w-full h-full md:px-4 py-2 lg:px-10 pb-10'>
+        <header className='text-base tracking-wide font-extrabold py-4 font-inter text-gray-800'>{video.title}</header>
         <VideoPlayer url={url} />
-        <span className='mt-10 md:max-w-[80%] mx-auto md:text-lg text-gray-600 border-t-2 md:px-4 px-2 py-2'>
-          {video.description}
-        </span>
+        <div className='mt-10 md:max-w-[80%] max-md:mx-auto max-md:border-t-2 md:px-4 px-2 py-2'>
+          <span className='font-inter font-extrabold text-xl text-gray-800 block'>Description</span>
+
+          {video?.description ? (
+            <span className='text-gray-600 md:text-lg'>{video.description}</span>
+          ) : (
+            <span className='text-gray-500 text-base italic mt-3 inline-block'>No Description</span>
+          )}
+        </div>
       </div>
     );
   }

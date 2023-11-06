@@ -44,7 +44,11 @@ module.exports = {
     },
   },
   corePlugins: {
-    aspectRatio: false,
+    aspectRatio: true,
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio')],
+  plugins: [require('@tailwindcss/forms')],
+  // corePlugins: {
+  //   aspectRatio: false,
+  // },
+  // plugins: [require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio')],
 };
