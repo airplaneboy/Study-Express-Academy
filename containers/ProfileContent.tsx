@@ -65,7 +65,7 @@ const ProfileContent = async () => {
     },
     {
       property: 'Age',
-      value: user?.profile?.age,
+      value: user?.profile?.age >= 1 ? user?.profile.age : 'invalid birthday',
     },
 
     {

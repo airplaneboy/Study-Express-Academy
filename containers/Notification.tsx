@@ -87,7 +87,6 @@ const Notification = ({
                             name='comments'
                             type='checkbox'
                             className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded'
-                            className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded'
                           />
                         </div>
 
@@ -113,7 +112,6 @@ const Notification = ({
                             name='authentication'
                             type='checkbox'
                             className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded'
-                            className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded'
                           />
                         </div>
 
@@ -134,7 +132,6 @@ const Notification = ({
                             id='offers'
                             name='offers'
                             type='checkbox'
-                            className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded'
                             className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded'
                           />
                         </div>
@@ -166,7 +163,6 @@ const Notification = ({
                           name='push-notifications'
                           type='radio'
                           className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300'
-                          className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300'
                         />
                         <label htmlFor='push-everything' className='ml-3 block text-sm font-medium text-gray-700'>
                           Everything
@@ -181,7 +177,6 @@ const Notification = ({
                           id='push-important'
                           name='push-notifications'
                           type='radio'
-                          className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300'
                           className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300'
                         />
                         <label htmlFor='push-important' className='ml-3 block text-sm font-medium text-gray-700'>
@@ -198,7 +193,6 @@ const Notification = ({
                           name='push-notifications'
                           type='radio'
                           className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300'
-                          className='focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300'
                         />
                         <label htmlFor='push-nothing' className='ml-3 block text-sm font-medium text-gray-700'>
                           No push notifications
@@ -211,7 +205,6 @@ const Notification = ({
                 <div className='px-4 py-3 bg-gray-200 text-right sm:px-6'>
                   <button
                     type='submit'
-                    className={` inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-2xl text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}>
                     className={` inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-2xl text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}>
                     <CgSpinnerTwo className={`${loading ? 'animate-spin block' : 'hidden'}  h-5 w-5 mr-3  `} />
                     Save

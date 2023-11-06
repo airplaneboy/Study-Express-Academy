@@ -70,7 +70,6 @@ const RecentTopicsCard = async () => {
                                   </span>
                                 </div>
                                 <span className='text-gray-400'>100%</span>
-                                <span className='text-gray-400'>100%</span>
                               </Link>
                             </li>
                           );
