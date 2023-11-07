@@ -70,7 +70,7 @@ const LessonSidebar = ({
                   href={`/${params?.subject}/${params?.course}/${params?.unit}/${params?.lesson}/${content?.slug}`}
                   className={
                     content?.slug === segment
-                      ? 'text-blue-700 font-semibold bg-blue-100 px-3 py-5 block border-blue-700 border-2 rounded-2xl '
+                      ? 'text-blue-700 font-semibold bg-blue-100 px-3 py-5 block border-blue-700 border rounded-2xl '
                       : 'px-3 py-5 block border-gray-300 border-2 rounded-2xl'
                   }>
                   <div className='flex gap-2 items-center justify-start'>

@@ -132,6 +132,14 @@ const UserSchema = new mongoose.Schema(
       tests: [
         {
           id: { type: String, trim: true, unique: true },
+          numberOfTimesPassed: { type: Number, trim: true, default: 0, required: true },
+          numberOfTimesTaken: { type: Number, default: 0 },
+          createdAt: { type: Date, default: Date.now },
+        },
+      ],
+      questions: [
+        {
+          id: { type: String, trim: true, unique: true },
           numberOfTimesCorrect: { type: Number, trim: true, default: 0, required: true },
           numberOfTimesTaken: { type: Number, default: 0 },
           createdAt: { type: Date, default: Date.now },
