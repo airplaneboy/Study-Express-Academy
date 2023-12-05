@@ -3,6 +3,7 @@ import { HiPlus } from 'react-icons/hi2';
 import Checkbox from './Checkbox';
 import Modal from './Modal';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const AddSubjectsModal = ({
   submit,
@@ -13,6 +14,7 @@ const AddSubjectsModal = ({
   subjects: any[];
   selectedSubjects: any[];
 }) => {
+  const router = useRouter();
   const [currentlySelected, setCurrentlySelected] = useState<any[]>(selectedSubjects);
 
   const addToCurrentlySelected = (valueToAdd: any) => {
@@ -30,7 +32,13 @@ const AddSubjectsModal = ({
   return (
     <Modal
       className='px-4 py-2 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 gap-2 flex flex-row items-center justify-center rounded-md bg-blue-700 hover:bg-blue-800 font-bold tracking-wide'
-      footerButton={{ text: 'Proceed', click: () => submit(currentlySelected) }}
+      footerButton={{
+        text: 'Proceed',
+        click: () => {
+          submit(currentlySelected);
+          router.refresh();
+        },
+      }}
       buttonName={
         <>
           <HiPlus size={20} /> Add Subject
@@ -42,7 +50,9 @@ const AddSubjectsModal = ({
         {subjects.map((subject: { _id: string; title: string; courses: { _id: string; title: string }[] }) => {
           return (
             <li key={subject._id} className='w-full '>
-              <span className='py-1 mb-2 border-b border-gray-400 block text-gray-500 font-bold'>{subject?.title}</span>
+              <span className='py-1 mb-2 border-b border-gray-400 block text-gray-500 font-bold truncate'>
+                {subject?.title}
+              </span>
 
               <div className='columns-3'>
                 {subject?.courses.map((course: { _id: string; title: string }, index) => {

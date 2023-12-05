@@ -6,10 +6,11 @@ const Dashboard = async () => {
   try {
     const user: { selectedSubjects: any[]; completedProgress: any } = await getCurrentUser();
 
-    const numberOfCourses = user?.selectedSubjects.reduce(
-      (acc: number, current: any) => acc + current.data.courses.length,
-      0
-    );
+    // const numberOfCourses = user?.selectedSubjects.reduce(
+    //   (acc: number, current: any) => acc + current.data.courses.length,
+    //   0
+    // );
+    const numberOfCourses = user?.selectedSubjects.length;
     const numberOfCompletedCourses = user?.completedProgress?.courses.length;
     let percentageOfCompletedCourses = Math.round((numberOfCompletedCourses / numberOfCourses) * 100);
     isNaN(percentageOfCompletedCourses) && (percentageOfCompletedCourses = 0);

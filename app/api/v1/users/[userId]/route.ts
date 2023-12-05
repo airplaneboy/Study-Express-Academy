@@ -78,7 +78,9 @@ export async function PATCH(request: NextRequest, { params }: { params: any }) {
       delete body?.achievements &&
       delete body?.completedUnits;
 
-    user = merge(user, body);
+    if (body?.selectedSubjects) user.selectedSubjects = body?.selectedSubjects;
+    else user = merge(user, body);
+
     await user.save();
 
     // const path = request.nextUrl.searchParams.get('path') || '/';

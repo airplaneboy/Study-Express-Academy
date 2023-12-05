@@ -17,7 +17,7 @@ export default function Modal({
   className?: string;
   footerButton?: { click: () => void; text?: string; className?: string };
 }) {
-  let [isOpen, setIsOpen] = useState(true);
+  let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
