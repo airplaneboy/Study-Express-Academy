@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HiEllipsisHorizontal, HiPlus } from 'react-icons/hi2';
 import { getRecentCourses, getSubjectsAndCourses } from '@/sanity/sanity-utils';
-import { getCurrentUser } from '@/lib/data/user';
+import { getCurrentUser, updateCurrentUser } from '@/lib/data/user';
 import AddSubjectsModal from '../AddSubjectsModal';
 
 const RecentTopics = async () => {
@@ -11,6 +11,12 @@ const RecentTopics = async () => {
   const user = await getCurrentUser();
   const selectedSubjects: any[] = user?.selectedSubjects;
 
+  const onSubmit = async (currentlySelected: any[]) => {
+    'use server';
+
+    return await updateCurrentUser({ data: { selectedSubjects: currentlySelected } });
+  };
+
   return (
     <>
       <div className='sm:px-6'>
@@ -18,7 +24,7 @@ const RecentTopics = async () => {
           <span className='capitalize block max-sm:text-center text-2xl lg:text-4xl font-extrabold text-gray-800 font-inter'>
             My Subjects
           </span>
-          <AddSubjectsModal selectedSubjects={selectedSubjects} subjects={subjects} />
+          <AddSubjectsModal submit={onSubmit} selectedSubjects={selectedSubjects} subjects={subjects} />
         </div>
         <ul className='columns-1 lg:columns-2 gap-10'>
           {recentCourses.map(

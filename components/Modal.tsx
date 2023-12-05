@@ -15,7 +15,7 @@ export default function Modal({
   children: React.ReactNode;
   buttonName: any;
   className?: string;
-  footerButton?: { Click?: void; text?: string; className?: string };
+  footerButton?: { click: () => void; text?: string; className?: string };
 }) {
   let [isOpen, setIsOpen] = useState(true);
 
@@ -75,7 +75,7 @@ export default function Modal({
                             'inline-flex justify-center rounded-md border border-transparent bg-blue-700 px-4 py-2 text-sm font-medium text-blue-100 hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'
                           }
                           onClick={() => {
-                            footerButton?.Click;
+                            footerButton?.click();
                             closeModal();
                           }}>
                           {footerButton?.text || 'Continue'}

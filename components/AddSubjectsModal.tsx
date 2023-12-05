@@ -1,18 +1,24 @@
 'use client';
-import includes from 'lodash.includes';
 import { HiPlus } from 'react-icons/hi2';
 import Checkbox from './Checkbox';
 import Modal from './Modal';
 import { useState } from 'react';
 
-const AddSubjectsModal = ({ subjects, selectedSubjects }: { subjects: any[]; selectedSubjects: any[] }) => {
-  const [currentlySelected, setCurrentlySelected] = useState<any[]>([]);
+const AddSubjectsModal = ({
+  submit,
+  subjects,
+  selectedSubjects,
+}: {
+  submit: (currentlySelected: any[]) => void;
+  subjects: any[];
+  selectedSubjects: any[];
+}) => {
+  const [currentlySelected, setCurrentlySelected] = useState<any[]>(selectedSubjects);
 
   const addToCurrentlySelected = (valueToAdd: any) => {
-    let exists = false;
-    currentlySelected.map((item) => (exists = includes(item.id, valueToAdd.id)));
+    const result = currentlySelected.filter((item) => item.id == valueToAdd.id);
 
-    if (exists) return;
+    if (result.length > 0) return;
     setCurrentlySelected([...currentlySelected, valueToAdd]);
   };
 
@@ -24,7 +30,7 @@ const AddSubjectsModal = ({ subjects, selectedSubjects }: { subjects: any[]; sel
   return (
     <Modal
       className='px-4 py-2 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 gap-2 flex flex-row items-center justify-center rounded-md bg-blue-700 hover:bg-blue-800 font-bold tracking-wide'
-      footerButton={{ text: 'Proceed' }}
+      footerButton={{ text: 'Proceed', click: () => submit(currentlySelected) }}
       buttonName={
         <>
           <HiPlus size={20} /> Add Subject
@@ -43,7 +49,8 @@ const AddSubjectsModal = ({ subjects, selectedSubjects }: { subjects: any[]; sel
                   return (
                     <div key={course._id}>
                       {/* Checkboxes: add a function prop that accepts button that when triggered handles submit */}
-                      {includes(selectedSubjects[index], course._id) ? (
+
+                      {currentlySelected.some((item) => item.id == course._id) ? (
                         <Checkbox
                           checkedHandler={(isChecked: boolean) => {
                             if (isChecked) addToCurrentlySelected({ id: course._id, data: course });
@@ -73,7 +80,6 @@ const AddSubjectsModal = ({ subjects, selectedSubjects }: { subjects: any[]; sel
           );
         })}
       </ul>
-      <button onClick={() => console.log(currentlySelected)}>Show subjects</button>
     </Modal>
   );
 };
