@@ -56,7 +56,7 @@ const Search = ({ searchList, options, otherLists }: { searchList: any[]; option
             autoComplete='off'
             id='search'
             name='search'
-            className='bg-transparent tracking-wider font-medium focus:font-semibold max-sm:hidden block w-full hover:bg-blue-50 border-2 focus:border border-gray-200 rounded-2xl py-2 pl-10 pr-3 placeholder-blue-400 focus:outline-none text-blue-700 focus:placeholder-blue-300 hover:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-md'
+            className='bg-transparent tracking-wider font-medium focus:font-semibold max-sm:hidden block w-full  border-2 focus:border border-gray-200 rounded-2xl py-2 pl-10 pr-3 placeholder-blue-400 focus:outline-none text-blue-700 focus:placeholder-blue-300 hover:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-md transition-colors'
             placeholder='Search'
             type='search'
           />
