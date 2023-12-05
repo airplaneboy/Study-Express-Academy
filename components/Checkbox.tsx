@@ -6,11 +6,13 @@ const Checkbox = ({
   children,
   id,
   checked,
+  checkedHandler,
 }: {
   checked?: boolean;
   labelClassName?: string;
   children: string;
   id: string;
+  checkedHandler: (isChecked: boolean) => void;
 }) => {
   const [box, setBox] = useState(checked || false);
 
@@ -18,7 +20,11 @@ const Checkbox = ({
     <div className='flex items-center gap-2'>
       <input
         checked={box}
-        onChange={(e) => setBox(e.target.checked)}
+        onChange={(e) => {
+          checkedHandler(e.target.checked);
+
+          return setBox(e.target.checked);
+        }}
         id={id}
         name='courses'
         type='checkbox'
