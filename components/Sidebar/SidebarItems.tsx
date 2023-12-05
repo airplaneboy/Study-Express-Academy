@@ -25,18 +25,20 @@ const SidebarItems = ({ navigation, classNames }: { navigation: any; classNames:
                         className={classNames(
                           isActive
                             ? ` font-bold ${item.color} ${item.bgColor}`
-                            : `text-gray-600 ${item.hoverColor} font-medium`,
-                          'group flex items-center px-4 py-2 text-md rounded-2xl h-11 mb-1'
+                            : `text-gray-600 ${item.hoverColor} font-medium `,
+                          'group flex items-center px-4 py-2 text-base transition-all rounded-2xl h-11 mb-1 '
                         )}>
                         {/* Icons */}
                         {isActive ? (
                           <item.iconFill
-                            className={classNames(`mr-3 flex-shrink-0 h-6 w-6 ${item.color}`)}
+                            className={classNames(`transition-all mr-3 flex-shrink-0 h-6 w-6 ${item.color}`)}
                             aria-hidden='true'
                           />
                         ) : (
                           <item.icon
-                            className={classNames(`text-gray-400 mr-3 flex-shrink-0 h-6 w-6 ${item.groupHoverColor}`)}
+                            className={classNames(
+                              `transition-all text-gray-400 mr-3 flex-shrink-0 h-6 w-6 ${item.groupHoverColor}`
+                            )}
                             aria-hidden='true'
                           />
                         )}

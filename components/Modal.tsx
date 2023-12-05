@@ -57,7 +57,9 @@ export default function Modal({
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'>
                 <Dialog.Panel className='w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white/50 backdrop-blur p-6 text-left align-middle shadow-xl transition-all'>
-                  <Dialog.Title as='h3' className='text-xl font-bold leading-6 text-gray-800 capitalize truncate'>
+                  <Dialog.Title
+                    as='h3'
+                    className='text-xl font-extrabold font-inter leading-6 text-gray-800 capitalize truncate'>
                     {header}
                   </Dialog.Title>
                   <div id='add-subject' className='mt-2 max-h-[55vh] overflow-y-scroll'>

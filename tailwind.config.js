@@ -17,7 +17,7 @@ module.exports = {
       },
       fontFamily: {
         inter: ['var(--font-inter)', 'sans-serif'],
-        nunito: ['var(--font-nunito)', 'san-serif'],
+        // nunito: ['var(--font-nunito)', 'san-serif'],
         plusJakartaSans: ['var(--font-PlusJakartaSans)'],
       },
       screens: {

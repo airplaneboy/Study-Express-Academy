@@ -33,7 +33,7 @@ const AddSubjectsModal = ({
     <Modal
       className='px-4 py-2 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 gap-2 flex flex-row items-center justify-center rounded-md bg-blue-700 hover:bg-blue-800 font-bold tracking-wide'
       footerButton={{
-        text: 'Proceed',
+        text: `Proceed with ${currentlySelected.length} courses`,
         click: () => {
           submit(currentlySelected);
           router.refresh();
@@ -41,7 +41,7 @@ const AddSubjectsModal = ({
       }}
       buttonName={
         <>
-          <HiPlus size={20} /> Add Subject
+          <HiPlus size={20} /> Add Course
         </>
       }
       header='Tailor Your Interests'>
