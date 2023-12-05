@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className='h-full'>
-      <Suspense fallback={<NavbarSkeleton />}>{<Navbar />}</Suspense>
+      <Suspense fallback={<NavbarSkeleton fixed={true} />}>{<Navbar />}</Suspense>
       <Suspense fallback={<Loading />}>
         <Sidebar>{children}</Sidebar>
       </Suspense>

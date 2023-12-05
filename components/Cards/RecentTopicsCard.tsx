@@ -1,17 +1,25 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { HiEllipsisHorizontal } from 'react-icons/hi2';
-import { getRecentCourses } from '@/sanity/sanity-utils';
+import { HiEllipsisHorizontal, HiPlus } from 'react-icons/hi2';
+import { getRecentCourses, getSubjectsAndCourses } from '@/sanity/sanity-utils';
+import { getCurrentUser } from '@/lib/data/user';
+import AddSubjectsModal from '../AddSubjectsModal';
 
-const RecentTopicsCard = async () => {
+const RecentTopics = async () => {
   const recentCourses = await getRecentCourses();
+  const subjects = await getSubjectsAndCourses();
+  const user = await getCurrentUser();
+  const selectedSubjects: any[] = user?.selectedSubjects;
 
   return (
     <>
       <div className='sm:px-6'>
-        <span className='block mb-7 max-sm:text-center sm:mb-10 text-2xl lg:text-4xl font-extrabold text-gray-800 font-inter'>
-          Courses
-        </span>
+        <div className='flex flex-row justify-between items-center mb-7 sm:mb-10'>
+          <span className='capitalize block max-sm:text-center text-2xl lg:text-4xl font-extrabold text-gray-800 font-inter'>
+            My Subjects
+          </span>
+          <AddSubjectsModal selectedSubjects={selectedSubjects} subjects={subjects} />
+        </div>
         <ul className='columns-1 lg:columns-2 gap-10'>
           {recentCourses.map(
             (course: {
@@ -87,4 +95,4 @@ const RecentTopicsCard = async () => {
 };
 
 // const RecentTopicsCardBlock = block(RecentTopicsCard);
-export default RecentTopicsCard;
+export default RecentTopics;

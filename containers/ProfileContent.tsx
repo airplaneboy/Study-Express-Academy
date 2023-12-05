@@ -46,7 +46,7 @@ const ProfileContent = async () => {
     },
     {
       property: 'Country',
-      value: user?.profile?.country?.name,
+      value: user?.profile?.country?.name == 'Select Country' ? '' : user?.profile?.country?.name,
     },
     {
       property: 'Phone Number',
@@ -108,12 +108,12 @@ const ProfileContent = async () => {
     },
   ];
 
-  const achievementData = user?.achievements?.map((achievement: any) => {
-    return { property: achievement?.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
+  const achievementData = user?.completedProgress?.achievements?.map((achievement: { data: { title: string } }) => {
+    return { property: achievement?.data?.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
   });
 
-  const CourseData = user?.completedCourses?.map((course: any) => {
-    return { property: course?.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
+  const CourseData = user?.completedProgress?.courses?.map((course: { data: { title: string } }) => {
+    return { property: course?.data?.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
   });
 
   return (

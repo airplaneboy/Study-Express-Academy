@@ -35,11 +35,12 @@ const PersonalInformation = ({
   };
 }) => {
   const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState(user?.username);
+  const [currentEmail, setCurrentEmail] = useState(user?.email);
+  const [email, setEmail] = useState<any>(user?.email);
   const [gender, setGender] = useState<any>(user?.profile?.gender);
   const [firstName, setFirstName] = useState<any>(user?.profile?.firstName);
   const [lastName, setLastName] = useState<any>(user?.profile?.lastName);
-  const [username, setUsername] = useState(user?.username);
-  const [email, setEmail] = useState<any>(user?.email);
   const [phoneNumber, setPhoneNumber] = useState<any>(user?.profile?.phone?.number || '');
   const [birthday, setBirthday] = useState<any>(() => {
     const date = user?.profile?.birthday ? format(new Date(user?.profile?.birthday), 'yyyy-MM-dd') : undefined;
@@ -79,7 +80,7 @@ const PersonalInformation = ({
 
     try {
       //Update user
-      if (JSON.stringify(userUpdate) !== '{}') {
+      if (currentEmail != userUpdate.email && JSON.stringify(userProfileUpdate) != '{}') {
         await toast.promise(
           updateUser({ data: userUpdate, userId: (session?.user as any).id }),
           {
@@ -89,6 +90,7 @@ const PersonalInformation = ({
           },
           { error: { duration: 1 } }
         );
+        setCurrentEmail(userUpdate.email);
       }
 
       //Update user's profile

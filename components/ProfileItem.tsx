@@ -12,7 +12,7 @@ const ProfileItem = ({
         <span className='italic text-gray-500 text-base'>No data</span>
       ) : (
         <ul className=''>
-          {stats.map((stat) => {
+          {stats?.map((stat) => {
             return (
               <li
                 key={stat.id ? stat.id : stat.property}
@@ -26,7 +26,12 @@ const ProfileItem = ({
                 </span>
               </li>
             );
-          })}
+          }) || (
+            <span className='block text-red-500 lg:pl-5 italic'>
+              Your data could not be fetched at this moment. Please try again, or contact our support if the error
+              persists.
+            </span>
+          )}
         </ul>
       )}
     </div>

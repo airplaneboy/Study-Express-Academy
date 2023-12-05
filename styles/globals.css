@@ -101,23 +101,27 @@ ul {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  /* width: 4px; */
+  width: 14px;
 }
 
 ::-webkit-scrollbar-track {
   /* background-color: #e4e4e400; */
-  /* background-color: #fff; */
   border-radius: 100px;
   margin-block: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
-  /* border: 2px solid #e4e4e400; */
-  border: 2px solid #fff;
-  /* background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%); */
-  background-color: #a09f9f;
+  border: 3px solid #fff;
   border-radius: 100px;
+  background-color: #a09f9f;
+  /* background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%); */
+}
+
+#add-subject::-webkit-scrollbar {
+  width: 4px;
+}
+#add-subject::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
 }
 
 /* .active {
