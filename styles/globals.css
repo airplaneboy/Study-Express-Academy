@@ -100,6 +100,7 @@ ul {
   list-style-type: none;
 }
 
+/* For Default */
 ::-webkit-scrollbar {
   width: 14px;
 }
@@ -117,6 +118,12 @@ ul {
   /* background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%); */
 }
 
+/* For lesson sidebar */
+#lesson-sidebar::-webkit-scrollbar-track {
+  margin-block-start: 80px;
+}
+
+/* For add-subject */
 #add-subject::-webkit-scrollbar {
   width: 4px;
 }

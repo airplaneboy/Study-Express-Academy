@@ -55,7 +55,11 @@ const LessonSidebar = ({
             }`}>
             <span className='block font-extrabold  text-gray-800 text-3xl p-4  '>{lesson?.title || 'Contents'}</span>
           </div>
-          <ul role='list' className='p-4 overflow-y-auto h-[30rem] top-20' onScroll={(e) => handleScroll(e)}>
+          <ul
+            role='list'
+            id='lesson-sidebar'
+            className='p-4 overflow-y-auto h-[30rem] top-20'
+            onScroll={(e) => handleScroll(e)}>
             {lesson?.contents?.map((content: { _id: string; title: string; slug: string; _type: string }, index) => (
               <li
                 onClick={() => {
