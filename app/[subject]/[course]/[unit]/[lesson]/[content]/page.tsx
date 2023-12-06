@@ -4,6 +4,8 @@ import CustomPortableText from '@/components/CustomPortableText';
 import shuffle from 'lodash.shuffle';
 import sampleSize from 'lodash.samplesize';
 import DisplayQuestions from '@/containers/DisplayQuestions';
+import { fetchGET } from '@/utils/fetchOption';
+import sample from 'lodash.sample';
 
 // export async function generateStaticParams() {
 //   // const content = await getContentsSlug();
@@ -55,12 +57,18 @@ const Content = async ({ params }: { params: { content: string } }) => {
       (question) => (question.options = shuffle([...question.options, question.answer]))
     );
 
+    const randomQuote = sample(await fetchGET({ path: 'https://zenquotes.io/api/quotes/', revalidate: 86400 }));
+
     return (
       <>
         <div className='px-10 py-6 relative h-full'>
           <div className='max-w-2xl mx-auto'>
             <header className='text-center text-2xl mb-12 text-gray-800 font-extrabold'>{test.title}</header>
-            <DisplayQuestions shuffledChoices={shuffledChoices} selectedQuestions={selectedQuestions} />{' '}
+            <DisplayQuestions
+              quote={randomQuote}
+              shuffledChoices={shuffledChoices}
+              selectedQuestions={selectedQuestions}
+            />
           </div>
         </div>
       </>

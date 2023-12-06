@@ -4,7 +4,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 //#region Use API
 export const getUser = async ({ userId }: { userId: string | null | undefined }) =>
-  await fetchGET({ path: `http://localhost:3000/api/v1/users/${userId}`, cache: true });
+  await fetchGET({ path: `http://localhost:3000/api/v1/users/${userId}` });
 
 export const updateUser = async ({
   userId,

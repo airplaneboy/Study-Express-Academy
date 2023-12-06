@@ -4,11 +4,14 @@ import { HiCheck, HiX } from 'react-icons/hi';
 import LessonNavButton, { SummaryButton } from '@/components/LessonNavButton';
 import CustomPortableText from '@/components/CustomPortableText';
 import Confetti, { fireWorks, realisticConfetti } from '@/components/Confetti';
+import Quotes from '@/components/Quotes';
 
 const DisplayQuestions = ({
   selectedQuestions,
   shuffledChoices,
+  quote,
 }: {
+  quote: any;
   shuffledChoices: any[];
   selectedQuestions: any[];
 }) => {
@@ -52,11 +55,9 @@ const DisplayQuestions = ({
 
   const ShowSummary = () => {
     return (
-      <div className='absolute bg-blue-950 inset-x-0 bottom-0 top-[20%] flex flex-col items-center justify-center gap-5'>
-        <span className='text-6xl px-2 text-center capitalize tracking-tighter font-extrabold bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-transparent leading-normal'>
-          Embrace the challenge!
-        </span>
-        <span className='text-lg font-semibold text-gray-200'>
+      <div className='absolute inset-x-0 bottom-0 top-[20%] flex flex-col items-center justify-center gap-5'>
+        <Quotes author={quote?.a} quote={quote?.q} />
+        <span className='text-lg font-extrabold text-gray-800'>
           {result.filter((item) => item.isCorrect == true).length}/{result.length} correct!
         </span>
       </div>

@@ -1,11 +1,22 @@
-export async function fetchGET({ token, path, cache = true }: { token?: string; path: string; cache?: boolean }) {
-  const config = {
+export async function fetchGET({
+  token,
+  path,
+  cache,
+  revalidate,
+}: {
+  revalidate?: false | undefined | number;
+  token?: string;
+  path: string;
+  cache?: RequestCache | undefined;
+}) {
+  const config: RequestInit | undefined = {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       // Authorization: `Bearer ${token}`,
     },
-    cache: cache ? (undefined as RequestCache | undefined) : ('no-store' as RequestCache | undefined),
+    cache: cache,
+    next: { revalidate },
   };
 
   const response = await fetch(path, config);
@@ -20,13 +31,15 @@ export async function fetchPOST({
   token,
   path,
   headers,
-  cache = true,
+  cache = 'default',
+  revalidate = false,
 }: {
   data: {};
   token?: string;
   path: string;
   headers?: {};
-  cache?: boolean;
+  cache?: RequestCache | undefined;
+  revalidate?: false | undefined | number;
 }) {
   const config = {
     method: 'POST',
@@ -36,8 +49,8 @@ export async function fetchPOST({
       ...headers,
     },
     body: JSON.stringify(data),
-    cache: cache ? undefined : 'no-store',
-    // next: { revalidate: revalidate && revalidate >= 0 ? revalidate : undefined },
+    cache: cache,
+    next: { revalidate },
   };
 
   const response = await fetch(path, config as any);
