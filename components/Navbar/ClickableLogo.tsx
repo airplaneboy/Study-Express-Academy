@@ -22,7 +22,7 @@ const ClickableLogo = () => {
             alt='logo'
             priority
           />
-          {/* <span className='max-md:hidden text-gray-400 font-inter tracking-tighter '>Study Express Academy</span> */}
+          {/* <span className='max-md:hidden text-gray-400  tracking-tighter '>Study Express Academy</span> */}
         </div>
       </Link>
     </div>

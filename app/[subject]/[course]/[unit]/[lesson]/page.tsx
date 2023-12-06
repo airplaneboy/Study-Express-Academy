@@ -1,10 +1,10 @@
 const Lesson = () => {
   return (
     <div className='px-8 py-4 flex flex-col justify-evenly h-full tracking-tight'>
-      <span className='border-l-4 pl-2 border-blue-500 font-inter font-bold text-lg text-gray-600'>
+      <span className='border-l-4 pl-2 border-blue-500  font-extrabold text-lg text-gray-600'>
         Welcome to the Lessons Section.
       </span>
-      <span className='font-inter font-extrabold text-3xl lg:text-6xl text-gray-800'>
+      <span className=' font-extrabold text-3xl lg:text-6xl text-gray-800'>
         You can start by selecting the <span className='text-blue-500'>lesson</span> you
         <span className='text-blue-500'>&apos;</span>re interested in on the{' '}
         <span className='text-blue-500'>sidebar</span>.

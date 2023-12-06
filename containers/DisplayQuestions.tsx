@@ -65,7 +65,7 @@ const DisplayQuestions = ({
 
   const Explanation = () => {
     return (
-      <div className='border-2 bg-gray-100 rounded-2xl px-8 py-8 mt-10 mb-5 text-gray-700 font-plusJakartaSans'>
+      <div className='border-2 bg-gray-100 rounded-2xl px-8 py-8 mt-10 mb-5 text-gray-700 '>
         <span className='font-bold text-bg'>Explanation: </span>
         <br />
         <br />
@@ -109,7 +109,7 @@ const DisplayQuestions = ({
         <ShowSummary></ShowSummary>
       ) : (
         <div>
-          <span className='text-gray-700 font-plusJakartaSans text-lg'>{selectedQuestions[currentIndex].question}</span>
+          <span className='text-gray-700  text-lg'>{selectedQuestions[currentIndex].question}</span>
           <fieldset className='flex flex-col gap-2 mt-6'>
             <legend className='w-[1px] h-[1px] overflow-hidden m-[-1px] p-0 absolute border-0 text-[0px] clip'>
               Pick your answer
@@ -168,7 +168,7 @@ const DisplayQuestions = ({
                           </div>
                         </div>
                       </span>
-                      <span className='ml-11 text-gray-700 font-plusJakartaSans'>{answerChoice}</span>
+                      <span className='ml-11 text-gray-700 '>{answerChoice}</span>
                     </label>
                   </li>
                 );

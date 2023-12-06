@@ -42,7 +42,7 @@ const CardList = ({
         <aside className='max-md:hidden border-r-2 '>
           <nav className=' sticky top-16 lg:w-80 md:w-72 overflow-y-auto rounded-2xl '>
             <ul role='list' className='h-max p-5'>
-              <span className='inline-block font-extrabold font-inter text-gray-600 text-xs tracking-widest uppercase mb-5'>
+              <span className='inline-block font-extrabold  text-gray-600 text-xs tracking-widest uppercase mb-5'>
                 {sidebarHeader}
               </span>
               {sidebarArray?.map((sidebarItems, index) => (
@@ -75,7 +75,7 @@ const CardList = ({
           <CollapsibleHeader
             initialHeight='h-28 text-6xl max-sm:text-3xl max-sm:h-24 max-md:text-center '
             finalHeight='h-20 text-3xl text-center'>
-            <span className='py-4 no_wrap mx-auto w-full px-10 capitalize text-left font-extrabold font-inter ease-linear transition-transform duration-300'>
+            <span className='py-4 no_wrap mx-auto w-full px-10 capitalize text-left font-extrabold  ease-linear transition-transform duration-300'>
               {contentHeader}
             </span>
           </CollapsibleHeader>
@@ -87,7 +87,7 @@ const CardList = ({
               {/* Content Header */}{' '}
               {contentDescription && (
                 <div className='w-full mb-10 flex flex-col gap-5 sm:border-b border-y-2 text-gray-500 sm:bg-gray-200 sm:rounded-2xl mx-4 max-sm:px-2 max-sm:py-2 max-sm:pb-2 sm:p-4'>
-                  <span className='text-2xl text-gray-600 font-bold font-inter underline decoration-purple-500'>
+                  <span className='text-2xl text-gray-600 font-extrabold  underline decoration-purple-500'>
                     Here<span className='text-purple-500'>&apos;</span>s What you should know!
                   </span>
                   <span className='text-base'>{capitalize(contentDescription)}</span>
@@ -109,9 +109,7 @@ const CardList = ({
                             )}
 
                             <CustomLink pathStrings={[slug, headerItem?.slug]}>
-                              <span className='text-blue-700 hover:text-blue-800 font-plusJakartaSans text-base'>
-                                {headerItem?.title}
-                              </span>
+                              <span className='text-blue-700 hover:text-blue-800  text-base'>{headerItem?.title}</span>
                             </CustomLink>
                           </div>
 

@@ -87,7 +87,7 @@ const International = async () => {
                     className='z-10 rounded-2xl bg-gray-200  p-[2px]'>
                     {/* className='z-10 rounded-2xl bg-gray-200 hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px]'> */}
                     <div className=' bg-white rounded-2xl'>
-                      <span className='px-2 py-1 text-gray-600 font-inter font-medium inline-block cursor-default'>
+                      <span className='px-2 py-1 text-gray-600  font-extrabold inline-block cursor-default'>
                         Unavailable
                       </span>
                     </div>
@@ -95,7 +95,7 @@ const International = async () => {
 
                   <div className='flex flex-col gap-5 items-center justify-center w-full min-h-[200px]'>
                     <span
-                      className={`bg-clip-text ml-[30%] text-5xl font-bold font-inter z-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
+                      className={`bg-clip-text ml-[30%] text-5xl font-extrabold  z-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
                       {subject.title}
                     </span>
                   </div>

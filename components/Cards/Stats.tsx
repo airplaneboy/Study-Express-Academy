@@ -44,7 +44,7 @@ export default function Stats({ userStats }: { userStats: any }) {
               <span className='block text-md font-medium text-gray-500 truncate'>{item.name}</span>
             </div>
             <span
-              className={`block text-6xl font-extrabold font-plusJakartaSans text-gray-800 text_inset underline decoration-from-font ${item.color}`}>
+              className={`block text-6xl font-extrabold  text-gray-800 text_inset underline decoration-from-font ${item.color}`}>
               {item.stat}
             </span>
           </div>

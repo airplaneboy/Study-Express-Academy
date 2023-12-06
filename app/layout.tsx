@@ -12,17 +12,18 @@ import ToasterContext from '@/context/Toaster';
 //   style: 'normal',
 //   display: 'swap',
 // });
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  style: 'normal',
-  display: 'swap',
-});
+
+// const inter = Inter({
+//   subsets: ['latin'],
+//   variable: '--font-inter',
+//   style: 'normal',
+//   display: 'swap',
+// });
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-PlusJakartaSans',
   style: 'normal',
-  display: 'swap',
+  // display: 'swap',
 });
 
 export const metadata = {
@@ -31,7 +32,7 @@ export const metadata = {
 };
 
 // const classes = classNames(nunito.className, plusJakartaSans.variable, inter.variable, 'h-full');
-const classes = classNames(plusJakartaSans.variable, inter.variable, 'h-full font-plusJakartaSans');
+const classes = classNames(plusJakartaSans.className, 'h-full');
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html className='h-full' lang='en'>

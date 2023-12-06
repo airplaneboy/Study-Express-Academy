@@ -44,7 +44,7 @@
 }
 
 .heading {
-  @apply text-3xl font-extrabold font-inter;
+  @apply text-3xl font-extrabold;
 }
 
 .inherit_width_height {

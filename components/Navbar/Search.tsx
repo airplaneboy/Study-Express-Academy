@@ -76,7 +76,7 @@ const Search = ({ searchList, options, otherLists }: { searchList: any[]; option
                         : `/${result.item.subject?.title.toLowerCase()}/${result.item.slug}`
                     }
                     className='px-4 py-2 flex justify-between w-full hover:bg-gray-500/30 rounded-xl'>
-                    <span className='font-semibold text-lg font-plusJakartaSans'> {result.item.title}</span>
+                    <span className='font-semibold text-lg '> {result.item.title}</span>
                     <span className='text-gray-600'>{lowercase(result.item?._type)}</span>
                   </Link>
                 </li>

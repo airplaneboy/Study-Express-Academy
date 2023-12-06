@@ -10,9 +10,7 @@ export default function Login() {
         <div className='mx-auto w-full max-w-sm lg:w-96'>
           <div>
             <Image className='h-6 w-auto mb-10' src='/assets/logo.svg' alt='logo' width={183} height={24} />
-            <span className='mt-6 text-4xl font-extrabold text-gray-900 font-inter block '>
-              Sign in to your account
-            </span>
+            <span className='mt-6 text-4xl font-extrabold text-gray-900  block '>Sign in to your account</span>
             <span className='mt-2 text-sm text-gray-600 block'>
               or{' '}
               <Link href='/auth/register' className='font-medium text-blue-600 hover:text-blue-500'>
