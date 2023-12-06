@@ -7,7 +7,7 @@ const NavbarSkeleton = ({ fixed = false }: { fixed?: boolean }) => {
         className={
           fixed
             ? 'inherit_width_height backdrop-blur-sm z-10 fixed w-full border-b border-gray-300'
-            : 'inherit_width_height backdrop-blur-sm z-10 border-b border-gray-300'
+            : 'inherit_width_height backdrop-blur-sm z-50 border-b border-gray-300'
         }>
         <div className='flex justify-evenly items-center md:gap-2 max-w-7xl mx-auto h-16 py-2 px-8 animate-[pulse_1s_ease-in-out_infinite]  '>
           <div className='w-full h-full flex items-center'>

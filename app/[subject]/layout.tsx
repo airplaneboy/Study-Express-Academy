@@ -6,7 +6,7 @@ import NavbarSkeleton from '@/components/Navbar/NavbarSkeleton';
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className='h-full'>
-      <Suspense fallback={<NavbarSkeleton />}>
+      <Suspense fallback={<NavbarSkeleton fixed={true} />}>
         <Navbar></Navbar>
       </Suspense>
       <main className='h-full'>{children}</main>

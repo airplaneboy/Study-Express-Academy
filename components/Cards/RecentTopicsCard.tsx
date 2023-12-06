@@ -1,15 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { HiEllipsisHorizontal, HiPlus } from 'react-icons/hi2';
-import { getRecentCourses, getSubjectsAndCourses } from '@/sanity/sanity-utils';
+import { getCourses, getRecentCourses, getSubjectsAndCourses } from '@/sanity/sanity-utils';
 import { getCurrentUser, updateCurrentUser } from '@/lib/data/user';
 import AddSubjectsModal from '../AddSubjectsModal';
 
 const RecentTopics = async () => {
-  const recentCourses = await getRecentCourses();
+  // const recentCourses = await getRecentCourses();
   const subjects = await getSubjectsAndCourses();
   const user = await getCurrentUser();
   const selectedSubjects: any[] = user?.selectedSubjects;
+  const courses: any[] = await getCourses();
+  const filteredCourses = courses.filter((item) => selectedSubjects.some((course) => course.id == item._id));
 
   const onSubmit = async (currentlySelected: any[]) => {
     'use server';
@@ -27,7 +29,7 @@ const RecentTopics = async () => {
           <AddSubjectsModal submit={onSubmit} selectedSubjects={selectedSubjects} subjects={subjects} />
         </div>
         <ul className='columns-1 lg:columns-2 gap-10'>
-          {recentCourses.map(
+          {filteredCourses.map(
             (course: {
               title: string;
               icon: any;
