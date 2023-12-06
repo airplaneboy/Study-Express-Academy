@@ -1,30 +1,31 @@
 'use client';
-import { useState, useEffect, useMemo } from 'react';
-import shuffle from 'lodash.shuffle';
+import { useState, useEffect } from 'react';
 import { HiCheck, HiX } from 'react-icons/hi';
 import LessonNavButton, { SummaryButton } from '@/components/LessonNavButton';
 import CustomPortableText from '@/components/CustomPortableText';
 import Confetti, { fireWorks, realisticConfetti } from '@/components/Confetti';
-import confetti from 'canvas-confetti';
-const DisplayQuestions = ({ selectedQuestions }: { selectedQuestions: any[] }) => {
+
+const DisplayQuestions = ({
+  selectedQuestions,
+  shuffledChoices,
+}: {
+  shuffledChoices: any[];
+  selectedQuestions: any[];
+}) => {
   const [selectedOption, setSelectedOption] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [shuffledAnswerChoices, setShuffledAnswerChoices] = useState<any[]>([]);
   const [testCompleted, setTestCompleted] = useState(false);
-  const [correctAnswer, setCorrectAnswer] = useState('');
+  const [correctAnswer, setCorrectAnswer] = useState(selectedQuestions[currentIndex]?.answer);
+  const [shuffledAnswerChoices, setShuffledAnswerChoices] = useState<any[]>(shuffledChoices[currentIndex]);
   const [showSummary, setShowSummary] = useState(false);
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
-  const answerChoices = useMemo(
-    () => [...selectedQuestions[currentIndex]?.options, correctAnswer],
-    [correctAnswer, currentIndex, selectedQuestions]
-  );
   const [result, setResult] = useState<{ isCorrect: boolean; id: number }[]>([]);
 
   useEffect(() => {
-    setShuffledAnswerChoices(shuffle(answerChoices));
+    setShuffledAnswerChoices(shuffledChoices[currentIndex]);
     setCorrectAnswer(selectedQuestions[currentIndex]?.answer);
     return () => {};
-  }, [answerChoices, currentIndex, selectedQuestions]);
+  }, [shuffledChoices, currentIndex, selectedQuestions]);
 
   const handleNextQuestion = () => {
     if (currentIndex < selectedQuestions.length - 1) {
@@ -51,12 +52,11 @@ const DisplayQuestions = ({ selectedQuestions }: { selectedQuestions: any[] }) =
 
   const ShowSummary = () => {
     return (
-      <div className='absolute bg-white inset-x-0 bottom-0 top-[20%] flex flex-col items-center justify-center gap-5'>
-        <span className='text-6xl px-2 text-center capitalize tracking-tighter font-bold bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-transparent'>
-          Embrace the challenge! <br />
-          every step you take brings you closer to your goal?
+      <div className='absolute bg-blue-950 inset-x-0 bottom-0 top-[20%] flex flex-col items-center justify-center gap-5'>
+        <span className='text-6xl px-2 text-center capitalize tracking-tighter font-extrabold bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-transparent leading-normal'>
+          Embrace the challenge!
         </span>
-        <span className='text-lg font-semibold text-gray-800'>
+        <span className='text-lg font-semibold text-gray-200'>
           {result.filter((item) => item.isCorrect == true).length}/{result.length} correct!
         </span>
       </div>
@@ -121,10 +121,12 @@ const DisplayQuestions = ({ selectedQuestions }: { selectedQuestions: any[] }) =
                   <li key={index}>
                     <label
                       className={
-                        selectedOption === answerChoice
+                        correctAnswer == answerChoice && showExplanation
+                          ? 'border-2 border-green-600 bg-green-100 py-3 px-6 block relative'
+                          : selectedOption === answerChoice
                           ? showExplanation
                             ? result[currentIndex]?.isCorrect
-                              ? 'border-2 border-green-600 bg-green-100 py-3 px-6 block relative'
+                              ? ''
                               : 'border-2 border-red-600 bg-red-100 py-3 px-6 block relative'
                             : 'border-2 border-blue-600 bg-blue-100 py-3 px-6 block relative'
                           : `py-3 px-6 block relative border-2 border-transparent`
@@ -142,7 +144,9 @@ const DisplayQuestions = ({ selectedQuestions }: { selectedQuestions: any[] }) =
                         <div className='inline-block relative'>
                           <div
                             className={
-                              showExplanation && selectedOption == answerChoice
+                              correctAnswer == answerChoice && showExplanation
+                                ? 'block h-7 w-7 border-2 border-green-600 rounded-full'
+                                : showExplanation && selectedOption == answerChoice
                                 ? result[currentIndex]?.isCorrect
                                   ? 'block h-7 w-7 border-2 border-green-600 rounded-full'
                                   : 'block h-7 w-7 border-2 border-red-600 rounded-full'
@@ -150,13 +154,15 @@ const DisplayQuestions = ({ selectedQuestions }: { selectedQuestions: any[] }) =
                             }></div>
                           <div
                             className={
-                              selectedOption == answerChoice
+                              correctAnswer == answerChoice && showExplanation
+                                ? 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[0px] text-sm bg-green-600 text-white rounded-full'
+                                : selectedOption == answerChoice
                                 ? showExplanation
                                   ? result[currentIndex]?.isCorrect
-                                    ? 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[1px] text-sm bg-green-600 text-white rounded-full'
-                                    : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[1px] text-sm bg-red-600 text-white rounded-full'
-                                  : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[1px] text-sm bg-blue-600 text-white rounded-full'
-                                : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[1px] text-blue-600 text-sm'
+                                    ? 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[0px] text-sm bg-green-600 text-white rounded-full'
+                                    : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[0px] text-sm bg-red-600 text-white rounded-full'
+                                  : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[0px] text-sm bg-blue-600 text-white rounded-full'
+                                : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[0px] text-blue-600 text-sm'
                             }>
                             {choiceLetters[index]}
                           </div>

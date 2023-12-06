@@ -12,6 +12,7 @@ import Courses from './Navbar/Courses';
 import React, { Suspense, useEffect, useState } from 'react';
 import RouterButton from './Navbar/RouterButton';
 const userNavigation = [
+  { name: 'Dashboard', href: '/user/dashboard' },
   { name: 'Your Profile', href: '/user/profile' },
   { name: 'Settings', href: '/user/settings' },
   { name: 'Sign out', href: '#', onClick: signOut },

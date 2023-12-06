@@ -9,7 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <Suspense fallback={<NavbarSkeleton fixed={true} />}>
         <Navbar></Navbar>
       </Suspense>
-      <main className='h-full'>{children}</main>
+      <main>{children}</main>
       {/* <Footer /> */}
     </div>
   );

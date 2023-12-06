@@ -4,7 +4,7 @@ import Image from 'next/image';
 const ClickableLogo = () => {
   return (
     <div className='flex items-center'>
-      <Link href='/'>
+      <Link href='/user/dashboard'>
         <div className='flex items-center md:text-3xl font-bold gap-1 justify-center'>
           <Image
             className='block h-10 w-auto max-md:hidden'
