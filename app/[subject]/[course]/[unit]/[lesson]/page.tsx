@@ -1,6 +1,6 @@
 const Lesson = () => {
   return (
-    <div className='px-8 py-4 flex flex-col justify-evenly h-full tracking-tight'>
+    <div className='px-16 py-4 flex flex-col justify-evenly h-full tracking-tight'>
       <span className='border-l-4 pl-2 border-blue-500  font-extrabold text-lg text-gray-600'>
         Welcome to the Lessons Section.
       </span>
