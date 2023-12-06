@@ -24,7 +24,7 @@ const RecentTopics = async () => {
       <div className='sm:px-6'>
         <div className='flex flex-row justify-between items-center mb-7 sm:mb-10'>
           <span className='capitalize block max-sm:text-center text-2xl lg:text-4xl font-extrabold text-gray-800 '>
-            My Subjects
+            My Courses
           </span>
           <AddSubjectsModal submit={onSubmit} selectedSubjects={selectedSubjects} subjects={subjects} />
         </div>
