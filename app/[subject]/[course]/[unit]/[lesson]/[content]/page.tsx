@@ -6,6 +6,7 @@ import sampleSize from 'lodash.samplesize';
 import DisplayQuestions from '@/containers/DisplayQuestions';
 import { fetchGET } from '@/utils/fetchOption';
 import sample from 'lodash.sample';
+import { getCurrentUser, updateCurrentUser } from '@/lib/data/user';
 
 // export async function generateStaticParams() {
 //   // const content = await getContentsSlug();
@@ -49,7 +50,7 @@ const Content = async ({ params }: { params: { content: string } }) => {
   }
 
   if (params.content.endsWith('test')) {
-    const test = await getTest(params.content);
+    const test: { _id: string; questions: any[]; title: string } = await getTest(params.content);
     const questions = test?.questions;
     const shuffledQuestions = shuffle(questions);
     const selectedQuestions = sampleSize(shuffledQuestions, 5);
@@ -59,12 +60,68 @@ const Content = async ({ params }: { params: { content: string } }) => {
 
     const randomQuote = sample(await fetchGET({ path: 'https://zenquotes.io/api/quotes/', revalidate: 86400 }));
 
+    const updateUserProgress = async (
+      updatedQuestionsProgress: { id: string; isCorrect: boolean },
+      testCompleted: boolean
+    ) => {
+      'use server';
+      //Get Updated User
+      const user = await getCurrentUser();
+      //Update Question
+      const currentQuestionProgress: {
+        id: string;
+        numberOfTimesCorrect: number;
+        numberOfTimesTaken: number;
+        timeline: { date: Date; isCorrect: boolean }[];
+      }[] = user?.contentProgress.questions;
+
+      if (updatedQuestionsProgress) {
+        let updatedQuestion: any = {};
+        const questionIndex = currentQuestionProgress.findIndex((item) => item.id == updatedQuestionsProgress.id);
+        const questionFound = currentQuestionProgress[questionIndex];
+
+        //Check if question exists
+        if (questionIndex >= 0) {
+          const isCorrectNumber = updatedQuestionsProgress.isCorrect
+            ? questionFound.numberOfTimesCorrect + 1
+            : questionFound.numberOfTimesCorrect;
+
+          updatedQuestion = {
+            ...questionFound,
+            numberOfTimesTaken: questionFound.numberOfTimesTaken + 1,
+            numberOfTimesCorrect: isCorrectNumber,
+            timeline: [
+              ...questionFound.timeline,
+              { date: new Date(Date.now()).toISOString(), isCorrect: updatedQuestionsProgress.isCorrect },
+            ],
+          };
+          currentQuestionProgress[questionIndex] = updatedQuestion;
+          const data = { contentProgress: { ...user?.contentProgress, questions: currentQuestionProgress } };
+          await updateCurrentUser({ data });
+        }
+        //If question does not exist, create a new one and add it
+        else {
+          const isCorrectNumber = updatedQuestionsProgress.isCorrect ? 1 : 0;
+          updatedQuestion = {
+            id: updatedQuestionsProgress.id,
+            numberOfTimesTaken: 1,
+            numberOfTimesCorrect: isCorrectNumber,
+            timeline: [{ date: new Date(Date.now()).toISOString(), isCorrect: updatedQuestionsProgress.isCorrect }],
+          };
+          currentQuestionProgress.push(updatedQuestion);
+          const data = { contentProgress: { ...user?.contentProgress, questions: currentQuestionProgress } };
+          await updateCurrentUser({ data });
+        }
+      }
+    };
+
     return (
       <>
         <div className='px-10 py-6 relative h-full'>
           <div className='max-w-2xl mx-auto'>
             <header className='text-center text-2xl mb-12 text-gray-800 font-extrabold'>{test.title}</header>
             <DisplayQuestions
+              updateUser={updateUserProgress}
               quote={randomQuote}
               shuffledChoices={shuffledChoices}
               selectedQuestions={selectedQuestions}

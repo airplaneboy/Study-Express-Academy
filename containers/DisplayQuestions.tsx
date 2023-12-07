@@ -10,11 +10,14 @@ const DisplayQuestions = ({
   selectedQuestions,
   shuffledChoices,
   quote,
+  updateUser,
 }: {
   quote: any;
   shuffledChoices: any[];
   selectedQuestions: any[];
+  updateUser: (questionProgress: { id: string; isCorrect: boolean }, testCompleted: boolean) => void;
 }) => {
+  const [flag, setFlag] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [testCompleted, setTestCompleted] = useState(false);
@@ -23,12 +26,22 @@ const DisplayQuestions = ({
   const [showSummary, setShowSummary] = useState(false);
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
   const [result, setResult] = useState<{ isCorrect: boolean; id: number }[]>([]);
+  const [currentResult, setCurrentResult] = useState({});
 
   useEffect(() => {
     setShuffledAnswerChoices(shuffledChoices[currentIndex]);
     setCorrectAnswer(selectedQuestions[currentIndex]?.answer);
+
     return () => {};
-  }, [shuffledChoices, currentIndex, selectedQuestions]);
+  }, [result, testCompleted, shuffledChoices, currentIndex, selectedQuestions]);
+
+  useEffect(() => {
+    if (!flag) return setFlag(true);
+    console.log('test completed: ' + testCompleted);
+    console.log('current result: ' + JSON.stringify(currentResult, null, 2));
+    updateUser(currentResult as any, testCompleted);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [testCompleted, currentResult]);
 
   const handleNextQuestion = () => {
     if (currentIndex < selectedQuestions.length - 1) {
@@ -44,9 +57,11 @@ const DisplayQuestions = ({
 
     if (correctAnswer == selectedOption) {
       setResult((prev) => [...prev, { id, isCorrect: true }]);
+      setCurrentResult({ id, isCorrect: true });
       Confetti();
     } else {
       setResult((prev) => [...prev, { id, isCorrect: false }]);
+      setCurrentResult({ id, isCorrect: false });
     }
 
     setShowExplanation(true);
@@ -149,7 +164,7 @@ const DisplayQuestions = ({
                                 ? 'block h-7 w-7 border-2 border-green-600 rounded-full'
                                 : showExplanation && selectedOption == answerChoice
                                 ? result[currentIndex]?.isCorrect
-                                  ? 'block h-7 w-7 border-2 border-green-600 rounded-full'
+                                  ? ''
                                   : 'block h-7 w-7 border-2 border-red-600 rounded-full'
                                 : 'block h-7 w-7 border-2 border-blue-600 rounded-full'
                             }></div>
@@ -160,7 +175,7 @@ const DisplayQuestions = ({
                                 : selectedOption == answerChoice
                                 ? showExplanation
                                   ? result[currentIndex]?.isCorrect
-                                    ? 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[0px] text-sm bg-green-600 text-white rounded-full'
+                                    ? ''
                                     : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[0px] text-sm bg-red-600 text-white rounded-full'
                                   : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[0px] text-sm bg-blue-600 text-white rounded-full'
                                 : 'absolute w-7 h-7 border-2 border-transparent flex items-center justify-center top-[0px] text-blue-600 text-sm'
@@ -208,7 +223,11 @@ const DisplayQuestions = ({
                 })}
               </div>
               {!showExplanation ? (
-                <LessonNavButton selectedOption={selectedOption} onClick={() => check()}>
+                <LessonNavButton
+                  selectedOption={selectedOption}
+                  onClick={() => {
+                    check();
+                  }}>
                   Check
                 </LessonNavButton>
               ) : !testCompleted ? (
