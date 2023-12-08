@@ -134,8 +134,11 @@ const UserSchema = new mongoose.Schema(
           id: { type: String, trim: true, unique: true },
           numberOfTimesPassed: { type: Number, trim: true, default: 0, required: true },
           numberOfTimesTaken: { type: Number, default: 0 },
-          scores: { type: [Number], default: [] },
-          createdAt: { type: Date, default: Date.now },
+          scores: {
+            type: [{ date: Date, numberOfQuestion: Number, numberOfCorrectAnswers: Number, average: Number }],
+            default: [],
+          },
+          results: { type: [[{ questionId: String, isCorrect: Boolean, date: Date }]] },
         },
       ],
       questions: [

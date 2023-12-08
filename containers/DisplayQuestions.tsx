@@ -5,6 +5,7 @@ import LessonNavButton, { SummaryButton } from '@/components/LessonNavButton';
 import CustomPortableText from '@/components/CustomPortableText';
 import Confetti, { fireWorks, realisticConfetti } from '@/components/Confetti';
 import Quotes from '@/components/Quotes';
+import { Scores, Results } from '@/app/[subject]/[course]/[unit]/[lesson]/[content]/page';
 
 const DisplayQuestions = ({
   selectedQuestions,
@@ -15,7 +16,12 @@ const DisplayQuestions = ({
   quote: any;
   shuffledChoices: any[];
   selectedQuestions: any[];
-  updateUser: (questionProgress: { id: string; isCorrect: boolean }, testCompleted: boolean) => void;
+  updateUser: (
+    questionProgress: { id: string; isCorrect: boolean },
+    testCompleted: boolean,
+    scores: Scores,
+    results: Results
+  ) => void;
 }) => {
   const [flag, setFlag] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
@@ -25,21 +31,28 @@ const DisplayQuestions = ({
   const [shuffledAnswerChoices, setShuffledAnswerChoices] = useState<any[]>(shuffledChoices[currentIndex]);
   const [showSummary, setShowSummary] = useState(false);
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
-  const [result, setResult] = useState<{ isCorrect: boolean; id: number }[]>([]);
-  const [currentResult, setCurrentResult] = useState({});
+  const [result, setResult] = useState<Results>([]);
+  const [currentResult, setCurrentResult] = useState<any>({});
+  const [average, setAverage] = useState<number>(0);
+  const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
 
   useEffect(() => {
     setShuffledAnswerChoices(shuffledChoices[currentIndex]);
     setCorrectAnswer(selectedQuestions[currentIndex]?.answer);
 
     return () => {};
-  }, [result, testCompleted, shuffledChoices, currentIndex, selectedQuestions]);
+  }, [shuffledChoices, currentIndex, selectedQuestions]);
 
   useEffect(() => {
+    //Flag to prevent execution on first load
     if (!flag) return setFlag(true);
-    console.log('test completed: ' + testCompleted);
-    console.log('current result: ' + JSON.stringify(currentResult, null, 2));
-    updateUser(currentResult as any, testCompleted);
+
+    updateUser(
+      currentResult,
+      testCompleted,
+      { numberOfCorrectAnswers, numberOfQuestion: result?.length, average },
+      result
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [testCompleted, currentResult]);
 
@@ -48,7 +61,7 @@ const DisplayQuestions = ({
       setCurrentIndex(currentIndex + 1);
       setSelectedOption('');
     }
-    if (currentIndex >= selectedQuestions.length - 1) setTestCompleted(true);
+    // if (currentIndex >= selectedQuestions.length - 1) setTestCompleted(true);
     return setShowExplanation(false);
   };
 
@@ -56,16 +69,20 @@ const DisplayQuestions = ({
     const id = selectedQuestions[currentIndex]?._id;
 
     if (correctAnswer == selectedOption) {
-      setResult((prev) => [...prev, { id, isCorrect: true }]);
+      setNumberOfCorrectAnswers((prev) => prev + 1);
+      setResult((prev) => [...prev, { questionId: id, isCorrect: true }]);
       setCurrentResult({ id, isCorrect: true });
       Confetti();
     } else {
-      setResult((prev) => [...prev, { id, isCorrect: false }]);
+      setResult((prev) => [...prev, { questionId: id, isCorrect: false }]);
       setCurrentResult({ id, isCorrect: false });
     }
 
     setShowExplanation(true);
-    if (currentIndex >= selectedQuestions.length - 1) setTestCompleted(true);
+    if (currentIndex >= selectedQuestions.length - 1) {
+      setAverage(+(numberOfCorrectAnswers / result.length).toFixed(2));
+      setTestCompleted(true);
+    }
   };
 
   const ShowSummary = () => {
@@ -238,7 +255,8 @@ const DisplayQuestions = ({
                 <SummaryButton
                   onClick={() => {
                     setShowSummary(true);
-                    const average = result.filter((item) => item.isCorrect == true).length / result.length;
+                    // const average = result.filter((item) => item.isCorrect == true).length / result.length;
+                    // setScore(+average.toFixed(2));
                     if (average >= 0.5) {
                       realisticConfetti();
                       if (average >= 0.95) fireWorks({ durationValue: 2 });

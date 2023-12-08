@@ -15,6 +15,27 @@ import { getCurrentUser, updateCurrentUser } from '@/lib/data/user';
 //   // }));
 // }
 
+export type UserTests = UserTest[];
+
+export type UserTest = {
+  id: string;
+  numberOfTimesPassed: number;
+  numberOfTimesTaken: number;
+  scores: Scores[];
+  results: Results[];
+};
+
+export type Test = { id: string; questions: any[]; title: string };
+
+export type Scores = {
+  date?: string;
+  numberOfQuestion: number;
+  numberOfCorrectAnswers: number;
+  average: number;
+};
+
+export type Results = { isCorrect: boolean; questionId: number; date?: string }[];
+
 const Content = async ({ params }: { params: { content: string } }) => {
   let url: string = '';
   if (params.content.endsWith('video')) {
@@ -50,7 +71,7 @@ const Content = async ({ params }: { params: { content: string } }) => {
   }
 
   if (params.content.endsWith('test')) {
-    const test: { _id: string; questions: any[]; title: string } = await getTest(params.content);
+    const test: Test = await getTest(params.content);
     const questions = test?.questions;
     const shuffledQuestions = shuffle(questions);
     const selectedQuestions = sampleSize(shuffledQuestions, 5);
@@ -62,20 +83,22 @@ const Content = async ({ params }: { params: { content: string } }) => {
 
     const updateUserProgress = async (
       updatedQuestionsProgress: { id: string; isCorrect: boolean },
-      testCompleted: boolean
+      testCompleted: boolean,
+      scores: Scores,
+      results: Results
     ) => {
       'use server';
       //Get Updated User
       const user = await getCurrentUser();
-      //Update Question
-      const currentQuestionProgress: {
-        id: string;
-        numberOfTimesCorrect: number;
-        numberOfTimesTaken: number;
-        timeline: { date: Date; isCorrect: boolean }[];
-      }[] = user?.contentProgress.questions;
 
       if (updatedQuestionsProgress) {
+        //Update Question
+        const currentQuestionProgress: {
+          id: string;
+          numberOfTimesCorrect: number;
+          numberOfTimesTaken: number;
+          timeline: { date: Date; isCorrect: boolean }[];
+        }[] = user?.contentProgress.questions;
         let updatedQuestion: any = {};
         const questionIndex = currentQuestionProgress.findIndex((item) => item.id == updatedQuestionsProgress.id);
         const questionFound = currentQuestionProgress[questionIndex];
@@ -111,6 +134,61 @@ const Content = async ({ params }: { params: { content: string } }) => {
           currentQuestionProgress.push(updatedQuestion);
           const data = { contentProgress: { ...user?.contentProgress, questions: currentQuestionProgress } };
           await updateCurrentUser({ data });
+        }
+      }
+
+      if (testCompleted) {
+        //Add date to score
+        scores.date = new Date(Date.now()).toISOString();
+        const currentTestProgress: UserTests = user?.contentProgress.tests;
+        const testIndex = currentTestProgress.findIndex((item) => item.id == test.id);
+        const testFound = currentTestProgress[testIndex];
+
+        //Check if test exists
+        if (testIndex >= 0) {
+          //Check if passed
+          const isPassedNumber =
+            scores.average >= 0.5 ? testFound.numberOfTimesPassed + 1 : testFound.numberOfTimesPassed;
+          //Update Test
+          testFound.numberOfTimesTaken = testFound.numberOfTimesTaken + 1;
+          testFound.numberOfTimesPassed = isPassedNumber;
+          testFound.scores.push(scores);
+          testFound.results.push(results);
+
+          const updatedUser = await updateCurrentUser({
+            data: { contentProgress: { tests: { index: testIndex, test: testFound } } },
+          });
+          console.log(
+            `\n\t===============Test Exists===========\n${JSON.stringify(
+              updatedUser.contentProgress.tests,
+              null,
+              2
+            )}\n\t=============End Test Exists============\n`
+          );
+        }
+        //If test does not exist
+        else {
+          //Check if passed
+          const isPassedNumber = scores.average >= 0.5 ? 1 : 0;
+          //Create Test
+          const newTest: UserTest = {
+            numberOfTimesPassed: isPassedNumber,
+            numberOfTimesTaken: 1,
+            id: test.id,
+            results: [results],
+            scores: [scores],
+          };
+
+          const updatedUser = await updateCurrentUser({
+            data: { contentProgress: { tests: { index: 0, test: newTest } } },
+          });
+          console.log(
+            `\n\t===============Test Not Exists===========\n${JSON.stringify(
+              updatedUser.contentProgress.tests,
+              null,
+              2
+            )}\n\t=============End Test Not Exists============\n`
+          );
         }
       }
     };

@@ -79,8 +79,16 @@ export async function PATCH(request: NextRequest, { params }: { params: any }) {
       delete body?.completedUnits;
 
     if (body?.selectedSubjects) user.selectedSubjects = body?.selectedSubjects;
-    else if (body?.contentProgress) user.contentProgress = body?.contentProgress;
-    else user = merge(user, body);
+    else if (body?.contentProgress) {
+      if (body.contentProgress.tests) {
+        const { index, test } = body.contentProgress.tests;
+        user.contentProgress.tests[index] = test;
+        // user.contentProgress.tests = body.contentProgress.tests;
+      } else if (body.contentProgress.questions) user.contentProgress.questions = body.contentProgress.questions;
+      else if (body.contentProgress.articles) user.contentProgress.articles = body.contentProgress.articles;
+      else if (body.contentProgress.videos) user.contentProgress.videos = body.contentProgress.videos;
+      else user.contentProgress = body?.contentProgress;
+    } else user = merge(user, body);
 
     await user.save();
 
