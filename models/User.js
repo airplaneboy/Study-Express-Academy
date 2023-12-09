@@ -119,14 +119,13 @@ const UserSchema = new mongoose.Schema(
           id: { type: String, trim: true, unique: true },
           durationWatched: { type: Number, trim: true, default: 0, required: true },
           numberOfTimesWatched: { type: Number, default: 0 },
-          createdAt: { type: Date, default: Date.now },
+          createdAt: { type: Date },
         },
       ],
       articles: [
         {
           id: { type: String, trim: true, unique: true },
-          numberOfTimesRead: { type: Number, default: 0 },
-          createdAt: { type: Date, default: Date.now },
+          createdAt: { type: Date },
         },
       ],
       tests: [
@@ -155,22 +154,22 @@ const UserSchema = new mongoose.Schema(
       subject: {
         id: { type: String, unique: true },
         data: mongoose.Schema.Types.Mixed,
-        createdAt: { type: Date, default: Date.now },
+        createdAt: { type: Date },
       },
       lesson: {
         id: { type: String, unique: true },
         data: mongoose.Schema.Types.Mixed,
-        createdAt: { type: Date, default: Date.now },
+        createdAt: { type: Date },
       },
       course: {
         id: { type: String, unique: true },
         data: mongoose.Schema.Types.Mixed,
-        createdAt: { type: Date, default: Date.now },
+        createdAt: { type: Date },
       },
       unit: {
         id: { type: String, unique: true },
         data: mongoose.Schema.Types.Mixed,
-        createdAt: { type: Date, default: Date.now },
+        createdAt: { type: Date },
       },
     },
 
@@ -179,35 +178,35 @@ const UserSchema = new mongoose.Schema(
         {
           id: { type: String, unique: true },
           data: mongoose.Schema.Types.Mixed,
-          createdAt: { type: Date, default: Date.now },
+          createdAt: { type: Date },
         },
       ],
       lessons: [
         {
           id: { type: String, unique: true },
           data: mongoose.Schema.Types.Mixed,
-          createdAt: { type: Date, default: Date.now },
+          createdAt: { type: Date },
         },
       ],
       courses: [
         {
           id: { type: String, unique: true },
           data: mongoose.Schema.Types.Mixed,
-          createdAt: { type: Date, default: Date.now },
+          createdAt: { type: Date },
         },
       ],
       units: [
         {
           id: { type: String, unique: true },
           data: mongoose.Schema.Types.Mixed,
-          createdAt: { type: Date, default: Date.now },
+          createdAt: { type: Date },
         },
       ],
       achievements: [
         {
           id: { type: String, unique: true },
           data: mongoose.Schema.Types.Mixed,
-          createdAt: { type: Date, default: Date.now },
+          createdAt: { type: Date },
         },
       ],
     },
@@ -216,7 +215,7 @@ const UserSchema = new mongoose.Schema(
       {
         id: { type: String, unique: true },
         data: mongoose.Schema.Types.Mixed,
-        createdAt: { type: Date, default: Date.now },
+        createdAt: { type: Date },
       },
     ],
 

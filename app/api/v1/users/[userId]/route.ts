@@ -82,7 +82,7 @@ export async function PATCH(request: NextRequest, { params }: { params: any }) {
     else if (body?.contentProgress) {
       if (body.contentProgress.tests) user.contentProgress.tests = body.contentProgress.tests;
       else if (body.contentProgress.questions) user.contentProgress.questions = body.contentProgress.questions;
-      else if (body.contentProgress.articles) user.contentProgress.articles = body.contentProgress.articles;
+      else if (body.contentProgress.articles) user.contentProgress.articles.push(body.contentProgress.articles);
       else if (body.contentProgress.videos) user.contentProgress.videos = body.contentProgress.videos;
       else user.contentProgress = body?.contentProgress;
     } else user = merge(user, body);

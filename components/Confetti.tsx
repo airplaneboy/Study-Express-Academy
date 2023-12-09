@@ -1,7 +1,8 @@
 'use client';
 import confetti from 'canvas-confetti';
 
-export default function Confetti() {
+export default function Confetti(origin?: { x: number; y: number }) {
+  if (origin) return confetti({ origin, zIndex: 1001, startVelocity: 20, spread: 180 });
   return confetti({ origin: { x: 0.9, y: 0.97 }, zIndex: 1001, startVelocity: 20, spread: 180 });
 }
 
