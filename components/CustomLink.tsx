@@ -1,5 +1,5 @@
 import NextLink from 'next/link';
-// import kebabCase from 'lodash.kebabcase';
+// import kebabCase from 'lodash/kebabcase';
 
 interface ICustomLink {
   pathStrings: string[];

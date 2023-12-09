@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import connectMongoose from '@/lib/mongooseConnect';
 import Subject from '@/models/Subject';
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import Course from '@/models/Course';
 import Unit from '@/models/Unit';
 

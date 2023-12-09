@@ -1,6 +1,6 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import User from '@/models/User';
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import jsonResponse from '@/utils/jsonResponse';
 // import { revalidatePath } from 'next/cache';
 import { NextRequest } from 'next/server';

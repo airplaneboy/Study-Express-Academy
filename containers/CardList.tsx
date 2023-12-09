@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Link } from 'react-scroll';
 import CollapsibleHeader from '@/components/CollapsibleHeader';
 import CustomLink from '@/components/CustomLink';
-import capitalize from 'lodash.capitalize';
+import capitalize from 'lodash/capitalize';
 import { useState } from 'react';
 interface SidebarItem {
   slug: string;

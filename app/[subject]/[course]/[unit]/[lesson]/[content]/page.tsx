@@ -1,15 +1,13 @@
 import VideoPlayer from '@/components/VideoPlayer';
 import { getArticle, getTest, getVideo } from '@/sanity/sanity-utils';
 import CustomPortableText from '@/components/CustomPortableText';
-import shuffle from 'lodash.shuffle';
-import sampleSize from 'lodash.samplesize';
+import shuffle from 'lodash/shuffle';
+import sampleSize from 'lodash/samplesize';
 import DisplayQuestions from '@/containers/DisplayQuestions';
 import { fetchGET } from '@/utils/fetchOption';
-import sample from 'lodash.sample';
+import sample from 'lodash/sample';
 import { getCurrentUser, updateCurrentUser } from '@/lib/data/user';
 import remove from 'lodash/remove';
-import { HiCheck } from 'react-icons/hi2';
-import confetti, { fireWorks } from '@/components/Confetti';
 import MarkAsRead from '@/components/MarkAsRead';
 
 // export async function generateStaticParams() {

@@ -1,5 +1,5 @@
 import { client } from './client-config';
-import pullAll from 'lodash.pullall';
+import pullAll from 'lodash/pullall';
 
 const addChildrenToParent = async (array: string, parentId: string, childId: string) => {
   let arrayContainer: any = {};

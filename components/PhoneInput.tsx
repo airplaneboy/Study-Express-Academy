@@ -1,5 +1,5 @@
 import PhoneInput2 from 'react-phone-input-2';
-// import startsWith from 'lodash.startswith';
+// import startsWith from 'lodash/startswith';
 import 'react-phone-input-2/lib/material.css';
 
 const PhoneInput = ({ phone, setPhone }: { phone?: any; setPhone?: any }) => {

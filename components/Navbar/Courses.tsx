@@ -1,7 +1,7 @@
 import { MdArrowDropDown } from 'react-icons/md';
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
-import kebabCase from 'lodash.kebabcase';
+import kebabCase from 'lodash/kebabcase';
 import Link from 'next/link';
 import React from 'react';
 

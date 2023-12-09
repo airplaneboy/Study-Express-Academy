@@ -1,7 +1,7 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Lesson from '@/models/Lesson';
 import jsonResponse from '@/utils/jsonResponse';
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import isAlpha from 'validator/lib/isAlpha';
 import mongoose from 'mongoose';
 import { revalidatePath } from 'next/cache';
