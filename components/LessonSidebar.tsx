@@ -7,6 +7,9 @@ import {
   HiOutlinePencilSquare,
   HiOutlineFolder,
   HiArrowRight,
+  HiPlay,
+  HiDocumentText,
+  HiPencilSquare,
 } from 'react-icons/hi2';
 import { useState } from 'react';
 // import { FaQuoteRight } from 'react-icons/fa';
@@ -76,11 +79,24 @@ const LessonSidebar = ({
                       : 'px-3 py-5 block border-gray-300 border-2 rounded-2xl'
                   }>
                   <div className='flex gap-2 items-center justify-start'>
-                    {(content?._type == 'videos' && <HiOutlinePlay size={25} className='shrink-0' />) ||
-                      (content?._type == 'articles' && <HiOutlineDocumentText size={25} className='shrink-0' />) ||
-                      (content?._type == 'tests' && <HiOutlinePencilSquare size={25} className='shrink-0' />) || (
-                        <HiOutlineFolder size={25} className='shrink-0' />
-                      )}
+                    {(content?._type == 'videos' &&
+                      (content?.slug === segment ? (
+                        <HiPlay size={25} className='shrink-0' />
+                      ) : (
+                        <HiOutlinePlay size={25} className='shrink-0' />
+                      ))) ||
+                      (content?._type == 'articles' &&
+                        (content?.slug === segment ? (
+                          <HiDocumentText size={25} className='shrink-0' />
+                        ) : (
+                          <HiOutlineDocumentText size={25} className='shrink-0' />
+                        ))) ||
+                      (content?._type == 'tests' &&
+                        (content?.slug === segment ? (
+                          <HiPencilSquare size={25} className='shrink-0' />
+                        ) : (
+                          <HiOutlinePencilSquare size={25} className='shrink-0' />
+                        ))) || <HiOutlineFolder size={25} className='shrink-0' />}
                     <span className='truncate'>{content?.title}</span>
                   </div>
                 </Link>

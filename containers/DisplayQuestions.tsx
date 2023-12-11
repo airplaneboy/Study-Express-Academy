@@ -5,7 +5,7 @@ import LessonNavButton, { SummaryButton } from '@/components/LessonNavButton';
 import CustomPortableText from '@/components/CustomPortableText';
 import Confetti, { fireWorks, realisticConfetti } from '@/components/Confetti';
 import Quotes from '@/components/Quotes';
-import { Scores, Results } from '@/app/[subject]/[course]/[unit]/[lesson]/[content]/page';
+import { Scores, Results } from './TestContainer';
 
 const DisplayQuestions = ({
   selectedQuestions,
@@ -70,11 +70,11 @@ const DisplayQuestions = ({
 
     if (correctAnswer == selectedOption) {
       setNumberOfCorrectAnswers((prev) => prev + 1);
-      setResult((prev) => [...prev, { questionId: id, isCorrect: true }]);
+      setResult((prev: any) => [...prev, { questionId: id, isCorrect: true }]);
       setCurrentResult({ id, isCorrect: true });
       Confetti();
     } else {
-      setResult((prev) => [...prev, { questionId: id, isCorrect: false }]);
+      setResult((prev: any) => [...prev, { questionId: id, isCorrect: false }]);
       setCurrentResult({ id, isCorrect: false });
     }
 

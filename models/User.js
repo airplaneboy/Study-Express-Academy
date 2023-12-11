@@ -117,9 +117,12 @@ const UserSchema = new mongoose.Schema(
       videos: [
         {
           id: { type: String, trim: true, unique: true },
-          durationWatched: { type: Number, trim: true, default: 0, required: true },
+          totalDurationWatched: { type: Number, trim: true, default: 0, required: true },
           numberOfTimesWatched: { type: Number, default: 0 },
-          createdAt: { type: Date },
+          timeline: { type: [{ date: Date, watchTime: { type: Number } }] },
+          lastUpdated: Date,
+          videoDuration: Number,
+          lastSecondWatched: Number,
         },
       ],
       articles: [
