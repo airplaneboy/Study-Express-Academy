@@ -1,16 +1,23 @@
 'use client';
-import React, { Suspense, useState } from 'react';
-import ReactPlayer from 'react-player/youtube';
+import { useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
+import ReactPlayer from 'react-player';
+const ReactPlayerLazyLoader = dynamic(() => import('@/components/ReactPlayerLazyLoader'), { ssr: false });
 
-const Page = () => {
-  const [load, setLoad] = useState(false);
+export default function Home() {
+  const playerRef = useRef<ReactPlayer>();
+  const [value, setValue] = useState(0);
+
+  const logMessage = () =>
+    console.log(`Duration: ${playerRef.current?.getDuration()}\nCurrent Time: ${playerRef.current?.getCurrentTime()}`);
+
+  const seek = (whereTo: any) => playerRef.current?.seekTo(whereTo);
   return (
-    <div>
-      <Suspense fallback={<span>loading...</span>}>
-        <ReactPlayer onReady={() => setLoad(true)} url='https://www.youtube.com/watch?v=LXb3EKWsInQ' />
-      </Suspense>
-    </div>
+    <>
+      <input type='number' value={value} onChange={(e) => setValue(+e.target.value)} />
+      <button onClick={logMessage}>Log</button>
+      <button onClick={() => seek(value)}>Seek</button>
+      <ReactPlayerLazyLoader url='https://www.youtube.com/watch?v=LXb3EKWsInQ' playerRef={playerRef} />;
+    </>
   );
-};
-
-export default Page;
+}

@@ -1,17 +1,18 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-// import ReactPlayer from 'react-player/youtube';
-// import { OnProgressProps } from 'react-player/base';
 
-const DynamicReactPlayer = dynamic(() => import('react-player/lazy'), {
+// import ReactPlayer from 'react-player/youtube';
+const DynamicReactPlayer = dynamic(() => import('./ReactPlayerLazyLoader'), {
   ssr: false, // This ensures the component is only rendered on the client side
 });
 
 function VideoPlayer({
   url,
   updateUserVideo,
+  lastSecond,
 }: {
+  lastSecond: number;
   url: string;
   updateUserVideo: ({
     videoDuration,
@@ -25,16 +26,20 @@ function VideoPlayer({
 }) {
   const [flag, setFlag] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
-  const [videoDuration, setVideoDuration] = useState(0);
   const [lastSecondWatched, setLastSecondWatched] = useState(0);
   const [endTime, setEndTime] = useState(0);
   const [startTime, setStartTime] = useState(0);
   const [watchTime, setWatchTime] = useState(0);
+  const [videoDuration, setVideoDuration] = useState(0);
+  const [toggle, setToggle] = useState(true);
+  const [paused, setPaused] = useState(0);
 
   const [time, setTime] = useState(1);
 
   const intervalId = useRef<NodeJS.Timer>();
   const isCounting = useRef(false);
+  const count = useRef(0);
+  const player = useRef<any>();
 
   useEffect(() => {
     if (!flag) return setFlag(true);
@@ -45,12 +50,29 @@ function VideoPlayer({
     setWatchTime((endTime - startTime) / 1000);
 
     console.log(`Effect was called ${time} times\nTime: ${(endTime - startTime) / 1000}`);
-  }, [endTime]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [endTime, paused]);
 
   const startCount = () => {
-    if (!isCounting.current) intervalId.current = setInterval(() => setEndTime(Date.now()), 30000);
-    isCounting.current = true;
+    if (!isCounting.current) {
+      intervalId.current = setInterval(() => {
+        count.current = count.current + 0.5;
+        if (count.current >= 30) {
+          setLastSecondWatched(+player.current!.getCurrentTime());
+          setEndTime(Date.now());
+
+          count.current = 0;
+        }
+      }, 500);
+      isCounting.current = true;
+    }
   };
+
+  const seek = () => {
+    console.log(count.current);
+  };
+
+  const seekToLastSecond = () => player.current?.seekTo(lastSecond);
 
   const stopCount = () => {
     clearInterval(intervalId.current);
@@ -100,6 +122,7 @@ function VideoPlayer({
   return (
     <>
       <span>{watchTime}</span>
+      <button onClick={() => seek()}>Seek</button>
       <div
         className={
           playerReady
@@ -107,19 +130,29 @@ function VideoPlayer({
             : 'aspect-video duration-75 animate-pulse bg-gray-200 rounded-lg overflow-hidden'
         }>
         <DynamicReactPlayer
-          onReady={() => setPlayerReady(true)}
           // fallback={<div className='aspect-video animate-pulse bg-gray-300 duration-150' />}
-          // onProgress={(e) => captureUserProgress(e)}
+          onStart={() => console.log('on start was called')}
+          playing={isCounting.current}
+          playerRef={player}
+          onReady={() => setPlayerReady(true)}
           onPlay={() => {
+            if (toggle) {
+              console.log('dont call PLAY');
+              setVideoDuration(+player.current!.getDuration());
+              setToggle(false);
+            }
+
             setStartTime(Date.now());
             startCount();
           }}
-          onPause={() => stopCount()}
-          onProgress={(e) => setLastSecondWatched(e.playedSeconds)}
+          onPause={() => {
+            stopCount();
+            setPaused((prev) => prev + 1);
+          }}
           className=' aspect-video !w-auto !h-auto'
           url={url}
-          onDuration={(e) => setVideoDuration(e)}
           controls={true}
+          onEnded={() => stopCount()}
         />
       </div>
     </>
