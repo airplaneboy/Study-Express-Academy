@@ -21,23 +21,26 @@ type VideoPlayerProps = {
 };
 
 const VideoPlayer2 = ({ url, updateUserVideo, lastSecond }: VideoPlayerProps) => {
+  const [flag, setFlag] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
-  const [watchTime, setWatchTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-
-  const [time, setTime] = useState(-1);
-  // const [startWatchTime, setStartWatchTime] = useState(0);
+  const [watchTime, setWatchTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [lastSecondWatched, setLastSecondWatched] = useState<number | any>(0);
+  const [trigger, setTrigger] = useState(false);
 
   const counter = useRef(0);
   const player = useRef<ReactPlayer>();
   const intervalId = useRef<NodeJS.Timer>();
+  const times = useRef(1);
 
   useEffect(() => {
-    console.log(`Effect was called ${time} times\nTime: ${watchTime}`);
-
-    return setTime((prev) => prev + 1);
+    if (!flag) return setFlag(true);
+    updateUserVideo({ videoDuration: duration, lastSecondWatched, watchTime });
+    console.log(`Watch was called ${times.current} times`);
+    times.current++;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watchTime]);
+  }, [trigger]);
 
   useEffect(() => {
     if (isPlaying) intervalId.current = setInterval(onInterval, 100);
@@ -49,28 +52,34 @@ const VideoPlayer2 = ({ url, updateUserVideo, lastSecond }: VideoPlayerProps) =>
   const onInterval = () => {
     counter.current = counter.current + 0.1;
     if (counter.current >= 30) {
-      // setWatchTime((prev) => prev + 30);
-      setWatchTime((prev) => prev + 30);
-      counter.current = 0.1;
+      counter.current = 0;
+      setWatchTime(30);
+      setLastSecondWatched(player.current?.getCurrentTime());
+      setTrigger((prev) => !prev);
     }
   };
 
   const onPlay = () => {
-    console.log('was played');
     setIsPlaying(true);
+    setDuration(player.current!.getDuration());
   };
+
+  const seekToLastSecond = () => lastSecond != undefined && player.current?.seekTo(lastSecond);
 
   const onPause = () => {
     setIsPlaying(false);
-    setWatchTime(watchTime + counter.current);
-    counter.current = 0;
+    setWatchTime(counter.current);
+    setLastSecondWatched(player.current?.getCurrentTime());
+    setTrigger((prev) => !prev);
+    counter.current = 0.1;
   };
-
-  const seekToLastSecond = () => player.current?.seekTo(lastSecond);
 
   const onEnded = () => {
     setIsPlaying(false);
-    setWatchTime((prev) => prev + counter.current);
+    setWatchTime(counter.current);
+    setLastSecondWatched(player.current?.getCurrentTime());
+    counter.current = 0.1;
+    setTrigger((prev) => !prev);
   };
   return (
     <>
@@ -84,14 +93,14 @@ const VideoPlayer2 = ({ url, updateUserVideo, lastSecond }: VideoPlayerProps) =>
         }>
         <DynamicReactPlayer
           className=' aspect-video !w-auto !h-auto'
-          onReady={() => setPlayerReady(true)}
-          onStart={() => console.log('Starting...')}
+          url={url}
+          controls={true}
           playerRef={player}
           onPlay={() => onPlay()}
           onPause={() => onPause()}
-          url={url}
-          controls={true}
           onEnded={() => onEnded()}
+          onReady={() => setPlayerReady(true)}
+          onStart={() => seekToLastSecond()}
         />
       </div>
     </>

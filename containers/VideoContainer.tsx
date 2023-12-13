@@ -1,4 +1,3 @@
-import VideoPlayer from '@/components/VideoPlayer';
 import VideoPlayer2 from '@/components/VideoPlayer2';
 import { getCurrentUser, updateCurrentUser } from '@/lib/data/user';
 import { getVideo } from '@/sanity/sanity-utils';
@@ -34,11 +33,8 @@ const VideoContainer = async ({ params }: { params: { content: string } }) => {
 
     if (videoFound) {
       const totalDurationWatched = videoFound.totalDurationWatched + watchTime;
-      const date1: any = new Date(videoFound.lastUpdated);
-      const date2: any = new Date(Date.now());
 
-      const difference = Math.abs(date2 - date1);
-      console.log(`Difference: ${difference}`);
+      const difference = Math.abs(Date.now() - (new Date(videoFound.lastUpdated) as any));
       //If less than a day, update only watch time
       if (difference / (1000 * 60 * 60) < 24) {
         const lastIndex = videoFound.timeline.length - 1;
