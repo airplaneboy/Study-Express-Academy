@@ -117,6 +117,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
         testFound.scores.push(scores);
         testFound.results.push(results);
         testFound.isCompleted = true;
+        testFound.numberOfQuestions = test.questions.length;
 
         currentTestProgress.push(testFound);
         await updateCurrentUser({
