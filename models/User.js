@@ -123,6 +123,7 @@ const UserSchema = new mongoose.Schema(
           lastUpdated: Date,
           videoDuration: Number,
           lastSecondWatched: Number,
+          isCompleted: { type: Boolean, default: false },
         },
       ],
       articles: [

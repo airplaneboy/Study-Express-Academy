@@ -1,4 +1,4 @@
-import VideoPlayer2 from '@/components/VideoPlayer2';
+import VideoPlayer from '@/components/VideoPlayer';
 import { getCurrentUser, updateCurrentUser } from '@/lib/data/user';
 import { getVideo } from '@/sanity/sanity-utils';
 import remove from 'lodash/remove';
@@ -11,6 +11,7 @@ type Video = {
   lastUpdated: string;
   videoDuration: number;
   lastSecondWatched: number;
+  isCompleted?: boolean;
 };
 
 const VideoContainer = async ({ params }: { params: { content: string } }) => {
@@ -41,6 +42,7 @@ const VideoContainer = async ({ params }: { params: { content: string } }) => {
         videoFound.totalDurationWatched = totalDurationWatched;
         videoFound.timeline[lastIndex].watchTime = videoFound.timeline[lastIndex].watchTime + watchTime;
         videoFound.lastSecondWatched = lastSecondWatched;
+        if (videoFound.totalDurationWatched + 3 >= videoFound.videoDuration) videoFound.isCompleted = true;
 
         currentVideoProgress.push(videoFound);
         const updatedUser = await updateCurrentUser({ data: { contentProgress: { videos: currentVideoProgress } } });
@@ -58,6 +60,7 @@ const VideoContainer = async ({ params }: { params: { content: string } }) => {
       videoFound.numberOfTimesWatched++;
       videoFound.lastUpdated = new Date(Date.now()).toISOString();
       videoFound.lastSecondWatched = lastSecondWatched;
+      if (videoFound.totalDurationWatched + 3 >= videoFound.videoDuration) videoFound.isCompleted = true;
 
       currentVideoProgress.push(videoFound);
       const updatedUser = await updateCurrentUser({ data: { contentProgress: { videos: currentVideoProgress } } });
@@ -93,7 +96,7 @@ const VideoContainer = async ({ params }: { params: { content: string } }) => {
   return (
     <div className='overflow-y-auto flex flex-col w-full h-full md:px-4 py-2 lg:px-10 pb-10'>
       <header className='text-base tracking-wide font-extrabold py-4  text-gray-800'>{video.title}</header>
-      <VideoPlayer2
+      <VideoPlayer
         lastSecond={user?.contentProgress.videos.find((items: Video) => items.id == video._id)?.lastSecondWatched}
         updateUserVideo={updateUserVideo}
         url={video.url}
