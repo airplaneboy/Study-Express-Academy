@@ -4,7 +4,7 @@ import validator from 'validator';
 
 const UserSchema = new mongoose.Schema(
   {
-    //Primary
+    //#region Primary
     username: {
       type: String,
       required: [true, 'Input a username'],
@@ -57,7 +57,7 @@ const UserSchema = new mongoose.Schema(
     profile: {
       firstName: { type: String, trim: true, lowercase: true },
       lastName: { type: String, trim: true, lowercase: true },
-      image: String, //why not use buffer?
+      image: { type: String, default: '/assets/profile-pics/KnowledgeSeeker.svg' }, //why not use buffer?
       bio: {
         type: String,
         trim: true,
@@ -104,24 +104,144 @@ const UserSchema = new mongoose.Schema(
         default: 'everything',
       },
     },
+
     // status: {
     //   type: String,
     //   enum: ['active', 'inactive', 'blocked'],
     //   default: 'active',
     // },
+    //#endregion
 
-    //Additional
-    completedLessons: { type: [mongoose.Schema.Types.ObjectId], ref: 'Lesson' },
+    //#region Additional
+    contentProgress: {
+      videos: [
+        {
+          id: { type: String, trim: true, unique: true },
+          totalDurationWatched: { type: Number, trim: true, default: 0, required: true },
+          numberOfTimesWatched: { type: Number, default: 0 },
+          timeline: { type: [{ date: Date, watchTime: { type: Number } }] },
+          lastUpdated: Date,
+          videoDuration: Number,
+          lastSecondWatched: Number,
+          isCompleted: { type: Boolean, default: false },
+        },
+      ],
+      articles: [
+        {
+          id: { type: String, trim: true, unique: true },
+          createdAt: { type: Date },
+        },
+      ],
+      tests: [
+        {
+          id: { type: String, trim: true, unique: true },
+          numberOfTimesPassed: { type: Number, trim: true, default: 0, required: true },
+          numberOfTimesTaken: { type: Number, default: 0 },
+          numberOfQuestions: Number,
+          isCompleted: { type: Boolean, default: false },
+          scores: {
+            type: [{ date: Date, numberOfCorrectAnswers: Number, average: Number }],
+            default: [],
+          },
+          results: { type: [[{ questionId: String, isCorrect: Boolean, date: Date }]] },
+        },
+      ],
+      questions: [
+        {
+          id: { type: String, trim: true, unique: true },
+          numberOfTimesCorrect: { type: Number, trim: true, default: 0, required: true },
+          numberOfTimesTaken: { type: Number, default: 0 },
+          timeline: { type: [{ date: Date, isCorrect: Boolean }], default: [] },
+        },
+      ],
+    },
 
-    currentLesson: { type: mongoose.Schema.Types.ObjectId, ref: 'Lesson' },
+    currentProgress: {
+      subject: {
+        id: { type: String, unique: true },
+        data: mongoose.Schema.Types.Mixed,
+        createdAt: { type: Date },
+      },
+      lesson: {
+        id: { type: String, unique: true },
+        data: mongoose.Schema.Types.Mixed,
+        createdAt: { type: Date },
+      },
+      course: {
+        id: { type: String, unique: true },
+        data: mongoose.Schema.Types.Mixed,
+        createdAt: { type: Date },
+      },
+      unit: {
+        id: { type: String, unique: true },
+        data: mongoose.Schema.Types.Mixed,
+        createdAt: { type: Date },
+      },
+    },
 
-    courses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Course' },
+    completedProgress: {
+      subjects: [
+        {
+          id: { type: String, unique: true },
+          data: mongoose.Schema.Types.Mixed,
+          createdAt: { type: Date },
+        },
+      ],
+      courses: [
+        {
+          id: { type: String, unique: true },
+          data: mongoose.Schema.Types.Mixed,
+          createdAt: { type: Date },
+        },
+      ],
+      units: [
+        {
+          id: { type: String, unique: true },
+          data: mongoose.Schema.Types.Mixed,
+          createdAt: { type: Date },
+        },
+      ],
+      lessons: [
+        {
+          id: { type: String, unique: true },
+          data: mongoose.Schema.Types.Mixed,
+          createdAt: { type: Date },
+        },
+      ],
+      achievements: [
+        {
+          id: { type: String, unique: true },
+          data: mongoose.Schema.Types.Mixed,
+          createdAt: { type: Date },
+        },
+      ],
+    },
 
-    completedCourses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Course' },
+    selectedSubjects: [
+      {
+        id: { type: String, unique: true },
+        data: mongoose.Schema.Types.Mixed,
+        createdAt: { type: Date },
+      },
+    ],
 
-    completedUnits: { type: [mongoose.Schema.Types.ObjectId], ref: 'Unit' },
+    //#endregion
 
-    achievements: { type: [mongoose.Schema.Types.ObjectId], ref: 'Achievement' },
+    //#region MongoDB Schemas
+
+    // completedLessons: { type: [mongoose.Schema.Types.ObjectId], ref: 'Lesson' },
+
+    // currentLesson: { type: mongoose.Schema.Types.ObjectId, ref: 'Lesson' },
+
+    // courses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Course' },
+
+    // completedCourses: { type: [mongoose.Schema.Types.ObjectId], ref: 'Course' },
+
+    // completedUnits: { type: [mongoose.Schema.Types.ObjectId], ref: 'Unit' },
+
+    // achievements: { type: [mongoose.Schema.Types.ObjectId], ref: 'Achievement' },
+
+    //#endregion
   },
   { timestamps: true }
 );

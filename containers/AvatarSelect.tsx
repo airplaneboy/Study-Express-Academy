@@ -59,7 +59,7 @@ export function Gallery({ selected, setSelected }: { selected: any; setSelected?
             value={image}
             className={({ active, checked }) =>
               `${active ? 'ring-2 ring-white ring-opacity-60 ring-offset-2 ring-offset-sky-300' : ''}
-                  ${checked ? 'bg-indigo-900 bg-opacity-20 text-white' : 'bg-white'}
+                  ${checked ? 'bg-blue-900 bg-opacity-20 text-white' : 'bg-white'}
                     relative flex cursor-pointer rounded-2xl overflow-hidden focus:outline-none `
             }>
             {({ active, checked }) => (
@@ -87,9 +87,9 @@ export function Gallery({ selected, setSelected }: { selected: any; setSelected?
                         <span className='sr-only'>View details for {image.title}</span>
                       </button>
                     </div>
-                    <p className='mt-3 block text-xs font-bold text-white truncate pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 p-1 rounded-lg bg-opacity-40 bg-black '>
+                    <span className='mt-3 block text-xs font-bold text-white truncate pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 p-1 rounded-lg bg-opacity-40 bg-black '>
                       {image.title}
-                    </p>
+                    </span>
                     {/*  */}
                   </div>
                   {checked && (
@@ -123,7 +123,7 @@ export default function AvatarSelectModal({ value, setValue }: { value?: any; se
       <button
         type='button'
         onClick={openModal}
-        className=' bg-white py-2 px-3 border-2 border-gray-300 rounded-2xl  text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+        className=' bg-white py-2 px-3 border-2 border-gray-300 rounded-2xl  text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'>
         Change Avatar
       </button>
 
@@ -151,7 +151,7 @@ export default function AvatarSelectModal({ value, setValue }: { value?: any; se
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'>
                 <Dialog.Panel className='w-full max-w-3xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'>
-                  <Dialog.Title as='h3' className='text-lg font-medium leading-6 text-gray-900'>
+                  <Dialog.Title as='span' className='text-lg font-medium leading-6 text-gray-900'>
                     Choose your avatar
                   </Dialog.Title>
                   <div className='mt-2'>

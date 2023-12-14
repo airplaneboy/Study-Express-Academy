@@ -3,19 +3,34 @@ import PersonalInformation from '@/containers/PersonalInformation';
 import Profile from '@/containers/Profile';
 import Separator from '@/components/Separator';
 import ComboBoxContent from '@/containers/ComboBoxContent';
+import { getCurrentUser } from '@/lib/data/user';
 
-export default function Settings() {
+export default async function Settings() {
+  const user = await getCurrentUser();
+
   return (
     <>
-      <PersonalInformation countryComboBox={<ComboBoxContent />} />
+      <PersonalInformation
+        user={user}
+        countryComboBox={
+          <ComboBoxContent
+            initialSelected={
+              user?.profile?.country || {
+                name: 'Select Country',
+                flag: { image: '/assets/icons8-expand-arrow-48.png' },
+              }
+            }
+          />
+        }
+      />
 
       <Separator />
 
-      <Profile />
+      <Profile user={user} />
 
       <Separator />
 
-      <Notification />
+      <Notification user={user} />
     </>
   );
 }

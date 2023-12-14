@@ -1,19 +1,21 @@
 import CardList from '@/containers/CardList';
-import getCourses, { getCourse } from '@/lib/data/courses';
-import lowercase from 'lodash.lowercase';
+import { getCourse, getCoursesSlug } from '@/sanity/sanity-utils';
 import { notFound } from 'next/navigation';
 
-export async function generateStaticParams() {
-  const courses = await getCourses();
+export async function generateStaticParams({ params }: { params: { subject: string } }) {
+  const courses = await getCoursesSlug();
 
-  return courses.map((course: { _id: string; title?: string }) => ({
-    course: course.title ? course.title : course._id,
+  return courses.map((course: { slug: string }) => ({
+    course: course.slug,
   }));
 }
 
-const Courses = async ({ params }: { params: { course: string } }) => {
+const Courses = async ({ params }: { params: { course: string; subject: string } }) => {
   try {
-    const course = await getCourse({ courseId: lowercase(params.course) });
+    const subjectSlug = params.subject;
+    const course = await getCourse(params.course);
+
+    if (course.subject.slug !== subjectSlug) return notFound();
 
     return (
       <CardList
@@ -22,6 +24,7 @@ const Courses = async ({ params }: { params: { course: string } }) => {
         sidebarHeader='Units'
         contentArray='lessons'
         contentDescription={course.description}
+        slug={course?.slug}
       />
     );
   } catch (error) {

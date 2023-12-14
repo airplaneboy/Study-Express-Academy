@@ -1,6 +1,6 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Unit from '@/models/Unit';
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import jsonResponse from '@/utils/jsonResponse';
 import isAlpha from 'validator/lib/isAlpha';
 import mongoose from 'mongoose';

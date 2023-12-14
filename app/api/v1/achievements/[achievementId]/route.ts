@@ -1,7 +1,7 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import Achievement from '@/models/Achievement';
 import jsonResponse from '@/utils/jsonResponse';
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import isAlpha from 'validator/lib/isAlpha';
 import mongoose from 'mongoose';
 import { NextRequest } from 'next/server';

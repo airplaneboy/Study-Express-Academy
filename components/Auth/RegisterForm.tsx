@@ -58,9 +58,12 @@ const RegisterForm = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (!passwordMatch) return toast.error("Passwords don't match");
+    if (!passwordMatch) return toast.error("Passwords don't match") && setLoading(false);
     if (!isPasswordValid())
-      return toast.error('Password must be at least 8 characters long, and must contain a lowercase and a number');
+      return (
+        toast.error('Password must be at least 8 characters long, and must contain a lowercase and a number') &&
+        setLoading(false)
+      );
 
     const userData = {
       firstName: firstNameRef.current?.value,
@@ -89,8 +92,10 @@ const RegisterForm = () => {
 
   return (
     <>
-      {loading && <div className='min-w-full h-full bg-gray-700 opacity-30 absolute top-0 left-0 z-50' />}
+      {/* {loading && <div className='min-w-full h-full bg-gray-700 opacity-30 absolute top-0 left-0 z-50' />} */}
       <form onSubmit={submitHandler} className='max-md:px-4 '>
+        {loading && <div className='min-w-full h-full bg-gray-700 opacity-30 fixed top-0 left-0 z-50' />}
+
         <div className='space-y-3 '>
           <div className='max-md:space-y-3 w-full md:flex  justify-between gap-5 md:items-center '>
             <Input
@@ -172,15 +177,15 @@ const RegisterForm = () => {
         </div>
 
         <div className='space-y-3 mt-10'>
-          <div className='flex items-center justify-between  max-sm:flex-col gap-3'>
+          {/* <div className='flex items-center justify-between  max-sm:flex-col gap-3'>
             <RememberMe />
 
             <div className='text-sm'>
-              <Link href='/login' className='font-medium text-indigo-600 hover:text-indigo-500'>
+              <Link href='/login' className='font-medium text-blue-600 hover:text-blue-500'>
                 already have an account?
               </Link>
             </div>
-          </div>
+          </div> */}
           <Button value='Create Account' />
         </div>
       </form>

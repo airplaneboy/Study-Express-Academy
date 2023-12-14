@@ -43,14 +43,14 @@ export async function POST(request: Request) {
     if (await User.findOne({ email }))
       return NextResponse.json({ error: 'This provider email already exist' }, { status: StatusCodes.BAD_REQUEST });
 
-    await User.create({
+    const user = await User.create({
       email,
       provider: { id: providerId, name: provider, type: providerType },
       username,
       profile: { firstName, lastName },
     });
 
-    return NextResponse.json({ msg: 'Successfully created provider user' }, { status: StatusCodes.CREATED });
+    return NextResponse.json({ id: user._id }, { status: StatusCodes.CREATED });
   }
   //#endregion
 

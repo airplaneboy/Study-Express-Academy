@@ -7,21 +7,21 @@ import { format } from 'date-fns';
 const ProfileContent = async () => {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user) return <h1>You need to login to view profile</h1>;
+  if (!session?.user) return <span>You need to login to view profile</span>;
 
   let user;
   try {
-    user = await getUser({ userId: (session.user as any).id });
+    user = await getUser({ userId: (session?.user as any)?.id });
   } catch (error) {
     try {
-      user = await getUser({ userId: (session.user as any).username });
+      user = await getUser({ userId: (session?.user as any)?.username });
     } catch (error) {
       console.log(error);
       return (
-        <h1>
+        <span>
           Your information could not be fetched. Try logging in again, or try again later. If error persists, contact
           our support.
-        </h1>
+        </span>
       );
     }
   }
@@ -29,11 +29,11 @@ const ProfileContent = async () => {
   const userData = [
     {
       property: 'First Name',
-      value: user?.profile.firstName,
+      value: user?.profile?.firstName,
     },
     {
       property: 'Last Name',
-      value: user?.profile.lastName,
+      value: user?.profile?.lastName,
     },
     {
       property: 'Username',
@@ -46,23 +46,26 @@ const ProfileContent = async () => {
     },
     {
       property: 'Country',
-      value: user?.profile.country.name,
+      value: user?.profile?.country?.name == 'Select Country' ? '' : user?.profile?.country?.name,
     },
     {
       property: 'Phone Number',
-      value: user?.profile.phone.number,
+      value: user?.profile?.phone?.number,
     },
     {
       property: 'Gender',
-      value: user?.profile.gender,
+      value: user?.profile?.gender,
     },
     {
       property: 'Birthday',
-      value: format(new Date(user?.profile.birthday), 'EEEE, dd MMMM yyyy'),
+      value:
+        user?.profile?.birthday == undefined
+          ? 'not set'
+          : format(new Date(user?.profile?.birthday), 'EEEE, dd MMMM yyyy'),
     },
     {
       property: 'Age',
-      value: user?.profile.age,
+      value: user?.profile?.age >= 1 ? user?.profile.age : 'invalid birthday',
     },
 
     {
@@ -100,17 +103,17 @@ const ProfileContent = async () => {
     },
     {
       property: 'Bio',
-      value: user?.profile.bio,
+      value: user?.profile?.bio,
       style: 'whitespace-normal lg:text-justify text-right leading-tight',
     },
   ];
 
-  const achievementData = user?.achievements.map((achievement: any) => {
-    return { property: achievement.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
+  const achievementData = user?.completedProgress?.achievements?.map((achievement: { data: { title: string } }) => {
+    return { property: achievement?.data?.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
   });
 
-  const CourseData = user?.completedCourses.map((course: any) => {
-    return { property: course.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
+  const CourseData = user?.completedProgress?.courses?.map((course: { data: { title: string } }) => {
+    return { property: course?.data?.title, value: 'completed', style: '!overflow-visible !whitespace-normal ' };
   });
 
   return (

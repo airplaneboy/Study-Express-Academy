@@ -84,7 +84,7 @@ const LoginForm = () => {
               placeholder='Password'
               type={showPassword ? 'text' : 'password'}
               inputRef={passwordRef}
-              className=' input_password border-transparent focus:ring-indigo-500 focus:border-indigo-500 '
+              className=' input_password border-transparent focus:ring-blue-500 focus:border-blue-500 '
             />
             <button
               type='button'
@@ -104,7 +104,7 @@ const LoginForm = () => {
             <RememberMe />
 
             <div className='text-sm'>
-              <Link href='#' className='font-medium text-indigo-600 hover:text-indigo-500'>
+              <Link href='#' className='font-medium text-blue-600 hover:text-blue-500'>
                 Forgot your password?
               </Link>
             </div>

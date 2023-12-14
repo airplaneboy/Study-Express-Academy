@@ -1,12 +1,12 @@
 import connectMongoose from '@/lib/mongooseConnect';
 import User from '@/models/User';
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import jsonResponse from '@/utils/jsonResponse';
 // import { revalidatePath } from 'next/cache';
 import { NextRequest } from 'next/server';
 import mongoose from 'mongoose';
-import Course from '@/models/Course';
-import Achievement from '@/models/Achievement';
+// import Course from '@/models/Course';
+// import Achievement from '@/models/Achievement';
 
 export async function GET(request: Request, { params }: { params: any }) {
   try {
@@ -17,14 +17,15 @@ export async function GET(request: Request, { params }: { params: any }) {
 
     let user: any;
     mongoose.Types.ObjectId.isValid(userId)
-      ? (user = await User.findById(userId)
-          .select(['-password', '-provider'])
-          .populate({ path: 'courses completedCourses', select: '-_id title', model: Course })
-          .populate({ path: 'achievements', select: '-_id title', model: Achievement }))
-      : (user = await User.findOne({ $or: [{ email: userId }, { username: userId }] })
-          .select(['-password', '-provider'])
-          .populate({ path: 'courses completedCourses', select: '-_id title', model: Course })
-          .populate({ path: 'achievements', select: '-_id title', model: Achievement }));
+      ? (user = await User.findById(userId).select(['-password', '-provider']))
+      : // .populate({ path: 'courses completedCourses', select: '-_id title', model: Course })
+        // .populate({ path: 'achievements', select: '-_id title', model: Achievement }))
+        (user = await User.findOne({ $or: [{ email: userId }, { username: userId }] }).select([
+          '-password',
+          '-provider',
+        ]));
+    // .populate({ path: 'courses completedCourses', select: '-_id title', model: Course })
+    // .populate({ path: 'achievements', select: '-_id title', model: Achievement }));
 
     if (!user) return jsonResponse({ error: `User with ID ${userId} was not found` }, 'NOT_FOUND');
 
@@ -77,7 +78,15 @@ export async function PATCH(request: NextRequest, { params }: { params: any }) {
       delete body?.achievements &&
       delete body?.completedUnits;
 
-    user = merge(user, body);
+    if (body?.selectedSubjects) user.selectedSubjects = body?.selectedSubjects;
+    else if (body?.contentProgress) {
+      if (body.contentProgress.tests) user.contentProgress.tests = body.contentProgress.tests;
+      else if (body.contentProgress.questions) user.contentProgress.questions = body.contentProgress.questions;
+      else if (body.contentProgress.articles) user.contentProgress.articles.push(body.contentProgress.articles);
+      else if (body.contentProgress.videos) user.contentProgress.videos = body.contentProgress.videos;
+      else user.contentProgress = body?.contentProgress;
+    } else user = merge(user, body);
+
     await user.save();
 
     // const path = request.nextUrl.searchParams.get('path') || '/';

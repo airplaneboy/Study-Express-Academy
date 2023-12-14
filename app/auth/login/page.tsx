@@ -9,20 +9,20 @@ export default function Login() {
       <div className='flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 '>
         <div className='mx-auto w-full max-w-sm lg:w-96'>
           <div>
-            <Image className='h-12 w-auto' src='/assets/logo.svg' alt='Workflow' width={53} height={48} />
-            <h2 className='mt-6 text-4xl font-extrabold text-gray-900 font-inter '>Sign in to your account</h2>
-            <p className='mt-2 text-sm text-gray-600'>
-              Or{' '}
-              <Link href='/auth/register' className='font-medium text-indigo-600 hover:text-indigo-500'>
+            <Image className='h-6 w-auto mb-10' src='/assets/logo.svg' alt='logo' width={183} height={24} />
+            <span className='mt-6 text-4xl font-extrabold text-gray-900  block '>Sign in to your account</span>
+            <span className='mt-2 text-sm text-gray-600 block'>
+              or{' '}
+              <Link href='/auth/register' className='font-medium text-blue-600 hover:text-blue-500'>
                 create a new account
               </Link>
-            </p>
+            </span>
           </div>
 
-          <div className='mt-8'>
+          <div className='mt-3'>
             <SignInOptions />
           </div>
-          <div className='mt-6'>
+          <div className='mt-2'>
             <LoginForm />
           </div>
         </div>

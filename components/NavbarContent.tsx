@@ -9,10 +9,10 @@ import ClickableLogo from './Navbar/ClickableLogo';
 import UserProfile from './Navbar/UserProfile';
 import UserNavigation from './Navbar/UserNavigation';
 import Courses from './Navbar/Courses';
-import React, { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
-
+import React, { Suspense, useEffect, useState } from 'react';
+import RouterButton from './Navbar/RouterButton';
 const userNavigation = [
+  { name: 'Dashboard', href: '/user/dashboard' },
   { name: 'Your Profile', href: '/user/profile' },
   { name: 'Settings', href: '/user/settings' },
   { name: 'Sign out', href: '#', onClick: signOut },
@@ -22,15 +22,19 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function NavbarContent({
+function NavbarContent({
   coursesData,
   userData,
+  subjects: subject,
+  courses,
 }: {
   coursesData: { [key: string]: any };
   userData: { [key: string]: any };
+  subjects: any[];
+  courses: any[];
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { data: session } = useSession();
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
     //Navbar Scroll Shadow
@@ -41,10 +45,19 @@ export default function NavbarContent({
 
     window.addEventListener('scroll', handleScroll);
 
+    //Check if user is logged in
+
+    if (userData) {
+      setIsLoggedIn(true);
+    }
+    if (userData?.error) {
+      setIsLoggedIn(false);
+    }
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [userData]);
 
   return (
     <>
@@ -55,42 +68,53 @@ export default function NavbarContent({
           className={({ open }) =>
             classNames(
               open ? ' inset-0 z-40 overflow-y-auto' : '',
-              `bg-white py-2 md:fixed inherit_width_height z-20 lg:overflow-y-visible transition-shadow duration-300  ${
-                isScrolled ? 'shadow-md' : 'shadow-sm'
+              `backdrop-blur-sm py-2 md:fixed inherit_width_height z-10 lg:overflow-y-visible transition-shadow duration-300  ${
+                isScrolled ? 'shadow-md' : 'border-b border-gray-300'
               }`
             )
           }>
           {({ open }) => (
             <>
               <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-full items-center '>
-                <Search />
+                <Search searchList={subject} otherLists={courses} options={{ keys: ['title'] }} />
                 <div className='absolute_center'>
                   <ClickableLogo />
                 </div>
-                <div className='flex gap-12 items-center'>
-                  <Courses courses={coursesData} classNames={classNames} />
-                  <MobileMenuButton open={open} />
-                  <UserMenu
-                    classNames={classNames}
-                    imageUrl={userData?.profile?.image}
-                    userNavigation={userNavigation}
-                    name={session?.user?.name ? session?.user?.name : (userData?.profile as any)?.username}
-                  />
-                </div>
+
+                {/* Check if user is logged in to show login button or their profile */}
+                {isLoggedIn ? (
+                  <div className='flex max-[550px]:gap-5 gap-12 items-center'>
+                    <Courses courses={coursesData} classNames={classNames} />
+                    <MobileMenuButton open={open} />
+                    <UserMenu
+                      classNames={classNames}
+                      imageUrl={userData?.profile?.image}
+                      userNavigation={userNavigation}
+                      name={(userData?.profile as any)?.username}
+                    />
+                  </div>
+                ) : (
+                  <RouterButton route='/auth/login' />
+                )}
               </div>
 
               {/* Mobile Sidebar */}
               <Popover.Panel as='nav' className='sm:hidden mt-3' aria-label='Global'>
-                <div className='border-t border-gray-200 pt-4 pb-3 '>
-                  <UserProfile
-                    user={session?.user}
-                    email={userData.email}
-                    image={userData.profile.image}
-                    name={session?.user?.name}
-                    username={userData?.username}
-                  />
-                  <UserNavigation userNavigation={userNavigation} />
-                </div>
+                {isLoggedIn ? (
+                  <div className='border-t border-gray-200 pt-4 pb-3 '>
+                    <Suspense fallback={<span>Fetching user&apos;s data...</span>}>
+                      <UserProfile
+                        email={userData?.email}
+                        image={userData?.profile?.image}
+                        // name={session?.user?.name}
+                        username={userData?.username}
+                      />
+                    </Suspense>
+                    <UserNavigation userNavigation={userNavigation} />
+                  </div>
+                ) : (
+                  <RouterButton route='/auth/login' />
+                )}
               </Popover.Panel>
             </>
           )}
@@ -99,3 +123,5 @@ export default function NavbarContent({
     </>
   );
 }
+
+export default React.memo(NavbarContent);
