@@ -137,8 +137,10 @@ const UserSchema = new mongoose.Schema(
           id: { type: String, trim: true, unique: true },
           numberOfTimesPassed: { type: Number, trim: true, default: 0, required: true },
           numberOfTimesTaken: { type: Number, default: 0 },
+          numberOfQuestions: Number,
+          isCompleted: { type: Boolean, default: false },
           scores: {
-            type: [{ date: Date, numberOfQuestion: Number, numberOfCorrectAnswers: Number, average: Number }],
+            type: [{ date: Date, numberOfCorrectAnswers: Number, average: Number }],
             default: [],
           },
           results: { type: [[{ questionId: String, isCorrect: Boolean, date: Date }]] },
@@ -185,13 +187,6 @@ const UserSchema = new mongoose.Schema(
           createdAt: { type: Date },
         },
       ],
-      lessons: [
-        {
-          id: { type: String, unique: true },
-          data: mongoose.Schema.Types.Mixed,
-          createdAt: { type: Date },
-        },
-      ],
       courses: [
         {
           id: { type: String, unique: true },
@@ -200,6 +195,13 @@ const UserSchema = new mongoose.Schema(
         },
       ],
       units: [
+        {
+          id: { type: String, unique: true },
+          data: mongoose.Schema.Types.Mixed,
+          createdAt: { type: Date },
+        },
+      ],
+      lessons: [
         {
           id: { type: String, unique: true },
           data: mongoose.Schema.Types.Mixed,

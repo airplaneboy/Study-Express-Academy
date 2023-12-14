@@ -15,13 +15,14 @@ export type UserTest = {
   numberOfTimesTaken: number;
   scores: Scores[];
   results: Results[];
+  numberOfQuestions: number;
+  isCompleted?: boolean;
 };
 
 export type Test = { _id: string; questions: any[]; title: string };
 
 export type Scores = {
   date?: string;
-  numberOfQuestion: number;
   numberOfCorrectAnswers: number;
   average: number;
 };
@@ -37,8 +38,7 @@ export type Results = { isCorrect: boolean; questionId: number; date?: string }[
 
 const TestContainer = async ({ params }: { params: { content: string } }) => {
   const test: Test = await getTest(params.content);
-  const questions = test?.questions;
-  const shuffledQuestions = shuffle(questions);
+  const shuffledQuestions = shuffle(test?.questions);
   const selectedQuestions = sampleSize(shuffledQuestions, 5);
   const shuffledChoices = selectedQuestions.map(
     (question) => (question.options = shuffle([...question.options, question.answer]))
@@ -116,6 +116,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
         testFound.numberOfTimesPassed = isPassedNumber;
         testFound.scores.push(scores);
         testFound.results.push(results);
+        testFound.isCompleted = true;
 
         currentTestProgress.push(testFound);
         await updateCurrentUser({
@@ -124,16 +125,18 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
       }
       //If test does not exist
       else {
+        //Create Test
+
         //Check if passed
         const isPassedNumber = scores.average >= 0.5 ? 1 : 0;
 
-        //Create Test
         currentTestProgress.push({
           numberOfTimesPassed: isPassedNumber,
           numberOfTimesTaken: 1,
           id: test._id,
           results: [results],
           scores: [scores],
+          numberOfQuestions: test.questions.length,
         });
         await updateCurrentUser({
           data: { contentProgress: { tests: currentTestProgress } },

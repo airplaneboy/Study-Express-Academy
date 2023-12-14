@@ -17,7 +17,9 @@ import { useState } from 'react';
 const LessonSidebar = ({
   lesson,
   params,
+  completedContents,
 }: {
+  completedContents: any[];
   lesson: {
     title: string;
     slug: string;
@@ -70,13 +72,17 @@ const LessonSidebar = ({
                   setNextSlug(getNextSlug(index));
                 }}
                 key={content?._id}
-                className='first:mt-20  text-md text-gray-500 hover:text-blue-500 focus:text-blue-600 no_wrap   mb-3 truncate'>
+                className='first:mt-20 rounded-2xl text-md text-gray-500 hover:text-blue-500 hover:bg-blue-50 focus:text-blue-600 mb-3'>
                 <Link
                   href={`/${params?.subject}/${params?.course}/${params?.unit}/${params?.lesson}/${content?.slug}`}
                   className={
-                    content?.slug === segment
-                      ? 'text-blue-700 font-semibold bg-blue-100 px-3 py-5 block border-blue-700 border rounded-2xl '
-                      : 'px-3 py-5 block border-gray-300 border-2 rounded-2xl'
+                    completedContents.some((item) => item == content._id)
+                      ? content?.slug === segment
+                        ? 'text-yellow-700 shadow-yellow-500 shadow-sm font-semibold bg-yellow-200 px-3 py-5 block border-yellow-500 border-2 rounded-2xl '
+                        : 'text-yellow-700 hover:text-yellow-600 shadow-yellow-600 shadow-sm font-semibold bg-gradient-to-r from-yellow-400 hover:from-yellow-300 via-yellow-200 hover:via-yellow-100 to-yellow-400 hover:to-yellow-300 px-3 py-5 block border-yellow-600 hover:border-yellow-500 border rounded-2xl '
+                      : content?.slug === segment
+                      ? 'text-blue-700 font-semibold bg-blue-100 px-3 py-5 block border-blue-700 border-2 rounded-2xl '
+                      : 'px-3 py-5 block border-gray-300 border-2 rounded-2xl hover:border-blue-200'
                   }>
                   <div className='flex gap-2 items-center justify-start'>
                     {(content?._type == 'videos' &&
