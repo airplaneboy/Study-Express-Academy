@@ -11,6 +11,38 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        growAndShrink: 'growAndShrink 700ms ease-in-out forwards',
+        spin: 'spin 1000ms linear',
+        shine: 'shine 15s ease-in-out infinite',
+      },
+      keyframes: {
+        sparkle: {
+          '0%': { transform: 'scale(0) rotate(0deg) ' },
+          '50%': { transform: 'scale(1) rotate(90deg)' },
+          '100%': { transform: 'scale(0) rotate(180deg)' },
+        },
+        spin: {
+          '0%': { transform: 'rotate(0deg) ' },
+          '100%': { transform: 'rotate(180deg)' },
+        },
+        growAndShrink: {
+          '0%': { transform: 'scale(0)' },
+          '50%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(0)' },
+        },
+        shine: {
+          '0%': {
+            backgroundPosition: '-100% 0',
+          },
+          '70%': {
+            backgroundPosition: '-100% 0',
+          },
+          '100%': {
+            backgroundPosition: '200% 0',
+          },
+        },
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
