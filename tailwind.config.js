@@ -78,12 +78,7 @@ module.exports = {
   corePlugins: {
     aspectRatio: true,
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('tailwindcss/plugin')(({ addVariant }) => {
-      addVariant('search-cancel', '&::-webkit-search-cancel-button');
-    }),
-  ],
+  plugins: [require('@tailwindcss/forms')],
   // corePlugins: {
   //   aspectRatio: false,
   // },
