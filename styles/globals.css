@@ -122,6 +122,13 @@ ul {
 #lesson-sidebar::-webkit-scrollbar-track {
   margin-block-start: 80px;
 }
+#lesson-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+#lesson-sidebar::-webkit-scrollbar-thumb {
+  border: 1px solid #fff;
+  background-color: #a09f9f;
+}
 
 /* For add-subject */
 #add-subject::-webkit-scrollbar {

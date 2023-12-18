@@ -1,5 +1,6 @@
 'use client';
-
+import { TbProgress, TbProgressCheck } from 'react-icons/tb';
+import { FaCheck } from 'react-icons/fa';
 import Image from 'next/image';
 import { Link } from 'react-scroll';
 import CollapsibleHeader from '@/components/CollapsibleHeader';
@@ -24,6 +25,7 @@ interface ICardList {
   sidebarHeader: string;
   contentHeader: string;
   slug: string;
+  completedContents?: string[];
 }
 
 const CardList = ({
@@ -33,6 +35,7 @@ const CardList = ({
   contentHeader,
   contentDescription,
   slug,
+  completedContents,
 }: ICardList) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -46,13 +49,7 @@ const CardList = ({
                 {sidebarHeader}
               </span>
               {sidebarArray?.map((sidebarItems, index) => (
-                <li
-                  key={sidebarItems?._id}
-                  className={
-                    activeIndex == index
-                      ? 'bg-blue-100 font-extrabold !text-blue-800 transition-all rounded-2xl border-blue-600 px-4 py-3 text-lg hover:text-blue-500 focus:text-blue-600 no_wrap'
-                      : 'px-4 py-3 text-lg text-gray-500 hover:text-blue-500 focus:text-blue-600 no_wrap'
-                  }>
+                <li key={sidebarItems?._id}>
                   <Link
                     onClick={() => setActiveIndex(index)}
                     isDynamic
@@ -60,18 +57,27 @@ const CardList = ({
                     spy={true}
                     smooth={true}
                     duration={500}
-                    offset={-130}
+                    offset={-200}
                     activeClass='active'
-                    className='cursor-pointer'
+                    className={
+                      activeIndex == index
+                        ? 'border-l-4 rounded-r-3xl cursor-pointer block bg-blue-100 font-extrabold !text-blue-800 transition-all  border-blue-600 px-4 py-3 text-lg hover:text-blue-500 focus:text-blue-600 no_wrap'
+                        : 'border-l-2 cursor-pointer block px-4 py-3 text-lg text-gray-500 hover:text-blue-500 focus:text-blue-600 no_wrap'
+                    }
                     onSetActive={() => setActiveIndex(index)}>
-                    {sidebarItems?.title}
+                    <div className='flex flex-col'>
+                      <span className='text-sm text-gray-400 font-normal focus:text-gray-500'>
+                        {sidebarHeader} {index + 1}
+                      </span>
+                      {sidebarItems?.title}
+                    </div>
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
         </aside>
-        <div className='w-full'>
+        <div className='w-full pb-96'>
           <CollapsibleHeader
             initialHeight='h-28 text-6xl max-sm:text-3xl max-sm:h-24 max-md:text-center '
             finalHeight='h-20 text-3xl text-center'>
@@ -80,9 +86,7 @@ const CardList = ({
             </span>
           </CollapsibleHeader>
 
-          <div className='flex flex-row mx-auto bg-white sm:px-5 relative '>
-            {/* Sidebar */}
-
+          <div className='flex flex-row mx-auto bg-red sm:px-5 relative '>
             <div className='items-center flex flex-col sm:pt-5 max-sm:mt-5 p-4 w-full'>
               {/* Content Header */}{' '}
               {contentDescription && (
@@ -114,16 +118,23 @@ const CardList = ({
                           </div>
 
                           {/* Content List */}
-                          <div className='px-4 py-5 sm:p-6 bg-gray-100'>
+                          <div className='px-4 py-5 sm:p-6'>
                             <ul className=' grid grid-cols-2 gap-2'>
                               {contentArray &&
                                 (headerItem as any)[contentArray]?.map((listItem: any) => (
                                   <li
                                     key={listItem?._id}
                                     className='text-gray-600 text-md max-sm:text-sm hover:underline truncate'>
-                                    <CustomLink pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
-                                      {listItem?.title}
-                                    </CustomLink>
+                                    <div className='flex gap-2 items-center'>
+                                      {completedContents?.some((item) => item == listItem?._id) ? (
+                                        <FaCheck className='text-green-500 rounded-lg cursor-pointer' size={25} />
+                                      ) : (
+                                        <TbProgress className='text-gray-500 cursor-pointer' size={25} />
+                                      )}
+                                      <CustomLink pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
+                                        {listItem?.title}
+                                      </CustomLink>
+                                    </div>
                                   </li>
                                 ))}
                             </ul>

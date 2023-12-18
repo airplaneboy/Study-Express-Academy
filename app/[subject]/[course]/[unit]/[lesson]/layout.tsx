@@ -1,8 +1,9 @@
 import LessonSidebar from '@/components/LessonSidebar';
-import { getCurrentUser } from '@/lib/data/user';
+import { getCurrentUser, updateCurrentUser } from '@/lib/data/user';
 import { getLesson, getLessonsSlug } from '@/sanity/sanity-utils';
 import { notFound } from 'next/navigation';
 import concat from 'lodash/concat';
+import intersection from 'lodash/intersection';
 
 export async function generateStaticParams() {
   const lessons = await getLessonsSlug();
@@ -22,6 +23,8 @@ export default async function RootLayout({
   const lesson = await getLesson(params.lesson);
   const user = await getCurrentUser();
 
+  // console.log(lesson);
+
   const userCompletedVideos = user?.contentProgress.videos.filter((item: any) => item.isCompleted == true);
   const userCompletedArticles = user?.contentProgress.articles;
   const userCompletedTests = user?.contentProgress.tests.filter((item: any) => item.isCompleted == true);
@@ -33,6 +36,21 @@ export default async function RootLayout({
   );
 
   if (lesson?.unit?.slug !== params.unit) return notFound();
+
+  const isLessonCompleted = user?.completedProgress.lessons.some((item: any) => item == lesson._id);
+  // ||
+  // (intersection(lesson?.contents.map((item: any) => item._id), completedContents).length == lesson?.contents.length
+  //   ? user?.completedProgress.lessons.push(lesson._id) &&
+  //     (await updateCurrentUser({ data: { completedProgress: { lessons: user?.completedProgress.lessons } } }))
+  //   : false);
+
+  if (!isLessonCompleted)
+    if (
+      intersection(lesson?.contents.map((item: any) => item._id), completedContents).length == lesson?.contents.length
+    ) {
+      user?.completedProgress.lessons.push(lesson._id);
+      await updateCurrentUser({ data: { completedProgress: { lessons: user?.completedProgress.lessons } } });
+    }
 
   try {
     return (

@@ -83,7 +83,7 @@ const ProfileContent = async () => {
     },
     {
       property: 'Enrolled Courses',
-      value: user?.courses?.length,
+      value: user?.selectedSubjects?.length,
     },
     {
       property: 'Completed Courses',

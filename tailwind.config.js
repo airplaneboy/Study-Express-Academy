@@ -14,7 +14,7 @@ module.exports = {
       animation: {
         growAndShrink: 'growAndShrink 700ms ease-in-out forwards',
         spin: 'spin 1000ms linear',
-        shine: 'shine 15s ease-in-out infinite',
+        shine: 'shine 12s ease-in-out infinite',
       },
       keyframes: {
         sparkle: {
@@ -32,11 +32,11 @@ module.exports = {
           '100%': { transform: 'scale(0)' },
         },
         shine: {
-          '0%': {
+          '10%': {
             backgroundPosition: '-100% 0',
           },
-          '70%': {
-            backgroundPosition: '-100% 0',
+          '50%': {
+            backgroundPosition: '200% 0',
           },
           '100%': {
             backgroundPosition: '200% 0',
@@ -78,7 +78,12 @@ module.exports = {
   corePlugins: {
     aspectRatio: true,
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwindcss/plugin')(({ addVariant }) => {
+      addVariant('search-cancel', '&::-webkit-search-cancel-button');
+    }),
+  ],
   // corePlugins: {
   //   aspectRatio: false,
   // },
