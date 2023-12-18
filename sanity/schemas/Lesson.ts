@@ -42,7 +42,7 @@ const Unit = {
       name: 'contents',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'tests' }, { type: 'articles' }, { type: 'videos' }] }],
-      description: 'The Units that belong to this course.',
+      description: 'The Contents that belong to this lesson',
       validation: (Rule: any) => Rule.unique(),
     },
     {
