@@ -35,7 +35,7 @@ const LessonSidebar = ({
   const [index, setIndex] = useState(() => lesson.contents.findIndex((content) => content.slug == segment)!);
   const [nextSlug, setNextSlug] = useState(() => {
     const index = lesson.contents.findIndex((content) => content.slug == segment)!;
-    return lesson.contents[index + 1].slug;
+    return lesson.contents[index + 1]?.slug;
   });
 
   const handleScroll = (e: React.UIEvent<HTMLElement>) => {

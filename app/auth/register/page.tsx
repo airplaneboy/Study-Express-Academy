@@ -9,11 +9,11 @@ import SignInOptions from '@/components/Auth/SignInOptions';
 export default function Register() {
   return (
     <>
-      <div className='flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 '>
+      <div className='flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 overflow-hidden'>
         <div className='mx-auto w-full max-w-sm lg:w-96'>
           <div>
-            <Image className='h-6 w-auto mb-10' src='/assets/logo.svg' alt='Workflow' width={183} height={24} />
-            <span className='mt-6 text-4xl font-extrabold text-gray-900  block'>Create Account</span>
+            <Image className='h-6 w-auto' src='/assets/logo.svg' alt='logo' width={183} height={24} />
+            <span className='mt-2 text-4xl font-black capitalize text-gray-900  block'>Create Account</span>
             <span className='mt-2 text-sm text-gray-600 block'>
               or{' '}
               <Link href='/auth/login' className='font-medium text-blue-600 hover:text-blue-500'>

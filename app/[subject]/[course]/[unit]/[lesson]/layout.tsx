@@ -39,13 +39,13 @@ export default async function RootLayout({
 
   const isLessonCompleted = user?.completedProgress.lessons.some((item: any) => item.id == lesson._id);
 
-  if (!isLessonCompleted)
-    if (
-      intersection(lesson?.contents.map((item: any) => item._id), completedContents).length == lesson?.contents.length
-    ) {
-      user?.completedProgress.lessons.push({ id: lesson?._id, createdAt: new Date(Date.now()).toISOString() });
-      await updateCurrentUser({ data: { completedProgress: { lessons: user?.completedProgress.lessons } } });
-    }
+  if (
+    !isLessonCompleted &&
+    intersection(lesson?.contents.map((item: any) => item._id), completedContents).length == lesson?.contents.length
+  ) {
+    user?.completedProgress.lessons.push({ id: lesson?._id, createdAt: new Date(Date.now()).toISOString() });
+    await updateCurrentUser({ data: { completedProgress: { lessons: user?.completedProgress.lessons } } });
+  }
 
   try {
     return (

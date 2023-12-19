@@ -27,14 +27,16 @@ const RegisterForm = () => {
     if (passwordMatch === null) return { validColor: '', invalidColor: '' };
 
     return {
-      validColor: ' focus:ring-green-500 focus:border-green-500 border-green-500  input_password',
-      invalidColor: ' focus:ring-red-500 focus:border-red-500  border-red-500 input_password',
+      validColor: ' focus:ring-0 focus:border-green-500 border-green-500 border-2  input_password',
+      invalidColor: ' focus:ring-0 focus:border-red-500  border-red-500 border-2 input_password',
     };
   };
 
   const isPasswordMatch = () => {
-    if (passwordRef.current?.value !== confirmPasswordRef.current?.value) return setPasswordMatch(false);
-    return setPasswordMatch(true);
+    if (confirmPasswordRef.current?.value != '') {
+      if (passwordRef.current?.value !== confirmPasswordRef.current?.value) return setPasswordMatch(false);
+      return setPasswordMatch(true);
+    }
   };
 
   const isPasswordValid = () => {
