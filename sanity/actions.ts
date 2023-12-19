@@ -57,7 +57,7 @@ const autoFetch = async ({
   });
 };
 
-const fetchAll = async () => {
+export const fetchAll = async () => {
   //Subjects
   await autoFetch({ parentSchema: 'subjects', childrenSchema: 'courses', parentRef: 'subject' });
   //Courses

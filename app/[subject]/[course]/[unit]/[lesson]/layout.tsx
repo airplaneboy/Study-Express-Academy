@@ -37,18 +37,13 @@ export default async function RootLayout({
 
   if (lesson?.unit?.slug !== params.unit) return notFound();
 
-  const isLessonCompleted = user?.completedProgress.lessons.some((item: any) => item == lesson._id);
-  // ||
-  // (intersection(lesson?.contents.map((item: any) => item._id), completedContents).length == lesson?.contents.length
-  //   ? user?.completedProgress.lessons.push(lesson._id) &&
-  //     (await updateCurrentUser({ data: { completedProgress: { lessons: user?.completedProgress.lessons } } }))
-  //   : false);
+  const isLessonCompleted = user?.completedProgress.lessons.some((item: any) => item.id == lesson._id);
 
   if (!isLessonCompleted)
     if (
       intersection(lesson?.contents.map((item: any) => item._id), completedContents).length == lesson?.contents.length
     ) {
-      user?.completedProgress.lessons.push(lesson._id);
+      user?.completedProgress.lessons.push({ id: lesson?._id, createdAt: new Date(Date.now()).toISOString() });
       await updateCurrentUser({ data: { completedProgress: { lessons: user?.completedProgress.lessons } } });
     }
 
