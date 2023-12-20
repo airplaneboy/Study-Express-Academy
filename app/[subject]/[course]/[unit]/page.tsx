@@ -30,6 +30,8 @@ const Units = async ({ params }: { params: { unit: string; course: string } }) =
       userCompletedVideos.map((item: any) => item.id)
     );
 
+    const completedLessons = user?.completedProgress.lessons;
+
     if (unit.course.slug !== courseSlug) return notFound();
 
     return (
@@ -41,6 +43,7 @@ const Units = async ({ params }: { params: { unit: string; course: string } }) =
         contentDescription={unit.description}
         contentArray='contents'
         slug={unit?.slug}
+        completedLessons={completedLessons}
       />
     );
   } catch (error) {

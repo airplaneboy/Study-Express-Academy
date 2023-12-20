@@ -1,7 +1,8 @@
+'use client';
 import { useRandomInterval, random } from '@/hooks/useRandomInterval.jsx';
 // import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion.jsx';
 import range from 'lodash/range';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const DEFAULT_COLOR = '#FFC700';
 const generateSparkle = (color: string) => {
@@ -32,6 +33,11 @@ const Sparkles = ({
   const [sparkles, setSparkles] = React.useState(() => {
     return range(3).map(() => generateSparkle(color));
   });
+  const [hasPageLoaded, setHasPageLoaded] = useState(false);
+
+  useEffect(() => {
+    setHasPageLoaded(true);
+  }, []);
   // const prefersReducedMotion = usePrefersReducedMotion();
   useRandomInterval(
     () => {
@@ -51,9 +57,10 @@ const Sparkles = ({
   );
   return (
     <span className={className + 'inline-block relative w-full'} {...delegated}>
-      {sparkles.map((sparkle) => (
-        <Sparkle key={sparkle.id} color={sparkle.color} size={sparkle.size} style={sparkle.style} />
-      ))}
+      {sparkles.map((sparkle) => {
+        if (hasPageLoaded)
+          return <Sparkle key={sparkle.id} color={sparkle.color} size={sparkle.size} style={sparkle.style} />;
+      })}
       <strong className=' z-[1] font-bold'>{children}</strong>
     </span>
   );

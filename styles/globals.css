@@ -90,6 +90,44 @@
   clip: rect(0, 0, 0, 0) !important;
 }
 
+.background-stripe {
+  background: rgb(9, 9, 121);
+  background: -moz-linear-gradient(
+    120deg,
+    rgba(9, 9, 121, 0) 20%,
+    rgba(253, 224, 71, 1) 20%,
+    rgba(253, 224, 71, 1) 40%,
+    rgba(0, 212, 255, 0) 40%,
+    rgba(0, 212, 255, 0) 60%,
+    rgba(253, 224, 71, 1) 60%,
+    rgba(253, 224, 71, 1) 80%,
+    rgba(253, 224, 71, 0) 80%
+  );
+  background: -webkit-linear-gradient(
+    120deg,
+    rgba(9, 9, 121, 0) 20%,
+    rgba(253, 224, 71, 1) 20%,
+    rgba(253, 224, 71, 1) 40%,
+    rgba(0, 212, 255, 0) 40%,
+    rgba(0, 212, 255, 0) 60%,
+    rgba(253, 224, 71, 1) 60%,
+    rgba(253, 224, 71, 1) 80%,
+    rgba(253, 224, 71, 0) 80%
+  );
+  background: linear-gradient(
+    120deg,
+    rgba(9, 9, 121, 0) 20%,
+    rgba(253, 224, 71, 1) 20%,
+    rgba(253, 224, 71, 1) 40%,
+    rgba(0, 212, 255, 0) 40%,
+    rgba(0, 212, 255, 0) 60%,
+    rgba(253, 224, 71, 1) 60%,
+    rgba(253, 224, 71, 1) 80%,
+    rgba(253, 224, 71, 0) 80%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#090979",endColorstr="#fde047",GradientType=1);
+}
+
 * {
   box-sizing: border-box;
   list-style: none;
