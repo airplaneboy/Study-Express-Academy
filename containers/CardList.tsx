@@ -66,7 +66,7 @@ const CardList = ({
                     className={
                       activeIndex == index
                         ? 'border-l-4 rounded-r-3xl cursor-pointer block bg-blue-100 font-extrabold !text-blue-800 transition-all  border-blue-600 px-4 py-3 text-lg hover:text-blue-500 focus:text-blue-600 no_wrap'
-                        : 'border-l-2 cursor-pointer block px-4 py-3 text-lg text-gray-500 hover:text-blue-500 focus:text-blue-600 no_wrap'
+                        : 'border-l cursor-pointer block px-4 py-3 text-lg text-gray-500 hover:text-blue-500 focus:text-blue-600 no_wrap'
                     }
                     onSetActive={() => setActiveIndex(index)}>
                     <div className='flex flex-col'>
