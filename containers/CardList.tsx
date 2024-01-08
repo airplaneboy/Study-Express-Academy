@@ -1,5 +1,6 @@
 'use client';
 import { TbProgress, TbProgressCheck } from 'react-icons/tb';
+import { HiClock } from 'react-icons/hi2';
 import { FaCheck } from 'react-icons/fa';
 import Image from 'next/image';
 import { Link } from 'react-scroll';
@@ -73,7 +74,7 @@ const CardList = ({
                       <span className='text-sm text-gray-400 font-normal focus:text-gray-500'>
                         {sidebarHeader} {index + 1}
                       </span>
-                      {sidebarItems?.title}
+                      <span className='block truncate'>{sidebarItems?.title}</span>
                     </div>
                   </Link>
                 </li>
@@ -141,7 +142,7 @@ const CardList = ({
                                           {completedContents?.some((item) => item == listItem?._id) ? (
                                             <FaCheck className='text-yellow-800 rounded-lg cursor-pointer' size={20} />
                                           ) : (
-                                            <TbProgress className='text-gray-500 cursor-pointer' size={25} />
+                                            <HiClock className='text-gray-500 cursor-pointer' size={25} />
                                           )}
                                           <CustomLink pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
                                             {listItem?.title}
@@ -180,9 +181,9 @@ const CardList = ({
                                       className='text-gray-600 text-md max-sm:text-sm hover:underline truncate'>
                                       <div className='flex gap-2 items-center'>
                                         {completedContents?.some((item) => item == listItem?._id) ? (
-                                          <FaCheck className='text-green-500 rounded-lg cursor-pointer' size={25} />
+                                          <FaCheck className='text-green-500 rounded-lg cursor-pointer' size={20} />
                                         ) : (
-                                          <TbProgress className='text-gray-500 cursor-pointer' size={25} />
+                                          <HiClock className='text-gray-500 cursor-pointer' size={20} />
                                         )}
                                         <CustomLink pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
                                           {listItem?.title}

@@ -84,7 +84,7 @@ const RecentTopics = async () => {
                                     {unit?.title}
                                   </span>
                                 </div>
-                                <span className='text-gray-400'>100%</span>
+                                <span className='text-gray-400'>{Math.floor(Math.random() * 101)}%</span>
                               </Link>
                             </li>
                           );

@@ -57,29 +57,3 @@ export const LordIcon = ({
     </>
   );
 };
-
-// #region Lord Icon Script
-// export const LordIcon = ({
-//   style,
-//   height = '300px',
-//   width = '300px',
-//   src = '',
-// }: {
-//   style: {};
-//   height?: string;
-//   width?: string;
-//   src: string;
-// }) => {
-//   return (
-//     <>
-//       <Script src='https://cdn.lordicon.com/lordicon-1.1.0.js'></Script>
-//       {/* @ts-ignore */}
-//       <lord-icon
-//         src={src.startsWith('https') ? src : `https://cdn.lordicon.com/${src}.json`}
-//         trigger='hover'
-//         style={{ width, height, ...style }}
-//       />
-//     </>
-//   );
-// };
-// #endregion

@@ -5,6 +5,8 @@ import Separator from '@/components/Separator';
 import ComboBoxContent from '@/containers/ComboBoxContent';
 import { getCurrentUser } from '@/lib/data/user';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Settings() {
   const user = await getCurrentUser();
 

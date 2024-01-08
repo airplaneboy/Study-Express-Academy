@@ -31,7 +31,7 @@ const ScrollHeader = ({
   return (
     <div
       className={classNames(
-        'md:sticky md:top-16 max-md:top-0 max-md:sticky max-sm:static w-full text-gray-800 sm:backdrop-blur-md border-b transition-all  duration-300 flex flex-col justify-center z-[9] ',
+        'max-w-[1030px] md:sticky md:top-16 max-md:top-0 max-md:sticky max-sm:static w-full text-gray-800 sm:backdrop-blur-md border-b transition-all  duration-300 flex flex-col justify-center z-[9] ',
         !isCollapsed ? initialHeight : finalHeight
       )}>
       {children}

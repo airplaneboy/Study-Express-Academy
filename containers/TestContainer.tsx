@@ -38,6 +38,7 @@ export type Results = { isCorrect: boolean; questionId: number; date?: string }[
 
 const TestContainer = async ({ params }: { params: { content: string } }) => {
   const test: Test = await getTest(params.content);
+
   const shuffledQuestions = shuffle(test?.questions);
   const selectedQuestions = sampleSize(shuffledQuestions, 5);
   const shuffledChoices = selectedQuestions.map(
@@ -58,7 +59,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
 
     if (updatedQuestionsProgress) {
       //Update Question
-      const currentQuestionProgress: UserQuestions = user?.contentProgress.questions;
+      const currentQuestionProgress: UserQuestions = user?.contentProgress?.questions;
 
       let questionFound = remove(currentQuestionProgress, (item) => item.id == updatedQuestionsProgress.id)[0];
 

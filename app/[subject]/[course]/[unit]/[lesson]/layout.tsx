@@ -5,13 +5,13 @@ import { notFound } from 'next/navigation';
 import concat from 'lodash/concat';
 import intersection from 'lodash/intersection';
 
-export async function generateStaticParams() {
-  const lessons = await getLessonsSlug();
+// export async function generateStaticParams() {
+//   const lessons = await getLessonsSlug();
 
-  return lessons.map((lesson: { slug: string }) => ({
-    lesson: lesson.slug,
-  }));
-}
+//   return lessons.map((lesson: { slug: string }) => ({
+//     lesson: lesson.slug,
+//   }));
+// }
 
 export default async function RootLayout({
   children,

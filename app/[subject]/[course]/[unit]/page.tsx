@@ -4,13 +4,13 @@ import { getUnit, getUnitsSlug } from '@/sanity/sanity-utils';
 import { concat } from 'lodash';
 import { notFound } from 'next/navigation';
 
-export async function generateStaticParams() {
-  const units = await getUnitsSlug();
+// export async function generateStaticParams() {
+//   const units = await getUnitsSlug();
 
-  return units.map((unit: { slug: string }) => ({
-    unit: unit.slug,
-  }));
-}
+//   return units.map((unit: { slug: string }) => ({
+//     unit: unit.slug,
+//   }));
+// }
 
 const Units = async ({ params }: { params: { unit: string; course: string } }) => {
   try {

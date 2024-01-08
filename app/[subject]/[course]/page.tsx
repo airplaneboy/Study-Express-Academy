@@ -2,13 +2,13 @@ import CardList from '@/containers/CardList';
 import { getCourse, getCoursesSlug } from '@/sanity/sanity-utils';
 import { notFound } from 'next/navigation';
 
-export async function generateStaticParams({ params }: { params: { subject: string } }) {
-  const courses = await getCoursesSlug();
+// export async function generateStaticParams({ params }: { params: { subject: string } }) {
+//   const courses = await getCoursesSlug();
 
-  return courses.map((course: { slug: string }) => ({
-    course: course.slug,
-  }));
-}
+//   return courses.map((course: { slug: string }) => ({
+//     course: course.slug,
+//   }));
+// }
 
 const Courses = async ({ params }: { params: { course: string; subject: string } }) => {
   try {

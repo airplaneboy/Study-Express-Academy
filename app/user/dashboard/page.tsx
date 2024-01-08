@@ -2,6 +2,8 @@ import { getCurrentUser } from '@/lib/data/user';
 import RecentTopics from '@/components/Cards/RecentTopicsCard';
 import Stats from '@/components/Cards/Stats';
 
+export const dynamic = 'force-dynamic';
+
 const Dashboard = async () => {
   try {
     const user: { selectedSubjects: any[]; completedProgress: any } = await getCurrentUser();
@@ -21,7 +23,7 @@ const Dashboard = async () => {
     return (
       <>
         <Stats userStats={userStats} />
-        <RecentTopics />;
+        <RecentTopics />
       </>
     );
   } catch (error) {
