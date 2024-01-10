@@ -21,10 +21,10 @@ export default function SidebarContent({ children }: { children: React.ReactNode
             {/* Panel Background Overlay */}
             <Transition.Child
               as={Fragment}
-              enter='transition-opacity ease-linear duration-300'
+              enter='transition-opacity ease-linear duration-150'
               enterFrom='opacity-0'
               enterTo='opacity-100'
-              leave='transition-opacity ease-linear duration-300'
+              leave='transition-opacity ease-linear duration-150'
               leaveFrom='opacity-100'
               leaveTo='opacity-0'>
               <Dialog.Overlay className='fixed inset-0 bg-gray-600 bg-opacity-75' />
@@ -33,35 +33,35 @@ export default function SidebarContent({ children }: { children: React.ReactNode
             {/* Panel Foreground Overlay */}
             <Transition.Child
               as={Fragment}
-              enter='transition ease-in-out duration-300 transform'
+              enter='transition ease-in-out duration-150 transform'
               enterFrom='-translate-x-full'
               enterTo='translate-x-0'
-              leave='transition ease-in-out duration-300 transform'
+              leave='transition ease-in-out duration-150 transform'
               leaveFrom='translate-x-0'
               leaveTo='-translate-x-full'>
-              <div className='relative flex-1 flex flex-col max-w-xs w-full bg-white'>
+              <div className='relative flex-1 flex flex-col max-w-xs w-full bg-white shadow-xl shadow-black'>
                 {/* Close Button */}
                 <Transition.Child
                   as={Fragment}
-                  enter='ease-in-out duration-300'
+                  enter='ease-in-out duration-150'
                   enterFrom='opacity-0'
                   enterTo='opacity-100'
-                  leave='ease-in-out duration-300'
+                  leave='ease-in-out duration-150'
                   leaveFrom='opacity-100'
                   leaveTo='opacity-0'>
-                  <div className='absolute top-0 right-0 -mr-12 pt-2'>
+                  <div className='absolute top-2 right-16 -mr-12 pt-2'>
                     <button
                       type='button'
                       className='ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none '
                       onClick={() => setSidebarOpen(false)}>
                       <span className='sr-only'>Close sidebar</span>
-                      <HiOutlineXMark className='h-6 w-6 text-white' aria-hidden='true' />
+                      <HiOutlineXMark className='h-6 w-6 text-gray-500' aria-hidden='true' />
                     </button>
                   </div>
                 </Transition.Child>
 
                 {/* Contents */}
-                <div className='flex-1 h-0 pt-5 pb-4 overflow-y-auto'>
+                <div className='flex-1 h-0 pt-5 pb-4 lg:overflow-y-auto'>
                   <SidebarItems navigation={sidebarData} classNames={classNames} />
                 </div>
               </div>
@@ -83,7 +83,7 @@ export default function SidebarContent({ children }: { children: React.ReactNode
               className='p-2 w-max -ml-0.5 -mt-0.5 h-12 inline-flex items-center justify-center rounded-md text-blue-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500'
               onClick={() => setSidebarOpen(true)}>
               <span className='sr-only'>Open sidebar</span>
-              <span>Sidebar</span>
+              <span>Menu</span>
               <HiChevronRight className='h-6 w-6 ml-1' aria-hidden='true' />
             </button>
           </div>
