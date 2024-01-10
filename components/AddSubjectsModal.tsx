@@ -1,7 +1,22 @@
 'use client';
 import { HiPlus } from 'react-icons/hi2';
-import Checkbox from './Checkbox';
-import Modal from './Modal';
+import dynamic from 'next/dynamic';
+const Checkbox = dynamic(() => import('./Checkbox'), {
+  loading: () => (
+    <div className='px-1 rounded-lg select-none my-1 text-transparent w-full bg-gray-400 duration-75 animate-pulse'>
+      loading...
+    </div>
+  ),
+});
+// import Checkbox from './Checkbox';
+const Modal = dynamic(() => import('./Modal'), {
+  loading: () => (
+    <div className='px-4 py-2 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 gap-2 flex flex-row items-center justify-center rounded-md bg-blue-700 hover:bg-blue-800 font-bold tracking-wide'>
+      <HiPlus size={20} /> Add Course
+    </div>
+  ),
+});
+// import Modal from './Modal';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
