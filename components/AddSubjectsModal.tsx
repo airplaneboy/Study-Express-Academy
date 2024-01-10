@@ -5,7 +5,7 @@ import Modal from './Modal';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const AddSubjectsModal = ({
+const AddCoursesModal = ({
   submit,
   subjects,
   selectedSubjects,
@@ -46,13 +46,11 @@ const AddSubjectsModal = ({
       }
       header='Tailor Your Interests'>
       {/* Contents */}
-      <ul className='gap-5 flex flex-col px-2 py-4 '>
+      <ul className='gap-5 flex flex-col px-2 py-4 font-medium'>
         {subjects.map((subject: { _id: string; title: string; courses: { _id: string; title: string }[] }) => {
           return (
-            <li key={subject._id} className='w-full '>
-              <span className='py-1 mb-2 border-b border-gray-400 block text-gray-500 font-bold truncate'>
-                {subject?.title}
-              </span>
+            <li key={subject._id} className='w-full  bg-gray-200 px-4 py-2 rounded-2xl'>
+              <span className='py-1 mb-2 block text-gray-500 font-bold truncate'>{subject?.title}</span>
 
               <div className='columns-3'>
                 {subject?.courses.map((course: { _id: string; title: string }, index) => {
@@ -68,7 +66,7 @@ const AddSubjectsModal = ({
                           }}
                           checked={true}
                           id={course._id}
-                          labelClassName='truncate select-none text-blue-800 '>
+                          labelClassName='truncate hover:overflow-visible hover:z-10 hover:shadow hover:shadow-gray-800 transition-all select-none text-blue-100 bg-blue-600 rounded-lg px-2 my-1'>
                           {course.title}
                         </Checkbox>
                       ) : (
@@ -78,7 +76,9 @@ const AddSubjectsModal = ({
                             else removeFromCurrentlySelected({ id: course._id, data: course });
                           }}
                           id={course._id}
-                          labelClassName={'truncate select-none text-gray-800 '}>
+                          labelClassName={
+                            'truncate	hover:overflow-visible hover:z-10  hover:shadow-gray-500 hover:bg-gray-200 transition-all px-1 rounded-lg border border-transparent hover:border-gray-400 select-none text-gray-800 my-1'
+                          }>
                           {course.title}
                         </Checkbox>
                       )}
@@ -94,4 +94,4 @@ const AddSubjectsModal = ({
   );
 };
 
-export default AddSubjectsModal;
+export default AddCoursesModal;

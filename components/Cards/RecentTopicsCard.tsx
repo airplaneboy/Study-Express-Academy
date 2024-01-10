@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { HiEllipsisHorizontal, HiPlus } from 'react-icons/hi2';
 import { getCourses, getRecentCourses, getSubjectsAndCourses } from '@/sanity/sanity-utils';
 import { getCurrentUser, updateCurrentUser } from '@/lib/data/user';
-import AddSubjectsModal from '../AddSubjectsModal';
+import AddCoursesModal from '../AddSubjectsModal';
 
 const RecentTopics = async () => {
   // const recentCourses = await getRecentCourses();
@@ -26,7 +26,7 @@ const RecentTopics = async () => {
           <span className='capitalize block max-sm:text-center text-2xl lg:text-4xl font-extrabold text-gray-800 '>
             My Courses
           </span>
-          <AddSubjectsModal submit={onSubmit} selectedSubjects={selectedSubjects} subjects={subjects} />
+          <AddCoursesModal submit={onSubmit} selectedSubjects={selectedSubjects} subjects={subjects} />
         </div>
         <ul className='columns-1 lg:columns-2 gap-10'>
           {filteredCourses.map(

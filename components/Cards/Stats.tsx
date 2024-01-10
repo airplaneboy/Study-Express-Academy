@@ -1,4 +1,4 @@
-import { HiOutlineRectangleStack, HiOutlineAcademicCap, HiOutlineTrophy } from 'react-icons/hi2';
+import { HiRectangleStack, HiAcademicCap, HiTrophy } from 'react-icons/hi2';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
@@ -10,7 +10,7 @@ export default function Stats({ userStats }: { userStats: any }) {
       id: 1,
       name: 'Achievements',
       stat: userStats.numberOfAchievements,
-      icon: HiOutlineTrophy,
+      icon: HiTrophy,
       color: 'bg-pink-700 decoration-pink-500 shadow-pink-200',
       imageColor: 'text-pink-500',
     },
@@ -18,7 +18,7 @@ export default function Stats({ userStats }: { userStats: any }) {
       id: 2,
       name: 'Enrolled Courses',
       stat: userStats.numberOfCourses,
-      icon: HiOutlineRectangleStack,
+      icon: HiRectangleStack,
       color: 'bg-purple-700 decoration-purple-500 shadow-purple-200 ',
       imageColor: 'text-purple-500',
     },
@@ -26,7 +26,7 @@ export default function Stats({ userStats }: { userStats: any }) {
       id: 3,
       name: 'Completed Courses',
       stat: `${userStats.percentageOfCompletedCourses}%`,
-      icon: HiOutlineAcademicCap,
+      icon: HiAcademicCap,
       color: 'bg-green-700 decoration-green-500 shadow-green-200 ',
       imageColor: 'text-green-500',
     },
