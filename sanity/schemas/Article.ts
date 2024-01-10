@@ -39,8 +39,16 @@ const Article = {
       title: 'Article Content',
       name: 'content',
       type: 'array',
-      of: [{ type: 'block' }],
+      // of: [{ type: 'block' }],
       validation: (Rule: any) => Rule.required(),
+      of: [
+        {
+          type: 'block',
+          title: 'Block',
+          of: [{ type: 'latex', title: 'Inline math' }],
+        },
+        { type: 'latex', title: 'Math block' },
+      ],
     },
   ],
 };
