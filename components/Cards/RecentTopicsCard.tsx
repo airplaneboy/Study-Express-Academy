@@ -28,7 +28,7 @@ const RecentTopics = async () => {
           </span>
           <AddCoursesModal submit={onSubmit} selectedSubjects={selectedSubjects} subjects={subjects} />
         </div>
-        <ul className='columns-1 lg:columns-2 gap-10'>
+        <ul className='columns-1 xl:columns-2 gap-10'>
           {filteredCourses.map(
             (course: {
               title: string;
