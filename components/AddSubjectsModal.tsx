@@ -11,7 +11,7 @@ const Checkbox = dynamic(() => import('./Checkbox'), {
 // import Checkbox from './Checkbox';
 const Modal = dynamic(() => import('./Modal'), {
   loading: () => (
-    <div className='px-4 py-2 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 gap-2 flex flex-row items-center justify-center rounded-md bg-blue-700 hover:bg-blue-800 font-bold tracking-wide'>
+    <div className='max-sm:text-xs px-2 py-1 sm:px-4 sm:py-2 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 gap-2 flex flex-row items-center justify-center rounded-md bg-blue-700 hover:bg-blue-800 font-bold tracking-wide'>
       <HiPlus size={20} /> Add Course
     </div>
   ),
@@ -46,7 +46,7 @@ const AddCoursesModal = ({
 
   return (
     <Modal
-      className='px-4 py-2 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 gap-2 flex flex-row items-center justify-center rounded-md bg-blue-700 hover:bg-blue-800 font-bold tracking-wide'
+      className='max-sm:text-xs px-2 py-1 sm:px-4 sm:py-2 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 gap-2 flex flex-row items-center justify-center rounded-md bg-blue-700 hover:bg-blue-800 font-bold tracking-wide'
       footerButton={{
         text: `Proceed with ${currentlySelected.length} courses`,
         click: () => {

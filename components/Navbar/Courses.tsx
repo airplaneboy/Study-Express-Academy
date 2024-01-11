@@ -35,7 +35,7 @@ const Courses = ({ courses, classNames }: { courses: any; classNames: Function }
           {/* */}
           <Menu.Items
             as='ul'
-            className='border overflow-scroll max-h-[90vh] h-auto z-50 origin-top-right fixed left-1/2 -translate-x-1/2 mt-2 max-w-[90vw] w-auto rounded-md shadow-xl lg:columns-3 columns-2 gap-3 bg-white px-2 '>
+            className='border overflow-y-scroll overflow-x-hidden max-h-[90vh] h-auto z-50 origin-top-right fixed left-1/2 -translate-x-1/2 mt-2 max-w-[90vw] w-auto rounded-md shadow-xl lg:columns-3 columns-2 gap-3 bg-white px-2 '>
             {courses?.map((subject: any) => (
               <Menu.Item as='li' key={subject?._id}>
                 {({ active }) => (

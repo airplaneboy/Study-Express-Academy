@@ -51,7 +51,7 @@ const navigation = {
 export default function Footer() {
   return (
     <footer className=' border-t-2  border-gray-300 relative w-full mt-28'>
-      <div className='h-12 bg-white max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8 overflow-hidden flex items-center justify-between max-md:flex-col'>
+      <div className=' sm:h-12 bg-white max-w-7xl mx-auto py-1 px-2 sm:px-6 lg:px-8 overflow-hidden flex items-center justify-between sm:flex-row flex-col'>
         {/* <nav className='-mx-5 -my-2 flex flex-wrap justify-center' aria-label='Footer'>
           {navigation.main.map((item) => (
             <div key={item.name} className='px-5 py-2'>
@@ -61,7 +61,7 @@ export default function Footer() {
             </div>
           ))}
         </nav> */}
-        <div className=' flex justify-center space-x-6 py-2 rounded-3xl w-max'>
+        <div className='mt-2 sm:mt-auto w-full flex justify-evenly sm:justify-center sm:space-x-6 sm:py-2 rounded-3xl sm:w-max'>
           {navigation.social.map((item) => (
             <Link key={item.name} href={item.href} className='text-gray-400 hover:text-gray-500'>
               <span className='sr-only'>{item.name}</span>
@@ -69,7 +69,7 @@ export default function Footer() {
             </Link>
           ))}
         </div>
-        <span className='text-center text-base max-sm:text-xs text-gray-500 font-bold pointer-events-none w-max'>
+        <span className='mt-5 my-2 sm:my-auto text-center sm:text-base text-xs text-gray-500 font-bold pointer-events-none '>
           &copy; {process.env.YEAR} {process.env.TITLE}, Inc. All rights reserved.
         </span>
       </div>

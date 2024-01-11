@@ -27,7 +27,12 @@ export default function Stats({ userStats }: { userStats: any }) {
     {
       id: 3,
       name: 'Completed Courses',
-      stat: `${userStats.percentageOfCompletedCourses}%`,
+      stat: (
+        <>
+          {userStats.percentageOfCompletedCourses}
+          <span className='max-sm:text-sm lg:text-sm'>%</span>
+        </>
+      ),
       icon: HiAcademicCap,
       color: 'bg-green-700 decoration-green-500 shadow-green-200 ',
       imageColor: 'text-green-500',
