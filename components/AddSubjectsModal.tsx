@@ -11,7 +11,7 @@ const Checkbox = dynamic(() => import('./Checkbox'), {
 // import Checkbox from './Checkbox';
 const Modal = dynamic(() => import('./Modal'), {
   loading: () => (
-    <div className='max-sm:text-xs px-2 py-1 sm:px-4 sm:py-2 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 gap-2 flex flex-row items-center justify-center rounded-md bg-blue-700 hover:bg-blue-800 font-bold tracking-wide'>
+    <div className='max-sm:text-xs px-2 py-1 sm:px-4 sm:py-2 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 gap-2 flex flex-row items-center justify-center rounded-3xl md:rounded-md bg-blue-700 hover:bg-blue-800 font-bold tracking-wide'>
       <HiPlus size={20} /> Add Course
     </div>
   ),
@@ -46,7 +46,7 @@ const AddCoursesModal = ({
 
   return (
     <Modal
-      className='max-sm:text-xs px-2 py-1 sm:px-4 sm:py-2 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 gap-2 flex flex-row items-center justify-center rounded-md bg-blue-700 hover:bg-blue-800 font-bold tracking-wide'
+      className='max-sm:text-xs px-2 py-1 sm:px-4 sm:py-2 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 gap-2 flex flex-row items-center justify-center rounded-3xl md:rounded-md bg-blue-700 hover:bg-blue-800 font-bold tracking-wide'
       footerButton={{
         text: `Proceed with ${currentlySelected.length} courses`,
         click: () => {
@@ -61,13 +61,13 @@ const AddCoursesModal = ({
       }
       header='Tailor Your Interests'>
       {/* Contents */}
-      <ul className='gap-5 flex flex-col px-2 py-4 font-medium'>
+      <ul className='gap-5 flex flex-col sm:px-2 py-4 font-medium'>
         {subjects.map((subject: { _id: string; title: string; courses: { _id: string; title: string }[] }) => {
           return (
-            <li key={subject._id} className='w-full  bg-gray-200 px-4 py-2 rounded-2xl'>
+            <li key={subject._id} className='w-full px-3 sm:px-4 py-2 sm:rounded-2xl'>
               <span className='py-1 mb-2 block text-gray-500 font-bold truncate'>{subject?.title}</span>
 
-              <div className='columns-3'>
+              <div className='sm:columns-2 md:columns-3'>
                 {subject?.courses.map((course: { _id: string; title: string }, index) => {
                   return (
                     <div key={course._id}>
@@ -92,7 +92,7 @@ const AddCoursesModal = ({
                           }}
                           id={course._id}
                           labelClassName={
-                            'truncate	hover:overflow-visible hover:z-10  hover:shadow-gray-500 hover:bg-gray-200 transition-all px-1 rounded-lg border border-transparent hover:border-gray-400 select-none text-gray-800 my-1'
+                            'truncate	hover:overflow-visible hover:z-10  hover:shadow-gray-500 hover:bg-gray-200 transition-all px-1 rounded-lg border border-transparent hover:border-gray-400 select-none text-gray-800 my-1 text-sm sm:text-base'
                           }>
                           {course.title}
                         </Checkbox>

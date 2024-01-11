@@ -47,7 +47,7 @@ export default function Modal({
           </Transition.Child>
 
           <div className='fixed inset-0 overflow-y-auto'>
-            <div className='flex min-h-full items-center justify-center p-4 text-center'>
+            <div className='flex min-h-full items-center justify-center p-0 sm:p-4 text-center'>
               <Transition.Child
                 as={Fragment}
                 enter='ease-out duration-300'
@@ -56,18 +56,22 @@ export default function Modal({
                 leave='ease-in duration-200'
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'>
-                <Dialog.Panel className='w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white/90 backdrop-blur-sm  p-6 text-left align-middle shadow-xl transition-all'>
-                  <Dialog.Title as='h3' className='text-xl font-extrabold  leading-6 text-gray-800 capitalize truncate'>
+                <Dialog.Panel className='w-full max-w-4xl transform overflow-hidden sm:rounded-2xl bg-white/90 backdrop-blur-sm  py-6 sm:px-6 text-left align-middle shadow-xl transition-all h-screen sm:h-auto rounded-none'>
+                  <Dialog.Title
+                    as='h3'
+                    className='text-xl font-extrabold  leading-6 text-gray-800 capitalize truncate pl-2'>
                     {header}
                   </Dialog.Title>
-                  <div id='add-subject' className='mt-2 max-h-[55vh] overflow-y-scroll'>
+                  <div
+                    id='add-subject'
+                    className='mt-2 max-h-[calc(100vh-56px-56px-10px)] sm:max-h-[55vh] overflow-y-scroll'>
                     {children}
                   </div>
 
-                  <div className='pt-4 border-t border-gray-300 flex items-center justify-between'>
+                  <div className='pt-4 border-t border-gray-300 flex items-center justify-center sm:justify-between'>
                     {footer || (
                       <>
-                        <div></div>
+                        <div className='hidden sm:block'></div>
                         <button
                           type='button'
                           className={
