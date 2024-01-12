@@ -49,7 +49,9 @@ const Profile = ({ user }: { user: { profile: { image: string; bio: string } } }
           <div className='md:col-span-1'>
             <div className='px-4 sm:px-0'>
               <span className='text-lg font-medium leading-6 text-gray-900'>Profile</span>
-              <span className='mt-1 text-sm text-gray-600 block'>This information will be displayed publicly.</span>
+              <span className='mt-1 text-xs sm:text-sm text-gray-600 block'>
+                This information will be displayed publicly.
+              </span>
             </div>
           </div>
           <div className='mt-5 lg:mt-0 md:col-span-2 '>

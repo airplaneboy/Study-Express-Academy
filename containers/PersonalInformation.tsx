@@ -123,7 +123,7 @@ const PersonalInformation = ({
           <div className='md:col-span-1'>
             <div className='px-4 sm:px-0'>
               <span className='text-lg font-medium leading-6 text-gray-900'>Personal Information</span>
-              <span className='mt-1 text-sm text-gray-600 block'>
+              <span className='mt-1 text-xs sm:text-sm text-gray-600 block'>
                 Ensure your email, and phone number are accurate.
               </span>
             </div>
