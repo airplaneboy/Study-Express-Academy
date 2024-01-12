@@ -80,7 +80,7 @@ export default function SidebarContent({ children }: { children: React.ReactNode
           <div className='sticky top-0 w-full md:hidden p-1 px-6  shadow-md border-t-2 backdrop-blur-md z-10'>
             <button
               type='button'
-              className='p-2 max-sm:pl-0 w-max -ml-0.5 -mt-0.5 h-12 inline-flex items-center justify-center rounded-md text-blue-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500'
+              className='p-2 max-sm:pl-0 w-max -ml-0.5 -mt-0.5 h-12 inline-flex items-center justify-center rounded-md text-blue-500 hover:text-gray-900 sm:focus:outline-none sm:focus:ring-2 sm:focus:ring-inset sm:focus:ring-blue-500'
               onClick={() => setSidebarOpen(true)}>
               <span className='sr-only'>Open sidebar</span>
               <span>Menu</span>

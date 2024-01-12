@@ -6,10 +6,10 @@ const ProfileItem = ({
   title: string;
 }) => {
   return (
-    <div className='w-full border-y max-sm:pt-5 sm:border-2 sm:rounded-2xl p-2 sm:p-5  mb-5 capitalize h-max flex-1'>
+    <div className='w-full max-sm:pt-5 sm:border-2 sm:rounded-2xl p-2 sm:p-5  mb-5 capitalize h-max flex-1'>
       <span className='text-lg font-bold mb-4 text-gray-700 block'>{title}</span>
       {stats?.length <= 0 ? (
-        <span className='italic text-gray-500 text-base'>No data</span>
+        <span className='italic text-gray-500 text-sm sm:text-base'>No data</span>
       ) : (
         <ul className=''>
           {stats?.map((stat) => {
@@ -17,9 +17,9 @@ const ProfileItem = ({
               <li
                 key={stat.id ? stat.id : stat.property}
                 className='flex justify-between items-center mb-1 shrink py-2'>
-                <span className='block text-gray-700 capitalize'>{stat.property}:</span>
+                <span className='block text-gray-700 capitalize text-sm sm:text-base'>{stat.property}:</span>
                 <span
-                  className={`block text-gray-500 lg:pl-5 truncate max-w-[10rem] sm:max-w-[15rem] lg:max-w-lg ${
+                  className={`text-xs sm:text-base block text-gray-500 lg:pl-5 truncate max-w-[10rem] sm:max-w-[15rem] lg:max-w-lg ${
                     stat?.style && stat?.style
                   }`}>
                   {stat.value}
