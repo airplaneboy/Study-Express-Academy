@@ -26,7 +26,7 @@ const ProfileContent = async () => {
     }
   }
 
-  const userData = [
+  const userData: { property: string; value: string; style?: string }[] = [
     {
       property: 'First Name',
       value: user?.profile?.firstName,
@@ -104,7 +104,7 @@ const ProfileContent = async () => {
     {
       property: 'Bio',
       value: user?.profile?.bio,
-      style: 'whitespace-normal lg:text-justify text-right leading-tight',
+      style: 'whitespace-normal text-right leading-tight tracking-[0.25px] word-spacing',
     },
   ];
 
@@ -118,9 +118,9 @@ const ProfileContent = async () => {
 
   return (
     <div className='lg:flex justify-between gap-5 flex-wrap'>
-      <ProfileItem title='User statistics ' stats={userData} />
+      <ProfileItem title='User statistics' stats={userData} />
       <div className='flex-1'>
-        <ProfileItem title='Achievements ' stats={achievementData} />
+        <ProfileItem title='Achievements' stats={achievementData} />
         <ProfileItem title='Courses' stats={CourseData} />
       </div>
     </div>
