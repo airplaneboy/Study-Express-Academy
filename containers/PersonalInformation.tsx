@@ -129,7 +129,7 @@ const PersonalInformation = ({
             </div>
           </div>
 
-          <div className='mt-5 md:col-span-2 md:mt-0'>
+          <div className='mt-5 md:col-span-2 lg:mt-0'>
             <form onSubmit={handleSubmit}>
               <div className=''>
                 <div className='rounded-t-2xl border-x-2 border-t-2 bg-white px-4 py-5 sm:p-6'>
@@ -147,7 +147,7 @@ const PersonalInformation = ({
                         id='first-name'
                         placeholder='Your given name'
                         autoComplete='given-name'
-                        className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
+                        className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm max-sm:py-1'
                       />
                     </div>
 
@@ -164,7 +164,7 @@ const PersonalInformation = ({
                         id='last-name'
                         placeholder='Your surname or family name'
                         autoComplete='family-name'
-                        className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
+                        className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm max-sm:py-1'
                       />
                     </div>
                     <div className='col-span-6 sm:col-span-3 lg:col-span-3'>
@@ -181,7 +181,7 @@ const PersonalInformation = ({
                         placeholder='A nickname (Unavailable)'
                         id='username'
                         autoComplete='off'
-                        className='text-gray-700 disabled mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
+                        className='text-gray-700 disabled mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm max-sm:py-1'
                       />
                     </div>
                     <div className='col-span-6 sm:col-span-3 lg:col-span-3'>
@@ -204,7 +204,7 @@ const PersonalInformation = ({
                         name='email-address'
                         id='email-address'
                         autoComplete='email'
-                        className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm'
+                        className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm max-sm:py-1'
                       />
                     </div>
 
@@ -213,7 +213,7 @@ const PersonalInformation = ({
                         Gender
                       </label>
                       <select
-                        className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 bg-white px-3 text-start focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm'
+                        className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 bg-white px-3 text-start focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm max-sm:py-1'
                         value={gender || ''}
                         id='gender'
                         onChange={(e) => setGender(e.target.value)}>

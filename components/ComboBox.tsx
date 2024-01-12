@@ -43,7 +43,7 @@ export default function ComboBox({ comboBoxArray, initialSelected }: { comboBoxA
             )}
             <Combobox.Input
               // displayValue={(country: any) => country.name}
-              className='w-full border-none py-2 pl-0 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 '
+              className='w-full border-none py-[6px] sm:py-2 pl-0 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 '
               placeholder={selected?.name}
               onChange={(event) => {
                 setCanChangeState(true);

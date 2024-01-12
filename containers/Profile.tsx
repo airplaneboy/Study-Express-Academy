@@ -52,7 +52,7 @@ const Profile = ({ user }: { user: { profile: { image: string; bio: string } } }
               <span className='mt-1 text-sm text-gray-600 block'>This information will be displayed publicly.</span>
             </div>
           </div>
-          <div className='mt-5 md:mt-0 md:col-span-2 '>
+          <div className='mt-5 lg:mt-0 md:col-span-2 '>
             <form onSubmit={submitHandler}>
               <div className=' border-2 overflow-hidden rounded-2xl'>
                 <div className='px-4 py-5 bg-white space-y-6 sm:p-6'>
@@ -91,7 +91,7 @@ const Profile = ({ user }: { user: { profile: { image: string; bio: string } } }
                         name='about'
                         maxLength={250}
                         rows={3}
-                        className=' min-h-[4rem] max-h-96 focus:ring-blue-500 focus:border-blue-500 mt-1 block w-full sm:text-base text-gray-700 border-2 border-gray-300 rounded-2xl placeholder-gray-600'
+                        className=' min-h-[4rem] max-h-96 focus:ring-blue-500 focus:border-blue-500 mt-1 block w-full text-sm sm:text-base text-gray-700 border-2 border-gray-300 rounded-2xl placeholder-gray-600'
                         placeholder='What would you like everyone to know about you?'
                         // defaultValue={''}
                       />
