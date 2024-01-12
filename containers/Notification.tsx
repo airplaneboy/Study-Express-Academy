@@ -63,7 +63,7 @@ const Notification = ({
       <div className='mt-10 sm:mt-0'>
         <div className='lg:grid lg:grid-cols-3 lg:gap-6'>
           <div className='md:col-span-1'>
-            <div className='px-4 sm:px-0'>
+            <div className='px-2 sm:px-0'>
               <span className='text-lg font-medium leading-6 text-gray-900'>Notifications</span>
               <span className='mt-1 text-xs sm:text-sm text-gray-600 block'>
                 Decide which communications you&apos;d like to receive.
