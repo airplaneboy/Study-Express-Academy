@@ -1,6 +1,7 @@
 'use client';
 import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment, useState } from 'react';
+import { HiXMark } from 'react-icons/hi2';
 
 export default function Modal({
   header,
@@ -34,7 +35,7 @@ export default function Modal({
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as='div' className='relative z-10' onClose={closeModal}>
+        <Dialog as='div' className='relative z-20 sm:z-10' onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter='ease-out duration-300'
@@ -56,15 +57,16 @@ export default function Modal({
                 leave='ease-in duration-200'
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'>
-                <Dialog.Panel className='w-full max-w-4xl transform overflow-hidden sm:rounded-2xl bg-white/90 backdrop-blur-sm  py-6 sm:px-6 text-left align-middle shadow-xl transition-all h-screen sm:h-auto rounded-none'>
+                <Dialog.Panel className='max-sm:pt-4 w-full max-w-4xl transform overflow-hidden sm:rounded-2xl bg-white/90 backdrop-blur-sm  py-6 sm:px-6 text-left align-middle shadow-xl transition-all h-screen sm:h-auto rounded-none'>
                   <Dialog.Title
                     as='h3'
-                    className='text-xl font-extrabold  leading-6 text-gray-800 capitalize truncate pl-2'>
+                    className='text-xl font-extrabold flex items-center justify-between leading-6 text-gray-800 capitalize truncate px-2'>
                     {header}
+                    <HiXMark onClick={() => closeModal()} size={24} className='text-gray-500 mr-2' />
                   </Dialog.Title>
                   <div
                     id='add-subject'
-                    className='mt-2 max-h-[calc(100vh-56px-56px-10px)] sm:max-h-[55vh] overflow-y-scroll'>
+                    className='mt-4 sm:mt-2 max-h-[calc(100vh-56px-56px-10px)] sm:max-h-[55vh] overflow-y-scroll  shadow-inner sm:shadow-none shadow-gray-300 sm:border-none'>
                     {children}
                   </div>
 
