@@ -1,5 +1,16 @@
-'use client';
+import dynamic from 'next/dynamic';
 
-export default function Test() {
-  return <div className='px-1 rounded-lg select-none my-1 h-6 bg-gray-400 animate-pulse'></div>;
-}
+const IconServer = async ({ src }: { src: string }) => {
+  const LordIcon2 = dynamic(() => import('@/components/LordIcon'), {
+    ssr: false,
+    loading: () => <span>Loading</span>,
+  });
+
+  // const ICON = 'https://cdn.lordicon.com/egmlnyku.json';
+
+  const response = await fetch(src.startsWith('https') ? src : `https://cdn.lordicon.com/${src}.json`);
+  const data = await response.json();
+
+  return <LordIcon2 src={data} />;
+};
+export default IconServer;

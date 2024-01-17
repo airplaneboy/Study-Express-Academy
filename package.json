@@ -16,6 +16,7 @@
     "@faker-js/faker": "^8.0.2",
     "@headlessui/react": "^1.7.15",
     "@lordicon/element": "^1.1.0",
+    "@lordicon/react": "^1.4.1",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@next-auth/mongodb-adapter": "^1.1.3",

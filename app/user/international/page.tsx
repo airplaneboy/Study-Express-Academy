@@ -1,6 +1,6 @@
 import { getInternationalSubjects } from '@/sanity/sanity-utils';
 
-import { LordIcon } from '@/components/LordIcon';
+import LordIcon from '@/components/LordIcon';
 import Link from 'next/link';
 
 const International = async () => {
@@ -52,7 +52,7 @@ const International = async () => {
 
   return (
     <div>
-      <ul className='grid grid-cols-2 gap-6 '>
+      <ul className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
         {subjects?.map(
           (
             subject: {
@@ -74,13 +74,7 @@ const International = async () => {
                     Explore
                   </button> */}
 
-                  <LordIcon
-                    icon={subject.icon}
-                    src={subject.animatedIcon}
-                    style={{ position: 'absolute', left: '-30%', top: '-40%' }}
-                    height='500px'
-                    width='500px'
-                  />
+                  <LordIcon src={subject.animatedIcon} size={500} className='absolute left-[-30%] top-[-40%]' />
 
                   <span
                     // href={`/${subject.slug}`}
@@ -95,12 +89,12 @@ const International = async () => {
 
                   <div className='flex flex-col gap-5 items-center justify-center w-full min-h-[200px]'>
                     <span
-                      className={`bg-clip-text ml-[30%] text-5xl font-extrabold  z-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
+                      className={`bg-clip-text sm:ml-[30%] text-5xl font-extrabold  z-[9] drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
                       {subject.title}
                     </span>
                   </div>
                   <div>
-                    <span className='text-gray-600 font-semibold'>
+                    <span className='text-gray-600 font-semibold z-10'>
                       {subject.courses?.length ?? 0} {subject.courses?.length != 1 ? 'courses' : 'course'}
                     </span>
                   </div>

@@ -1,6 +1,6 @@
 import { getSubjects } from '@/sanity/sanity-utils';
 
-import { LordIcon } from '@/components/LordIcon';
+import LordIcon from '@/components/LordIcon';
 import Link from 'next/link';
 
 const Domestic = async () => {
@@ -53,7 +53,7 @@ const Domestic = async () => {
 
   return (
     <div>
-      <ul className='grid grid-cols-2 gap-6 '>
+      <ul className='grid grid-cols-1 min-[1200px]:grid-cols-2 gap-6 '>
         {subjects?.map(
           (
             subject: {
@@ -70,23 +70,21 @@ const Domestic = async () => {
             return (
               <li key={subject._id} className='mb-5'>
                 <div
-                  className={`overflow-hidden hover:border-transparent hover:shadow-lg ${tailwindShadowColors[index]} border-2 flex flex-col justify-between items-end rounded-2xl p-3 relative text-gray-300 hover:${tailwindTextColors[index]} transition-all`}>
+                  className={`group transition-all overflow-hidden hover:border-transparent hover:shadow-lg ${tailwindShadowColors[index]} border-2 flex flex-col justify-between items-end rounded-2xl p-3 relative text-gray-300 hover:${tailwindTextColors[index]} transition-all`}>
                   {/* <button className='px-2 py-1 border-2 rounded-2xl text-blue-600 hover:border-blue-600 duration-150 ease-in-out'>
                     Explore
                   </button> */}
 
                   <LordIcon
-                    icon={subject.icon}
                     src={subject.animatedIcon}
-                    style={{ position: 'absolute', left: '-30%', top: '-40%' }}
-                    height='500px'
-                    width='500px'
+                    size={500}
+                    className=' absolute max-[340px]:left-[-50%] left-[-30%] min-[600px]:left-[-15%] min-[960px]:left-[-10%] md:left-[-30%] top-[-40%]'
                   />
 
                   <Link
                     href={`/${subject.slug}`}
-                    className='z-10 rounded-2xl bg-gray-200 hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px]'>
-                    <div className=' bg-white rounded-2xl'>
+                    className='group z-10 rounded-2xl sm:group-hover:m-[2px] bg-transparent group-hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px]'>
+                    <div className='bg-white/70 group-hover:bg-white hover:!bg-white/70 border-2 sm:group-hover:border-none border-gray-300 rounded-2xl'>
                       {/* <span className='px-2 py-1  text-blue-600  font-medium inline-block hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500'> */}
                       <span className='px-2 py-1 text-blue-600  font-extrabold inline-block'>Explore</span>
                     </div>
@@ -94,11 +92,11 @@ const Domestic = async () => {
 
                   <div className='flex flex-col gap-5 items-center justify-center w-full min-h-[200px]'>
                     <span
-                      className={`bg-clip-text ml-[30%] text-5xl font-extrabold  z-10 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
+                      className={`bg-clip-text sm:ml-[30%] text-5xl font-extrabold  z-[9] drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
                       {subject.title}
                     </span>
                   </div>
-                  <div>
+                  <div className='z-10'>
                     <span className='text-gray-600 font-semibold'>
                       {subject.courses?.length ?? 0} {subject.courses?.length != 1 ? 'courses' : 'course'}{' '}
                     </span>

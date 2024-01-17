@@ -69,7 +69,7 @@ export default function Footer() {
             </Link>
           ))}
         </div>
-        <span className='mt-5 my-2 sm:my-auto text-center sm:text-base text-[9px] text-gray-500 font-bold pointer-events-none '>
+        <span className='mt-5 my-2 sm:my-auto text-center text-[9px] sm:text-xs md:text-sm lg:text-base text-gray-500 font-bold pointer-events-none '>
           &copy; {process.env.YEAR} {process.env.TITLE}, Inc. All rights reserved.
         </span>
       </div>
