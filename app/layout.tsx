@@ -35,7 +35,7 @@ export const metadata = {
 const classes = classNames(plusJakartaSans.className, 'h-full');
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html className='h-full !subpixel-antialiased' lang='en'>
+    <html className='h-full !subpixel-antialiased selection:bg-fuchsia-300 selection:text-fuchsia-900' lang='en'>
       <body className={classes}>
         <Providers>
           <ToasterContext /> {children}

@@ -12,11 +12,16 @@ module.exports = {
   theme: {
     extend: {
       animation: {
+        marquee: 'marquee var(--duration) linear infinite',
         growAndShrink: 'growAndShrink 700ms ease-in-out forwards',
         spin: 'spin 1000ms linear',
         shine: 'shine 12s ease-in-out infinite',
       },
       keyframes: {
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-100%)' },
+        },
         sparkle: {
           '0%': { transform: 'scale(0) rotate(0deg) ' },
           '50%': { transform: 'scale(1) rotate(90deg)' },
