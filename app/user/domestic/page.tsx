@@ -2,6 +2,8 @@ import { getSubjects } from '@/sanity/sanity-utils';
 
 import LordIcon from '@/components/LordIcon';
 import Link from 'next/link';
+import Marquee from '@/components/Marquee';
+import OverflowControl from '@/components/OverflowControl';
 
 const Domestic = async () => {
   const subjects = await getSubjects();
@@ -91,11 +93,22 @@ const Domestic = async () => {
                     </div>
                   </Link>
 
-                  <span
-                    id='subject-title'
-                    className={`bg-clip-text sm:ml-[30%] text-5xl font-extrabold overflow-x-scroll overflow-y-hidden whitespace-nowrap z-[10] text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
-                    {subject.title}
-                  </span>
+                  {/* <Marquee>
+                    <span
+                      id='subject-title'
+                      // className={`pb-2 bg-clip-text sm:ml-[30%] text-5xl font-extrabold overflow-x-scroll overflow-y-hidden whitespace-nowrap z-[10] text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
+                      className={`pb-2 bg-clip-text sm:ml-[30%] text-5xl font-extrabold overflow-visible z-[10] text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
+                      {subject.title}
+                    </span>
+                  </Marquee> */}
+                  <OverflowControl>
+                    <span
+                      id='subject-title'
+                      // className={`pb-2 bg-clip-text sm:ml-[30%] text-5xl font-extrabold overflow-x-scroll overflow-y-hidden whitespace-nowrap z-[10] text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
+                      className={`block truncate pb-2 bg-clip-text sm:ml-[30%] text-5xl font-extrabold group-hover:text-clip group-hover:whitespace-normal group-hover:overflow-visible z-[10] text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
+                      {subject.title}
+                    </span>
+                  </OverflowControl>
 
                   <div className='z-10'>
                     <span className='text-gray-600 font-semibold'>
