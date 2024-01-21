@@ -86,7 +86,7 @@ const Domestic = async () => {
 
                   <Link
                     href={`/${subject.slug}`}
-                    className='group z-10 rounded-2xl sm:group-hover:m-[2px] bg-transparent group-hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px]'>
+                    className='self-end group z-10 rounded-2xl sm:group-hover:m-[2px] bg-transparent group-hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px]'>
                     <div className='bg-white/70 group-hover:bg-white hover:!bg-white/70 border-2 sm:group-hover:border-none border-gray-300 rounded-2xl'>
                       {/* <span className='px-2 py-1  text-blue-600  font-medium inline-block hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500'> */}
                       <span className='px-2 py-1 text-blue-600  font-extrabold inline-block'>Explore</span>
@@ -102,7 +102,7 @@ const Domestic = async () => {
                     </span>
                   </OverflowControl>
 
-                  <div className='z-10'>
+                  <div className='z-10 text-end pointer-events-none'>
                     <span className='text-gray-600 font-semibold'>
                       {subject.courses?.length ?? 0} {subject.courses?.length != 1 ? 'courses' : 'course'}{' '}
                     </span>
