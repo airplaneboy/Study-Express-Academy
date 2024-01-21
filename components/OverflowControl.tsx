@@ -8,12 +8,17 @@ const OverflowControl = ({ children }: { children: React.ReactNode }) => {
   const [isOverflowing, setIsOverflowing] = useState(false);
 
   useEffect(() => {
-    if (textRef.current!.scrollWidth > textRef.current!.clientWidth) setIsOverflowing(true);
+    const element = textRef.current;
+    setIsOverflowing(element!.scrollWidth > element!.clientWidth);
+
+    window.addEventListener('resize', () => setIsOverflowing(element!.scrollWidth > element!.clientWidth));
+    return () =>
+      window.removeEventListener('resize', () => setIsOverflowing(element!.scrollWidth > element!.clientWidth));
   }, []);
 
   return (
     <>
-      <div ref={textRef}>
+      <div ref={textRef} onResize={() => console.log('was resized')}>
         {isOverflowing ? (
           <>
             <Marquee hidden={true}>{children}</Marquee>
@@ -25,7 +30,6 @@ const OverflowControl = ({ children }: { children: React.ReactNode }) => {
           children
         )}
       </div>
-      {/* <div className='w-full pb-2 group-hover:hidden'>{children}</div> */}
     </>
   );
 };
