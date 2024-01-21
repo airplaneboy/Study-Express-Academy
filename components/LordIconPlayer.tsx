@@ -35,7 +35,7 @@ const LordIconPlayer = ({
     return () => window.removeEventListener('resize', () => setWidth(window.innerWidth));
   }, []);
 
-  if (width >= 1536) size = xl2Size || size;
+  if (width >= 1536) size = xlSize || size;
   else if (width >= 1280) size = xlSize || size;
   else if (width >= 1024) size = lgSize || 0.95 * size;
   else if (width >= 769) size = mdSize || 0.9 * size;

@@ -83,7 +83,7 @@ function NavbarContent({
 
                 {/* Check if user is logged in to show login button or their profile */}
                 {isLoggedIn ? (
-                  <div className='flex max-[550px]:gap-5 gap-12 items-center'>
+                  <div className='flex gap-5 min-[550px]:gap-12 items-center'>
                     <Courses courses={coursesData} classNames={classNames} />
                     <MobileMenuButton open={open} />
                     <UserMenu

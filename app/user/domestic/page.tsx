@@ -55,7 +55,7 @@ const Domestic = async () => {
 
   return (
     <div>
-      <ul className='grid grid-cols-1 min-[340px]:grid-cols-2 md:grid-cols-1 min-[960px]:grid-cols-2 gap-5 sm:gap-6 '>
+      <ul className='grid grid-cols-1 min-[340px]:grid-cols-2 min-[480px]:grid-cols-1 min-[600px]:grid-cols-2 md:grid-cols-1 min-[960px]:grid-cols-2 gap-5 sm:gap-6 '>
         {subjects?.map(
           (
             subject: {
@@ -72,24 +72,30 @@ const Domestic = async () => {
             return (
               <li key={subject._id} className='sm:mb-5'>
                 <div
-                  className={`sm:min-h-[192px] min-[1200px]:min-h-[288px] group transition-all overflow-hidden hover:border-transparent hover:shadow-lg ${tailwindShadowColors[index]} border-2 flex flex-col justify-between rounded-2xl p-3 relative text-gray-300 hover:${tailwindTextColors[index]} transition-all`}>
+                  className={`min-[600px]:min-h-[160px] min-[1200px]:min-h-[192px] group transition-all overflow-hidden hover:border-transparent hover:shadow-lg ${tailwindShadowColors[index]} border-2 flex flex-col justify-between rounded-2xl p-3 relative text-gray-300 hover:${tailwindTextColors[index]} transition-all`}>
                   {/* <button className='px-2 py-1 border-2 rounded-2xl text-blue-600 hover:border-blue-600 duration-150 ease-in-out'>
                     Explore
                   </button> */}
 
                   <LordIcon
-                    xsSize={0.4 * 500}
+                    xsSize={0.3 * 500}
+                    smSize={0.4 * 500}
+                    mdSize={0.6 * 500}
+                    lgSize={0.6 * 500}
+                    xlSize={0.7 * 500}
                     src={subject.animatedIcon}
                     size={500}
-                    className=' absolute max-[340px]:left-[-15%] max-sm:top-[-25%]  min-[340px]:left-[-5%] left-[-30%] min-[600px]:left-[-15%] min-[960px]:left-[-10%] md:left-[-30%] top-[-40%]'
+                    className=' absolute top-[-10%] left-[-5%] sm:left-0 sm:top-[-20%] min-[600px]:top-[-14%] md:top-[-50%] min-[960px]:left-[-10%] min-[1200px]:top-[-30%] xl:top-[-45%]'
                   />
 
                   <Link
                     href={`/${subject.slug}`}
-                    className='self-end group z-10 rounded-2xl sm:group-hover:m-[2px] bg-transparent group-hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px]'>
-                    <div className='bg-white/70 group-hover:bg-white hover:!bg-white/70 border-2 sm:group-hover:border-none border-gray-300 rounded-2xl'>
+                    className='self-end group z-10 rounded-2xl group-hover:m-[2px] bg-transparent group-hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px]'>
+                    <div className='bg-white/70 group-hover:bg-white hover:!bg-white/70 border-2 group-hover:border-none border-gray-300 rounded-2xl'>
                       {/* <span className='px-2 py-1  text-blue-600  font-medium inline-block hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500'> */}
-                      <span className='px-2 py-1 text-blue-600  font-extrabold inline-block'>Explore</span>
+                      <span className='max-[600px]:text-xs px-2 py-1 text-blue-600  font-extrabold inline-block'>
+                        Explore
+                      </span>
                     </div>
                   </Link>
 
@@ -97,13 +103,13 @@ const Domestic = async () => {
                     <span
                       id='subject-title'
                       // className={`pb-2 bg-clip-text sm:ml-[30%] text-5xl font-extrabold overflow-x-scroll overflow-y-hidden whitespace-nowrap z-[10] text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
-                      className={`block  pb-2 bg-clip-text sm:ml-[30%] text-5xl font-extrabold group-hover:text-clip group-hover:whitespace-normal group-hover:overflow-visible z-[10] text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
+                      className={` max-sm:text-3xl block  pb-2 bg-clip-text sm:ml-[30%] text-5xl font-extrabold group-hover:text-clip group-hover:whitespace-normal group-hover:overflow-visible z-[10] text-right drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
                       {subject.title}
                     </span>
                   </OverflowControl>
 
                   <div className='z-10 text-end pointer-events-none'>
-                    <span className='text-gray-600 font-semibold'>
+                    <span className='max-sm:text-[10px] max-[600px]:text-xs text-gray-600 font-semibold'>
                       {subject.courses?.length ?? 0} {subject.courses?.length != 1 ? 'courses' : 'course'}{' '}
                     </span>
                   </div>
