@@ -70,7 +70,7 @@ const Domestic = async () => {
             index: number
           ) => {
             return (
-              <li key={subject._id} className='sm:mb-5'>
+              <li key={subject._id}>
                 <div
                   className={`min-[600px]:min-h-[160px] min-[1200px]:min-h-[192px] group transition-all overflow-hidden hover:border-transparent hover:shadow-lg ${tailwindShadowColors[index]} border-2 flex flex-col justify-between rounded-2xl p-3 relative text-gray-300 hover:${tailwindTextColors[index]} transition-all`}>
                   {/* <button className='px-2 py-1 border-2 rounded-2xl text-blue-600 hover:border-blue-600 duration-150 ease-in-out'>

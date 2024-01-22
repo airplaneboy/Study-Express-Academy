@@ -35,11 +35,11 @@ const Courses = ({ courses, classNames }: { courses: any; classNames: Function }
           {/* */}
           <Menu.Items
             as='ul'
-            className='border overflow-y-scroll overflow-x-hidden max-h-[90vh] h-auto z-50 origin-top-right fixed left-1/2 -translate-x-1/2 mt-2 max-w-[90vw] w-auto rounded-md shadow-xl lg:columns-3 columns-2 gap-3 bg-white px-2 '>
+            className='border overflow-y-scroll overflow-x-hidden max-h-[90vh] h-auto z-50 origin-top-right fixed left-1/2 -translate-x-1/2 mt-2 max-w-[90vw] w-auto rounded-md shadow-xl lg:columns-3 columns-1 md:columns-2 gap-3 bg-white px-2 '>
             {courses?.map((subject: any) => (
-              <Menu.Item as='li' key={subject?._id}>
+              <Menu.Item as='li' className='max-w-max' key={subject?._id}>
                 {({ active }) => (
-                  <div className=' px-8 text-sm text-gray-700 flex-col capitalize pt-5 inline-block'>
+                  <div className=' px-8 text-sm text-gray-700 flex-col capitalize pt-5 inline-block max-w-full'>
                     <Link
                       href={`/${subject?.slug}`}
                       className={classNames(active ? 'text-blue-800 underline' : '', 'mb-4 ')}>
