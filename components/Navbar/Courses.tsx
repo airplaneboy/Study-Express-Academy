@@ -33,30 +33,30 @@ const Courses = ({ courses, classNames }: { courses: any; classNames: Function }
           leaveFrom='transform opacity-100 scale-100'
           leaveTo='transform opacity-0 scale-95'>
           {/* */}
-          <Menu.Items
-            as='ul'
-            className='border overflow-y-scroll overflow-x-hidden max-h-[90vh] h-auto z-50 origin-top-right fixed left-1/2 -translate-x-1/2 mt-2 max-w-[90vw] w-auto rounded-md shadow-xl lg:columns-3 columns-1 md:columns-2 gap-3 bg-white px-2 '>
-            {courses?.map((subject: any) => (
-              <Menu.Item as='li' className='max-w-max' key={subject?._id}>
-                {({ active }) => (
-                  <div className=' px-8 text-sm text-gray-700 flex-col capitalize pt-5 inline-block max-w-full'>
-                    <Link
-                      href={`/${subject?.slug}`}
-                      className={classNames(active ? 'text-blue-800 underline' : '', 'mb-4 ')}>
-                      {subject?.title}
-                    </Link>
-                    <ul>
-                      {subject?.courses?.map((course: { _id: string; title: string; slug: string }) => (
-                        <li key={course?._id} className='text-blue-500 truncate hover:underline py-2 text-base'>
-                          <Link href={`/${subject?.slug}/${course?.slug}`}>{course?.title}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </Menu.Item>
-            ))}
-          </Menu.Items>
+          <div className='origin-top-right fixed left-1/2 -translate-x-1/2 mt-2 max-w-[90vw] w-auto max-h-[90vh] h-auto border overflow-scroll z-50 rounded-md shadow-xl bg-white px-2'>
+            <Menu.Items as='ul' className='lg:columns-3 columns-1 sm:columns-2 gap-3'>
+              {courses?.map((subject: any) => (
+                <Menu.Item as='li' key={subject?._id}>
+                  {({ active }) => (
+                    <div className=' px-8 text-sm text-gray-700 flex-col capitalize pt-5 inline-block max-w-full'>
+                      <Link
+                        href={`/${subject?.slug}`}
+                        className={classNames(active ? 'text-blue-800 underline' : '', 'mb-4 ')}>
+                        {subject?.title}
+                      </Link>
+                      <ul>
+                        {subject?.courses?.map((course: { _id: string; title: string; slug: string }) => (
+                          <li key={course?._id} className='text-blue-500 truncate hover:underline py-2 text-base'>
+                            <Link href={`/${subject?.slug}/${course?.slug}`}>{course?.title}</Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </Menu.Item>
+              ))}
+            </Menu.Items>
+          </div>
         </Transition>
       </Menu>
     </div>
