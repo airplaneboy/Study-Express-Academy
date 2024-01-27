@@ -1,34 +1,125 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Education Website
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This repository contains the codebase for an education website. The primary purpose of this website is to provide an interactive platform for users to track their educational progress, view recent topics, and manage their enrolled courses.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 1\. User Dashboard
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- The '/user/dashboard' route presents a personalized dashboard for each user.
+- Statistics such as achievements, enrolled courses, and completed courses are displayed using visually appealing cards.
+- Users can track their progress and achievements.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 2\. Recent Topics
 
-## Learn More
+- The website displays a section dedicated to recent topics, providing users with quick access to their courses.
+- Users can view their enrolled courses, check individual units, and monitor completion percentages.
 
-To learn more about Next.js, take a look at the following resources:
+### 3\. Tailored Interests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- The 'Tailor Your Interests' feature allows users to add or remove courses based on their preferences.
+- The modal interface, powered by the 'AddCoursesModal' component, facilitates a seamless user experience.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# User Routes
 
-## Deploy on Vercel
+## 1\. /user/domestic
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The '/user/domestic' route is designed to showcase different educational subjects. Each subject is presented as a card with dynamic styling and animations.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Key Features:
+
+- Subjects are dynamically fetched using the `getSubjects` function.
+- Animated icons, colors, and shadows add an engaging visual experience.
+- The 'Explore' button redirects users to the respective subject page.
+- Responsive grid layout adapts to different screen sizes.
+
+### Usage:
+
+- Access the route by navigating to '/user/domestic' on the website.
+
+## 2\. /user/profile
+
+The '/user/profile' route provides a user's profile information.
+
+### Key Features:
+
+- Utilizes the `ProfileContent` component to display user details.
+- User data includes personal information, achievements, completed courses, and more.
+- Responsive design for optimal user experience.
+
+### Usage:
+
+- View your profile by navigating to '/user/profile' on the website.
+
+## 3\. ProfileContent Component
+
+The `ProfileContent` component is responsible for rendering the detailed content of the user's profile.
+
+### Key Features:
+
+- Fetches user data using the `getUser` function.
+- Displays user statistics, achievements, completed courses, and more.
+- Responsive layout for better readability.
+
+### Usage:
+
+- Integrated into the '/user/profile' route to render the user's profile content.
+
+## 4\. /user/settings
+
+The '/user/settings' route presents various user settings and preferences.
+
+### Key Features:
+
+- Components like `PersonalInformation`, `Profile`, and `Notification` are utilized.
+- Provides a comprehensive interface for managing personal information.
+- ComboboxContent is used for selecting the user's country.
+- Responsive design for optimal user experience.
+
+### Usage:
+
+- Navigate to '/user/settings' to access and modify your account settings.
+
+Note: Ensure to follow the appropriate routes on the website for an immersive user experience.
+
+## How to Use
+
+1.  Clone the repository.
+
+    bashCopy code
+
+    `git clone https://github.com/your-username/education-website.git`
+
+2.  Install dependencies.
+
+    bashCopy code
+
+    `npm install`
+
+3.  Run the development server.
+
+    bashCopy code
+
+    `npm run dev`
+
+4.  Open the application in your browser.
+
+    bashCopy code
+
+    `http://localhost:3000`
+
+## Technologies Used
+
+- [Next.js](https://nextjs.org/) - React framework for building web applications.
+- [Sanity](https://www.sanity.io/) - Headless CMS for managing content.
+- React Icons - Icon library for React.
+
+## Contributors
+
+- [Agara Sulaiman](https://github.com/airplaneboy)
+
+## License
+
+This project has not been licensed.
