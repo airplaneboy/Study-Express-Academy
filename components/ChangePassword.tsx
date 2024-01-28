@@ -108,7 +108,7 @@ const ChangePassword = ({ userId }: { userId: string }) => {
                       </button>
                     </div>
 
-                    <div className='flex items-center relative mb-3'>
+                    <div className='flex items-center relative '>
                       <input
                         maxLength={100}
                         value={newPassword || ''}
@@ -160,7 +160,7 @@ const ChangePassword = ({ userId }: { userId: string }) => {
                       </button>
                     </div>
 
-                    <div className='flex items-center relative mb-3'>
+                    <div className='flex items-center relative '>
                       <input
                         maxLength={100}
                         value={confirmNewPassword || ''}
@@ -190,7 +190,7 @@ const ChangePassword = ({ userId }: { userId: string }) => {
                             ? 'focus:ring-2 focus:ring-green-700 right-5 flex items-center justify-center absolute bg-green-300  h-7 w-7 rounded-lg group hover:border border-green-600'
                             : 'focus:ring-2 focus:ring-gray-700 right-5 flex items-center justify-center absolute bg-gray-300 hover:bg-gray-600 h-7 w-7 rounded-lg group'
                         }>
-                        {isToggled.newPassword ? (
+                        {isToggled.confirmPassword ? (
                           <HiEye
                             size={20}
                             className={
