@@ -4,6 +4,7 @@ import Profile from '@/containers/Profile';
 import Separator from '@/components/Separator';
 import ComboBoxContent from '@/containers/ComboBoxContent';
 import { getCurrentUser } from '@/lib/data/user';
+import ChangePassword from '@/components/ChangePassword';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,6 +34,10 @@ export default async function Settings() {
       <Separator />
 
       <Notification user={user} />
+
+      <Separator />
+
+      <ChangePassword userId={user?._id} />
     </>
   );
 }

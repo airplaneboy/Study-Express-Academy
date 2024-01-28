@@ -227,9 +227,7 @@ const PersonalInformation = ({
 
                   <PersonalInformationContext.Provider value={{ country, setCountry }}>
                     <div className='col-span-6 sm:col-span-4'>
-                      <label htmlFor='country' className='block text-sm font-medium text-gray-700'>
-                        Country
-                      </label>
+                      <label className='block text-sm font-medium text-gray-700'>Country</label>
                       {countryComboBox}
                     </div>
                   </PersonalInformationContext.Provider>

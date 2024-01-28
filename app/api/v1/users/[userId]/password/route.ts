@@ -22,7 +22,7 @@ export async function PATCH(request: NextRequest, { params }: { params: any }) {
     if (!user) return jsonResponse({ error: 'No user was found' }, 'NOT_FOUND');
 
     if (!(await user.verifyPassword(currentPassword)))
-      return jsonResponse({ error: 'Input does not match the current password' }, 'BAD_REQUEST');
+      return jsonResponse({ error: 'Incorrect current password' }, 'BAD_REQUEST');
 
     user.password = newPassword;
     await user.save();

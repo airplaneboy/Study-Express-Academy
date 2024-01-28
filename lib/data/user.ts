@@ -14,11 +14,25 @@ export const updateUser = async ({
   data: { [key: string]: any };
 }) => await fetchPATCH({ data, path: `http://localhost:3000/api/v1/users/${userId}` });
 
+export const updateUserPassword = async ({
+  userId,
+  currentPassword,
+  newPassword,
+}: {
+  userId: string | null | undefined;
+  currentPassword: string;
+  newPassword: string;
+}) =>
+  await fetchPATCH({
+    data: { currentPassword, newPassword },
+    path: `http://localhost:3000/api/v1/users/${userId}/password`,
+  });
+
 export default getUser;
 
 //#endregion
 
-//#region Get Current User
+//#region Current User
 export const getCurrentUser = async () => {
   try {
     return await getUser({ userId: ((await getServerSession(authOptions))?.user as any)?.id });
@@ -30,5 +44,19 @@ export const getCurrentUser = async () => {
 export const updateCurrentUser = async ({ data }: { data: {} }) => {
   const userId = ((await getServerSession(authOptions))?.user as any)?.id;
   return await fetchPATCH({ data, path: `http://localhost:3000/api/v1/users/${userId}` });
+};
+
+export const updateCurrentUserPassword = async ({
+  currentPassword,
+  newPassword,
+}: {
+  currentPassword: string;
+  newPassword: string;
+}) => {
+  const userId = ((await getServerSession(authOptions))?.user as any)?.id;
+  return await fetchPATCH({
+    data: { currentPassword, newPassword },
+    path: `http://localhost:3000/api/v1/users/${userId}/password`,
+  });
 };
 //#endregion

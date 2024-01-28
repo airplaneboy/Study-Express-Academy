@@ -1,11 +1,11 @@
 'use client';
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState } from 'react';
 import isStrongPassword from 'validator/lib/isStrongPassword';
 import trim from 'validator/lib/trim';
 import Input from '@/components/Auth/Input';
 import Button from '@/components/Auth/Button';
-import RememberMe from '@/components/Auth/RememberMe';
-import Link from 'next/link';
+// import RememberMe from '@/components/Auth/RememberMe';
+// import Link from 'next/link';
 import registerUser from '../../utils/RegisterUser';
 import toast from 'react-hot-toast';
 import { HiEye, HiEyeSlash } from 'react-icons/hi2';
