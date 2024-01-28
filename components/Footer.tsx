@@ -50,7 +50,7 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className=' border-t-2  border-gray-300 relative w-full mt-28'>
+    <footer className=' border-t-2  border-gray-300 relative w-full'>
       <div className=' sm:h-12 bg-white max-w-7xl mx-auto py-1 px-2 sm:px-6 lg:px-8 overflow-hidden flex items-center justify-between sm:flex-row flex-col'>
         {/* <nav className='-mx-5 -my-2 flex flex-wrap justify-center' aria-label='Footer'>
           {navigation.main.map((item) => (

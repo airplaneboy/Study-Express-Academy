@@ -16,7 +16,11 @@ const ProfileItem = ({
             return (
               <li
                 key={stat.id ? stat.id : stat.property}
-                className='flex justify-between items-center mb-1 shrink py-2'>
+                className={
+                  stat.property == 'Bio'
+                    ? ' border-t mt-5 pt-3 flex flex-col justify-between items-start mb-1 shrink py-2'
+                    : 'flex justify-between items-center mb-1 shrink py-2'
+                }>
                 <span className='block text-gray-700 capitalize text-sm sm:text-base'>{stat.property}:</span>
                 <span
                   className={`text-xs sm:text-base block text-gray-500 lg:pl-5 truncate max-w-[10rem] sm:max-w-[15rem] lg:max-w-lg ${

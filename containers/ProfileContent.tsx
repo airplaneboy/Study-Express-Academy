@@ -104,7 +104,8 @@ const ProfileContent = async () => {
     {
       property: 'Bio',
       value: user?.profile?.bio,
-      style: 'whitespace-normal text-right leading-tight tracking-[0.25px] word-spacing',
+      style:
+        'whitespace-normal text-center border-l-4 !max-w-max !pl-5 border-blue-500 leading-tight tracking-[0.25px] word-spacing italic pr-1 !text-sm mt-3',
     },
   ];
 
