@@ -4,11 +4,12 @@ import NextLink from 'next/link';
 interface ICustomLink {
   pathStrings: string[];
   children: React.ReactNode;
+  className?: string;
 }
-const CustomLink = ({ children, pathStrings }: ICustomLink) => {
+const CustomLink = ({ children, pathStrings, className = '' }: ICustomLink) => {
   const href = pathStrings.map((items) => items).join('/');
   return (
-    <NextLink className='max-md:truncate' href={href}>
+    <NextLink className={className + ' max-md:truncate'} href={href}>
       {children}
     </NextLink>
   );

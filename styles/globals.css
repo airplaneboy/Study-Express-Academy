@@ -201,6 +201,9 @@ ul {
 .word-spacing {
   word-spacing: 2px;
 }
+.word-spacing-1 {
+  word-spacing: 1px;
+}
 
 .PhoneInputInput {
   @apply !h-auto !pl-16 !py-1 sm:!py-2 focus:!ring-blue-500 focus:!border-blue-500 !border-2 !block !w-full sm:!text-sm !text-gray-700 !border-gray-300  !rounded-2xl;

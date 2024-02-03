@@ -10,6 +10,8 @@ import capitalize from 'lodash/capitalize';
 import { useState } from 'react';
 import ShineEffect from '@/components/ShineEffect';
 import Sparkles from '@/components/Sparkles';
+//@ts-ignore
+import cx from 'clsx/lite';
 interface SidebarItem {
   slug: string;
   title: string;
@@ -56,12 +58,14 @@ const CardList = ({
               {sidebarArray?.map((sidebarItems, index) => (
                 <li key={sidebarItems?._id}>
                   <Link
+                    delay={0}
+                    spyThrottle={0}
                     onClick={() => setActiveIndex(index)}
                     isDynamic
                     to={sidebarItems?.title}
                     spy={true}
                     smooth={true}
-                    duration={500}
+                    duration={0}
                     offset={-200}
                     activeClass='active'
                     className={
@@ -132,12 +136,12 @@ const CardList = ({
 
                               {/* Content List */}
                               <div className='px-4 py-5 sm:p-6'>
-                                <ul className=' grid grid-cols-2 gap-2'>
+                                <ul className='flex flex-col gap-2 '>
                                   {contentArray &&
                                     (headerItem as any)[contentArray]?.map((listItem: any) => (
                                       <li
                                         key={listItem?._id}
-                                        className='text-yellow-800 text-md max-sm:text-sm hover:underline truncate'>
+                                        className='text-yellow-800 text-base word-spacing-1 tracking-wide hover:underline truncate'>
                                         <div className='flex gap-2 items-center'>
                                           {completedContents?.some((item) => item == listItem?._id) ? (
                                             <FaCheck className='text-yellow-800 rounded-lg cursor-pointer' size={20} />
@@ -172,26 +176,100 @@ const CardList = ({
                             </div>
 
                             {/* Content List */}
-                            <div className='px-4 py-5 sm:p-6'>
-                              <ul className=' grid grid-cols-2 gap-2'>
+                            <div className='px-4 py-5 sm:p-6 flex'>
+                              <ul className='flex flex-col gap-2 overflow-hidden max-w-[50%]'>
+                                <span className='text-sm font-light mb-5 block text-gray-400'>Lessons</span>
                                 {contentArray &&
-                                  (headerItem as any)[contentArray]?.map((listItem: any) => (
-                                    <li
-                                      key={listItem?._id}
-                                      className='text-gray-600 text-md max-sm:text-sm hover:underline truncate'>
-                                      <div className='flex gap-2 items-center'>
-                                        {completedContents?.some((item) => item == listItem?._id) ? (
-                                          <FaCheck className='text-green-500 rounded-lg cursor-pointer' size={20} />
-                                        ) : (
-                                          <HiClock className='text-gray-500 cursor-pointer' size={20} />
-                                        )}
-                                        <CustomLink pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
-                                          {listItem?.title}
-                                        </CustomLink>
-                                      </div>
-                                    </li>
-                                  ))}
+                                  (headerItem as any)[contentArray]?.map((listItem: any) => {
+                                    if (!listItem.slug.endsWith('test'))
+                                      return (
+                                        <li
+                                          key={listItem?._id}
+                                          className='text-gray-600 text-base word-spacing-1 tracking-wide group hover:underline truncate max-w-full'>
+                                          <div className='flex gap-2 items-center group-hover:cursor-pointer max-w-full'>
+                                            <CustomLink
+                                              className={cx(
+                                                completedContents?.some((item) => item == listItem?._id)
+                                                  ? 'text-green-500 bg-green-50 rounded-lg '
+                                                  : '',
+                                                'flex items-center py-1 px-3 gap-3 max-w-full'
+                                              )}
+                                              pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
+                                              {listItem.slug.endsWith('video') ? (
+                                                completedContents?.some((item) => item == listItem?._id) ? (
+                                                  <Image
+                                                    className='border p-1 rounded-md  border-green-300'
+                                                    src='/assets/contents-icon/icons8-checkmark.svg'
+                                                    alt='black and blue stencil document icon'
+                                                    width={32}
+                                                    height={32}
+                                                  />
+                                                ) : (
+                                                  <Image
+                                                    className='border p-1 rounded-md'
+                                                    src='/assets/contents-icon/icons8-circled-play-32.png'
+                                                    alt='black and blue stencil round play button video icon'
+                                                    width={32}
+                                                    height={32}
+                                                  />
+                                                )
+                                              ) : completedContents?.some((item) => item == listItem?._id) ? (
+                                                <Image
+                                                  className='border p-1 rounded-md border-green-300'
+                                                  src='/assets/contents-icon/icons8-check-file-32.png'
+                                                  alt='black and blue stencil round play button video icon'
+                                                  width={32}
+                                                  height={32}
+                                                />
+                                              ) : (
+                                                <Image
+                                                  className='border p-1 rounded-md '
+                                                  src='/assets/contents-icon/icons8-document.svg'
+                                                  alt='black and blue stencil document icon'
+                                                  width={32}
+                                                  height={32}
+                                                />
+                                              )}
+
+                                              <span className='truncate'>{listItem?.title}</span>
+                                            </CustomLink>
+                                          </div>
+                                        </li>
+                                      );
+                                  })}
                               </ul>
+                              {/* ====================================Cut Here==================================== */}
+                              <div className='pl-10'>
+                                <span className='text-sm font-light mb-5 block text-gray-400'>Quizzes</span>
+                                <ul className='gap-2 flex flex-col'>
+                                  {contentArray &&
+                                    (headerItem as any)[contentArray]?.map((listItem: any) => {
+                                      if (listItem.slug.endsWith('test'))
+                                        return (
+                                          <li key={listItem?._id}>
+                                            <CustomLink
+                                              className={cx(
+                                                completedContents?.some((item) => item == listItem?._id)
+                                                  ? 'bg-purple-100 text-purple-600 border-purple-600 hover:bg-purple-200'
+                                                  : 'bg-neutral-100 text-neutral-600 border-neutral-600 hover:bg-neutral-200',
+                                                'border-r-8 my-[1px] ml-[1px] font-semibold block p-3 hover:my-0 hover:ml-0 hover:border-y hover:border-l rounded-lg  text-base word-spacing-1 tracking-wide '
+                                              )}
+                                              pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
+                                              <div className='flex flex-col'>
+                                                {listItem?.title}
+                                                <span className='text-sm text-gray-400 font-normal slashed-zero'>
+                                                  {listItem?.numberOfQuestions || 0} Questions
+                                                </span>
+                                                <span className='text-xs text-gray-500 font-normal mt-2 text-transparent'>
+                                                  Progress
+                                                </span>
+                                              </div>
+                                            </CustomLink>
+                                          </li>
+                                        );
+                                    })}
+                                </ul>
+                              </div>
                             </div>
                           </div>
                         )}

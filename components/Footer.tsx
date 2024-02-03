@@ -72,6 +72,12 @@ export default function Footer() {
         <span className='mt-5 my-2 sm:my-auto text-center text-[9px] sm:text-xs md:text-sm lg:text-base text-gray-500 font-bold pointer-events-none '>
           &copy; {process.env.YEAR} {process.env.TITLE}, Inc. All rights reserved.
         </span>
+        <span className='text-gray-400 text-center text-[9px] sm:text-xs md:text-sm lg:text-base'>
+          Icons by{' '}
+          <Link className='text-blue-500 underline' target='_blank' href='https://icons8.com'>
+            Icons8
+          </Link>
+        </span>
       </div>
     </footer>
   );

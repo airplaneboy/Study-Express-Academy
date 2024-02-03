@@ -55,7 +55,7 @@ export const getUnitsSlug = async () => await client(groq`*[_type =='units']| or
 
 export const getUnit = async (slug: string) =>
   await client(
-    groq`*[_type =='units'&&slug.current==$slug][0]{_id,title,description,"slug":slug.current,course->{"slug":slug.current}, lessons[]->{title,_id,"slug":slug.current, contents[]->{title,_id,"slug":slug.current}}}`,
+    groq`*[_type =='units'&&slug.current==$slug][0]{_id,title,description,"slug":slug.current,course->{"slug":slug.current}, lessons[]->{title,_id,"slug":slug.current, contents[]->{title,_id,"slug":slug.current,"numberOfQuestions":count(questions)}}}`,
     { slug }
   );
 //#endregion
@@ -66,7 +66,7 @@ export const getLessonsSlug = async () =>
 
 export const getLesson = async (slug: string) =>
   await client(
-    groq`*[_type =='lessons'&&slug.current==$slug][0]{_id,title,description,unit->{title, "slug":slug.current},contents[]->{title, "slug":slug.current, _id,_type,}}`,
+    groq`*[_type =='lessons'&&slug.current==$slug][0]{_id,title,description,unit->{title, "slug":slug.current},contents[]->{title, "slug":slug.current, _id,_type,"numberOfQuestions":count(questions)}}`,
     {
       slug,
     }
