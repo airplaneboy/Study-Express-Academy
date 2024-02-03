@@ -217,7 +217,7 @@ const CardList = ({
                                                 <Image
                                                   className='border p-1 rounded-md border-green-300 bg-white'
                                                   src='/assets/contents-icon/icons8-check-file-32.png'
-                                                  alt='black and blue stencil round play button video icon'
+                                                  alt='black and green stencil document with checkmark for article icon'
                                                   width={32}
                                                   height={32}
                                                 />
@@ -225,7 +225,7 @@ const CardList = ({
                                                 <Image
                                                   className='border p-1 rounded-md '
                                                   src='/assets/contents-icon/icons8-document.svg'
-                                                  alt='black and blue stencil document icon'
+                                                  alt='black and blue stencil document icon for article'
                                                   width={32}
                                                   height={32}
                                                 />
