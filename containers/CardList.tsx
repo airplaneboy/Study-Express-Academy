@@ -51,7 +51,7 @@ const CardList = ({
       <div className='flex flex-row justify-between '>
         <aside className='max-md:hidden border-r-2 '>
           <nav className=' sticky top-16 lg:w-80 md:w-72 overflow-y-auto rounded-2xl '>
-            <ul role='list' className='h-max p-5'>
+            <ul role='list' className='h-max p-5 pr-0'>
               <span className='inline-block font-extrabold  text-gray-600 text-xs tracking-widest uppercase mb-5'>
                 {sidebarHeader}
               </span>
@@ -70,15 +70,15 @@ const CardList = ({
                     activeClass='active'
                     className={
                       activeIndex == index
-                        ? 'border-l-4 rounded-r-3xl cursor-pointer block bg-blue-100 font-extrabold !text-blue-800 transition-all  border-blue-600 px-4 py-3 text-lg hover:text-blue-500 focus:text-blue-600 no_wrap'
-                        : 'border-l cursor-pointer block px-4 py-3 text-lg text-gray-500 hover:text-blue-500 focus:text-blue-600 no_wrap'
+                        ? 'border-l-4 cursor-pointer block bg-blue-100 font-semibold !text-blue-800 transition-all  border-blue-600 px-4 py-2 text-lg hover:text-blue-500 focus:text-blue-600 no_wrap'
+                        : 'border-l ml-[3px] cursor-pointer block px-4 py-2 text-lg text-gray-500 hover:text-blue-500 focus:text-blue-600 no_wrap'
                     }
                     onSetActive={() => setActiveIndex(index)}>
                     <div className='flex flex-col'>
-                      <span className='text-sm text-gray-400 font-normal focus:text-gray-500'>
+                      <span className='text-sm text-gray-700 font-normal focus:text-gray-500 mb-2'>
                         {sidebarHeader} {index + 1}
                       </span>
-                      <span className='block truncate'>{sidebarItems?.title}</span>
+                      <span className='block whitespace-normal text-xs tracking-wider'>{sidebarItems?.title}</span>
                     </div>
                   </Link>
                 </li>
@@ -185,20 +185,20 @@ const CardList = ({
                                       return (
                                         <li
                                           key={listItem?._id}
-                                          className='text-gray-600 text-base word-spacing-1 tracking-wide group hover:underline truncate max-w-full'>
+                                          className='text-gray-600 text-base word-spacing-1 tracking-wide group  truncate max-w-full'>
                                           <div className='flex gap-2 items-center group-hover:cursor-pointer max-w-full'>
                                             <CustomLink
                                               className={cx(
                                                 completedContents?.some((item) => item == listItem?._id)
-                                                  ? 'text-green-500 bg-green-50 rounded-lg '
-                                                  : '',
-                                                'flex items-center py-1 px-3 gap-3 max-w-full'
+                                                  ? 'text-green-500 bg-green-100 hover:border-green-500'
+                                                  : 'hover:border-gray-300',
+                                                'flex items-center py-1 px-3 gap-3 max-w-full w-full border-transparent border rounded-lg'
                                               )}
                                               pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
                                               {listItem.slug.endsWith('video') ? (
                                                 completedContents?.some((item) => item == listItem?._id) ? (
                                                   <Image
-                                                    className='border p-1 rounded-md  border-green-300'
+                                                    className='border p-1 rounded-md  border-green-300 bg-white'
                                                     src='/assets/contents-icon/icons8-checkmark.svg'
                                                     alt='black and blue stencil document icon'
                                                     width={32}
@@ -215,7 +215,7 @@ const CardList = ({
                                                 )
                                               ) : completedContents?.some((item) => item == listItem?._id) ? (
                                                 <Image
-                                                  className='border p-1 rounded-md border-green-300'
+                                                  className='border p-1 rounded-md border-green-300 bg-white'
                                                   src='/assets/contents-icon/icons8-check-file-32.png'
                                                   alt='black and blue stencil round play button video icon'
                                                   width={32}
@@ -260,8 +260,14 @@ const CardList = ({
                                                 <span className='text-sm text-gray-400 font-normal slashed-zero'>
                                                   {listItem?.numberOfQuestions || 0} Questions
                                                 </span>
-                                                <span className='text-xs text-gray-500 font-normal mt-2 text-transparent'>
-                                                  Progress
+                                                <span
+                                                  className={cx(
+                                                    completedContents?.some((item) => item == listItem?._id)
+                                                      ? ''
+                                                      : 'text-transparent',
+                                                    'text-xs text-gray-500 font-normal mt-2 '
+                                                  )}>
+                                                  Completed
                                                 </span>
                                               </div>
                                             </CustomLink>
