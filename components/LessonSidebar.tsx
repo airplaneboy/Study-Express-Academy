@@ -99,7 +99,7 @@ const LessonSidebar = ({
                             // <HiOutlinePlay size={25} className='shrink-0' />icons8-play-gold
                             <Image
                               className=' p-[2px] rounded-md border-yellow-700'
-                              src='/assets/contents-icon/icons8-play-gold.png'
+                              src='/assets/contents-icon/icons8-checkmark-gold.svg'
                               alt='gold and yellow stencil round play button video icon'
                               width={26}
                               height={26}

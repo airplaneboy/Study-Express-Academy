@@ -1,5 +1,4 @@
 'use client';
-import { TbProgress, TbProgressCheck } from 'react-icons/tb';
 import { HiClock } from 'react-icons/hi2';
 import { FaCheck } from 'react-icons/fa';
 import Image from 'next/image';
@@ -135,30 +134,96 @@ const CardList = ({
                               </div>
 
                               {/* Content List */}
-                              <div className='px-4 py-5 sm:p-6'>
-                                <ul className='flex flex-col gap-2 '>
+                              <div className='px-4 py-5 sm:p-6 flex'>
+                                <ul className='flex flex-col gap-2 overflow-hidden max-w-[50%] flex-1'>
+                                  <span className='text-sm font-normal mb-5 block text-yellow-800'>Lessons</span>
                                   {contentArray &&
-                                    (headerItem as any)[contentArray]?.map((listItem: any) => (
-                                      <li
-                                        key={listItem?._id}
-                                        className='text-yellow-800 text-base word-spacing-1 tracking-wide hover:underline truncate'>
-                                        <div className='flex gap-2 items-center'>
-                                          {completedContents?.some((item) => item == listItem?._id) ? (
-                                            <FaCheck className='text-yellow-800 rounded-lg cursor-pointer' size={20} />
-                                          ) : (
-                                            <HiClock className='text-gray-500 cursor-pointer' size={25} />
-                                          )}
-                                          <CustomLink pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
-                                            {listItem?.title}
-                                          </CustomLink>
-                                        </div>
-                                      </li>
-                                    ))}
+                                    (headerItem as any)[contentArray]?.map((listItem: any) => {
+                                      if (!listItem.slug.endsWith('test'))
+                                        return (
+                                          <li
+                                            key={listItem?._id}
+                                            className='text-yellow-800 text-base word-spacing-1 tracking-wide hover:underline truncate'>
+                                            <div className='flex gap-2 items-center'>
+                                              {listItem.slug.endsWith('video') ? (
+                                                <Image
+                                                  className=' p-[2px] rounded-md border-yellow-700'
+                                                  src='/assets/contents-icon/icons8-checkmark-gold.svg'
+                                                  alt='gold and yellow stencil round play button video icon'
+                                                  width={26}
+                                                  height={26}
+                                                />
+                                              ) : (
+                                                <Image
+                                                  className=' p-[2px] rounded-md border-yellow-700'
+                                                  src='/assets/contents-icon/icons8-check-file-gold.png'
+                                                  alt='black and blue stencil document icon for article'
+                                                  width={26}
+                                                  height={26}
+                                                />
+                                              )}
+                                              {/* {completedContents?.some((item) => item == listItem?._id) ? (
+                                                <FaCheck
+                                                  className='text-yellow-800 rounded-lg cursor-pointer'
+                                                  size={20}
+                                                />
+                                              ) : (
+                                                <HiClock className='text-gray-500 cursor-pointer' size={25} />
+                                              )} */}
+                                              <CustomLink pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
+                                                {listItem?.title}
+                                              </CustomLink>
+                                            </div>
+                                          </li>
+                                        );
+                                    })}
                                 </ul>
+
+                                {/* ====================================Cut Here==================================== */}
+                                {(headerItem as any)[contentArray].some((item: any) => item.slug.endsWith('test')) && (
+                                  <div className='pl-10 flex-1'>
+                                    <span className='text-sm font-normal mb-5 block text-yellow-800'>Quizzes</span>
+                                    <ul className='gap-2 flex flex-col'>
+                                      {contentArray &&
+                                        (headerItem as any)[contentArray]?.map((listItem: any) => {
+                                          if (listItem.slug.endsWith('test'))
+                                            return (
+                                              <li key={listItem?._id}>
+                                                <CustomLink
+                                                  className={cx(
+                                                    completedContents?.some((item) => item == listItem?._id)
+                                                      ? 'bg-purple-100 text-purple-600 border-purple-600 hover:bg-purple-200'
+                                                      : 'bg-neutral-100 text-neutral-600 border-neutral-600 hover:bg-neutral-200',
+                                                    'border-r-8 my-[1px] ml-[1px] font-semibold block p-3 hover:my-0 hover:ml-0 hover:border-y hover:border-l rounded-lg  text-base word-spacing-1 tracking-wide '
+                                                  )}
+                                                  pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
+                                                  <div className='flex flex-col'>
+                                                    {listItem?.title}
+                                                    <span className='text-sm text-gray-400 font-normal slashed-zero'>
+                                                      {listItem?.numberOfQuestions || 0} Questions
+                                                    </span>
+                                                    <span
+                                                      className={cx(
+                                                        completedContents?.some((item) => item == listItem?._id)
+                                                          ? ''
+                                                          : 'text-transparent',
+                                                        'text-xs text-gray-500 font-normal mt-2 '
+                                                      )}>
+                                                      Completed
+                                                    </span>
+                                                  </div>
+                                                </CustomLink>
+                                              </li>
+                                            );
+                                        })}
+                                    </ul>
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </Sparkles>
                         ) : (
+                          // Not Complete
                           <div className={'bg-white border-2 rounded-lg overflow-hidden'}>
                             <div className='px-4 py-3 sm:px-6 font-bold text-gray-700 flex items-center gap-2 text-lg max-sm:text-base '>
                               {headerItem?.image && (
