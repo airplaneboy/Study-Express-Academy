@@ -49,8 +49,8 @@ const CardList = ({
 
         <div className='w-full pb-96'>
           <CollapsibleHeader
-            initialHeight='h-28 text-6xl max-sm:text-3xl max-sm:h-24 max-md:text-center '
-            finalHeight='h-20 text-3xl text-center'>
+            initialHeight='h-24 sm:h-28 text-lg sm:text-6xl max-md:text-center '
+            finalHeight='h-20 text-md sm:text-3xl text-center'>
             <span className='py-4 no_wrap mx-auto w-full px-10 capitalize text-left font-extrabold  ease-linear transition-transform duration-300'>
               {contentHeader}
             </span>

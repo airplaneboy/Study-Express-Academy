@@ -69,7 +69,7 @@ function NavbarContent({
             classNames(
               open ? ' inset-0 z-40 overflow-y-auto' : '',
               `backdrop-blur-sm py-2 relative md:fixed inherit_width_height z-20 lg:overflow-y-visible transition-shadow duration-300  ${
-                isScrolled ? 'shadow-md' : 'md:border-b'
+                isScrolled ? 'shadow-md' : 'border-b-2 md:border-b'
               }`
             )
           }>
