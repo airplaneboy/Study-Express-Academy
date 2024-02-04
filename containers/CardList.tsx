@@ -136,7 +136,11 @@ const CardList = ({
                               {/* Content List */}
                               <div className='px-4 py-5 sm:p-6 flex'>
                                 <ul className='flex flex-col gap-2 overflow-hidden max-w-[50%] flex-1'>
-                                  <span className='text-sm font-normal mb-5 block text-yellow-800'>Lessons</span>
+                                  {sidebarHeader.toLowerCase() == 'units' ? (
+                                    <span className='text-sm font-normal mb-5 block text-yellow-800'>Lessons</span>
+                                  ) : (
+                                    <span className='text-sm font-normal mb-5 block text-yellow-800'>Contents</span>
+                                  )}
                                   {contentArray &&
                                     (headerItem as any)[contentArray]?.map((listItem: any) => {
                                       if (!listItem.slug.endsWith('test'))
@@ -162,14 +166,7 @@ const CardList = ({
                                                   height={26}
                                                 />
                                               )}
-                                              {/* {completedContents?.some((item) => item == listItem?._id) ? (
-                                                <FaCheck
-                                                  className='text-yellow-800 rounded-lg cursor-pointer'
-                                                  size={20}
-                                                />
-                                              ) : (
-                                                <HiClock className='text-gray-500 cursor-pointer' size={25} />
-                                              )} */}
+
                                               <CustomLink pathStrings={[slug, headerItem?.slug, listItem?.slug]}>
                                                 {listItem?.title}
                                               </CustomLink>
@@ -180,7 +177,7 @@ const CardList = ({
                                 </ul>
 
                                 {/* ====================================Cut Here==================================== */}
-                                {(headerItem as any)[contentArray].some((item: any) => item.slug.endsWith('test')) && (
+                                {(headerItem as any)[contentArray]?.some((item: any) => item.slug.endsWith('test')) && (
                                   <div className='pl-10 flex-1'>
                                     <span className='text-sm font-normal mb-5 block text-yellow-800'>Quizzes</span>
                                     <ul className='gap-2 flex flex-col'>
@@ -243,7 +240,12 @@ const CardList = ({
                             {/* Content List */}
                             <div className='px-4 py-5 sm:p-6 flex'>
                               <ul className='flex flex-col gap-2 overflow-hidden max-w-[50%]'>
-                                <span className='text-sm font-light mb-5 block text-gray-400'>Lessons</span>
+                                {sidebarHeader.toLowerCase() == 'units' ? (
+                                  <span className='text-sm font-light mb-5 block text-gray-400'>Lessons</span>
+                                ) : (
+                                  <span className='text-sm font-light mb-5 block text-gray-400'>Contents</span>
+                                )}
+
                                 {contentArray &&
                                   (headerItem as any)[contentArray]?.map((listItem: any) => {
                                     if (!listItem.slug.endsWith('test'))
@@ -278,21 +280,31 @@ const CardList = ({
                                                     height={32}
                                                   />
                                                 )
-                                              ) : completedContents?.some((item) => item == listItem?._id) ? (
-                                                <Image
-                                                  className='border p-1 rounded-md border-green-300 bg-white'
-                                                  src='/assets/contents-icon/icons8-check-file-32.png'
-                                                  alt='black and green stencil document with checkmark for article icon'
-                                                  width={32}
-                                                  height={32}
-                                                />
+                                              ) : listItem.slug.endsWith('article') ? (
+                                                completedContents?.some((item) => item == listItem?._id) ? (
+                                                  <Image
+                                                    className='border p-1 rounded-md border-green-300 bg-white'
+                                                    src='/assets/contents-icon/icons8-check-file-32.png'
+                                                    alt='black and green stencil document with checkmark for article icon'
+                                                    width={32}
+                                                    height={32}
+                                                  />
+                                                ) : (
+                                                  <Image
+                                                    className='border p-1 rounded-md '
+                                                    src='/assets/contents-icon/icons8-document.svg'
+                                                    alt='black and blue stencil document icon for article'
+                                                    width={32}
+                                                    height={32}
+                                                  />
+                                                )
                                               ) : (
                                                 <Image
                                                   className='border p-1 rounded-md '
-                                                  src='/assets/contents-icon/icons8-document.svg'
-                                                  alt='black and blue stencil document icon for article'
-                                                  width={32}
-                                                  height={32}
+                                                  src='/assets/contents-icon/icons8-lesson-32.png'
+                                                  alt='black and blue stencil classroom with students and a teacher icon for lesson'
+                                                  width={34}
+                                                  height={34}
                                                 />
                                               )}
 
@@ -304,7 +316,7 @@ const CardList = ({
                                   })}
                               </ul>
                               {/* ====================================Cut Here==================================== */}
-                              {(headerItem as any)[contentArray].some((item: any) => item.slug.endsWith('test')) && (
+                              {(headerItem as any)[contentArray]?.some((item: any) => item.slug.endsWith('test')) && (
                                 <div className='pl-10'>
                                   <span className='text-sm font-light mb-5 block text-gray-400'>Quizzes</span>
                                   <ul className='gap-2 flex flex-col'>

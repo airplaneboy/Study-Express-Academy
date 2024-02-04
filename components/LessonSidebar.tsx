@@ -33,9 +33,9 @@ const LessonSidebar = ({
   const [isScrolled, setIsScrolled] = useState(false);
   const segment = useSelectedLayoutSegment();
 
-  const [index, setIndex] = useState(() => lesson.contents.findIndex((content) => content.slug == segment)!);
+  const [index, setIndex] = useState(() => lesson.contents?.findIndex((content) => content.slug == segment)!);
   const [nextSlug, setNextSlug] = useState(() => {
-    const index = lesson.contents.findIndex((content) => content.slug == segment)!;
+    const index = lesson.contents?.findIndex((content) => content.slug == segment)!;
     return lesson.contents[index + 1]?.slug;
   });
 

@@ -41,7 +41,7 @@ export default async function RootLayout({
 
   if (
     !isLessonCompleted &&
-    intersection(lesson?.contents.map((item: any) => item._id), completedContents).length == lesson?.contents.length
+    intersection(lesson?.contents?.map((item: any) => item._id), completedContents)?.length == lesson?.contents?.length
   ) {
     user?.completedProgress.lessons.push({ id: lesson?._id, createdAt: new Date(Date.now()).toISOString() });
     await updateCurrentUser({ data: { completedProgress: { lessons: user?.completedProgress.lessons } } });
