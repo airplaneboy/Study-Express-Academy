@@ -135,7 +135,11 @@ const CardList = ({
 
                               {/* Content List */}
                               <div className='px-4 py-5 sm:p-6 flex'>
-                                <ul className='flex flex-col gap-2 overflow-hidden max-w-[50%] flex-1'>
+                                <ul
+                                  className={cx(
+                                    sidebarHeader.toLowerCase() == 'units' ? '' : 'max-w-[50%]',
+                                    'flex flex-col gap-2 overflow-hidden  flex-1'
+                                  )}>
                                   {sidebarHeader.toLowerCase() == 'units' ? (
                                     <span className='text-sm font-normal mb-5 block text-yellow-800'>Lessons</span>
                                   ) : (
@@ -239,7 +243,11 @@ const CardList = ({
 
                             {/* Content List */}
                             <div className='px-4 py-5 sm:p-6 flex'>
-                              <ul className='flex flex-col gap-2 overflow-hidden max-w-[50%]'>
+                              <ul
+                                className={cx(
+                                  sidebarHeader.toLowerCase() == 'units' ? '' : 'max-w-[50%]',
+                                  'flex flex-col gap-2 overflow-hidden'
+                                )}>
                                 {sidebarHeader.toLowerCase() == 'units' ? (
                                   <span className='text-sm font-light mb-5 block text-gray-400'>Lessons</span>
                                 ) : (
