@@ -1,23 +1,17 @@
-'use client';
-import { useRef, useEffect, useState } from 'react';
-
 const OverflowCheckComponent = ({ children }: { children: React.ReactNode }) => {
-  const textRef = useRef<HTMLDivElement>(null);
-  const [isOverflowing, setIsOverflowing] = useState(false);
-  const [input, setInput] = useState(
-    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. At alias sequi iusto molestiae consectetur. Ratione alias nulla excepturi dolores! Reiciendis soluta molestias voluptatum error excepturi labore suscipit in totam eveniet.'
-  );
-
-  useEffect(() => {
-    setIsOverflowing(textRef.current!.scrollWidth > textRef.current!.clientWidth);
-  }, []);
-
   return (
-    <div className='max-w-[50%] p-10 border border-black mx-auto my-auto mt-10'>
-      <div ref={textRef} className={`overflow-hidden whitespace-nowrap ${isOverflowing ? 'overflow-ellipsis' : ''}`}>
-        {input}
+    <div className='flex justify-center w-full h-full p-10 gap-5'>
+      <div aria-live='polite' aria-busy='true' className='flex-1 flex flex-col justify-between'>
+        <span className='inline-flex w-full h-8 animate-pulse select-none rounded-md bg-gray-300 leading-none '>‌</span>
+        <span className='inline-flex w-full h-8 animate-pulse select-none rounded-md bg-gray-300 leading-none '>‌</span>
+        <span className='inline-flex w-full h-8 animate-pulse select-none rounded-md bg-gray-300 leading-none '>‌</span>
+        <span className='inline-flex w-full h-8 animate-pulse select-none rounded-md bg-gray-300 leading-none '>‌</span>
+        <span className='inline-flex w-full h-8 animate-pulse select-none rounded-md bg-gray-300 leading-none '>‌</span>
+        <span className='inline-flex w-full h-8 animate-pulse select-none rounded-md bg-gray-300 leading-none '>‌</span>
+        <span className='inline-flex w-full h-8 animate-pulse select-none rounded-md bg-gray-300 leading-none '>‌</span>
       </div>
-      <input type='text' onChange={(e) => setInput(e.target.value)} value={input} />
+
+      <svg className=' animate-pulse rounded bg-gray-300 flex-1' />
     </div>
   );
 };
