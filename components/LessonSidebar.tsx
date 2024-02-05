@@ -36,7 +36,7 @@ const LessonSidebar = ({
   const [index, setIndex] = useState(() => lesson.contents?.findIndex((content) => content.slug == segment)!);
   const [nextSlug, setNextSlug] = useState(() => {
     const index = lesson.contents?.findIndex((content) => content.slug == segment)!;
-    return lesson.contents[index + 1]?.slug;
+    return index ? lesson.contents[index + 1]?.slug : '';
   });
 
   const handleScroll = (e: React.UIEvent<HTMLElement>) => {
@@ -52,179 +52,183 @@ const LessonSidebar = ({
 
   return (
     <div>
-      <aside className='max-md:hidden'>
-        {/* <nav className=' h-[45rem] sticky top-44 lg:w-80 md:w-72 rounded-2xl border-gray-300 border-2 overflow-hidden'> */}
+      <aside className='mb-20 sm:mb-0'>
         <nav className='sticky top-44 lg:w-80 md:w-72 rounded-2xl border-gray-300 border-2 overflow-hidden'>
           <div
             className={`absolute w-full  transition-all duration-0 z-10 ${
               isScrolled ? 'backdrop-blur-md shadow-md ' : 'border-b-2 bg-white'
-              // isScrolled ? 'backdrop-blur-md shadow-md ' : 'border-b-2 -z-10'
             }`}>
-            <span className='block font-extrabold  text-gray-800 text-3xl p-4  truncate'>
+            <span className='block font-extrabold  text-gray-800 text-sm sm:text-base md:text-xl px-4 py-2 sm:py-3 md:p-4  md:truncate'>
               {lesson?.title || 'Contents'}
             </span>
           </div>
+
           <ul
             role='list'
             id='lesson-sidebar'
             className='max-h-[448px] p-4 overflow-y-auto h-[30rem] top-20'
             onScroll={(e) => handleScroll(e)}>
-            {lesson?.contents?.map((content: { _id: string; title: string; slug: string; _type: string }, index) => (
-              <li
-                onClick={() => {
-                  setIndex(index);
-                  setNextSlug(getNextSlug(index));
-                }}
-                key={content?._id}
-                className='first:mt-20 rounded-2xl text-md text-gray-500 hover:text-blue-500 hover:bg-blue-50 focus:text-blue-600 mb-3'>
-                {completedContents.some((item) => item == content._id) ? (
-                  <Sparkles
-                    color='#fef9c3'
-                    delay={{ min: 1000, max: 3000 }}
-                    className={
-                      content?.slug === segment
-                        ? 'overflow-hidden text-yellow-700 shadow-yellow-500 shadow-sm font-semibold bg-yellow-200 px-3 py-5 block border-yellow-500 border-2 rounded-2xl '
-                        : 'overflow-hidden text-yellow-700 hover:text-yellow-600 shadow-yellow-600 shadow-sm font-semibold bg-gradient-to-r from-yellow-400 hover:from-yellow-300 via-yellow-200 hover:via-yellow-100 to-yellow-400 hover:to-yellow-300 px-3 py-5 block border-yellow-600 hover:border-yellow-500 border rounded-2xl '
-                    }>
-                    <div
-                      className={`bg-[linear-gradient(45deg,transparent_25%,rgba(254,249,195,.7)_50%,transparent_75%,transparent_100%)]  absolute inset-0 w-full h-full  bg-[length:250%_250%,100%_100%] bg-[position:-100%_0,0_0] bg-no-repeat  transition-[background-position_0s_ease] duration-0 animate-shine pointer-events-none`}
-                    />
+            {!index ? (
+              <span className='block first:mt-20 text-md text-gray-500 italic capitalize'>No Contents</span>
+            ) : (
+              lesson?.contents?.map((content: { _id: string; title: string; slug: string; _type: string }, index) => (
+                <li
+                  onClick={() => {
+                    setIndex(index);
+                    setNextSlug(getNextSlug(index));
+                  }}
+                  key={content?._id}
+                  className='first:mt-20 rounded-2xl text-md text-gray-500 hover:text-blue-500 hover:bg-blue-50 focus:text-blue-600 mb-3'>
+                  {completedContents.some((item) => item == content._id) ? (
+                    <Sparkles
+                      color='#fef9c3'
+                      delay={{ min: 1000, max: 3000 }}
+                      className={
+                        content?.slug === segment
+                          ? 'text-xs sm:text-base overflow-hidden text-yellow-700 shadow-yellow-500 shadow-sm font-semibold bg-yellow-200 px-3 py-3 sm:py-4 md:py-5 block border-yellow-500 border-2 rounded-2xl '
+                          : 'text-xs sm:text-base overflow-hidden text-yellow-700 hover:text-yellow-600 shadow-yellow-600 shadow-sm font-semibold bg-gradient-to-r from-yellow-400 hover:from-yellow-300 via-yellow-200 hover:via-yellow-100 to-yellow-400 hover:to-yellow-300 px-3 py-3 sm:py-4 md:py-5 block border-yellow-600 hover:border-yellow-500 border rounded-2xl '
+                      }>
+                      <div
+                        className={`bg-[linear-gradient(45deg,transparent_25%,rgba(254,249,195,.7)_50%,transparent_75%,transparent_100%)]  absolute inset-0 w-full h-full  bg-[length:250%_250%,100%_100%] bg-[position:-100%_0,0_0] bg-no-repeat  transition-[background-position_0s_ease] duration-0 animate-shine pointer-events-none`}
+                      />
+                      <Link
+                        href={`/${params?.subject}/${params?.course}/${params?.unit}/${params?.lesson}/${content?.slug}`}>
+                        <div className='flex gap-2 items-center justify-start'>
+                          {(content?._type == 'videos' &&
+                            (content?.slug === segment ? (
+                              <HiPlay size={25} className='shrink-0' />
+                            ) : (
+                              // <HiOutlinePlay size={25} className='shrink-0' />icons8-play-gold
+                              <Image
+                                className='min-w-[24px] sm:min-w-[26px] max-w-[24px] sm:max-w-[26px] p-[2px] rounded-md border-yellow-700'
+                                src='/assets/contents-icon/icons8-checkmark-gold.svg'
+                                alt='gold and yellow stencil round play button video icon'
+                                width={26}
+                                height={26}
+                              />
+                            ))) ||
+                            (content?._type == 'articles' &&
+                              (content?.slug === segment ? (
+                                // <HiDocumentText size={25} className='shrink-0' />
+                                <Image
+                                  className='min-w-[24px] sm:min-w-[26px] max-w-[24px] sm:max-w-[26px] p-[2px] rounded-md border-yellow-700'
+                                  src='/assets/contents-icon/icons8-check-file-gold.png'
+                                  alt='black and blue stencil document icon for article'
+                                  width={26}
+                                  height={26}
+                                />
+                              ) : (
+                                // <HiOutlineDocumentText size={25} className='shrink-0' />icons8-check-file-gold
+                                <Image
+                                  className='min-w-[24px] sm:min-w-[26px] max-w-[24px] sm:max-w-[26px] p-[2px] rounded-md border-yellow-700'
+                                  src='/assets/contents-icon/icons8-check-file-gold.png'
+                                  alt='gold and yellow stencil document icon for article'
+                                  width={26}
+                                  height={26}
+                                />
+                              ))) ||
+                            (content?._type == 'tests' &&
+                              (content?.slug === segment ? (
+                                // <HiPencilSquare size={25} className='shrink-0' />
+                                <Image
+                                  className='min-w-[24px] sm:min-w-[26px] max-w-[24px] sm:max-w-[26px] p-[2px] rounded-md border-yellow-700'
+                                  src='/assets/contents-icon/icons8-report-card-gold.png'
+                                  alt='gold and yellow stencil checklist icon for test'
+                                  width={26}
+                                  height={26}
+                                />
+                              ) : (
+                                // <HiOutlinePencilSquare size={25} className='shrink-0' />
+                                <Image
+                                  className='min-w-[24px] sm:min-w-[26px] max-w-[24px] sm:max-w-[26px] p-[2px] rounded-md border-yellow-700'
+                                  src='/assets/contents-icon/icons8-report-card-gold.png'
+                                  alt='gold and yellow stencil checklist icon for test'
+                                  width={26}
+                                  height={26}
+                                />
+                              ))) || <HiOutlineFolder size={25} className='shrink-0' />}
+                          <span className='truncate'>{content?.title}</span>
+                        </div>
+                      </Link>
+                    </Sparkles>
+                  ) : (
                     <Link
-                      href={`/${params?.subject}/${params?.course}/${params?.unit}/${params?.lesson}/${content?.slug}`}>
+                      href={`/${params?.subject}/${params?.course}/${params?.unit}/${params?.lesson}/${content?.slug}`}
+                      className={
+                        content?.slug === segment
+                          ? 'text-xs sm:text-base text-blue-700 font-semibold bg-blue-100 px-3 py-3 sm:py-4 md:py-5 block border-blue-700 border-2 rounded-2xl '
+                          : 'text-xs sm:text-base block border-gray-300 border-2 rounded-2xl px-3 py-3 sm:py-4 md:py-5 hover:border-blue-200'
+                      }>
                       <div className='flex gap-2 items-center justify-start'>
                         {(content?._type == 'videos' &&
                           (content?.slug === segment ? (
-                            <HiPlay size={25} className='shrink-0' />
-                          ) : (
-                            // <HiOutlinePlay size={25} className='shrink-0' />icons8-play-gold
+                            // <HiPlay size={25} className='shrink-0' />
                             <Image
-                              className=' p-[2px] rounded-md border-yellow-700'
-                              src='/assets/contents-icon/icons8-checkmark-gold.svg'
-                              alt='gold and yellow stencil round play button video icon'
-                              width={26}
-                              height={26}
+                              className='min-w-[26px] sm:min-w-[32px] max-w-[26px] sm:max-w-none border p-[2px] rounded-md border-blue-300'
+                              src='/assets/contents-icon/icons8-circled-play-32.png'
+                              alt='black and blue stencil round play button video icon'
+                              width={32}
+                              height={32}
+                            />
+                          ) : (
+                            // <HiOutlinePlay size={25} className='shrink-0' />
+                            <Image
+                              className='min-w-[26px] sm:min-w-[32px] max-w-[26px] sm:max-w-none border p-[2px] rounded-md'
+                              src='/assets/contents-icon/icons8-circled-play-32.png'
+                              alt='black and blue stencil round play button video icon'
+                              width={32}
+                              height={32}
                             />
                           ))) ||
                           (content?._type == 'articles' &&
                             (content?.slug === segment ? (
                               // <HiDocumentText size={25} className='shrink-0' />
                               <Image
-                                className=' p-[2px] rounded-md border-yellow-700'
-                                src='/assets/contents-icon/icons8-check-file-gold.png'
+                                className='min-w-[26px] sm:min-w-[32px] max-w-[26px] sm:max-w-none border p-[2px] rounded-md border-blue-300'
+                                src='/assets/contents-icon/icons8-document.svg'
                                 alt='black and blue stencil document icon for article'
-                                width={26}
-                                height={26}
+                                width={32}
+                                height={32}
                               />
                             ) : (
-                              // <HiOutlineDocumentText size={25} className='shrink-0' />icons8-check-file-gold
+                              // <HiOutlineDocumentText size={25} className='shrink-0' />
                               <Image
-                                className=' p-[2px] rounded-md border-yellow-700'
-                                src='/assets/contents-icon/icons8-check-file-gold.png'
-                                alt='gold and yellow stencil document icon for article'
-                                width={26}
-                                height={26}
+                                className='min-w-[26px] sm:min-w-[32px] max-w-[26px] sm:max-w-none border p-[2px] rounded-md'
+                                src='/assets/contents-icon/icons8-document.svg'
+                                alt='black and blue stencil document icon for article'
+                                width={32}
+                                height={32}
                               />
                             ))) ||
                           (content?._type == 'tests' &&
                             (content?.slug === segment ? (
                               // <HiPencilSquare size={25} className='shrink-0' />
                               <Image
-                                className=' p-[2px] rounded-md border-yellow-700'
-                                src='/assets/contents-icon/icons8-report-card-gold.png'
-                                alt='gold and yellow stencil checklist icon for test'
-                                width={26}
-                                height={26}
+                                className='min-w-[26px] sm:min-w-[32px] max-w-[26px] sm:max-w-none border p-[2px] rounded-md border-blue-300'
+                                src='/assets/contents-icon/icons8-test-32.png'
+                                alt='black and blue stencil checklist icon for test'
+                                width={32}
+                                height={32}
                               />
                             ) : (
-                              // <HiOutlinePencilSquare size={25} className='shrink-0' />
                               <Image
-                                className=' p-[2px] rounded-md border-yellow-700'
-                                src='/assets/contents-icon/icons8-report-card-gold.png'
-                                alt='gold and yellow stencil checklist icon for test'
-                                width={26}
-                                height={26}
+                                className='min-w-[26px] sm:min-w-[32px] max-w-[26px] sm:max-w-none border p-[2px] rounded-md'
+                                src='/assets/contents-icon/icons8-test-32.png'
+                                alt='black and blue stencil checklist icon for test'
+                                width={32}
+                                height={32}
                               />
+                              // <HiOutlinePencilSquare size={25} className='shrink-0' />
                             ))) || <HiOutlineFolder size={25} className='shrink-0' />}
                         <span className='truncate'>{content?.title}</span>
                       </div>
                     </Link>
-                  </Sparkles>
-                ) : (
-                  <Link
-                    href={`/${params?.subject}/${params?.course}/${params?.unit}/${params?.lesson}/${content?.slug}`}
-                    className={
-                      content?.slug === segment
-                        ? 'text-blue-700 font-semibold bg-blue-100 px-3 py-5 block border-blue-700 border-2 rounded-2xl '
-                        : 'px-3 py-5 block border-gray-300 border-2 rounded-2xl hover:border-blue-200'
-                    }>
-                    <div className='flex gap-2 items-center justify-start'>
-                      {(content?._type == 'videos' &&
-                        (content?.slug === segment ? (
-                          // <HiPlay size={25} className='shrink-0' />
-                          <Image
-                            className='border p-[2px] rounded-md border-blue-300'
-                            src='/assets/contents-icon/icons8-circled-play-32.png'
-                            alt='black and blue stencil round play button video icon'
-                            width={32}
-                            height={32}
-                          />
-                        ) : (
-                          // <HiOutlinePlay size={25} className='shrink-0' />
-                          <Image
-                            className='border p-[2px] rounded-md'
-                            src='/assets/contents-icon/icons8-circled-play-32.png'
-                            alt='black and blue stencil round play button video icon'
-                            width={32}
-                            height={32}
-                          />
-                        ))) ||
-                        (content?._type == 'articles' &&
-                          (content?.slug === segment ? (
-                            // <HiDocumentText size={25} className='shrink-0' />
-                            <Image
-                              className='border p-[2px] rounded-md border-blue-300'
-                              src='/assets/contents-icon/icons8-document.svg'
-                              alt='black and blue stencil document icon for article'
-                              width={32}
-                              height={32}
-                            />
-                          ) : (
-                            // <HiOutlineDocumentText size={25} className='shrink-0' />
-                            <Image
-                              className='border p-[2px] rounded-md'
-                              src='/assets/contents-icon/icons8-document.svg'
-                              alt='black and blue stencil document icon for article'
-                              width={32}
-                              height={32}
-                            />
-                          ))) ||
-                        (content?._type == 'tests' &&
-                          (content?.slug === segment ? (
-                            // <HiPencilSquare size={25} className='shrink-0' />
-                            <Image
-                              className='border p-[2px] rounded-md border-blue-300'
-                              src='/assets/contents-icon/icons8-test-32.png'
-                              alt='black and blue stencil checklist icon for test'
-                              width={32}
-                              height={32}
-                            />
-                          ) : (
-                            <Image
-                              className='border p-[2px] rounded-md'
-                              src='/assets/contents-icon/icons8-test-32.png'
-                              alt='black and blue stencil checklist icon for test'
-                              width={32}
-                              height={32}
-                            />
-                            // <HiOutlinePencilSquare size={25} className='shrink-0' />
-                          ))) || <HiOutlineFolder size={25} className='shrink-0' />}
-                      <span className='truncate'>{content?.title}</span>
-                    </div>
-                  </Link>
-                )}
-              </li>
-            ))}
+                  )}
+                </li>
+              ))
+            )}
           </ul>
+
           {/* <div className='bg-gray-300 h-[15rem] relative'>
           <FaQuoteRight size={60} className='-top-8 right-3 absolute text-gray-800' />
           <span className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 text-gray-800 overflow-y-auto'>
@@ -235,7 +239,7 @@ const LessonSidebar = ({
         </div> */}
         </nav>
       </aside>
-      <div className='backdrop-blur-sm border-t-[1px] fixed bottom-0 left-0 right-0 px-4 py-2 max-md:absolute max-md:bottom-0 max-md:w-[90%] max-md:-translate-x-1/2 max-md:left-1/2'>
+      <div className='backdrop-blur-sm border-t-[1px] bottom-0 left-0 right-0 px-4 py-2 absolute sm:fixed max-md:w-[90%] max-md:-translate-x-1/2 max-md:left-1/2'>
         {/* {segment?.endsWith('test') || ( */}
         <Link
           href={nextSlug}

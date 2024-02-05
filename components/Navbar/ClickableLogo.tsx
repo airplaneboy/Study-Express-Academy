@@ -15,7 +15,7 @@ const ClickableLogo = () => {
             priority
           />
           <Image
-            className=' h-10 w-auto hidden max-md:block'
+            className=' h-10 w-10 hidden max-md:block'
             width={40}
             height={40}
             src='/assets/logo/logo-alt-icon.svg'
