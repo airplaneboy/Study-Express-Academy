@@ -33,7 +33,7 @@ const Search = ({ searchList, options, otherLists }: { searchList: any[]; option
 
   return (
     <>
-      <div className='w-1/4 max-md:w-1/3 max-sm:w-max relative'>
+      <div className='w-1/4 max-md:w-1/3 max-sm:w-max sm:relative'>
         <label htmlFor='search' className='sr-only'>
           Search
         </label>
@@ -72,7 +72,7 @@ const Search = ({ searchList, options, otherLists }: { searchList: any[]; option
               autoComplete='off'
               id='search'
               name='search'
-              className='bg-white/90 tracking-wider font-medium focus:font-semibold sm:hidden block w-full  border-2 focus:border border-gray-200 rounded-2xl py-2 pl-10 pr-3 placeholder-blue-400 focus:outline-none text-blue-700 focus:placeholder-blue-300 hover:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-md transition-colors fixed max-w-xs z-10 '
+              className='bg-white/90 tracking-wider font-medium focus:font-semibold sm:hidden block w-[calc(100%_-_32px)]  border-2 focus:border border-gray-200 rounded-2xl py-2 pl-10 pr-3 placeholder-blue-400 focus:outline-none text-blue-700 focus:placeholder-blue-300 hover:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-md transition-colors fixed z-10 '
               placeholder='Search'
               type='search'
             />
@@ -101,8 +101,8 @@ const Search = ({ searchList, options, otherLists }: { searchList: any[]; option
         {results.length > 0 && showResult == true && (
           <div
             onMouseDown={(e) => e.preventDefault()}
-            className='mt-5 flex flex-col absolute left-10 border-2 px-8 py-4 rounded-2xl sm:w-96 w-full !z-50 shadow-md bg-white/80 max-h-[500px] overflow-y-scroll'>
-            <span className='text-gray-500'>Results: </span>
+            className='mt-5 flex flex-col absolute border-2 px-2 py-4 rounded-2xl top-8 w-[calc(100%_-_32px)] !z-50 shadow-md bg-white/80 max-h-[500px] overflow-y-scroll'>
+            <span className='text-gray-500 px-2'>Results: </span>
             <ul className='mt-2 flex flex-col divide-y-2'>
               {results.map((result) => (
                 <li key={result.item._id} className='py-1'>
@@ -112,9 +112,9 @@ const Search = ({ searchList, options, otherLists }: { searchList: any[]; option
                         ? `/${result.item.slug}`
                         : `/${result.item.subject?.title.toLowerCase()}/${result.item.slug}`
                     }
-                    className='px-4 py-2 flex justify-between w-full hover:bg-gray-500/30 rounded-xl'>
-                    <span className='font-semibold text-lg '> {result.item.title}</span>
-                    <span className='text-gray-600'>{lowercase(result.item?._type)}</span>
+                    className='px-2 py-1 flex justify-between items-center w-full hover:bg-gray-500/30 rounded-md'>
+                    <span className='font-semibold text-sm '> {result.item.title}</span>
+                    <span className='text-gray-600 text-xs'>{lowercase(result.item?._type)}</span>
                   </Link>
                 </li>
               ))}
