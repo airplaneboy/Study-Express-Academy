@@ -42,8 +42,8 @@ const CardListSidebar = ({ sidebarHeader, sidebarArray }: CardListSidebar) => {
                 activeClass='active'
                 className={
                   activeIndex == index
-                    ? 'border-l-4 cursor-pointer block bg-blue-100 font-semibold !text-blue-800 transition-all  border-blue-600 px-4 py-2 text-lg hover:text-blue-500 focus:text-blue-600 no_wrap'
-                    : 'border-l ml-[3px] cursor-pointer block px-4 py-2 text-lg text-gray-500 hover:text-blue-500 focus:text-blue-600 no_wrap'
+                    ? 'border-l-4 cursor-pointer block bg-blue-100 font-semibold !text-blue-800 transition-all  border-blue-600 px-4 py-2 text-lg hover:text-blue-500 focus:text-blue-600 truncate'
+                    : 'border-l ml-[3px] cursor-pointer block px-4 py-2 text-lg text-gray-500 hover:text-blue-500 focus:text-blue-600 truncate'
                 }
                 onSetActive={() => setActiveIndex(index)}>
                 <div className='flex flex-col'>

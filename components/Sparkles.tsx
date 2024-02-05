@@ -22,7 +22,7 @@ const Sparkles = ({
   color = DEFAULT_COLOR,
   children,
   delay = { min: 50, max: 450 },
-  className,
+  className = '',
   ...delegated
 }: {
   children: any;

@@ -39,10 +39,6 @@
   @apply absolute left-1/2 -translate-x-1/2;
 }
 
-.no_wrap {
-  @apply text-ellipsis overflow-hidden whitespace-nowrap;
-}
-
 .heading {
   @apply text-3xl font-extrabold;
 }

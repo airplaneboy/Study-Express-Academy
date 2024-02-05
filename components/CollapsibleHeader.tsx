@@ -1,6 +1,8 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
+//@ts-ignore
+import cx from 'clsx/lite';
 
 const ScrollHeader = ({
   initialHeight,
@@ -30,8 +32,8 @@ const ScrollHeader = ({
   }, [scrollPosition]);
   return (
     <div
-      className={classNames(
-        'max-w-[1030px] md:sticky md:top-16 max-md:top-0 max-md:sticky max-sm:static w-full text-gray-800 sm:backdrop-blur-md border-b transition-all  duration-300 flex flex-col justify-center z-[9] ',
+      className={cx(
+        'md:top-16  sticky top-0 w-full text-gray-800 backdrop-blur-md border-b transition-all  duration-300 flex flex-col justify-center z-[9] ',
         !isCollapsed ? initialHeight : finalHeight
       )}>
       {children}

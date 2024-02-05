@@ -47,16 +47,16 @@ const CardList = ({
       <div className='flex flex-row justify-between '>
         <CardListSidebar sidebarArray={sidebarArray} sidebarHeader={sidebarHeader} />
 
-        <div className='w-full pb-96'>
+        <div className='w-full pb-96 md:max-w-[calc(100vw_-_290px)] lg:max-w-[calc(100vw_-_322px)]'>
           <CollapsibleHeader
-            initialHeight='h-24 sm:h-28 text-lg sm:text-6xl max-md:text-center '
-            finalHeight='h-20 text-md sm:text-3xl text-center'>
-            <span className='py-4 no_wrap mx-auto w-full px-10 capitalize text-left font-extrabold  ease-linear transition-transform duration-300'>
+            initialHeight='h-14 sm:h-24 md:h-28 text-lg sm:text-4xl md:text-6xl max-md:text-center '
+            finalHeight='h-12 sm:h-20 text-md sm:text-3xl text-center'>
+            <span className='py-2 sm:py-4 px-5 sm:px-10 text-center truncate mx-auto w-full capitalize sm:text-left font-extrabold  ease-linear transition-transform duration-300'>
               {contentHeader}
             </span>
           </CollapsibleHeader>
 
-          <div className='items-center flex flex-col sm:pt-5 max-sm:mt-5 p-4 w-full'>
+          <div className=' items-center flex flex-col pt-10 p-0 sm:px-4 w-full'>
             {/* Content Header */}
             <CardListContentDescription contentDescription={contentDescription} />
 
