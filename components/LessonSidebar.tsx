@@ -51,9 +51,9 @@ const LessonSidebar = ({
   };
 
   return (
-    <div>
-      <aside className='mb-20 sm:mb-0'>
-        <nav className='sticky top-44 lg:w-80 md:w-72 rounded-2xl border-gray-300 border-2 overflow-hidden'>
+    <>
+      <aside className='h-full'>
+        <nav className='relative h-full lg:w-80 md:w-72 rounded-2xl border-gray-300 border-2 overflow-hidden'>
           <div
             className={`absolute w-full  transition-all duration-0 z-10 ${
               isScrolled ? 'backdrop-blur-md shadow-md ' : 'border-b-2 bg-white'
@@ -66,7 +66,7 @@ const LessonSidebar = ({
           <ul
             role='list'
             id='lesson-sidebar'
-            className='max-h-[448px] p-4 overflow-y-auto h-[30rem] top-20'
+            className='p-2 sm:p-4 overflow-y-auto h-full'
             onScroll={(e) => handleScroll(e)}>
             {!index ? (
               <span className='block first:mt-20 text-md text-gray-500 italic capitalize'>No Contents</span>
@@ -253,7 +253,7 @@ const LessonSidebar = ({
         </Link>
         {/* )} */}
       </div>
-    </div>
+    </>
   );
 };
 
