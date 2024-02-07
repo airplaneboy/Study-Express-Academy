@@ -1,10 +1,18 @@
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 
-const TeX = ({ children, displayMode = false }: { children: string; displayMode?: boolean }) => {
+const TeX = ({
+  children,
+  displayMode = false,
+  className = '',
+}: {
+  children: string;
+  displayMode?: boolean;
+  className?: string;
+}) => {
   const html = katex.renderToString(children, { throwOnError: false, displayMode, leqno: false, fleqn: false });
 
-  return <span dangerouslySetInnerHTML={{ __html: html }} />;
+  return <span className={className} dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
 export default TeX;
