@@ -1,5 +1,7 @@
 'use client';
 
+import { useParams } from 'next/navigation';
+
 import { Popover } from '@headlessui/react';
 import { signOut } from 'next-auth/react';
 import UserMenu from './Navbar/UserMenu';
@@ -35,6 +37,7 @@ function NavbarContent({
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const params = useParams();
 
   useEffect(() => {
     //Navbar Scroll Shadow
@@ -62,13 +65,15 @@ function NavbarContent({
   return (
     <>
       {/* When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars */}
-      <div className='w-full sm:h-16 '>
+      <div className={params.lesson ? 'max-sm:top-0 max-sm:z-50 max-sm:sticky w-full sm:h-16 ' : 'w-full sm:h-16 '}>
         <Popover
           as='header'
           className={({ open }) =>
             classNames(
               open ? ' inset-0 z-40 overflow-y-auto' : '',
-              `backdrop-blur-sm py-2 relative md:fixed inherit_width_height z-20 lg:overflow-y-visible transition-shadow duration-300  ${
+              `backdrop-blur-sm py-2 ${
+                params.lesson ? `sm:fixed` : 'relative'
+              } md:fixed inherit_width_height z-20 lg:overflow-y-visible transition-shadow duration-300  ${
                 isScrolled ? 'shadow-md' : 'border-b-2 md:border-b'
               }`
             )

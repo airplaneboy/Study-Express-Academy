@@ -9,7 +9,7 @@ const Lesson = () => {
         <span className='text-blue-500'>&apos;</span>re interested in on the{' '}
         <span className='text-blue-500'>sidebar</span>.
       </span>
-      <div className=' block h-[65px] sm:h-14 bg-white border-dashed sm:border-solid border-t-2 sm:border-t absolute bottom-0 left-0 right-0 px-4 py-2 max-md:-translate-x-1/2 max-md:left-1/2 min-w-full' />
+      <div className=' block h-[65px] sm:h-16 bg-white border-dashed sm:border-solid border-t-2 sm:border-t absolute bottom-0 left-0 right-0 max-md:-translate-x-1/2 max-md:left-1/2 min-w-full' />
     </div>
   );
 };
