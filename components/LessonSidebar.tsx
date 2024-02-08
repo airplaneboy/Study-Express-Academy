@@ -43,7 +43,7 @@ const LessonSidebar = ({
 
   return (
     <>
-      <div className='relative h-full lg:w-80 md:w-72 rounded-2xl border-gray-300 border-2 overflow-hidden'>
+      <div className='relative h-full sm:h-[calc(100vh_-_64px_-_58px_-_304px_-_40px)] md:h-full md:max-w-sm md:w-96 rounded-2xl border-gray-300 border-2 overflow-hidden'>
         <div
           className={`absolute w-full  transition-all duration-0 z-10 ${
             isScrolled ? 'backdrop-blur-md shadow-md ' : 'border-b-2 bg-white'
