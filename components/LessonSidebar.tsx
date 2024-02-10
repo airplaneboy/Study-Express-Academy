@@ -53,10 +53,13 @@ const LessonSidebar = ({
         <button
           className={cx(
             isShowing ? 'bg-blue-200' : 'bg-blue-50',
-            'md:max-h-[calc(100vh_-_64px_-_40px_-_58px_-_40px)] md:fixed w-full h-min md:h-full md:w-min flex justify-center items-center md:bg-neutral-300 rounded-md border-2 border-blue-400 md:border-neutral-400 md:mb-10 md:opacity-30 hover:opacity-100 transition-opacity z-10'
+            'group md:max-h-[calc(100vh_-_64px_-_40px_-_58px_-_40px)] md:fixed w-full h-min md:h-full md:w-min flex justify-center items-center md:bg-neutral-300 md:hover:bg-blue-200 md:hover:border-blue-400 rounded-md border-2 border-blue-400 md:border-neutral-400 md:mb-10 md:opacity-30 hover:opacity-100 transition-all z-10'
           )}
           onClick={() => setIsShowing((isShowing) => !isShowing)}>
-          <HiChevronUpDown className='md:rotate-90 text-blue-400 md:text-neutral-400' size={20} />
+          <HiChevronUpDown
+            className='md:rotate-90 text-blue-400 md:group-hover:text-blue-400 md:text-neutral-400'
+            size={20}
+          />
         </button>
       </div>
 
@@ -248,7 +251,7 @@ const LessonSidebar = ({
       </div>
 
       {/* Next Button */}
-      <div className='backdrop-blur-sm border-t-[1px] bottom-0 left-0 right-0 px-4 py-2 absolute sm:fixed max-md:w-[90%] max-md:-translate-x-1/2 max-md:left-1/2'>
+      <div className='z-10 backdrop-blur-sm border-t-[1px] bottom-0 left-0 right-0 px-4 py-2 absolute sm:fixed max-md:w-[90%] max-md:-translate-x-1/2 max-md:left-1/2'>
         <Link
           href={nextSlug}
           className='bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-2xl flex items-center justify-center gap-2 ml-auto w-fit max-md:mr-auto max-md:w-[80%]'
