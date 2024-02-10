@@ -49,14 +49,16 @@ const LessonSidebar = ({
 
   return (
     <>
-      <button
-        className={cx(
-          isShowing ? 'bg-blue-200' : 'bg-blue-50',
-          'w-full h-min md:h-auto md:w-min flex justify-center items-center md:bg-neutral-300 rounded-md border-2 border-blue-400 md:border-neutral-400 md:mb-10 md:opacity-30 hover:opacity-100 transition-opacity z-10'
-        )}
-        onClick={() => setIsShowing((isShowing) => !isShowing)}>
-        <HiChevronUpDown className='md:rotate-90 text-blue-400 md:text-neutral-400' size={20} />
-      </button>
+      <div className='md:min-w-[24px] h-auto md:h-auto'>
+        <button
+          className={cx(
+            isShowing ? 'bg-blue-200' : 'bg-blue-50',
+            'md:max-h-[calc(100vh_-_64px_-_40px_-_58px_-_40px)] md:fixed w-full h-min md:h-full md:w-min flex justify-center items-center md:bg-neutral-300 rounded-md border-2 border-blue-400 md:border-neutral-400 md:mb-10 md:opacity-30 hover:opacity-100 transition-opacity z-10'
+          )}
+          onClick={() => setIsShowing((isShowing) => !isShowing)}>
+          <HiChevronUpDown className='md:rotate-90 text-blue-400 md:text-neutral-400' size={20} />
+        </button>
+      </div>
 
       <div className='mb-20 sm:mb-0 md:max-h-[calc(100vh_-_64px_-_40px_-_58px)] md:pb-10 md:sticky top-[104px] order-first'>
         <Transition
