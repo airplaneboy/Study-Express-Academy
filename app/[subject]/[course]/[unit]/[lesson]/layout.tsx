@@ -50,12 +50,12 @@ export default async function RootLayout({
   try {
     return (
       // <div className='sm:h-[calc(100vh_-_64px_-_56px)] relative sm:static p-2 sm:py-10 md:p-10 flex flex-col-reverse sm:flex-row gap-10 sm:gap-5 md:gap-10 max-w-7xl mx-auto'>
-      <div className='relative sm:static p-2 sm:px-6 sm:py-10 md:p-10 flex flex-col-reverse md:flex-row gap-10 sm:gap-5 md:gap-3 max-w-7xl mx-auto'>
+      <div className='relative sm:static p-2 sm:px-6 sm:py-10 md:p-10 flex flex-col-reverse md:flex-row gap-2 sm:gap-5 md:gap-3 max-w-7xl mx-auto'>
         {/* <div className='mb-20 sm:mb-0 md:max-h-[calc(100vh_-_64px_-_40px_-_58px)] md:pb-10 md:sticky top-[104px] '> */}
         <LessonSidebar completedContents={completedContents} lesson={lesson} params={params as any} />
         {/* </div> */}
 
-        <div className='sm:h-60 md:min-h-[calc(100vh_-_64px_-_40px_-_58px_-_40px)] md:h-[auto] border-b-2 border-dashed sm:border-2 p-0 sm:rounded-2xl overflow-x-hidden md:mb-10'>
+        <div className='z-10 md:z-[unset] bg-white md:bg-[unset] sm:h-60 md:min-h-[calc(100vh_-_64px_-_40px_-_58px_-_40px)] md:h-[auto] border-b-2 border-dashed sm:border-2 p-0 sm:rounded-2xl overflow-x-hidden md:mb-10'>
           {children}
         </div>
       </div>

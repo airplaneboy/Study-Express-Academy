@@ -6,6 +6,8 @@ import { HiOutlineFolder, HiArrowRight, HiPlay, HiChevronUpDown } from 'react-ic
 import { useState } from 'react';
 import Image from 'next/image';
 import { Transition } from '@headlessui/react';
+//@ts-ignore
+import cx from 'clsx/lite';
 // import { FaQuoteRight } from 'react-icons/fa';
 
 const LessonSidebar = ({
@@ -48,21 +50,24 @@ const LessonSidebar = ({
   return (
     <>
       <button
-        className='w-min text-white bg-neutral-300 rounded-md border-2 border-neutral-400 md:mb-10'
+        className={cx(
+          isShowing ? 'bg-blue-200' : 'bg-blue-50',
+          'w-full h-min md:h-auto md:w-min flex justify-center items-center md:bg-neutral-300 rounded-md border-2 border-blue-400 md:border-neutral-400 md:mb-10 md:opacity-30 hover:opacity-100 transition-opacity z-10'
+        )}
         onClick={() => setIsShowing((isShowing) => !isShowing)}>
-        <HiChevronUpDown className='rotate-90 text-neutral-400' size={20} />
+        <HiChevronUpDown className='md:rotate-90 text-blue-400 md:text-neutral-400' size={20} />
       </button>
 
       <div className='mb-20 sm:mb-0 md:max-h-[calc(100vh_-_64px_-_40px_-_58px)] md:pb-10 md:sticky top-[104px] order-first'>
         <Transition
           show={isShowing}
-          enter='transition ease-in-out duration-300 transform'
-          enterFrom='-translate-x-full opacity-0'
-          enterTo='translate-x-0 opacity-100'
-          leave='transition ease-in-out duration-300 transform'
-          leaveFrom='translate-x-0 opacity-100'
-          leaveTo='-translate-x-full opacity-0'
-          className=' relative h-full sm:h-[calc(100vh_-_64px_-_58px_-_304px_-_40px)] md:h-full md:max-w-sm md:w-96 rounded-2xl border-gray-300 border-2 overflow-hidden'>
+          enter='transition ease-in-out duration-500 md:duration-300 transform'
+          enterFrom='max-md:-translate-y-full md:-translate-x-full opacity-0'
+          enterTo='max-md:translate-y-0 md:translate-x-0 opacity-100'
+          leave='transition ease-in-out duration-500 md:duration-300 transform'
+          leaveFrom='max-md:translate-y-0 md:translate-x-0 opacity-100'
+          leaveTo='max-md:-translate-y-full md:-translate-x-full opacity-0'
+          className=' relative h-full md:max-w-sm md:w-96 rounded-2xl border-gray-300 border-2 overflow-hidden'>
           <div
             className={`absolute w-full transition-all duration-0 z-10 ${
               isScrolled ? 'backdrop-blur-md shadow-md ' : 'border-b-2 bg-white'
