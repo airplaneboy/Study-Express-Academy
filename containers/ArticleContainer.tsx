@@ -26,7 +26,7 @@ const ArticleContainer = async ({ params }: { params: any }) => {
   return (
     <div className='px-4 sm:px-2 md:px-10 py-14 '>
       <div className='max-w-[688px] mx-auto text-xl'>
-        <header className='text-center md:text-left text-3xl sm:text-5xl mt-6 md:mt-8 mb-14 sm:mb-20 font-extrabold overflow-hidden text-ellipsis text-gray-900'>
+        <header className='text-center md:text-left text-3xl sm:text-5xl mt-6 md:mt-8 mb-14 sm:mb-20 font-extrabold overflow-hidden text-ellipsis text-gray-800'>
           {article.title}
         </header>
 

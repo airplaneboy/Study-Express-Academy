@@ -124,7 +124,7 @@ const LessonSidebar = ({
                   onClick={() => {
                     setIndex(index);
                     setNextSlug(getNextSlug(index));
-                    if (window.innerWidth <= 1200) setIsShowing(false);
+                    if (window.innerWidth <= 768) setIsShowing(false);
                   }}
                   key={content?._id}
                   className='first:mt-20 rounded-2xl text-md text-gray-500 hover:text-blue-500 hover:bg-blue-50 focus:text-blue-600 mb-3'>
