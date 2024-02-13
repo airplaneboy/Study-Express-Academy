@@ -8,6 +8,13 @@ const ArticleContainer = async ({ params }: { params: any }) => {
   let user = await getCurrentUser();
   const article = await getArticle(params.content);
 
+  if (!article || !article.content)
+    return (
+      <span className='italic text-gray-500 px-4 py-2 w-full h-full flex items-center justify-center text-center'>
+        An error occurred displaying questions. Please contact support to resolve issue.
+      </span>
+    );
+
   let read: boolean = false;
   if (user?.contentProgress.articles.some((item: Article) => item.id == article._id)) read = true;
   else read = false;

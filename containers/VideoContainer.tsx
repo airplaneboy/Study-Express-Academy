@@ -18,6 +18,13 @@ const VideoContainer = async ({ params }: { params: { content: string } }) => {
   const video = await getVideo(params.content);
   const user = await getCurrentUser();
 
+  if (!video || !video.url)
+    return (
+      <span className='italic text-gray-500 px-4 py-2 w-full h-full flex items-center justify-center text-center'>
+        An error occurred displaying questions. Please contact support to resolve issue.
+      </span>
+    );
+
   const updateUserVideo = async ({
     videoDuration,
     watchTime,
@@ -45,14 +52,7 @@ const VideoContainer = async ({ params }: { params: { content: string } }) => {
         if (videoFound.totalDurationWatched + 3 >= videoFound.videoDuration) videoFound.isCompleted = true;
 
         currentVideoProgress.push(videoFound);
-        const updatedUser = await updateCurrentUser({ data: { contentProgress: { videos: currentVideoProgress } } });
-        return console.log(
-          `\n\n\t\t=============Updated Video Before a day: \n${JSON.stringify(
-            updatedUser.contentProgress.videos,
-            null,
-            2
-          )}\n\n`
-        );
+        return await updateCurrentUser({ data: { contentProgress: { videos: currentVideoProgress } } });
       }
 
       videoFound.totalDurationWatched = totalDurationWatched;
@@ -63,11 +63,7 @@ const VideoContainer = async ({ params }: { params: { content: string } }) => {
       if (videoFound.totalDurationWatched + 3 >= videoFound.videoDuration) videoFound.isCompleted = true;
 
       currentVideoProgress.push(videoFound);
-      const updatedUser = await updateCurrentUser({ data: { contentProgress: { videos: currentVideoProgress } } });
-
-      console.log(
-        `\n\n\t\t=============Updated Video: \n${JSON.stringify(updatedUser.contentProgress.videos, null, 2)}\n\n`
-      );
+      return await updateCurrentUser({ data: { contentProgress: { videos: currentVideoProgress } } });
     } else {
       currentVideoProgress.push({
         id: video._id,
@@ -79,17 +75,13 @@ const VideoContainer = async ({ params }: { params: { content: string } }) => {
         lastSecondWatched,
       });
 
-      const updatedUser = await updateCurrentUser({
+      return await updateCurrentUser({
         data: {
           contentProgress: {
             videos: currentVideoProgress,
           },
         },
       });
-
-      console.log(
-        `\n\n\t\t=============Created Video: \n${JSON.stringify(updatedUser.contentProgress.videos, null, 2)}\n\n`
-      );
     }
   };
 

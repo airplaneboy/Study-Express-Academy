@@ -18,7 +18,7 @@ const OverflowControl = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <div ref={textRef} onResize={() => console.log('was resized')}>
+      <div ref={textRef}>
         {isOverflowing ? (
           <>
             <Marquee hidden={true}>{children}</Marquee>

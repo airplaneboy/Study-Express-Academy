@@ -31,7 +31,7 @@ const LessonSidebar = ({
   const routeParams = useParams();
   const segment = useSelectedLayoutSegment();
 
-  const [index, setIndex] = useState(() => lesson.contents?.findIndex((content) => content.slug == segment)!);
+  const [index, setIndex] = useState(() => lesson.contents?.findIndex((content) => content.slug == segment));
   const [nextSlug, setNextSlug] = useState(() => {
     const index = lesson.contents?.findIndex((content) => content.slug == segment)!;
     return index ? lesson.contents[index + 1]?.slug : '';
@@ -116,7 +116,7 @@ const LessonSidebar = ({
             id='lesson-sidebar'
             className='p-2 sm:p-4 overflow-y-auto h-full'
             onScroll={(e) => handleScroll(e)}>
-            {!index ? (
+            {index == undefined || index == null ? (
               <span className='block first:mt-20 text-md text-gray-500 italic capitalize'>No Contents</span>
             ) : (
               lesson?.contents?.map((content: { _id: string; title: string; slug: string; _type: string }, index) => (

@@ -39,10 +39,17 @@ export type Results = { isCorrect: boolean; questionId: number; date?: string }[
 const TestContainer = async ({ params }: { params: { content: string } }) => {
   const test: Test = await getTest(params.content);
 
+  if (!test || !test.questions)
+    return (
+      <span className='italic text-gray-500 px-4 py-2 w-full h-full flex items-center justify-center text-center'>
+        An error occurred displaying questions. Please contact support to resolve issue.
+      </span>
+    );
+
   const shuffledQuestions = shuffle(test?.questions);
   const selectedQuestions = sampleSize(shuffledQuestions, 5);
   const shuffledChoices = selectedQuestions.map(
-    (question) => (question.options = shuffle([...question.options, question.answer]))
+    (question: any) => (question.options = shuffle([...question.options, question.answer]))
   );
 
   const randomQuote = sample(await fetchGET({ path: 'https://zenquotes.io/api/quotes/', revalidate: 86400 }));
