@@ -41,9 +41,9 @@ const LessonSidebar = ({
     if (window.innerWidth >= 1200) setIsShowing(true);
 
     if (isShowing) {
-      document.body.classList.add('disable-scroll');
+      document.body.classList.add('max-md:overflow-hidden');
     } else {
-      document.body.classList.remove('disable-scroll');
+      document.body.classList.remove('max-md:overflow-hidden');
     }
   }, [isShowing]);
 
@@ -83,8 +83,12 @@ const LessonSidebar = ({
 
       <div
         className={cx(
-          routeParams.content ? (!isShowing ? 'max-md:!mb-0 ' : '') : `max-md:order-last ${isShowing ? '' : 'hidden'}`,
-          'max-sm:inset-x-4 shadow-lg md:shadow-none shadow-gray-400 rounded-2xl md:rounded-none mb-20 sm:mb-10 md:mb-0 overflow-hidden md:overflow-visible md:max-h-[calc(100vh_-_64px_-_40px_-_58px)] md:pb-10 fixed inset-6 bottom-10 md:inset-0 md:sticky top-[104px] z-10 md:z-auto md:order-first'
+          routeParams.content
+            ? isShowing
+              ? ''
+              : 'max-md:!mb-0 hidden'
+            : `max-md:order-last ${isShowing ? '' : 'hidden'}`,
+          'max-sm:inset-x-4 shadow-md md:shadow-none shadow-gray-400 rounded-2xl md:rounded-none mb-20 sm:mb-10 md:mb-0 overflow-hidden md:overflow-visible md:max-h-[calc(100vh_-_64px_-_40px_-_58px)] md:pb-10 fixed max-md:inset-6 max-md:bottom-10 md:sticky !top-[104px] z-10 md:z-auto md:order-first'
         )}>
         <Transition
           show={isShowing}
