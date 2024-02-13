@@ -18,6 +18,10 @@
   }
 }
 
+.disable-scroll {
+  @apply overflow-hidden;
+}
+
 .input {
   @apply appearance-none block w-full px-5  py-3 bg-gray-200 text-gray-700
            rounded-2xl shadow-sm placeholder-gray-400 focus:outline-none sm:text-sm font-bold;

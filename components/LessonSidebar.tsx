@@ -1,10 +1,11 @@
 'use client';
 import Sparkles from '@/components/Sparkles';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useParams } from 'next/navigation';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { HiOutlineFolder, HiArrowRight, HiPlay, HiChevronUpDown } from 'react-icons/hi2';
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import { Transition } from '@headlessui/react';
 //@ts-ignore
 import cx from 'clsx/lite';
@@ -25,8 +26,9 @@ const LessonSidebar = ({
   params: { subject: string; course: string; unit: string; lesson: string };
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isShowing, setIsShowing] = useState(true);
+  const [isShowing, setIsShowing] = useState(false);
 
+  const routeParams = useParams();
   const segment = useSelectedLayoutSegment();
 
   const [index, setIndex] = useState(() => lesson.contents?.findIndex((content) => content.slug == segment)!);
@@ -34,6 +36,16 @@ const LessonSidebar = ({
     const index = lesson.contents?.findIndex((content) => content.slug == segment)!;
     return index ? lesson.contents[index + 1]?.slug : '';
   });
+
+  useEffect(() => {
+    if (window.innerWidth >= 1200) setIsShowing(true);
+
+    if (isShowing) {
+      document.body.classList.add('disable-scroll');
+    } else {
+      document.body.classList.remove('disable-scroll');
+    }
+  }, [isShowing]);
 
   const handleScroll = (e: React.UIEvent<HTMLElement>) => {
     const scrollTop = e.currentTarget.scrollTop;
@@ -45,15 +57,18 @@ const LessonSidebar = ({
 
     return lesson?.contents[lesson?.contents.length - 1]?.slug;
   };
-  // #9f9f9f #848484
 
   return (
     <>
-      <div className='md:min-w-[24px] h-auto md:h-auto'>
+      <div
+        className={cx(
+          routeParams.content ? '' : 'max-md:order-last',
+          'md:min-w-[24px] h-auto md:h-auto fixed inset-x-4 sm:inset-x-6 top-[72px] md:inset-0 z-10 md:static '
+        )}>
         <button
           className={cx(
             isShowing ? 'bg-blue-200' : 'bg-blue-50',
-            'group md:max-h-[calc(100vh_-_64px_-_40px_-_58px_-_40px)] md:fixed w-full h-min md:h-full md:w-min flex justify-center items-center md:bg-neutral-300 md:hover:bg-blue-200 md:hover:border-blue-400 rounded-md border-2 border-blue-400 md:border-neutral-400 md:mb-10 md:opacity-30 hover:opacity-100 transition-all z-10'
+            'group md:max-h-[calc(100vh_-_64px_-_40px_-_58px_-_40px)] md:fixed w-full h-min md:h-full md:w-min flex justify-center items-center md:bg-neutral-300 md:hover:bg-blue-200 md:hover:border-blue-400 rounded-md border-2 border-blue-400 md:border-neutral-400 md:mb-10 opacity-30 hover:opacity-100 transition-all z-10'
           )}
           onClick={() => setIsShowing((isShowing) => !isShowing)}>
           <HiChevronUpDown
@@ -62,8 +77,15 @@ const LessonSidebar = ({
           />
         </button>
       </div>
+      <div
+        className={cx(isShowing ? 'block md:!hidden' : 'hidden', 'md:!hidden fixed inset-0 bg-gray-100 top-[64px]')}
+      />
 
-      <div className='mb-20 sm:mb-0 md:max-h-[calc(100vh_-_64px_-_40px_-_58px)] md:pb-10 md:sticky top-[104px] order-first'>
+      <div
+        className={cx(
+          routeParams.content ? (!isShowing ? 'max-md:!mb-0 ' : '') : `max-md:order-last ${isShowing ? '' : 'hidden'}`,
+          'max-sm:inset-x-4 shadow-lg md:shadow-none shadow-gray-400 rounded-2xl md:rounded-none mb-20 sm:mb-10 md:mb-0 overflow-hidden md:overflow-visible md:max-h-[calc(100vh_-_64px_-_40px_-_58px)] md:pb-10 fixed inset-6 bottom-10 md:inset-0 md:sticky top-[104px] z-10 md:z-auto md:order-first'
+        )}>
         <Transition
           show={isShowing}
           enter='transition ease-in-out duration-500 md:duration-300 transform'
@@ -72,7 +94,10 @@ const LessonSidebar = ({
           leave='transition ease-in-out duration-500 md:duration-300 transform'
           leaveFrom='max-md:translate-y-0 md:translate-x-0 opacity-100'
           leaveTo='max-md:-translate-y-full md:-translate-x-full opacity-0'
-          className=' relative h-full md:max-w-sm md:w-96 rounded-2xl border-gray-300 border-2 overflow-hidden'>
+          className={cx(
+            isShowing ? 'max-md:!border-none ' : '',
+            ' relative h-full md:max-w-sm md:w-96 rounded-2xl border-gray-300 border-2 overflow-hidden max-md:bg-white'
+          )}>
           <div
             className={`absolute w-full transition-all duration-0 z-10 ${
               isScrolled ? 'backdrop-blur-md shadow-md ' : 'border-b-2 bg-white'

@@ -25,8 +25,8 @@ const ArticleContainer = async ({ params }: { params: any }) => {
 
   return (
     <div className='px-10 py-14 '>
-      <div className='max-w-2xl mx-auto text-xl'>
-        <header className='text-center text-5xl mb-20 font-extrabold'>{article.title}</header>
+      <div className='max-w-[688px] mx-auto text-xl'>
+        <header className='md:text-left text-5xl md:mt-8 mb-20 font-extrabold'>{article.title}</header>
 
         <CustomPortableText className='word-spacing tracking-[0.25px]' value={article.content} />
 
