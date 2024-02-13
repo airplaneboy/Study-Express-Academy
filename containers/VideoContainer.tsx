@@ -95,19 +95,21 @@ const VideoContainer = async ({ params }: { params: { content: string } }) => {
 
   return (
     <div className='overflow-y-auto flex flex-col w-full h-full md:px-4 py-2 lg:px-10 pb-10'>
-      <header className='text-base tracking-wide font-extrabold py-4  text-gray-800'>{video.title}</header>
+      <header className='text-center md:text-left text-3xl sm:text-5xl mt-6 md:mt-8 mb-8 sm:mb-10 font-extrabold overflow-hidden text-ellipsis text-gray-900'>
+        {video.title}
+      </header>
       <VideoPlayer
         lastSecond={user?.contentProgress.videos.find((items: Video) => items.id == video._id)?.lastSecondWatched}
         updateUserVideo={updateUserVideo}
         url={video.url}
       />
-      <div className='mt-10 md:max-w-[80%] max-md:mx-auto max-md:border-t-2 md:px-4 px-2 py-2'>
-        <span className=' font-extrabold text-xl text-gray-800 block'>Description</span>
+      <div className='mt-10 w-full md:px-4 px-2 py-2'>
+        <span className=' font-extrabold text-base sm:text-xl text-gray-800 block'>Description</span>
 
         {video?.description ? (
-          <span className='text-gray-600 md:text-lg'>{video.description}</span>
+          <span className='text-gray-600 text-sm sm:text-base'>{video.description}</span>
         ) : (
-          <span className='text-gray-500 text-base italic mt-3 inline-block'>No Description</span>
+          <span className='text-gray-500 text-sm sm:text-base italic mt-3 inline-block'>No Description</span>
         )}
       </div>
     </div>
