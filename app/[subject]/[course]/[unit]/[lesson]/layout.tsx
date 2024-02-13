@@ -47,10 +47,10 @@ export default async function RootLayout({
 
   try {
     return (
-      <div className='relative sm:static p-2 sm:px-6 sm:py-10 md:p-10 md:px-0 flex flex-col md:flex-row gap-2 sm:gap-5 md:gap-3 max-w-7xl mx-auto md:mx-8'>
+      <div className='relative sm:static p-2 sm:px-6 sm:py-10 md:p-10 md:px-4 flex flex-col md:flex-row gap-2 sm:gap-5 md:gap-3 max-w-7xl mx-auto'>
         <LessonSidebar completedContents={completedContents} lesson={lesson} params={params as any} />
 
-        <div className='min-h-[calc(100vh_-_64px_-_10px)] sm:min-h-[calc(100vh_-_64px_-_58px_-_40px)] md:min-h-[calc(100vh_-_64px_-_40px_-_58px_-_40px)] md:h-auto border-b-2 border-dashed sm:border-2 p-0 sm:rounded-2xl overflow-x-hidden md:mb-10 w-full'>
+        <div className='min-h-[calc(100vh_-_64px_-_10px)] sm:min-h-[calc(100vh_-_64px_-_58px_-_40px)] md:min-h-[calc(100vh_-_64px_-_40px_-_58px_-_40px)] md:h-auto border-b-2 border-dashed md:border-2 p-0 md:rounded-2xl overflow-x-hidden md:mb-10 w-full'>
           {children}
         </div>
       </div>

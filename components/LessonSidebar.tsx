@@ -124,6 +124,7 @@ const LessonSidebar = ({
                   onClick={() => {
                     setIndex(index);
                     setNextSlug(getNextSlug(index));
+                    if (window.innerWidth <= 1200) setIsShowing(false);
                   }}
                   key={content?._id}
                   className='first:mt-20 rounded-2xl text-md text-gray-500 hover:text-blue-500 hover:bg-blue-50 focus:text-blue-600 mb-3'>
@@ -280,7 +281,7 @@ const LessonSidebar = ({
       </div>
 
       {/* Next Button */}
-      <div className='z-10 backdrop-blur-sm border-t-[1px] bottom-0 left-0 right-0 px-4 py-2 absolute sm:fixed max-md:w-[90%] max-md:-translate-x-1/2 max-md:left-1/2'>
+      <div className='z-10 backdrop-blur-sm border-t bottom-0 left-0 right-0 px-4 py-2 absolute sm:fixed max-md:w-[90%] max-md:-translate-x-1/2 max-md:left-1/2'>
         <Link
           href={nextSlug}
           className='bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-2xl flex items-center justify-center gap-2 ml-auto w-fit max-md:mr-auto max-md:w-[80%]'

@@ -5,7 +5,7 @@ import NavbarSkeleton from '@/components/Navbar/NavbarSkeleton';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className='h-full'>
+    <div className='max-sm:min-h-full sm:h-full'>
       <Suspense fallback={<NavbarSkeleton fixed={true} />}>
         <Navbar></Navbar>
       </Suspense>
