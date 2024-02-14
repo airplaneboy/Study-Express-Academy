@@ -39,7 +39,9 @@ const LessonSidebar = ({
 
   useEffect(() => {
     if (window.innerWidth >= 1200) setIsShowing(true);
+  }, []);
 
+  useEffect(() => {
     if (isShowing) {
       document.body.classList.add('max-md:overflow-hidden');
     } else {
