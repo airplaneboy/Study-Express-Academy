@@ -50,7 +50,7 @@ const DisplayQuestions = ({
     updateUser(
       currentResult,
       testCompleted,
-      { numberOfCorrectAnswers, numberOfQuestion: result?.length, average },
+      { numberOfCorrectAnswers, numberOfQuestion: result?.length, average: +(numberOfCorrectAnswers / result.length) },
       result
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -80,7 +80,7 @@ const DisplayQuestions = ({
 
     setShowExplanation(true);
     if (currentIndex >= selectedQuestions.length - 1) {
-      setAverage(+(numberOfCorrectAnswers / result.length).toFixed(2));
+      setAverage(+(numberOfCorrectAnswers / result.length));
       setTestCompleted(true);
     }
   };
