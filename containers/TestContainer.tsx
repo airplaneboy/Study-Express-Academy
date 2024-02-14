@@ -7,6 +7,7 @@ import sample from 'lodash/sample';
 import remove from 'lodash/remove';
 import DisplayQuestions from './DisplayQuestions';
 
+//#region Types
 export type UserTests = UserTest[];
 
 export type UserTest = {
@@ -17,6 +18,7 @@ export type UserTest = {
   results: Results[];
   numberOfQuestions: number;
   isCompleted?: boolean;
+  currentTest: { selectedQuestions: any[]; shuffledChoices: any[] };
 };
 
 export type Test = { _id: string; questions: any[]; title: string };
@@ -36,7 +38,17 @@ export type UserQuestions = {
 }[];
 
 export type Results = { isCorrect: boolean; questionId: number; date?: string }[];
+//#endregion
 
+const createTestQuestions = (test: Test) => {
+  const selectedQuestions = sampleSize(shuffle(test?.questions), 5);
+  return {
+    selectedQuestions,
+    shuffledChoices: selectedQuestions.map(
+      (question: any) => (question.options = shuffle([...question.options, question.answer]))
+    ),
+  };
+};
 const TestContainer = async ({ params }: { params: { content: string } }) => {
   const test: Test = await getTest(params.content);
 
@@ -46,12 +58,19 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
         An error occurred displaying questions. Please contact support to resolve issue.
       </span>
     );
+  const user = await getCurrentUser();
 
-  const shuffledQuestions = shuffle(test?.questions);
-  const selectedQuestions = sampleSize(shuffledQuestions, 5);
-  const shuffledChoices = selectedQuestions.map(
-    (question: any) => (question.options = shuffle([...question.options, question.answer]))
-  );
+  const foundTest = user?.contentProgress?.tests?.find((item: any) => item.id == test._id);
+
+  let selectedQuestions = foundTest.currentTest?.selectedQuestions;
+  let shuffledChoices = foundTest.currentTest?.shuffledChoices;
+
+  if (!selectedQuestions || !shuffledChoices) {
+    const createdQuestions = createTestQuestions(test);
+
+    selectedQuestions = createdQuestions.selectedQuestions;
+    shuffledChoices = createdQuestions.shuffledChoices;
+  }
 
   const randomQuote = sample(await fetchGET({ path: 'https://zenquotes.io/api/quotes/', revalidate: 86400 }));
 
@@ -127,6 +146,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
         testFound.results.push(results);
         testFound.isCompleted = true;
         testFound.numberOfQuestions = test.questions.length;
+        testFound.currentTest = createTestQuestions(test);
 
         currentTestProgress.push(testFound);
         await updateCurrentUser({
@@ -147,6 +167,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
           results: [results],
           scores: [scores],
           numberOfQuestions: test.questions.length,
+          currentTest: createTestQuestions(test),
         });
         await updateCurrentUser({
           data: { contentProgress: { tests: currentTestProgress } },
