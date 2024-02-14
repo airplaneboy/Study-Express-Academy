@@ -20,7 +20,8 @@ const components: Partial<PortableTextReactComponents> | undefined = {
     h6: ({ children }) => (
       <h6 className='text-[10.72px] line-height: 0.85rem font-semibold mt-6 mb-2 leading-8'>{children}</h6>
     ),
-    normal: ({ children }) => <p className='text-xl mb-8 leading-8'>{children}</p>,
+    normal: ({ children }) => <p className=' mb-8 leading-8'>{children}</p>,
+    // normal: ({ children }) => <p className='text-xl mb-8 leading-8'>{children}</p>,
 
     blockquote: ({ children }) => (
       <blockquote className='border-l-purple-500 border-l-4 pl-3 text-gray-600 my-6 leading-8'>{children}</blockquote>

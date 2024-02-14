@@ -88,7 +88,7 @@ const LessonSidebar = ({
               ? ''
               : 'max-md:!mb-0 hidden'
             : `max-md:order-last ${isShowing ? '' : 'hidden'}`,
-          'max-sm:inset-x-4 shadow-md md:shadow-none shadow-gray-400 rounded-2xl md:rounded-none mb-20 sm:mb-10 md:mb-0 overflow-hidden md:overflow-visible md:max-h-[calc(100vh_-_64px_-_40px_-_58px)] md:pb-10 fixed max-md:inset-6 max-md:bottom-10 md:sticky !top-[104px] z-10 md:z-auto md:order-first'
+          'max-sm:inset-x-4 shadow-md md:shadow-none shadow-gray-400 rounded-2xl md:rounded-none mb-20 sm:mb-10 md:mb-0 overflow-hidden md:overflow-visible md:max-h-[calc(100vh_-_64px_-_40px_-_58px)] md:pb-10 fixed max-md:inset-6 max-md:bottom-10 md:sticky !top-[104px] z-50 md:z-auto md:order-first'
         )}>
         <Transition
           show={isShowing}
@@ -281,7 +281,11 @@ const LessonSidebar = ({
       </div>
 
       {/* Next Button */}
-      <div className='z-10 backdrop-blur-sm border-t bottom-0 left-0 right-0 px-4 py-2 absolute sm:fixed max-md:w-[90%] max-md:-translate-x-1/2 max-md:left-1/2'>
+      <div
+        className={cx(
+          segment?.endsWith('test') && 'hidden',
+          'z-10 backdrop-blur-sm border-t bottom-0 left-0 right-0 px-4 py-2 absolute sm:fixed max-md:w-[90%] max-md:-translate-x-1/2 max-md:left-1/2'
+        )}>
         <Link
           href={nextSlug}
           className='bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-2xl flex items-center justify-center gap-2 ml-auto w-fit max-md:mr-auto max-md:w-[80%]'

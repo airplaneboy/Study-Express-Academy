@@ -1,4 +1,6 @@
 import { HiArrowRight, HiChevronRight } from 'react-icons/hi';
+//@ts-ignore
+import cx from 'clsx/lite';
 
 export const SummaryButton = ({ children, onClick }: { children: string; onClick: () => void }) => {
   return (
@@ -26,13 +28,12 @@ const LessonNavButton = ({
     <button
       disabled={selectedOption == '' && true}
       onClick={onClick}
-      className={
-        selectedOption == ''
-          ? 'bg-gray-400 text-white px-4 py-2 rounded-2xl flex items-center justify-center gap-2 ml-auto w-fit max-md:mr-auto max-md:w-[80%]'
-          : 'bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-2xl flex items-center justify-center gap-2 ml-auto w-fit max-md:mr-auto max-md:w-[80%]'
-      }>
-      <span>{children}</span>
-      <HiChevronRight className='top-[1px] relative' />
+      className={cx(
+        selectedOption == '' ? 'bg-gray-400 ' : 'bg-blue-600 hover:bg-blue-700 ',
+        'rounded-2xl flex items-center justify-center sm:gap-2 lg:ml-auto w-fit text-white px-4 py-1 sm:py-2 overflow-hidden'
+      )}>
+      <span className='truncate'>{children}</span>
+      <HiChevronRight className='top-[1px] relative min-w-[16px] min-h-[16px]' />
     </button>
   );
 };

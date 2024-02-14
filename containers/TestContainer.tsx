@@ -24,6 +24,7 @@ export type Test = { _id: string; questions: any[]; title: string };
 export type Scores = {
   date?: string;
   numberOfCorrectAnswers: number;
+  numberOfQuestion: number;
   average: number;
 };
 
@@ -156,9 +157,11 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
 
   return (
     <>
-      <div className='px-10 py-6 relative h-full'>
+      <div className='px-2 sm:px-0 md:px-10 py-6 max-sm:mb-12 relative h-full'>
         <div className='max-w-2xl mx-auto'>
-          <header className='text-center text-2xl mb-12 text-gray-800 font-extrabold'>{test.title}</header>
+          <header className='text-left md:text-center text-base md:text-2xl mt-8 md:mt-4 mb-3 md:mb-12 text-gray-800 font-extrabold'>
+            {test.title}
+          </header>
           <DisplayQuestions
             updateUser={updateUserProgress}
             quote={randomQuote}
