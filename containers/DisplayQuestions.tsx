@@ -8,11 +8,13 @@ import Quotes from '@/components/Quotes';
 import { Scores, Results } from './TestContainer';
 
 const DisplayQuestions = ({
+  currentTestProgress,
   selectedQuestions,
   shuffledChoices,
   quote,
   updateUser,
 }: {
+  currentTestProgress: Results;
   quote: any;
   shuffledChoices: any[];
   selectedQuestions: any[];
@@ -25,13 +27,13 @@ const DisplayQuestions = ({
 }) => {
   const [flag, setFlag] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(currentTestProgress.length || 0);
   const [testCompleted, setTestCompleted] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState(selectedQuestions[currentIndex]?.answer);
   const [shuffledAnswerChoices, setShuffledAnswerChoices] = useState<any[]>(shuffledChoices[currentIndex]);
   const [showSummary, setShowSummary] = useState(false);
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
-  const [result, setResult] = useState<Results>([]);
+  const [result, setResult] = useState<Results>(currentTestProgress || []);
   const [currentResult, setCurrentResult] = useState<any>({});
   const [average, setAverage] = useState<number>(0);
   const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);

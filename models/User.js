@@ -148,6 +148,7 @@ const UserSchema = new mongoose.Schema(
             type: {
               selectedQuestions: mongoose.Schema.Types.Mixed,
               shuffledChoices: mongoose.Schema.Types.Mixed,
+              currentTestResult: { type: mongoose.Schema.Types.Mixed },
               date: Date,
             },
 
