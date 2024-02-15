@@ -12,11 +12,11 @@ export type UserTests = UserTest[];
 
 export type UserTest = {
   id: string;
-  numberOfTimesPassed: number;
-  numberOfTimesTaken: number;
-  scores: Scores[];
-  results: Results[];
-  numberOfQuestions: number;
+  numberOfTimesPassed?: number;
+  numberOfTimesTaken?: number;
+  scores?: Scores[];
+  results?: Results[];
+  numberOfQuestions?: number;
   isCompleted?: boolean;
   currentTest: { selectedQuestions: any[]; shuffledChoices: any[]; currentTestResult: any };
 };
@@ -63,9 +63,9 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
 
   const foundTest = user?.contentProgress?.tests?.find((item: any) => item.id == test._id);
 
-  let selectedQuestions = foundTest.currentTest?.selectedQuestions;
-  let shuffledChoices = foundTest.currentTest?.shuffledChoices;
-  let currentTestProgress = foundTest.currentTest?.currentTestResult;
+  let selectedQuestions = foundTest?.currentTest?.selectedQuestions;
+  let shuffledChoices = foundTest?.currentTest?.shuffledChoices;
+  let currentTestProgress = foundTest?.currentTest?.currentTestResult;
 
   if (!selectedQuestions || !shuffledChoices) {
     const createdQuestions = createTestQuestions(test);
@@ -142,13 +142,13 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
       if (testCompleted) {
         //Check if passed
         const isPassedNumber =
-          scores.average >= 0.5 ? testFound.numberOfTimesPassed + 1 : testFound.numberOfTimesPassed;
+          scores.average >= 0.5 ? testFound.numberOfTimesPassed! + 1 : testFound.numberOfTimesPassed;
 
         //Update Test
-        testFound.numberOfTimesTaken = testFound.numberOfTimesTaken + 1;
+        testFound.numberOfTimesTaken = testFound.numberOfTimesTaken! + 1;
         testFound.numberOfTimesPassed = isPassedNumber;
-        testFound.scores.push(scores);
-        testFound.results.push(results);
+        testFound.scores!.push(scores);
+        testFound.results!.push(results);
         testFound.isCompleted = true;
         testFound.numberOfQuestions = test.questions.length;
         testFound.currentTest = createTestQuestions(test);
@@ -183,46 +183,46 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
       });
     }
 
-     if (updatedQuestionsProgress) {
-       //Update Question
-       const currentQuestionProgress: UserQuestions = user?.contentProgress?.questions;
+    if (updatedQuestionsProgress) {
+      //Update Question
+      const currentQuestionProgress: UserQuestions = user?.contentProgress?.questions;
 
-       let questionFound = remove(currentQuestionProgress, (item) => item.id == updatedQuestionsProgress.id)[0];
+      let questionFound = remove(currentQuestionProgress, (item) => item.id == updatedQuestionsProgress.id)[0];
 
-       //Check if question exists
-       if (questionFound) {
-         const isCorrectNumber = updatedQuestionsProgress.isCorrect
-           ? questionFound.numberOfTimesCorrect + 1
-           : questionFound.numberOfTimesCorrect;
+      //Check if question exists
+      if (questionFound) {
+        const isCorrectNumber = updatedQuestionsProgress.isCorrect
+          ? questionFound.numberOfTimesCorrect + 1
+          : questionFound.numberOfTimesCorrect;
 
-         questionFound.numberOfTimesTaken = questionFound.numberOfTimesTaken + 1;
-         questionFound.numberOfTimesCorrect = isCorrectNumber;
-         questionFound.timeline.push({
-           date: new Date(Date.now()).toISOString(),
-           isCorrect: updatedQuestionsProgress.isCorrect,
-         });
+        questionFound.numberOfTimesTaken = questionFound.numberOfTimesTaken + 1;
+        questionFound.numberOfTimesCorrect = isCorrectNumber;
+        questionFound.timeline.push({
+          date: new Date(Date.now()).toISOString(),
+          isCorrect: updatedQuestionsProgress.isCorrect,
+        });
 
-         currentQuestionProgress.push(questionFound);
-         await updateCurrentUser({
-           data: { contentProgress: { questions: currentQuestionProgress } },
-         });
-       }
-       //If question does not exist, create a new one and add it
-       else {
-         const isCorrectNumber = updatedQuestionsProgress.isCorrect ? 1 : 0;
+        currentQuestionProgress.push(questionFound);
+        await updateCurrentUser({
+          data: { contentProgress: { questions: currentQuestionProgress } },
+        });
+      }
+      //If question does not exist, create a new one and add it
+      else {
+        const isCorrectNumber = updatedQuestionsProgress.isCorrect ? 1 : 0;
 
-         currentQuestionProgress.push({
-           id: updatedQuestionsProgress.id,
-           numberOfTimesTaken: 1,
-           numberOfTimesCorrect: isCorrectNumber,
-           timeline: [{ date: new Date(Date.now()).toISOString(), isCorrect: updatedQuestionsProgress.isCorrect }],
-         });
+        currentQuestionProgress.push({
+          id: updatedQuestionsProgress.id,
+          numberOfTimesTaken: 1,
+          numberOfTimesCorrect: isCorrectNumber,
+          timeline: [{ date: new Date(Date.now()).toISOString(), isCorrect: updatedQuestionsProgress.isCorrect }],
+        });
 
-         await updateCurrentUser({
-           data: { contentProgress: { questions: currentQuestionProgress } },
-         });
-       }
-     }
+        await updateCurrentUser({
+          data: { contentProgress: { questions: currentQuestionProgress } },
+        });
+      }
+    }
   };
 
   return (
