@@ -285,12 +285,12 @@ const LessonSidebar = ({
       {/* Next Button */}
       <div
         className={cx(
-          segment?.endsWith('test') && 'hidden',
-          'z-10 backdrop-blur-sm border-t bottom-0 left-0 right-0 px-4 py-2 absolute sm:fixed max-md:w-[90%] max-md:-translate-x-1/2 max-md:left-1/2'
+          segment?.endsWith('test') && '',
+          'z-10 backdrop-blur-sm border-t bottom-0 left-0 right-0 sm:px-4 py-2 absolute sm:fixed max-md:w-[90%] max-md:-translate-x-1/2 max-md:left-1/2'
         )}>
         <Link
           href={nextSlug}
-          className='bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-2xl flex items-center justify-center gap-2 ml-auto w-fit max-md:mr-auto max-md:w-[80%]'
+          className='bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-2xl flex items-center justify-center gap-2 md:ml-auto w-full md:w-fit'
           onClick={() => {
             setNextSlug(getNextSlug(index + 1));
             setIndex((prev) => prev + 1);

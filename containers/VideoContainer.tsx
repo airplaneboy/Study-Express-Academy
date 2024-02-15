@@ -20,7 +20,7 @@ const VideoContainer = async ({ params }: { params: { content: string } }) => {
 
   if (!video || !video.url)
     return (
-      <span className='italic text-gray-500 px-4 py-2 w-full h-full flex items-center justify-center text-center'>
+      <span className='italic text-gray-500 px-4 py-2 w-full h-full flex items-center justify-center text-center min-h-[inherit]'>
         An error occurred displaying questions. Please contact support to resolve issue.
       </span>
     );

@@ -55,7 +55,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
 
   if (!test || !test.questions)
     return (
-      <span className='italic text-gray-500 px-4 py-2 w-full h-full flex items-center justify-center text-center'>
+      <span className='italic text-gray-500 px-4 py-2 w-full h-full flex items-center justify-center text-center min-h-[inherit]'>
         An error occurred displaying questions. Please contact support to resolve issue.
       </span>
     );
@@ -184,7 +184,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
 
   return (
     <>
-      <div className='px-2 sm:px-0 md:px-10 py-6 max-sm:mb-12 relative h-full'>
+      <div className='px-2 sm:px-0 md:px-10 py-6 max-sm:mb-20 relative h-full'>
         <div className='max-w-2xl mx-auto'>
           <header className='text-left md:text-center text-base md:text-2xl mt-8 md:mt-4 mb-3 md:mb-12 text-gray-800 font-extrabold'>
             {test.title}
