@@ -87,7 +87,7 @@ const VideoContainer = async ({ params }: { params: { content: string } }) => {
 
   return (
     <div className='overflow-y-auto flex flex-col w-full h-full md:px-4 py-2 lg:px-10 pb-10'>
-      <header className='text-center md:text-left text-3xl sm:text-5xl mt-6 md:mt-8 mb-8 sm:mb-10 font-extrabold overflow-hidden text-ellipsis text-gray-900'>
+      <header className='text-center md:text-left text-3xl sm:text-5xl mt-6 md:mt-8 mb-8 sm:mb-10 font-extrabold overflow-hidden text-ellipsis text-gray-900 pb-2'>
         {video.title}
       </header>
       <VideoPlayer
