@@ -132,8 +132,6 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
     const currentTestProgress: UserTests = user?.contentProgress.tests;
     const testFound = remove(currentTestProgress, (item) => item.id == test._id)[0];
 
-    //Add id to test
-
     //Check if test exists
     if (testFound) {
       testFound.currentTest.currentTestResult = results;
@@ -163,65 +161,24 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
         currentTest: { currentTestResult: results, selectedQuestions, shuffledChoices },
       });
 
-      if (testCompleted) {
-        //Check if passed
-        const isPassedNumber = scores.average >= 0.5 ? 1 : 0;
+      // if (testCompleted) {
+      //   //Check if passed
+      //   const isPassedNumber = scores.average >= 0.5 ? 1 : 0;
 
-        currentTestProgress.push({
-          numberOfTimesPassed: isPassedNumber,
-          numberOfTimesTaken: 1,
-          id: test._id,
-          results: [results],
-          scores: [scores],
-          numberOfQuestions: test.questions.length,
-          currentTest: createTestQuestions(test),
-        });
-      }
+      //   currentTestProgress.push({
+      //     numberOfTimesPassed: isPassedNumber,
+      //     numberOfTimesTaken: 1,
+      //     id: test._id,
+      //     results: [results],
+      //     scores: [scores],
+      //     numberOfQuestions: test.questions.length,
+      //     currentTest: createTestQuestions(test),
+      //   });
+      // }
 
       await updateCurrentUser({
         data: { contentProgress: { tests: currentTestProgress } },
       });
-    }
-
-    if (updatedQuestionsProgress) {
-      //Update Question
-      const currentQuestionProgress: UserQuestions = user?.contentProgress?.questions;
-
-      let questionFound = remove(currentQuestionProgress, (item) => item.id == updatedQuestionsProgress.id)[0];
-
-      //Check if question exists
-      if (questionFound) {
-        const isCorrectNumber = updatedQuestionsProgress.isCorrect
-          ? questionFound.numberOfTimesCorrect + 1
-          : questionFound.numberOfTimesCorrect;
-
-        questionFound.numberOfTimesTaken = questionFound.numberOfTimesTaken + 1;
-        questionFound.numberOfTimesCorrect = isCorrectNumber;
-        questionFound.timeline.push({
-          date: new Date(Date.now()).toISOString(),
-          isCorrect: updatedQuestionsProgress.isCorrect,
-        });
-
-        currentQuestionProgress.push(questionFound);
-        await updateCurrentUser({
-          data: { contentProgress: { questions: currentQuestionProgress } },
-        });
-      }
-      //If question does not exist, create a new one and add it
-      else {
-        const isCorrectNumber = updatedQuestionsProgress.isCorrect ? 1 : 0;
-
-        currentQuestionProgress.push({
-          id: updatedQuestionsProgress.id,
-          numberOfTimesTaken: 1,
-          numberOfTimesCorrect: isCorrectNumber,
-          timeline: [{ date: new Date(Date.now()).toISOString(), isCorrect: updatedQuestionsProgress.isCorrect }],
-        });
-
-        await updateCurrentUser({
-          data: { contentProgress: { questions: currentQuestionProgress } },
-        });
-      }
     }
   };
 
