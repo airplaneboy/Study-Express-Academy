@@ -216,8 +216,8 @@ const DisplayQuestions = ({
             className={
               'z-20 bg-white border-gray-300 border-t-2 border-dashed md:border-solid bottom-0 left-0 right-0 px-4 sm:px-6 md:px-4 py-2 fixed w-full max-md:-translate-x-1/2 max-md:left-1/2 min-h-[72px] flex items-center sm:min-h-[62px] md:min-h-[unset]'
             }>
-            <div className='flex max-md:justify-between items-center w-full md:max-w-fit md:ml-auto gap-8'>
-              <div className='flex items-center gap-0 sm:gap-2 flex-col sm:flex-row '>
+            <div className='flex flex-col sm:flex-row max-md:justify-between items-center w-full md:max-w-fit md:ml-auto gap-2 sm:gap-8'>
+              <div className='flex items-center gap-2 flex-row max-sm:w-full max-sm:justify-between'>
                 <span className='font-bold text-gray-600 mr-2 min-w-max'>
                   Question {currentIndex + 1} of {selectedQuestions.length}
                 </span>
