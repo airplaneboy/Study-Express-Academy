@@ -18,6 +18,27 @@
   }
 }
 
+/* Lenis */
+html.lenis {
+  height: auto !important;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden !important;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none !important;
+}
+
 .input {
   @apply appearance-none block w-full px-5  py-3 bg-gray-200 text-gray-700
            rounded-2xl shadow-sm placeholder-gray-400 focus:outline-none sm:text-sm font-bold;
