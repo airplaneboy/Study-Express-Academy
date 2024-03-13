@@ -1,10 +1,11 @@
+'use client';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Plane from '@/components/Plane';
 
 import CastleBackground from '../public/parallax/blurred_castle_background.webp';
-import CastleForeground from '../public/parallax/blurred_castle_foreground.webp';
+import CastleForeground from '../public/parallax/castle_foreground.webp';
 import RainbowBackground from '../public/parallax/blurred_rainbow_background.webp';
 import RainbowForeground from '../public/parallax/blurred_rainbow_foreground.webp';
 import Main from '../public/parallax/blurred_main.webp';
@@ -27,7 +28,9 @@ export default function ParallaxSection() {
 
   return (
     <>
-      <motion.div ref={ref} className='w-screen h-screen overflow-hidden relative grid place-items-center'>
+      <motion.div ref={ref} className='z-[1] w-screen h-screen overflow-hidden relative grid place-items-center'>
+        <div className='z-10 inset-0 absolute w-full h-full bg-[linear-gradient(0deg,_rgba(255,255,255,0)_0%,_rgba(52,50,44,0)_30%,_rgba(255,255,255,1)_100%)]' />
+
         <motion.div
           className='flex items-center justify-center w-full h-full absolute inset-0 object-cover'
           style={{ y: RainbowBackgroundY }}>
