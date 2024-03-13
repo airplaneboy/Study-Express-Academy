@@ -11,7 +11,8 @@ const Lenis = ({ children }: { children: React.ReactNode }) => {
     <ReactLenis
       root
       options={{
-        duration: 1.5,
+        // duration: 1.5,
+        duration: 1.25,
         lerp: 0,
         easing: (x) => {
           return 1 - Math.pow(1 - x, 3);
