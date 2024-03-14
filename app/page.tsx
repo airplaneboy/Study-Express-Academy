@@ -3,6 +3,7 @@ import ParallaxSection from '@/components/ParallaxSection';
 import FeatureSection from '@/containers/Landing Page/FeatureSection';
 import HeroSection from '@/containers/Landing Page/HeroSection';
 import FeatureSection2 from '@/containers/Landing Page/FeatureSection2';
+import FeatureSection3 from '@/containers/Landing Page/FeatureSection3';
 
 export default function Home() {
   return (
@@ -12,7 +13,8 @@ export default function Home() {
         <ParallaxSection />
         <FeatureSection />
         <FeatureSection2 />
-        <section className={'flex flex-row justify-between items-center h-screen px-24 bg-red-500'} />
+        <FeatureSection3 />
+        <div className='flex flex-row justify-between items-center h-screen px-24 bg-red-500' />
       </main>
     </Lenis>
   );

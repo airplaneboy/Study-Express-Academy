@@ -4,7 +4,7 @@ const FeatureSection2 = () => {
       <div className=' flex flex-row justify-between items-center gap-20'>
         <div className='bg-blue-500 w-full h-full'>a</div>{' '}
         <div className='w-full flex flex-col justify-center gap-3'>
-          <h1 className='text-2xl leading-[1] font-extrabold'>Join our Tech and Innovation Hub</h1>
+          <h2 className='text-2xl leading-[1] font-extrabold'>Join our Tech and Innovation Hub</h2>
           <p className='leading-6 text-base font-medium text-gray-800'>
             Get ahead in the digital age with our technology and innovation courses! Whether you&apos;re interested in
             coding, web development, or artificial intelligence, we&apos;re here to help you gain the skills you need
@@ -21,7 +21,7 @@ const FeatureSection2 = () => {
             and communication skills to wellness and personal development, empower yourself with a holistic education
             that goes beyond traditional subjects.
           </p>
-        </div>{' '}
+        </div>
         <div className='bg-blue-500 w-full h-full'>a</div>
       </div>
 
