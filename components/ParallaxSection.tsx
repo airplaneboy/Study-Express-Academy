@@ -8,7 +8,7 @@ import CastleBackground from '../public/parallax/blurred_castle_background.webp'
 import CastleForeground from '../public/parallax/castle_foreground.webp';
 import RainbowBackground from '../public/parallax/blurred_rainbow_background.webp';
 import RainbowForeground from '../public/parallax/blurred_rainbow_foreground.webp';
-import Main from '../public/parallax/blurred_main.webp';
+import Main from '../public/parallax/main.webp';
 
 export default function ParallaxSection() {
   const [scrollValue, setScrollValue] = useState(0);

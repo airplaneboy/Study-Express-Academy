@@ -16,7 +16,7 @@ const BenefitSection = () => {
       scrollTrigger: {
         toggleClass: { targets: '.pin-spacer', className: '!flex-1' },
         trigger: '.benefit-section',
-        endTrigger: '.last-benefit',
+        endTrigger: '#item-4',
         pin: true, // pin the trigger element while active
         pinSpacing: false,
         start: 'center center',
@@ -99,7 +99,7 @@ const BenefitSection = () => {
       </div>
 
       <div className='!flex-1 w-full flex flex-col items-center gap-[100vh]'>
-        <div id='item-1' className=' z-[4] snap-center min-h-screen flex flex-col gap-5 items-center justify-center'>
+        <div id='item-1' className=' z-[4] min-h-screen flex flex-col gap-5 items-center justify-center'>
           <div className='w-full h-32 bg-blue-500 left-2/3 -top-1/4' />
           <div className='flex flex-col gap-3'>
             <span className=' font-bold text-xl tracking-wide'>Free Access to Quality Education</span>
@@ -110,7 +110,7 @@ const BenefitSection = () => {
           </div>
         </div>
 
-        <div id='item-2' className=' z-[3] snap-center min-h-screen flex flex-col gap-5 items-center justify-center'>
+        <div id='item-2' className='min-h-screen flex flex-col gap-5 items-center justify-center'>
           <div className='w-full h-32 bg-red-500' />
           <div className='flex flex-col gap-3'>
             <span className=' font-bold text-xl tracking-wide'>Diverse Range of Subjects</span>
@@ -121,7 +121,7 @@ const BenefitSection = () => {
           </div>
         </div>
 
-        <div id='item-3' className=' z-[2] snap-center min-h-screen flex flex-col gap-5 items-center justify-center'>
+        <div id='item-3' className='min-h-screen flex flex-col gap-5 items-center justify-center'>
           <div className='w-full h-32 bg-blue-500' />
           <div className='flex flex-col gap-3'>
             <span className=' font-bold text-xl tracking-wide'>Interactive Learning Experience</span>
@@ -132,9 +132,7 @@ const BenefitSection = () => {
           </div>
         </div>
 
-        <div
-          id='item-4'
-          className='last-benefit  z-[1] snap-center min-h-screen flex flex-col gap-5 items-center justify-center'>
+        <div id='item-4' className='min-h-screen flex flex-col gap-5 items-center justify-center'>
           <div className='w-full h-32 bg-red-500' />
           <div className='flex flex-col gap-3'>
             <span className=' font-bold text-xl tracking-wide'>Learn at Your Own Pace</span>
