@@ -6,44 +6,68 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextPlugin } from 'gsap/TextPlugin';
+import { cormorantUpright } from '@/app/font';
 
-const TestimonialSection = ({ className }: { className?: string | undefined }) => {
+const TestimonialSection = () => {
   useGSAP(() => {
     gsap.registerPlugin(TextPlugin);
     gsap.registerPlugin(ScrollTrigger);
 
-    let tl = gsap.timeline();
-
-    tl.from('#profile-1-image', {
-      x: -1000,
+    gsap.to('#testimonial-section', {
+      scrollTrigger: {
+        trigger: '#testimonial-section',
+        // markers: true,
+        pin: true,
+        start: 'top top',
+        end: 'bottom top',
+        pinSpacing: true,
+      },
+    });
+    gsap.from('#profile-1-image', {
+      x: -200,
+      opacity: 0,
+      scale: 0,
+      ease: 'none',
       duration: 2,
       scrollTrigger: {
         trigger: '#testimonial-section',
         scrub: true,
-        end: 'bottom bottom',
+        end: 'center center',
         start: 'top bottom',
+        // markers: true,
       },
     });
 
-    tl.to('.quote', {
+    gsap.to('.quote', {
+      repeat: -1,
+      yoyo: true,
+      yoyoEase: 'none',
       duration: 1,
-      scale: 1.1,
-      rotation: 10,
-      // scrollTrigger: { trigger: '#testimonial-section', start: 'top center', end: 'bottom top', markers: true },
+      scale: 1.05,
+      // rotation: 10,
+      scrollTrigger: { trigger: '#testimonial-section', start: 'top top', end: 'bottom center' },
     });
 
-    tl.to('#typewriter', {
+    gsap.to('#typewriter', {
+      ease: 'sine.out',
+      scrollTrigger: {
+        trigger: '#testimonial-section',
+        start: 'top center',
+        end: 'bottom top',
+        scrub: false,
+        toggleActions: 'play pause resume reset',
+      },
       text: {
         value:
           'It’s been such a game changer for me! I&apos;ve learned a ton in such a short amount of time. The courses are top-notch quality, and the teachers are so engaging, approachable, and incredibly knowledgeable. Their passion for teaching has really sparked my love for learning even more, and I would definitely recommend this experience to anyone wanting to grow their knowledge and skills.',
         type: 'diff',
-        speed: 0.5,
+        speed: 1.25,
         // delimiter: ' ',
         // newClass: 'text-blue-300 z-50',
       },
       onUpdate: () => {
         cursorTimeline.restart();
-        cursorTimeline.pause();
+        // cursorTimeline.pause();
       },
       onComplete: () => {
         cursorTimeline.play();
@@ -58,7 +82,7 @@ const TestimonialSection = ({ className }: { className?: string | undefined }) =
   return (
     <section
       id='testimonial-section'
-      className={className + 'max-w-7xl mx-auto flex flex-row justify-between items-center min-h-screen px-32 gap-10'}>
+      className='max-w-7xl mx-auto flex flex-row justify-between items-center min-h-screen px-32 gap-10'>
       <Image
         id='profile-1-image'
         priority
@@ -67,26 +91,29 @@ const TestimonialSection = ({ className }: { className?: string | undefined }) =
         src={Profile1}
         alt='smiling man portrait with blurred background'
       />
-
-      <div className='rounded-2xl border-y relative left-20 shadow-inner shadow-gray-300 bg-gradient-to-r from-white/30 via-white to-white py-10 px-10 pl-40 w-full h-full flex flex-col justify-center gap-10'>
-        <p className='font-upright relative z-[1] min-h-[200px] leading-10 tracking text-3xl word-spacing-1 font-semibold text-gray-700 select-none'>
+      <div
+        className={`${cormorantUpright.className} rounded-2xl border-y relative left-20 shadow-inner shadow-gray-300 bg-gradient-to-r from-white/30 via-white to-white py-10 px-10 pl-40 w-full flex flex-col justify-center gap-5`}>
+        <p
+          className={
+            'relative z-[1] min-h-[250px] min-w-[60vw] leading-snug tracking text-4xl word-spacing-1 font-semibold text-gray-700 select-none'
+          }>
           <span id='typewriter' className='absolute text-black/20'>
             It’s been such a game changer for me! I&apos;ve learned a ton in such a short amount of time. The courses
             are top-notch quality, and the teachers are so engaging, approachable, and incredibly knowledgeable. Their
             passion for teaching has really sparked my love for learning even more, and I would definitely recommend
             this experience to anyone wanting to grow their knowledge and skills.
           </span>
-          <span id='typewriter' className='z-50 text-gray-600' />
-          <span id='cursor' className='text-3xl text-blue-500'>
+          <span id='typewriter' className={'z-50 text-gray-600'} />
+          <span id='cursor' className='text-5xl absolute text-blue-500'>
             |
           </span>
         </p>
 
-        <div className='flex flex-col gap-2 w-full items-end z-[1]'>
-          <span className='text-lg text-gray-700 font-bold'>Micheal D.</span>
-          <span className='text-sm text-gray-600 font-bold'>Grade 9 Student</span>
+        <div className='flex flex-col gap-2 w-full items-end z-[1] select-none'>
+          <span className='text-xl text-blue-700 font-bold'>Micheal D.</span>
+          <span className='text-md text-gray-600 font-bold'>Grade 9 Student</span>
         </div>
-        <RiDoubleQuotesR size={250} className='quote absolute right-0 bottom-0 text-blue-300' />
+        <RiDoubleQuotesR size={250} className='rotate-12 quote absolute right-0 bottom-0 text-blue-200' />
       </div>
     </section>
   );
