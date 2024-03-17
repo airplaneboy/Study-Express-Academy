@@ -16,8 +16,10 @@ module.exports = {
         growAndShrink: 'growAndShrink 700ms ease-in-out forwards',
         spin: 'spin 1000ms linear',
         shine: 'shine 12s ease-in-out infinite',
+        blink: 'blink 1.2s infinite',
       },
       keyframes: {
+        blink: { '0%, 50%': { opacity: 0 }, '100%': { opacity: 1 } },
         marquee: {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-100%)' },
@@ -52,11 +54,12 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-      // fontFamily: {
-      //   // inter: ['var(--font-inter)', 'sans-serif'],
-      //   // nunito: ['var(--font-nunito)', 'san-serif'],
-      //   // plusJakartaSans: ['var(--font-PlusJakartaSans)'],
-      // },
+      fontFamily: {
+        upright: ['var(--font-upright)', 'san-serif'],
+        // inter: ['var(--font-inter)', 'sans-serif'],
+        // nunito: ['var(--font-nunito)', 'san-serif'],
+        // plusJakartaSans: ['var(--font-PlusJakartaSans)'],
+      },
       screens: {
         // sm: '640px',
         sm: '480px',

@@ -1,9 +1,10 @@
-let classNames = require('classnames');
 import '@/styles/globals.css';
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import Providers from '@/context/Provider';
-// import Header from '@/components/Header';
 import ToasterContext from '@/context/Toaster';
+//@ts-ignore
+import cx from 'clsx/lite';
+// import Header from '@/components/Header';
 
 // const nunito = Nunito({
 //   weight: ['500', '700'],
@@ -26,13 +27,22 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   // display: 'swap',
 });
 
+import { Cormorant_Upright } from 'next/font/google';
+
+const cormorantUpright = Cormorant_Upright({
+  subsets: ['latin'],
+  style: 'normal',
+  weight: '400',
+  variable: '--font-upright',
+});
+
 export const metadata = {
   title: process.env.TITLE,
   description: `Explore a wide range of educational subjects and courses on ${process.env.TITLE}. Learn math, science, and more. Access free interactive lessons, and practice exercises. Start your learning journey today.`,
 };
 
 // const classes = classNames(nunito.className, plusJakartaSans.variable, inter.variable, 'h-full');
-const classes = classNames(plusJakartaSans.className, 'h-full');
+const classes = cx(plusJakartaSans.className, cormorantUpright.className, 'h-full');
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html className='h-full !subpixel-antialiased selection:bg-blue-300 selection:text-blue-900' lang='en'>
