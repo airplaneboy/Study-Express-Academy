@@ -7,6 +7,7 @@ import FeatureSection3 from '@/containers/Landing Page/FeatureSection3';
 import BenefitSection from '@/containers/Landing Page/BenefitsSection';
 import TestimonialSection from '@/containers/Landing Page/TestimonialSection';
 import CTASection from '@/containers/Landing Page/CTASection';
+import FooterSection from '@/containers/Landing Page/FooterSection';
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <BenefitSection />
         <TestimonialSection />
         <CTASection />
+        <FooterSection />
         {/* <div className='flex flex-row justify-between items-center h-screen px-24 bg-red-500' /> */}
       </main>
     </Lenis>
