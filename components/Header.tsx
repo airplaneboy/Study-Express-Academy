@@ -96,6 +96,8 @@ export default function Header() {
             <a href='#' className='flex'>
               <span className='sr-only'>Workflow</span>
               <Image
+                width={32}
+                height={32}
                 className='h-8 w-auto sm:h-10'
                 src='https://tailwindui.com/Image/logos/workflow-mark-blue-600.svg'
                 alt=''
@@ -264,6 +266,8 @@ export default function Header() {
                                     <a href={post.href} className='-m-3 p-3 flex rounded-lg hover:bg-gray-100'>
                                       <div className='hidden sm:block flex-shrink-0'>
                                         <Image
+                                          width={32}
+                                          height={32}
                                           className='w-32 h-20 object-cover rounded-md'
                                           src={post.imageUrl}
                                           alt=''
@@ -324,6 +328,8 @@ export default function Header() {
               <div className='flex items-center justify-between'>
                 <div>
                   <Image
+                    width={32}
+                    height={32}
                     className='h-8 w-auto'
                     src='https://tailwindui.com/Image/logos/workflow-mark-blue-600.svg'
                     alt='Workflow'
@@ -353,7 +359,6 @@ export default function Header() {
                   </div>
                   <div className='mt-8 text-base'>
                     <a href='#' className='font-medium text-blue-600 hover:text-blue-500'>
-                      {' '}
                       View all products <span aria-hidden='true'>&rarr;</span>
                     </a>
                   </div>

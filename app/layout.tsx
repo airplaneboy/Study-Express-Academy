@@ -24,7 +24,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html className='h-full !subpixel-antialiased selection:bg-blue-300 selection:text-blue-900' lang='en'>
       <body className={classes}>
         <Providers>
-          <ToasterContext /> {children}
+          <ToasterContext />
+          {children}
         </Providers>
       </body>
     </html>

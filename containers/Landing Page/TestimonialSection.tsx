@@ -1,7 +1,7 @@
 'use client';
 import { RiDoubleQuotesR } from 'react-icons/ri';
 import Image from 'next/image';
-import Profile1 from '@/public/assets/profile-1.jpg';
+import Profile1 from '@/public/assets/profile-3.jpg';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -24,7 +24,7 @@ const TestimonialSection = () => {
       },
     });
     gsap.from('#profile-1-image', {
-      x: -200,
+      x: -1000,
       opacity: 0,
       scale: 0,
       ease: 'none',
@@ -61,7 +61,7 @@ const TestimonialSection = () => {
         value:
           'It’s been such a game changer for me! I&apos;ve learned a ton in such a short amount of time. The courses are top-notch quality, and the teachers are so engaging, approachable, and incredibly knowledgeable. Their passion for teaching has really sparked my love for learning even more, and I would definitely recommend this experience to anyone wanting to grow their knowledge and skills.',
         type: 'diff',
-        speed: 1.25,
+        speed: 2,
         // delimiter: ' ',
         // newClass: 'text-blue-300 z-50',
       },
@@ -87,12 +87,12 @@ const TestimonialSection = () => {
         id='profile-1-image'
         priority
         quality={100}
-        className='saturate-50 object-contain z-[1] rounded-r-2xl brightness-50 shadow-lg shadow-gray-700 pointer-events-none absolute left-0 w-fit  h-[80vh] bg-blue-500'
+        className='saturate-150 object-contain z-[1] rounded-r-2xl shadow-lg shadow-gray-700 pointer-events-none absolute -left-16 w-fit h-[80vh] bg-blue-500'
         src={Profile1}
         alt='smiling man portrait with blurred background'
       />
       <div
-        className={`${cormorantUpright.className} rounded-2xl border-y relative left-20 shadow-inner shadow-gray-300 bg-gradient-to-r from-white/30 via-white to-white py-10 px-10 pl-40 w-full flex flex-col justify-center gap-5`}>
+        className={`${cormorantUpright.className} rounded-2xl border-y relative left-20 shadow-inner shadow-blue-500 bg-white py-10 px-10 pl-24 w-full flex flex-col justify-center gap-5`}>
         <p
           className={
             'relative z-[1] min-h-[250px] min-w-[60vw] leading-snug tracking text-4xl word-spacing-1 font-semibold text-gray-700 select-none'
