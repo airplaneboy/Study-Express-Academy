@@ -8,7 +8,7 @@ const Lenis = ({ children }: { children: React.ReactNode }) => {
   const lenisRef = useRef(null);
 
   useEffect(() => {
-    document.documentElement.classList.add('[scrollbar-width:none]');
+    // document.documentElement.classList.add('[scrollbar-width:none]');
   }, []);
 
   useGSAP(() => {

@@ -82,7 +82,7 @@ const TestimonialSection = () => {
   return (
     <section
       id='testimonial-section'
-      className='max-w-7xl mx-auto flex flex-row justify-between items-center min-h-screen px-32 gap-10'>
+      className='max-w-7xl mx-auto flex flex-row justify-between items-center min-h-screen px-32 gap-10 py-32'>
       <Image
         id='profile-1-image'
         priority

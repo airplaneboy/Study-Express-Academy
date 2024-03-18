@@ -29,6 +29,9 @@ module.exports = {
         third: 'moveInCircle 40s linear infinite',
         fourth: 'moveHorizontal 40s ease infinite',
         fifth: 'moveInCircle 20s ease infinite',
+
+        //Spotlight
+        spotlight: 'spotlight 2s ease .75s 1 forwards',
       },
       keyframes: {
         blink: { '0%, 50%': { opacity: 0 }, '100%': { opacity: 1 } },
@@ -94,6 +97,18 @@ module.exports = {
           },
           '100%': {
             transform: 'translateY(-50%)',
+          },
+        },
+
+        //Spotlight
+        spotlight: {
+          '0%': {
+            opacity: 0,
+            transform: 'translate(-72%, -62%) scale(0.5)',
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'translate(-50%,-40%) scale(1)',
           },
         },
       },
