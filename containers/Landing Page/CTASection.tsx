@@ -2,6 +2,7 @@
 import cx from 'clsx/lite';
 import { HiChevronRight } from 'react-icons/hi2';
 import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation';
+import { Button } from '@/components/ui/moving-border';
 
 const CTASection = () => {
   const ctaButton =
@@ -19,8 +20,8 @@ const CTASection = () => {
             literature and the arts, our courses are here to support you on an exciting learning journey. Take the first
             step toward mastering new skills and shaping your intellectual adventure!
           </p>
-          <div className='flex w-full gap-5 items-center justify-center'>
-            <button
+          <div className='flex w-full gap-5 items-center justify-center '>
+            {/* <button
               className={cx(
                 ctaButton,
                 'bg-black/50 text-white/80 group flex gap-10 align-baseline hover:border-gray-500 hover:text-gray-500 hover:bg-gray-50/80 transition-all hover:shadow-lg hover:shadow-gray-300'
@@ -28,13 +29,32 @@ const CTASection = () => {
               Start Learning Now
             </button>
             <button
-              id='button-2'
               className={cx(
                 ctaButton,
                 'text-white group flex gap-10 align-baseline hover:border-blue-500 hover:text-blue-500 hover:bg-blue-50/80 transition-all hover:shadow-lg hover:shadow-blue-300'
               )}>
               Explore Your Courses <HiChevronRight className='group-hover:text-blue-500 text-white' size={18} />
-            </button>
+            </button> */}
+
+            <Button
+              as='button'
+              containerClassName='w-full max-w-xs h-auto'
+              className={cx(
+                ctaButton,
+                'bg-black/50 text-white group flex gap-10 align-baseline hover:text-blue-500 transition-colors '
+              )}>
+              Start Learning Now
+            </Button>
+
+            <Button
+              as='button'
+              containerClassName='w-full  max-w-xs h-auto'
+              className={cx(
+                ctaButton,
+                'text-white group flex gap-10 align-baseline hover:text-blue-500 transition-colors '
+              )}>
+              Explore Your Courses <HiChevronRight className='group-hover:text-blue-500 text-white' size={18} />
+            </Button>
           </div>
         </div>
       </section>
