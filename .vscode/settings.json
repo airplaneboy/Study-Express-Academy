@@ -13,7 +13,8 @@
     "portabletext",
     "revalidates",
     "samplesize",
-    "Smartech"
+    "Smartech",
+    "Typewritter"
   ],
   "files.exclude": {
     "**/.git": true,
