@@ -6,6 +6,7 @@ import sampleSize from 'lodash/samplesize';
 import sample from 'lodash/sample';
 import remove from 'lodash/remove';
 import DisplayQuestions from './DisplayQuestions';
+import compact from 'lodash/compact';
 
 //#region Types
 export type UserTests = UserTest[];
@@ -19,6 +20,8 @@ export type UserTest = {
   numberOfQuestions?: number;
   isCompleted?: boolean;
   currentTest: { selectedQuestions: any[]; shuffledChoices: any[]; currentTestResult: any };
+  lastTaken: Date | string;
+  testTitle: string;
 };
 
 export type Test = { _id: string; questions: any[]; title: string };
@@ -148,8 +151,10 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
         testFound.scores!.push(scores);
         testFound.results!.push(results);
         testFound.isCompleted = true;
-        testFound.numberOfQuestions = test.questions.length;
+        testFound.numberOfQuestions = compact(selectedQuestions).length;
         testFound.currentTest = createTestQuestions(test);
+        testFound.lastTaken = new Date(Date.now()).toISOString();
+        testFound.testTitle = test.title;
       }
       currentTestProgress.push(testFound);
       await updateCurrentUser({
@@ -159,6 +164,8 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
       currentTestProgress.push({
         id: test._id,
         currentTest: { currentTestResult: results, selectedQuestions, shuffledChoices },
+        lastTaken: new Date(Date.now()).toISOString(),
+        testTitle: test.title,
       });
 
       // if (testCompleted) {

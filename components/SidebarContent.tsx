@@ -73,7 +73,7 @@ export default function SidebarContent({ children }: { children: React.ReactNode
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className=' flex flex-col  inset-y-0  shadow-blue-300  w-64 h-[calc(100vh-64px)] sticky top-16 max-md:hidden'>
+        <div className=' flex flex-col  inset-y-0  shadow-blue-300 min-w-[256px] w-64 h-[calc(100vh-64px)] sticky top-16 max-md:hidden'>
           <SidebarItems classNames={classNames} navigation={sidebarData} />
         </div>
 
