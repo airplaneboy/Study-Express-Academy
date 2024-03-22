@@ -16,6 +16,7 @@ import { RxDoubleArrowLeft, RxDoubleArrowRight, RxChevronLeft, RxChevronRight } 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
+import { useRouter } from 'next/navigation';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -23,10 +24,12 @@ interface DataTableProps<TData, TValue> {
 }
 
 export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+  const router = useRouter();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
+    initialState: { columnVisibility: { isCompleted: false, id: false } },
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -70,9 +73,13 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                <TableRow
+                  className='cursor-pointer'
+                  onClick={() => router.push(`/user/tests-overview/${row.getValue('id')}`)}
+                  key={row.id}
+                  data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell className='text-center ' key={cell.id}>
+                    <TableCell className='text-center' key={cell.id}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
@@ -94,7 +101,6 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
         <div className='flex items-center space-x-4'>
           <p className='text-sm font-medium'>Rows per page</p>
           <Select
-            className=''
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value: any) => {
               table.setPageSize(Number(value));

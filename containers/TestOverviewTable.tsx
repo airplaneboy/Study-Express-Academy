@@ -24,6 +24,10 @@ export type UserTest = {
 
 export const columns: ColumnDef<UserTest>[] = [
   {
+    accessorKey: 'id',
+    header: 'ID',
+  },
+  {
     accessorKey: 'testTitle',
     header: 'Title',
 
@@ -37,7 +41,6 @@ export const columns: ColumnDef<UserTest>[] = [
     accessorKey: 'numberOfTimesPassed',
     header: 'Times Passed',
   },
-
   // {
   //   accessorKey: 'isCompleted',
   //   header: 'Completed',
@@ -50,7 +53,10 @@ export const columns: ColumnDef<UserTest>[] = [
     accessorKey: 'lastTaken',
     header: ({ column }) => {
       return (
-        <Button variant='ghost' className='group' onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+        <Button
+          variant='ghost'
+          className='group transition-opacity duration-75'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
           Last Taken
           <LuArrowUpDown className='ml-2 h-4 w-4 group-hover:!text-gray-600 transition-colors duration-75' />
         </Button>
