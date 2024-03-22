@@ -1,8 +1,12 @@
 'use client';
+import { Button } from '@/components/ui/button';
 import { ColumnDef } from '@tanstack/react-table';
+import { formatDistanceToNow } from 'date-fns';
+import { LuArrowUpDown } from 'react-icons/lu';
 
 export type UserTest = {
-  id: string;
+  testTitle: string;
+  id?: string;
   numberOfTimesPassed?: number;
   numberOfTimesTaken?: number;
   scores?: {
@@ -22,6 +26,8 @@ export const columns: ColumnDef<UserTest>[] = [
   {
     accessorKey: 'testTitle',
     header: 'Title',
+
+    cell: ({ row }) => <span className='w-full'>{row.getValue('testTitle')}</span>,
   },
   {
     accessorKey: 'numberOfTimesTaken',
@@ -32,17 +38,28 @@ export const columns: ColumnDef<UserTest>[] = [
     header: 'Times Passed',
   },
 
-  {
-    accessorKey: 'isCompleted',
-    header: 'Completed',
-  },
+  // {
+  //   accessorKey: 'isCompleted',
+  //   header: 'Completed',
+  // },
   {
     accessorKey: 'numberOfQuestions',
     header: 'Number Of Questions',
   },
   {
     accessorKey: 'lastTaken',
-    header: 'Last Taken',
-    cell: ({ row }) => <span className='truncate'>{new Date(row.getValue('lastTaken')).toUTCString()}</span>,
+    header: ({ column }) => {
+      return (
+        <Button variant='ghost' className='group' onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+          Last Taken
+          <LuArrowUpDown className='ml-2 h-4 w-4 group-hover:!text-gray-600 transition-colors duration-75' />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <span className='truncate'>
+        {formatDistanceToNow(new Date(row.getValue('lastTaken')), { addSuffix: true, includeSeconds: false })}
+      </span>
+    ),
   },
 ];
