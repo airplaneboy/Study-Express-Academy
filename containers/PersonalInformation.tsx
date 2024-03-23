@@ -10,6 +10,8 @@ import { useSession } from 'next-auth/react';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { format } from 'date-fns';
 import PersonalInformationContext from '@/context/PersonalInformationContext';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
 // const countryState: { country: any; setCountry: any } = {
 //   country: null,
 //   setCountry: null,
@@ -213,7 +215,7 @@ const PersonalInformation = ({
                     <label htmlFor='gender' className='block text-sm font-medium text-gray-700'>
                       Gender
                     </label>
-                    <select
+                    {/* <select
                       className='text-gray-700 mt-1 block w-full rounded-2xl border-2 border-gray-300 bg-white px-3 text-start focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm max-sm:py-1'
                       value={gender || ''}
                       id='gender'
@@ -222,7 +224,17 @@ const PersonalInformation = ({
                       <option value='male'>Male</option>
                       <option value='female'>Female</option>
                       <option value='other'>Other</option>
-                    </select>
+                    </select> */}
+                    <Select onValueChange={(e) => setGender(e)} defaultValue={gender}>
+                      <SelectTrigger className='!ring-0 !ring-transparent text-gray-700 mt-1 w-full rounded-2xl border-2 border-gray-300 bg-white px-3 text-start focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm max-sm:py-1'>
+                        <SelectValue placeholder='Select...' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value='male'>Male</SelectItem>
+                        <SelectItem value='female'>Female</SelectItem>
+                        <SelectItem value='Other'>Other</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   <PersonalInformationContext.Provider value={{ country, setCountry }}>
