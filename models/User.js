@@ -146,6 +146,7 @@ const UserSchema = new mongoose.Schema(
           results: { type: [[{ questionId: String, isCorrect: Boolean, date: Date }]] },
           lastTaken: { type: Date },
           testTitle: { type: String },
+          slug: { type: String },
           currentTest: {
             type: {
               selectedQuestions: mongoose.Schema.Types.Mixed,

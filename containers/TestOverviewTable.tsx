@@ -20,12 +20,17 @@ export type UserTest = {
   isCompleted?: boolean;
   currentTest?: { selectedQuestions: any[]; shuffledChoices: any[]; currentTestResult: any };
   lastTaken: Date | string;
+  slug: string;
 };
 
 export const columns: ColumnDef<UserTest>[] = [
   {
     accessorKey: 'id',
     header: 'ID',
+  },
+  {
+    accessorKey: 'slug',
+    header: 'Slug',
   },
   {
     accessorKey: 'testTitle',

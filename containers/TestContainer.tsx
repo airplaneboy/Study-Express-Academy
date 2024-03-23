@@ -22,9 +22,10 @@ export type UserTest = {
   currentTest: { selectedQuestions: any[]; shuffledChoices: any[]; currentTestResult: any };
   lastTaken: Date | string;
   testTitle: string;
+  slug: string;
 };
 
-export type Test = { _id: string; questions: any[]; title: string };
+export type Test = { _id: string; questions: any[]; title: string; slug: string };
 
 export type Scores = {
   date?: string;
@@ -155,6 +156,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
         testFound.currentTest = createTestQuestions(test);
         testFound.lastTaken = new Date(Date.now()).toISOString();
         testFound.testTitle = test.title;
+        testFound.slug = test.slug;
       }
       currentTestProgress.push(testFound);
       await updateCurrentUser({
@@ -166,6 +168,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
         currentTest: { currentTestResult: results, selectedQuestions, shuffledChoices },
         lastTaken: new Date(Date.now()).toISOString(),
         testTitle: test.title,
+        slug: test.slug,
       });
 
       // if (testCompleted) {

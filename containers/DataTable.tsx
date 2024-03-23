@@ -29,7 +29,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
-    initialState: { columnVisibility: { isCompleted: false, id: false } },
+    initialState: { columnVisibility: { isCompleted: false, id: false, slug: false } },
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -75,7 +75,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   className='cursor-pointer'
-                  onClick={() => router.push(`/user/tests-overview/${row.getValue('id')}`)}
+                  onClick={() => router.push(`/user/tests-overview/${row.getValue('slug')}`)}
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
