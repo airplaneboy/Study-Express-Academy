@@ -14,7 +14,8 @@
     "revalidates",
     "samplesize",
     "Smartech",
-    "Typewritter"
+    "Typewritter",
+    "zoombox"
   ],
   "files.exclude": {
     "**/.git": true,
