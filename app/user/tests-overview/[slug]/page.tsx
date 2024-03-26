@@ -9,6 +9,9 @@ const TestOverview = async ({ params }: { params: { slug: string } }) => {
 
   const subItem: string | undefined = 'font-bold text-gray-800 text-sm';
   const item: string | undefined = 'flex justify-between py-2';
+
+  console.log(test);
+
   return (
     <div>
       <LineChart
@@ -17,10 +20,13 @@ const TestOverview = async ({ params }: { params: { slug: string } }) => {
           labels: test.scores.map((score: any) => formatDistanceToNow(new Date(score.date))),
           datasets: [
             {
+              pointRadius: 6,
               data: test.scores.map((score: any) => score.average),
               label: 'Score Average',
-              backgroundColor: '#3b82f6',
-              borderColor: '#60a5fa',
+              backgroundColor: '#3b82f660',
+              pointBorderColor: '#3b82f6',
+              pointHoverBorderColor: '#1d4ed8',
+              borderColor: '#93c5fd',
               cubicInterpolationMode: 'monotone',
               tension: 0.4,
             },
