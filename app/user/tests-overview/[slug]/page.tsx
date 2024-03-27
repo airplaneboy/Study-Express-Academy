@@ -10,8 +10,6 @@ const TestOverview = async ({ params }: { params: { slug: string } }) => {
   const subItem: string | undefined = 'font-bold text-gray-800 text-sm';
   const item: string | undefined = 'flex justify-between py-2';
 
-  console.log(test);
-
   return (
     <div>
       <LineChart

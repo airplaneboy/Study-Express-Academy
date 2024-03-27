@@ -110,3 +110,12 @@ export const getTest = async (slug: string) =>
     }
   );
 //#endregion
+
+//#region Questions
+export const getQuestionsId = async () => await client(groq`*[_type=='questions' && test->_id ==$testId]._id`);
+
+export const getQuestions = async (testId: string) =>
+  await client(groq`*[_type=='questions' && test->_id ==$testId] {question, difficulty,options}`, {
+    testId,
+  });
+//#endregion
