@@ -38,6 +38,7 @@ export type UserQuestions = {
   id: string;
   numberOfTimesCorrect: number;
   numberOfTimesTaken: number;
+  questionTitle: string;
   timeline: { date: string; isCorrect: boolean }[];
 }[];
 
@@ -81,7 +82,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
   const randomQuote = sample(await fetchGET({ path: 'https://zenquotes.io/api/quotes/', revalidate: 86400 }));
 
   const updateUserProgress = async (
-    updatedQuestionsProgress: { id: string; isCorrect: boolean },
+    updatedQuestionsProgress: { id: string; isCorrect: boolean; question: string },
     testCompleted: boolean,
     scores: Scores,
     results: Results
@@ -104,6 +105,10 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
 
         questionFound.numberOfTimesTaken = questionFound.numberOfTimesTaken + 1;
         questionFound.numberOfTimesCorrect = isCorrectNumber;
+
+        questionFound.questionTitle == (undefined || null) &&
+          (questionFound.questionTitle = updatedQuestionsProgress.question);
+
         questionFound.timeline.push({
           date: new Date(Date.now()).toISOString(),
           isCorrect: updatedQuestionsProgress.isCorrect,
@@ -120,6 +125,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
 
         currentQuestionProgress.push({
           id: updatedQuestionsProgress.id,
+          questionTitle: updatedQuestionsProgress.question,
           numberOfTimesTaken: 1,
           numberOfTimesCorrect: isCorrectNumber,
           timeline: [{ date: new Date(Date.now()).toISOString(), isCorrect: updatedQuestionsProgress.isCorrect }],

@@ -19,7 +19,7 @@ const DisplayQuestions = ({
   shuffledChoices: any[];
   selectedQuestions: any[];
   updateUser: (
-    questionProgress: { id: string; isCorrect: boolean },
+    questionProgress: { id: string; isCorrect: boolean; question: string },
     testCompleted: boolean,
     scores: Scores,
     results: Results
@@ -34,7 +34,7 @@ const DisplayQuestions = ({
   const [showSummary, setShowSummary] = useState(false);
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
   const [result, setResult] = useState<Results>(currentTestProgress || []);
-  const [currentResult, setCurrentResult] = useState<any>({});
+  const [questionProgress, setQuestionProgress] = useState<any>({});
   const [average, setAverage] = useState<number>(0);
   const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
 
@@ -50,13 +50,13 @@ const DisplayQuestions = ({
     if (!flag) return setFlag(true);
 
     updateUser(
-      currentResult,
+      questionProgress,
       testCompleted,
       { numberOfCorrectAnswers, numberOfQuestion: result?.length, average: +(numberOfCorrectAnswers / result.length) },
       result
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [testCompleted, currentResult]);
+  }, [testCompleted, questionProgress]);
 
   const handleNextQuestion = () => {
     if (currentIndex < selectedQuestions.length - 1) {
@@ -73,11 +73,11 @@ const DisplayQuestions = ({
     if (correctAnswer == selectedOption) {
       setNumberOfCorrectAnswers((prev) => prev + 1);
       setResult((prev: any) => [...prev, { questionId: id, isCorrect: true }]);
-      setCurrentResult({ id, isCorrect: true });
+      setQuestionProgress({ id, isCorrect: true, question: selectedQuestions[currentIndex].question });
       Confetti();
     } else {
       setResult((prev: any) => [...prev, { questionId: id, isCorrect: false }]);
-      setCurrentResult({ id, isCorrect: false });
+      setQuestionProgress({ id, isCorrect: false, question: selectedQuestions[currentIndex].question });
     }
 
     setShowExplanation(true);
