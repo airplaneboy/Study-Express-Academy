@@ -99,7 +99,9 @@ const Results = async () => {
                                   )}
                                   key={index}
                                   value={`question ${index + 1}`}>
-                                  <AccordionTrigger key={index}>Question {index + 1}</AccordionTrigger>
+                                  <AccordionTrigger key={index} className=''>
+                                    <span className='truncate max-w-2xl'>{foundQuestion?.questionTitle}</span>
+                                  </AccordionTrigger>
                                   <AccordionContent>
                                     <div className='flex justify-between gap-5 items-center mt-5 px-5'>
                                       <span>{correct ? <HiCheck size={20} /> : <HiX size={20} />}</span>
