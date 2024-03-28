@@ -143,7 +143,7 @@ const UserSchema = new mongoose.Schema(
             type: [{ date: Date, numberOfCorrectAnswers: Number, average: Number }],
             default: [],
           },
-          results: { type: [[{ questionId: String, isCorrect: Boolean, date: Date }]] },
+          results: { type: [[{ questionId: String, isCorrect: Boolean, date: Date, selectedOption: String }]] },
           lastTaken: { type: Date },
           testTitle: { type: String },
           slug: { type: String },

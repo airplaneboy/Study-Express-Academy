@@ -89,6 +89,8 @@ const Results = async () => {
                             {result.map((question: any, index: number) => {
                               const foundQuestion = questions.find((item) => item.id == question.questionId);
                               const correct = question.isCorrect;
+                              question.selectedOption == (undefined || null) && (question.selectedOption = '');
+
                               return (
                                 <AccordionItem
                                   className={cx(
@@ -110,7 +112,7 @@ const Results = async () => {
                                   <AccordionContent>
                                     <div className='flex justify-between gap-5 items-center mt-5 px-5'>
                                       <Link
-                                        href='#'
+                                        href={`/user/results/${question.questionId}/${question.selectedOption}`}
                                         target='_blank'
                                         className='flex gap-1 rounded-2xl text-blue-500 border border-blue-300 hover:border-blue-500 bg-white px-4 py-1 justify-center items-center'>
                                         Review

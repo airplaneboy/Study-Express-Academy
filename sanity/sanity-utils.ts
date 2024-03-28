@@ -114,7 +114,12 @@ export const getTest = async (slug: string) =>
 //#region Questions
 export const getQuestionsId = async () => await client(groq`*[_type=='questions' && test->_id ==$testId]._id`);
 
-export const getQuestions = async (testId: string) =>
+export const getQuestion = async (questionId: string) =>
+  await client(groq`*[_type=='questions' && _id ==$questionId][0]{question, difficulty,options,solution, answer}`, {
+    questionId,
+  });
+
+export const getQuestionsByTest = async (testId: string) =>
   await client(groq`*[_type=='questions' && test->_id ==$testId] {question, difficulty,options}`, {
     testId,
   });
