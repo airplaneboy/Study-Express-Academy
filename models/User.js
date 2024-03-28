@@ -165,7 +165,7 @@ const UserSchema = new mongoose.Schema(
           questionTitle: { type: String },
           numberOfTimesCorrect: { type: Number, trim: true, default: 0, required: true },
           numberOfTimesTaken: { type: Number, default: 0 },
-          timeline: { type: [{ date: Date, isCorrect: Boolean }], default: [] },
+          timeline: { type: [{ date: Date, isCorrect: Boolean, selectedOption: String }], default: [] },
         },
       ],
     },

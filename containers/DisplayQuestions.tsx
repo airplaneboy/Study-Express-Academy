@@ -19,7 +19,7 @@ const DisplayQuestions = ({
   shuffledChoices: any[];
   selectedQuestions: any[];
   updateUser: (
-    questionProgress: { id: string; isCorrect: boolean; question: string },
+    questionProgress: { id: string; isCorrect: boolean; question: string; selectedOption: string },
     testCompleted: boolean,
     scores: Scores,
     results: Results
@@ -72,12 +72,12 @@ const DisplayQuestions = ({
 
     if (correctAnswer == selectedOption) {
       setNumberOfCorrectAnswers((prev) => prev + 1);
-      setResult((prev: any) => [...prev, { questionId: id, isCorrect: true }]);
-      setQuestionProgress({ id, isCorrect: true, question: selectedQuestions[currentIndex].question });
+      setResult((prev: any) => [...prev, { questionId: id, isCorrect: true, selectedOption }]);
+      setQuestionProgress({ id, isCorrect: true, question: selectedQuestions[currentIndex].question, selectedOption });
       Confetti();
     } else {
-      setResult((prev: any) => [...prev, { questionId: id, isCorrect: false }]);
-      setQuestionProgress({ id, isCorrect: false, question: selectedQuestions[currentIndex].question });
+      setResult((prev: any) => [...prev, { questionId: id, isCorrect: false, selectedOption }]);
+      setQuestionProgress({ id, isCorrect: false, question: selectedQuestions[currentIndex].question, selectedOption });
     }
 
     setShowExplanation(true);

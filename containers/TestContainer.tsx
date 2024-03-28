@@ -39,10 +39,10 @@ export type UserQuestions = {
   numberOfTimesCorrect: number;
   numberOfTimesTaken: number;
   questionTitle: string;
-  timeline: { date: string; isCorrect: boolean }[];
+  timeline: { date: string; isCorrect: boolean; selectedOption: string }[];
 }[];
 
-export type Results = { isCorrect: boolean; questionId: number; date?: string }[];
+export type Results = { isCorrect: boolean; questionId: number; date?: string; selectedOption: string }[];
 //#endregion
 
 const createTestQuestions = (test: Test) => {
@@ -82,7 +82,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
   const randomQuote = sample(await fetchGET({ path: 'https://zenquotes.io/api/quotes/', revalidate: 86400 }));
 
   const updateUserProgress = async (
-    updatedQuestionsProgress: { id: string; isCorrect: boolean; question: string },
+    updatedQuestionsProgress: { id: string; isCorrect: boolean; question: string; selectedOption: string },
     testCompleted: boolean,
     scores: Scores,
     results: Results
@@ -112,6 +112,7 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
         questionFound.timeline.push({
           date: new Date(Date.now()).toISOString(),
           isCorrect: updatedQuestionsProgress.isCorrect,
+          selectedOption: updatedQuestionsProgress.selectedOption,
         });
 
         currentQuestionProgress.push(questionFound);
@@ -128,7 +129,13 @@ const TestContainer = async ({ params }: { params: { content: string } }) => {
           questionTitle: updatedQuestionsProgress.question,
           numberOfTimesTaken: 1,
           numberOfTimesCorrect: isCorrectNumber,
-          timeline: [{ date: new Date(Date.now()).toISOString(), isCorrect: updatedQuestionsProgress.isCorrect }],
+          timeline: [
+            {
+              date: new Date(Date.now()).toISOString(),
+              isCorrect: updatedQuestionsProgress.isCorrect,
+              selectedOption: updatedQuestionsProgress.selectedOption,
+            },
+          ],
         });
 
         await updateCurrentUser({
