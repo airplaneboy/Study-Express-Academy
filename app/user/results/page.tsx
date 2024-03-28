@@ -4,8 +4,10 @@ import { UserQuestions } from '@/containers/TestContainer';
 import { formatDistanceToNowStrict, formatRelative } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import { HiCheck, HiX } from 'react-icons/hi';
+import { HiOutlineArrowUpRight } from 'react-icons/hi2';
 //@ts-ignore
 import cx from 'clsx/lite';
+import Link from 'next/link';
 
 const Results = async () => {
   const user = await getCurrentUser();
@@ -28,7 +30,7 @@ const Results = async () => {
               </AccordionTrigger>
               <AccordionContent>
                 <Accordion
-                  className={'mt-5 bg-white rounded-2xl overflow-hidden text-gray-700 '}
+                  className={'border mt-5 bg-white rounded-2xl overflow-hidden text-gray-700 '}
                   type='single'
                   collapsible>
                   {test.results.map((result: any, index: number) => {
@@ -99,13 +101,21 @@ const Results = async () => {
                                   )}
                                   key={index}
                                   value={`question ${index + 1}`}>
-                                  <AccordionTrigger key={index} className=''>
-                                    <span className='truncate max-w-2xl'>{foundQuestion?.questionTitle}</span>
+                                  <AccordionTrigger
+                                    className='data-[state="open"]:font-semibold flex between'
+                                    key={index}>
+                                    <span>{correct ? <HiCheck size={20} /> : <HiX size={20} />}</span>
+                                    <span className=' pr-4'>{foundQuestion?.questionTitle}</span>
                                   </AccordionTrigger>
                                   <AccordionContent>
                                     <div className='flex justify-between gap-5 items-center mt-5 px-5'>
-                                      <span>{correct ? <HiCheck size={20} /> : <HiX size={20} />}</span>
-                                      <span>Times attempted: {foundQuestion?.numberOfTimesTaken}</span>
+                                      <Link
+                                        href='#'
+                                        target='_blank'
+                                        className='flex gap-1 rounded-2xl text-blue-500 border border-blue-300 hover:border-blue-500 bg-white px-4 py-1 justify-center items-center'>
+                                        Review
+                                        <HiOutlineArrowUpRight size={14} />
+                                      </Link>
                                       <span>Times attempted: {foundQuestion?.numberOfTimesTaken}</span>
                                       <span>Times answered correctly: {foundQuestion?.numberOfTimesCorrect}</span>
                                     </div>
