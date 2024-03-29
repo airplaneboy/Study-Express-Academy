@@ -13,7 +13,7 @@ import {
   // Legend,
   Tooltip,
 } from 'chart.js';
-import('chartjs-plugin-zoom').then((plugin) => ChartJS.register(plugin.default));
+// import('chartjs-plugin-zoom').then((plugin) => ChartJS.register(plugin.default));
 import { ForwardedRef, useEffect, useRef, useState } from 'react';
 import { ChartJSOrUndefined } from 'react-chartjs-2/dist/types';
 
@@ -28,12 +28,22 @@ export default function LineChart({
 }) {
   const chartRef: ForwardedRef<ChartJSOrUndefined<'line', (number | Point | null)[], unknown>> | undefined = useRef();
   // const [isZoomed, setIsZoomed] = useState(chartRef.current?.isZoomedOrPanned());
+  const [flag, setFlag] = useState(true);
 
   useEffect(() => {
-    import('chartjs-plugin-zoom')
-      .then((plugin) => ChartJS.register(plugin.default))
-      .finally(() => chartRef.current?.zoom(1.5, 'zoom'));
+    import('chartjs-plugin-zoom').then((plugin) => {
+      if (typeof window != 'undefined') {
+        ChartJS.register(plugin.default);
+        setFlag(false);
+      }
+    });
   }, []);
+
+  useEffect(() => {
+    if (flag) return;
+
+    chartRef.current?.zoom(1.5, 'zoom');
+  }, [flag]);
 
   return (
     <div className='relative'>
@@ -47,7 +57,7 @@ export default function LineChart({
               "'__Plus_Jakarta_Sans_e3c363', '__Plus_Jakarta_Sans_Fallback_e3c363','Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
           },
           scales: {
-            y: { min: 0, max: 1 },
+            y: { min: 0, max: 1.2 },
           },
           // animation: false,
 
@@ -67,6 +77,7 @@ export default function LineChart({
                   borderWidth: 1,
                 },
                 mode: 'x',
+
                 // onZoomStart: () => setIsZoomed(chartRef.current?.isZoomedOrPanned),
                 // onZoomComplete: (e) => setIsZoomed(e.chart.isZoomedOrPanned()),
               },
@@ -76,7 +87,7 @@ export default function LineChart({
               limits: {
                 y: {
                   min: 0,
-                  max: 1,
+                  max: 1.2,
                 },
               },
             },
