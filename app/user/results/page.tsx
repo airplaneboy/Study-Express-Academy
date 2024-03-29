@@ -112,7 +112,7 @@ const Results = async () => {
                                   <AccordionContent>
                                     <div className='flex justify-between gap-5 items-center mt-5 px-5'>
                                       <Link
-                                        href={`/user/results/${question.questionId}/${question.selectedOption}`}
+                                        href={`/user/results/${question.questionId}`}
                                         target='_blank'
                                         className='flex gap-1 rounded-2xl text-blue-500 border border-blue-300 hover:border-blue-500 bg-white px-4 py-1 justify-center items-center'>
                                         Review
