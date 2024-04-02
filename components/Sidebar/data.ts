@@ -32,10 +32,10 @@ const SidebarItemsList = [
         groupHoverColor: 'group-hover:text-red-500',
       },
       {
-        name: 'International',
+        name: 'External Tests',
         icon: HiOutlineGlobeEuropeAfrica,
         iconFill: HiGlobeEuropeAfrica,
-        href: '/user/international',
+        href: '/user/external-tests',
         color: 'text-blue-500',
         bgColor: 'bg-blue-50',
         hoverColor: 'hover:text-blue-500',

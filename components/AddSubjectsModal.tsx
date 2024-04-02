@@ -81,7 +81,7 @@ const AddCoursesModal = ({
                           }}
                           checked={true}
                           id={course._id}
-                          labelClassName='truncate hover:overflow-visible hover:z-10 hover:shadow hover:shadow-gray-800 transition-all select-none text-blue-100 bg-blue-600 rounded-lg px-2 my-1'>
+                          labelClassName='truncate hover:cursor-pointer hover:overflow-visible hover:z-10 border border-transparent hover:border-blue-800 hover:shadow-gray-800 transition-all select-none text-blue-100 bg-blue-600 rounded-lg px-2 my-1'>
                           {course.title}
                         </Checkbox>
                       ) : (
@@ -92,7 +92,7 @@ const AddCoursesModal = ({
                           }}
                           id={course._id}
                           labelClassName={
-                            'truncate	hover:overflow-visible hover:z-10  hover:shadow-gray-500 hover:bg-gray-200 transition-all px-1 rounded-lg border border-transparent hover:border-gray-400 select-none text-gray-800 my-1 text-sm sm:text-base'
+                            'truncate hover:cursor-pointer hover:overflow-visible hover:z-10 hover:shadow-gray-500 hover:bg-gray-200 transition-all px-1 rounded-lg border border-transparent hover:border-gray-400 select-none text-gray-800 my-1 text-sm sm:text-base'
                           }>
                           {course.title}
                         </Checkbox>

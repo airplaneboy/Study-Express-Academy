@@ -52,7 +52,7 @@ const LordIconPlayer = ({
       <div
         onMouseOver={onHover}
         onClick={() => playerRef.current?.isPlaying || playerRef.current?.play()}
-        className='absolute w-full h-full inset-0 text-transparent z-[10]'>
+        className='absolute w-full h-full inset-0 text-transparent z-[10] select-none text-[1px]'>
         wrapper
       </div>
     </>

@@ -42,6 +42,9 @@ const nextConfig = {
       {
         hostname: 'tailwindui.com/**',
       },
+      {
+        hostname: 'cdn.sanity.io/**',
+      },
     ],
   },
   experimental: {

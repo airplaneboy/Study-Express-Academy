@@ -56,10 +56,10 @@ const Courses = {
       title: 'Course Icon',
       name: 'icon',
       type: 'image',
-      description: 'The icon for this course. Only SVGs are allowed',
+      description: 'The icon for this course.',
       options: {
         // hotspot: true, // <-- Defaults to false
-        accept: '.svg',
+        // accept: '.svg',
       },
     },
     {

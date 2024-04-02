@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { HiEllipsisHorizontal, HiPlus } from 'react-icons/hi2';
-import { getCourses, getRecentCourses, getSubjectsAndCourses } from '@/sanity/sanity-utils';
+import { HiEllipsisHorizontal } from 'react-icons/hi2';
+import { getCourses, getSubjectsAndCourses } from '@/sanity/sanity-utils';
 import { getCurrentUser, updateCurrentUser } from '@/lib/data/user';
 import AddCoursesModal from '../AddSubjectsModal';
+//@ts-ignore
+import cx from 'clsx/lite';
 
 const RecentTopics = async () => {
   // const recentCourses = await getRecentCourses();
@@ -36,7 +38,7 @@ const RecentTopics = async () => {
               _id: string;
               slug: string;
               subject: { slug: string };
-              units: { title: string; _id: string; icon: string; slug: string }[];
+              units: { title: string; _id: string; icon: string; slug: string; color?: string }[];
             }) => {
               return (
                 <li key={course?._id} className='inline-block w-full mb-4 lg:mb-8'>
@@ -60,37 +62,42 @@ const RecentTopics = async () => {
                       <HiEllipsisHorizontal size={24} className='text-gray-400 hover:text-gray-600' />
                     </Link>
                   </div>
-                  <div className='w-full border-2 border-t-0 rounded-b-3xl sm:px-6 px-3 py-1'>
+                  <div className='w-full border-2 border-t-0 rounded-b-3xl sm:px-0 px-3 py-1 overflow-hidden'>
                     {/* Items */}
                     <div>
                       <ul className='divide-y divide-gray-100'>
-                        {course?.units?.map((unit: { title: string; icon: any; _id: string; slug: string }) => {
-                          return (
-                            <li key={unit?._id}>
-                              <Link
-                                href={`/${course?.subject?.slug}/${course?.slug}/${unit?.slug}`}
-                                className='flex items-center justify-between py-2 sm:px-4 px-2 my-0 sm:my-1 hover:bg-gray-100 sm:rounded-2xl gap-1 '>
-                                <div className='flex w-full items-center gap-2 relative'>
-                                  <Image
-                                    className='md:w-8 max-sm:!w-5 max-sm:!h-5'
-                                    style={{ width: '36px', height: '36px' }}
-                                    src={unit?.icon || '/assets/subject-icons/books.png'}
-                                    alt='lesson-image'
-                                    width={36}
-                                    height={36}
-                                  />
+                        {course?.units?.map(
+                          (unit: { title: string; icon: any; _id: string; slug: string; unitColor?: string }) => {
+                            return (
+                              <li key={unit?._id}>
+                                <Link
+                                  href={`/${course?.subject?.slug}/${course?.slug}/${unit?.slug}`}
+                                  className='flex items-center justify-between py-2 sm:px-4 px-2 my-0  hover:bg-gray-100 gap-1 '>
+                                  <div className='flex w-full items-center gap-2 relative'>
+                                    <Image
+                                      className={cx(
+                                        'md:w-8 max-sm:!w-5 max-sm:!h-5 rounded-full object-contain p-1 ',
+                                        unit.unitColor != (undefined || null) && `bg-[${unit.unitColor}]`
+                                      )}
+                                      style={{ width: '40px', height: '40px' }}
+                                      src={unit?.icon || '/assets/subject-icons/books.png'}
+                                      alt='lesson-image'
+                                      width={40}
+                                      height={40}
+                                    />
 
-                                  <span className='text-sm sm:text-base max-h-6 w-full text-gray-600 absolute truncate pl-7 sm:pl-12'>
-                                    {unit?.title}
+                                    <span className='text-sm tracking-tight max-h-6 w-full text-gray-600 absolute truncate pl-7 sm:pl-12 '>
+                                      {unit?.title}
+                                    </span>
+                                  </div>
+                                  <span className='hidden sm:block text-gray-400 text-xs ml-1 font-bold'>
+                                    {Math.floor(Math.random() * 101)}%
                                   </span>
-                                </div>
-                                <span className='hidden sm:block text-gray-400'>
-                                  {Math.floor(Math.random() * 101)}%
-                                </span>
-                              </Link>
-                            </li>
-                          );
-                        })}
+                                </Link>
+                              </li>
+                            );
+                          }
+                        )}
                       </ul>
                     </div>
                   </div>

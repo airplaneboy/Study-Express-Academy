@@ -62,7 +62,7 @@ export default function Modal({
                     as='h3'
                     className='text-xl font-extrabold flex items-center justify-between leading-6 text-gray-800 capitalize truncate px-2'>
                     {header}
-                    <HiXMark onClick={() => closeModal()} size={24} className='text-gray-500 mr-2' />
+                    <HiXMark onClick={() => closeModal()} size={24} className='text-gray-500 mr-2 cursor-pointer' />
                   </Dialog.Title>
                   <div
                     id='add-subject'

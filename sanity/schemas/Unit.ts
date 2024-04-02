@@ -50,11 +50,18 @@ const Unit = {
       title: 'Unit Icon',
       name: 'icon',
       type: 'image',
-      description: 'The icon for this unit. Only SVGs are allowed',
+      description: 'The icon for this unit.',
+      // description: 'The icon for this unit. Only SVGs are allowed',
       options: {
         // hotspot: true, // <-- Defaults to false
-        accept: '.svg',
+        // accept: '.svg',
       },
+    },
+    {
+      title: 'Unit Color',
+      name: 'unitColor',
+      type: 'string',
+      description: 'Hint: Input the Hex color code to change the unit icon background ',
     },
     {
       title: 'Course Description',
