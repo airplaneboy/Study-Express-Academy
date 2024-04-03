@@ -138,9 +138,6 @@ const DisplayQuestions = ({
     'Y',
     'Z',
   ];
-
-  console.log(selectedQuestions[currentIndex]);
-
   return (
     <>
       {showSummary ? (

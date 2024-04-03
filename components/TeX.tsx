@@ -10,7 +10,8 @@ const TeX = ({
   displayMode?: boolean;
   className?: string;
 }) => {
-  const html = katex.renderToString(children, { throwOnError: false, displayMode, leqno: false, fleqn: false });
+  if (children == (null || undefined)) return;
+  const html = katex?.renderToString(children, { throwOnError: false, displayMode, leqno: false, fleqn: false });
 
   return <span className={className} dangerouslySetInnerHTML={{ __html: html }} />;
 };
