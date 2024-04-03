@@ -1,20 +1,33 @@
-'use client';
-import CTASection from '@/containers/Landing Page/CTASection';
-import FooterSection from '@/containers/Landing Page/FooterSection';
-import HeroSection from '@/containers/Landing Page/HeroSection';
-import TestimonialSection from '@/containers/Landing Page/TestimonialSection';
+import { getQuestion } from '@/sanity/sanity-utils';
+import TeX from '@/components/TeX';
+import TeXExtractor from '@/containers/TeXExtractor';
 
-const OverflowCheckComponent = ({ children }: { children: React.ReactNode }) => {
+const Test = async () => {
+  const question: { options: any[] } = await getQuestion('b2e0b5fc-2b9e-4938-b815-61923dd740ac');
+  question.options.push('3$', '3 $ 5\\$ $ ');
+
   return (
-    <div className='h-[200vh]'>
-      <div className='min-h-screen min-w-full bg-red-500'></div>
-      {/* <TestimonialSection /> */}
-      {/* <CTASection /> */}
-      {/* <FooterSection /> */}
-      <HeroSection />
-      <div className='min-h-screen min-w-full bg-red-500'>CFH</div>
+    <div className='h-[200vh] flex flex-col gap-1'>
+      {question.options.map((option: string, index) => {
+        return (
+          <span key={index}>
+            {/* {option
+              .split(/\$\$(.*?)\$\$/g)
+              .map((match, index) =>
+                index % 2 === 0 ? (
+                  match
+                    .split(/\$ (.*?) \$/g)
+                    .map((match, index) => (index % 2 === 0 ? match : <TeX key={index}>{match}</TeX>))
+                ) : (
+                  <TeX key={index}>{match}</TeX>
+                )
+              )} */}
+            <TeXExtractor value={option} />
+          </span>
+        );
+      })}
     </div>
   );
 };
 
-export default OverflowCheckComponent;
+export default Test;

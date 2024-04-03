@@ -6,6 +6,7 @@ import CustomPortableText from '@/components/CustomPortableText';
 import Confetti, { fireWorks, realisticConfetti } from '@/components/Confetti';
 import Quotes from '@/components/Quotes';
 import { Scores, Results } from './TestContainer';
+import TeXExtractor from './TeXExtractor';
 
 const DisplayQuestions = ({
   currentTestProgress,
@@ -138,13 +139,19 @@ const DisplayQuestions = ({
     'Z',
   ];
 
+  console.log(selectedQuestions[currentIndex]);
+
   return (
     <>
       {showSummary ? (
         <ShowSummary></ShowSummary>
       ) : (
         <div className='leading-8'>
-          <span className='text-gray-700  text-lg'>{selectedQuestions[currentIndex].question}</span>
+          {/* <span className='text-gray-700  text-lg'>{selectedQuestions[currentIndex].question}</span> */}
+          <CustomPortableText
+            className='word-spacing tracking-[0.25px] text-gray-700 !text-lg'
+            value={selectedQuestions[currentIndex].questionContent}
+          />
           <fieldset className='flex flex-col gap-2 mt-6'>
             <legend className='w-[1px] h-[1px] overflow-hidden m-[-1px] p-0 absolute border-0 text-[0px] clip'>
               Pick your answer
@@ -203,7 +210,9 @@ const DisplayQuestions = ({
                           </div>
                         </div>
                       </span>
-                      <span className='ml-11 text-gray-700 '>{answerChoice}</span>
+                      <span className='ml-11 text-gray-700 '>
+                        <TeXExtractor>{answerChoice}</TeXExtractor>
+                      </span>
                     </label>
                   </li>
                 );

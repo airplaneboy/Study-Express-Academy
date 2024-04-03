@@ -104,7 +104,7 @@ export const getTestsSlug = async () => await client(groq`*[_type =='tests'] | o
 
 export const getTest = async (slug: string) =>
   await client(
-    groq`*[_type=='tests' && slug.current == $slug ] | order(_createdAt asc)[0]{_id,questions[]->{difficulty, answer, _id, question, solution, options[]},title,"lesson":lesson->title, "slug":slug.current}`,
+    groq`*[_type=='tests' && slug.current == $slug ] | order(_createdAt asc)[0]{_id,questions[]->{difficulty, answer, _id, question, questionContent, solution, options[]},title,"lesson":lesson->title, "slug":slug.current}`,
     {
       slug,
     }
@@ -115,12 +115,15 @@ export const getTest = async (slug: string) =>
 export const getQuestionsId = async () => await client(groq`*[_type=='questions' && test->_id ==$testId]._id`);
 
 export const getQuestion = async (questionId: string) =>
-  await client(groq`*[_type=='questions' && _id ==$questionId][0]{question, difficulty,options,solution, answer}`, {
-    questionId,
-  });
+  await client(
+    groq`*[_type=='questions' && _id ==$questionId][0]{question,questionContent, difficulty,options,solution, answer}`,
+    {
+      questionId,
+    }
+  );
 
 export const getQuestionsByTest = async (testId: string) =>
-  await client(groq`*[_type=='questions' && test->_id ==$testId] {question, difficulty,options}`, {
+  await client(groq`*[_type=='questions' && test->_id ==$testId] {question,questionContent, difficulty,options}`, {
     testId,
   });
 //#endregion

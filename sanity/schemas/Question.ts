@@ -4,10 +4,24 @@ const Question = {
   type: 'document',
   fields: [
     {
-      title: 'Question',
+      title: 'Question Title',
       name: 'question',
       type: 'text',
       validation: (Rule: any) => Rule.required(),
+    },
+    {
+      title: 'Question',
+      name: 'questionContent',
+      type: 'array',
+      validation: (Rule: any) => Rule.required(),
+      of: [
+        {
+          type: 'block',
+          title: 'Block',
+          of: [{ type: 'latex', title: 'Inline math' }],
+        },
+        { type: 'latex', title: 'Math block' },
+      ],
     },
     {
       title: 'Incorrect Answer Choices',
@@ -34,7 +48,14 @@ const Question = {
       title: 'Question Solution',
       name: 'solution',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [
+        {
+          type: 'block',
+          title: 'Block',
+          of: [{ type: 'latex', title: 'Inline math' }],
+        },
+        { type: 'latex', title: 'Math block' },
+      ],
       // validation: (Rule: any) => Rule.required(),
     },
     {
