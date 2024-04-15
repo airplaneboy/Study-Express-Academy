@@ -15,27 +15,6 @@ const FeatureSection = () => {
       </div>
 
       <div className='w-full h-full flex flex-col justify-center items-center gap-10 min-w-[496px] border-0 py-5'>
-        {/* <div className='flex gap-5 items-center justify-between'>
-          <div className='flex flex-col gap-3'>
-            <span className=' font-bold text-xl tracking-wide'>Personalized Learning Analytics</span>
-            <p className='text-sm  leading-6'>
-              Access in-depth analytics to understand your learning patterns. Identify your strengths, target areas for
-              improvement, and receive personalized recommendations for optimal learning outcomes.
-            </p>
-          </div>
-          <div className='w-full h-32 bg-blue-500 left-2/3 -top-1/4' />
-        </div>
-        <div className='flex gap-5 items-center justify-between'>
-          <div className='flex flex-col gap-3'>
-            <span className=' font-bold text-xl tracking-wide'>Adaptive Learning Paths</span>
-            <p className='text-sm leading-6'>
-              Experience personalized learning journeys tailored to your strengths and weaknesses. Our adaptive
-              algorithms adjust course content to match your unique pace and understanding.
-            </p>
-          </div>
-
-          <div className='w-full h-32 bg-red-500' />
-        </div> */}
         <video
           className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
           loop
