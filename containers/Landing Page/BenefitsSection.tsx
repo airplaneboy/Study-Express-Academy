@@ -75,23 +75,25 @@ const BenefitSection = () => {
         'min-h-screen border-t-8 max-w-7xl mx-auto flex flex-row justify-between items-start py-32 px-24 gap-20'
       }>
       <div className='!flex-1 benefit-section w-full h-full flex flex-col items-center justify-center gap-10'>
-        <h1 className='text-5xl leading-[1] font-extrabold'>Unlock Your Amazing Potential with Us</h1>
-        <p className='leading-8 text-lg font-medium text-gray-800'>
-          At Study Express Academy, we&apos;re passionate about making education accessible to everyone, so they can
-          reach their fullest potential. Discover the key benefits that set us apart!
+        <h1 className='text-5xl tracking-tighter self-start leading-[1] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-fuchsia-500 to-orange-300'>
+          Unlock Your Potential
+        </h1>
+        <p className='leading-8 text-lg font-medium text-gray-500'>
+          We&apos;re passionate about making education accessible to everyone. Discover the key benefits that set us
+          apart!
         </p>
         <div className='flex w-full gap-5'>
           <button
             className={cx(
               ctaButton,
-              'bg-black text-white group flex gap-10 align-baseline hover:border-gray-500 hover:text-gray-500 hover:bg-gray-50 transition-all hover:shadow-lg hover:shadow-gray-300'
+              'bg-blue-600 text-white hover:bg-gradient-to-r from-blue-400 via-fuchsia-500 to-orange-300 group flex gap-10 align-baseline transition-colors duration-100 border-none'
             )}>
             Start Your Learning Adventure
           </button>
           <button
             className={cx(
               ctaButton,
-              'group flex gap-10 align-baseline hover:border-blue-500 hover:text-blue-500 hover:bg-blue-50 transition-all hover:shadow-lg hover:shadow-blue-300'
+              'group flex gap-10 align-baseline hover:border-blue-500 hover:text-blue-500 hover:bg-blue-50 transition-colors text-blue-500 duration-100'
             )}>
             Unlock Personalized Learning
           </button>
@@ -100,46 +102,78 @@ const BenefitSection = () => {
 
       <div className='!flex-1 w-full flex flex-col items-center gap-[100vh]'>
         <div id='item-1' className=' z-[4] min-h-screen flex flex-col gap-5 items-center justify-center'>
-          <div className='w-full h-32 bg-blue-500 left-2/3 -top-1/4' />
+          <video
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='auto'>
+            <source src='/assets/Article.webm' type='video/webm' />
+            Your browser does not support the video tag.
+          </video>
           <div className='flex flex-col gap-3'>
-            <span className=' font-bold text-xl tracking-wide'>Free Access to Quality Education</span>
+            <span className=' font-bold text-xl '>Interactive Articles</span>
             <p className='text-sm  leading-6'>
-              We are excited to help you break down financial barriers. Enjoy free access to a wealth of educational
-              resources designed to fuel your intellectual growth.
+              In addition to its extensive video library, we offer educational articles carefully curated to provide
+              students with in-depth analysis, historical context, and practical insights that complement their learning
+              journey
             </p>
           </div>
         </div>
 
         <div id='item-2' className='min-h-screen flex flex-col gap-5 items-center justify-center'>
-          <div className='w-full h-32 bg-red-500' />
+          <video
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='auto'>
+            <source src='/assets/Video.webm' type='video/webm' />
+            Your browser does not support the video tag.
+          </video>
           <div className='flex flex-col gap-3'>
-            <span className=' font-bold text-xl tracking-wide'>Diverse Range of Subjects</span>
+            <span className=' font-bold text-xl '>Engaging Video Courses</span>
             <p className='text-sm leading-6'>
-              Discover a wide variety of subjects designed to cater to your learning interests. Whether you love
-              science, humanities, or technology, we offer a broad selection of courses to spark your curiosity.
+              Gain access to a vast library of handpicked video courses that provide students with engaging and
+              informative content to supplement their learning and exam preparation.
             </p>
           </div>
         </div>
 
         <div id='item-3' className='min-h-screen flex flex-col gap-5 items-center justify-center'>
-          <div className='w-full h-32 bg-blue-500' />
+          <video
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='auto'>
+            <source src='/assets/Results.webm' type='video/webm' />
+            Your browser does not support the video tag.
+          </video>
           <div className='flex flex-col gap-3'>
-            <span className=' font-bold text-xl tracking-wide'>Interactive Learning Experience</span>
+            <span className=' font-bold text-xl '>Structured Result Insights</span>
             <p className='text-sm leading-6'>
-              Discover engaging and interactive learning materials that bring subjects to life! Our platform goes beyond
-              traditional teaching methods to create an immersive and enjoyable learning experience for you.
+              Students can access comprehensive results analysis that provide insights into their strengths and
+              weaknesses and expose areas where they may need to further review.
             </p>
           </div>
         </div>
 
         <div id='item-4' className='min-h-screen flex flex-col gap-5 items-center justify-center'>
-          <div className='w-full h-32 bg-red-500' />
+          <video
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='auto'>
+            <source src='/assets/Tests.webm' type='video/webm' />
+            Your browser does not support the video tag.
+          </video>
           <div className='flex flex-col gap-3'>
-            <span className=' font-bold text-xl tracking-wide'>Learn at Your Own Pace</span>
+            <span className=' font-bold text-xl '>Interactive Test Simulations</span>
             <p className='text-sm leading-6'>
-              Take your time with our lessons at Study Express Academy! We want you to have the flexibility to learn at
-              your own pace. Customize your study schedule to suit your lifestyle, and make education seamlessly fit
-              into your journey.
+              We offer interactive test that replicate the format, timing, and difficulty level of tests, giving
+              students a chance to practice under realistic conditions and build confidence for test day.
             </p>
           </div>
         </div>

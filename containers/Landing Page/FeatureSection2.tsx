@@ -52,10 +52,10 @@ const FeatureSection2 = () => {
           preload='auto'>
           <source src='/assets/Analytics.webm' type='video/webm' />
           Your browser does not support the video tag.
-        </video>{' '}
+        </video>
         <div className='w-full flex flex-col justify-center gap-5'>
           <h1 className='text-2xl leading-[1] font-extrabold text-gray-600 tracking-tight'>
-            Comprehensive Test Overview and Results Analysis
+            Comprehensive Test Analysis
           </h1>
           <p className='leading-6 text-base font-medium text-gray-500 tracking-wide sm:tracking-normal'>
             Our test overview and results analysis break down your performance so you can see your performance. Our
