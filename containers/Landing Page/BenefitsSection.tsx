@@ -74,7 +74,9 @@ const BenefitSection = () => {
       className={
         'min-h-screen border-t-8 max-w-7xl mx-auto flex flex-row justify-between items-start py-32 px-24 gap-20'
       }>
-      <div className='!flex-1 benefit-section w-full h-full flex flex-col items-center justify-center gap-10'>
+      <div className='bg-grid-black/[0.2] relative !flex-1 benefit-section w-full h-full flex flex-col items-center justify-center gap-10'>
+        <div className='h-full w-full min-w-screen -z-10 absolute pointer-events-none left-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
+
         <h1 className='text-5xl tracking-tighter self-start leading-[1] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-fuchsia-500 to-orange-300'>
           Unlock Your Potential
         </h1>
@@ -93,7 +95,7 @@ const BenefitSection = () => {
           <button
             className={cx(
               ctaButton,
-              'group flex gap-10 align-baseline hover:border-blue-500 hover:text-blue-500 hover:bg-blue-50 transition-colors text-blue-500 duration-100'
+              'group flex gap-10 align-baseline hover:border-blue-500 hover:text-blue-500 hover:bg-blue-50 transition-colors text-blue-500 duration-100 bg-white'
             )}>
             Unlock Personalized Learning
           </button>
