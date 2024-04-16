@@ -6,7 +6,7 @@ import HeadingTypewritter from '@/components/gsap/heading-typewritter';
 
 const HeroSection = () => {
   const sectionContentStyle = 'w-full h-full flex flex-col items-center justify-center gap-10 z-[1]';
-  const ctaButton = 'capitalize border px-8 py-4 rounded-2xl items-center justify-center';
+  const ctaButton = 'capitalize border px-8 py-4 rounded-2xl items-center justify-center font-bold';
 
   const words = [' Now', ' Here', ' With Us', '...', '.'];
 
@@ -28,16 +28,16 @@ const HeroSection = () => {
             <button
               className={cx(
                 ctaButton,
-                'bg-black text-white group flex gap-10 align-baseline hover:border-gray-500 hover:text-gray-500 hover:bg-gray-50 transition-all hover:shadow-lg hover:shadow-gray-300'
+                'bg-blue-600 text-white hover:bg-gradient-to-r from-blue-400 via-fuchsia-500 to-orange-300 group flex gap-10 align-baseline transition-colors duration-100 border-none'
               )}>
               Start Learning Now
             </button>
             <button
               className={cx(
                 ctaButton,
-                'bg-white group flex gap-10 align-baseline hover:border-blue-500 hover:text-blue-500 hover:bg-blue-50 transition-all hover:shadow-lg hover:shadow-blue-300'
+                'group flex gap-10 align-baseline hover:border-blue-500 hover:text-blue-500 hover:bg-blue-50 transition-colors text-blue-500 duration-100 bg-white'
               )}>
-              Explore Your Courses <HiChevronRight className='group-hover:text-blue-500 text-black' size={18} />
+              Explore Your Courses <HiChevronRight className='group-hover:text-blue-500 text-blue-500' size={18} />
             </button>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const BenefitSection = () => {
-  const ctaButton = 'capitalize border px-4 py-4 rounded-2xl items-center justify-center text-sm';
+  const ctaButton = 'capitalize border px-4 py-4 rounded-2xl items-center justify-center text-sm font-bold';
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -114,7 +114,7 @@ const BenefitSection = () => {
             Your browser does not support the video tag.
           </video>
           <div className='flex flex-col gap-3'>
-            <span className=' font-bold text-xl '>Interactive Articles</span>
+            <span className=' font-bold text-xl text-gray-700'>Interactive Articles</span>
             <p className='text-sm  leading-6'>
               In addition to its extensive video library, we offer educational articles carefully curated to provide
               students with in-depth analysis, historical context, and practical insights that complement their learning
@@ -134,7 +134,7 @@ const BenefitSection = () => {
             Your browser does not support the video tag.
           </video>
           <div className='flex flex-col gap-3'>
-            <span className=' font-bold text-xl '>Engaging Video Courses</span>
+            <span className=' font-bold text-xl text-gray-700'>Engaging Video Courses</span>
             <p className='text-sm leading-6'>
               Gain access to a vast library of handpicked video courses that provide students with engaging and
               informative content to supplement their learning and exam preparation.
@@ -153,7 +153,7 @@ const BenefitSection = () => {
             Your browser does not support the video tag.
           </video>
           <div className='flex flex-col gap-3'>
-            <span className=' font-bold text-xl '>Structured Result Insights</span>
+            <span className=' font-bold text-xl text-gray-700'>Structured Result Insights</span>
             <p className='text-sm leading-6'>
               Students can access comprehensive results analysis that provide insights into their strengths and
               weaknesses and expose areas where they may need to further review.
@@ -172,7 +172,7 @@ const BenefitSection = () => {
             Your browser does not support the video tag.
           </video>
           <div className='flex flex-col gap-3'>
-            <span className=' font-bold text-xl '>Interactive Test Simulations</span>
+            <span className=' font-bold text-xl text-gray-700'>Interactive Test Simulations</span>
             <p className='text-sm leading-6'>
               We offer interactive test that replicate the format, timing, and difficulty level of tests, giving
               students a chance to practice under realistic conditions and build confidence for test day.
