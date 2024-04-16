@@ -1,7 +1,7 @@
 'use client';
 import { RiDoubleQuotesR } from 'react-icons/ri';
 import Image from 'next/image';
-import Profile1 from '@/public/assets/profile-3.jpg';
+import Profile1 from '@/public/assets/profile-3 shadow.webp';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -24,9 +24,9 @@ const TestimonialSection = () => {
       },
     });
     gsap.from('#profile-1-image', {
-      x: -1000,
-      opacity: 0,
-      scale: 0,
+      x: -100,
+      opacity: 0.8,
+      scale: 0.9,
       ease: 'none',
       duration: 2,
       scrollTrigger: {
@@ -82,20 +82,22 @@ const TestimonialSection = () => {
   return (
     <section
       id='testimonial-section'
-      className='max-w-7xl mx-auto flex flex-row justify-between items-center min-h-screen px-32 gap-10 py-32 bg-white'>
+      className='relative max-w-7xl mx-auto bg-dot-gray-400 flex flex-row justify-between items-center min-h-screen px-32 gap-10 py-32 bg-white'>
+      <div className='h-full w-full min-w-screen z-0 absolute pointer-events-none left-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
+
       <Image
         id='profile-1-image'
         priority
         quality={100}
-        className='saturate-150 object-contain z-[1] rounded-r-2xl shadow-lg shadow-gray-400 overflow-hidden pointer-events-none absolute -left-[128px] w-fit h-[80vh] bg-blue-500'
+        className='bg-transparent saturate-150 object-contain z-[1] rounded-r-2xl shadow-lg shadow-gray-300 overflow-hidden pointer-events-none absolute -left-[128px] w-fit h-[80vh]'
         src={Profile1}
         alt='smiling man portrait with blurred background'
       />
 
       <div
         className={`bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 overflow-hidden p-[2px] relative ${cormorantUpright.className} rounded-2xl relative left-20 w-full flex flex-col justify-center gap-5`}>
-        <div className=' h-full w-full min-w-screen absolute pointer-events-none inset-0 dark:bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] bg-gradient-to-r from-green-50 via-blue-50 to-purple-50' />
-        <div className='rounded-2xl shadow-inner shadow-purple-500 px-4 sm:px-10 md:px-20 py-10 bg-white/[.85]'>
+        <div className=' h-full w-full min-w-screen absolute pointer-events-none inset-0 dark:bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] !bg-white bg-gradient-to-r from-green-50 via-blue-50 to-purple-50' />
+        <div className='rounded-2xl shadow-inner shadow-purple-500 px-4 sm:px-10 md:px-20 py-10 bg-white'>
           <p
             className={
               'relative z-[1] min-h-[250px] min-w-[60vw] tracking-tight leading-tight text-5xl word-spacing-1 font-semibold text-gray-700 select-none'
