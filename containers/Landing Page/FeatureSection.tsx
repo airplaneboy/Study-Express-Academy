@@ -13,15 +13,12 @@ const FeatureSection = () => {
           math and science to arts and language, we&apos;ll take you through an array of subjects like never before!
         </p>
       </div>
-
       <div className='w-full h-full flex flex-col justify-center items-center gap-10 min-w-[496px] border-0 py-5'>
         <video
           className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
           loop
           autoPlay
           muted
-          width='720'
-          height='720'
           preload='auto'>
           <source src='/assets/Subjects.webm' type='video/webm' />
           Your browser does not support the video tag.

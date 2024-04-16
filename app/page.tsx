@@ -18,7 +18,7 @@ export default function Home() {
         <ParallaxSection />
         <FeatureSection />
         <FeatureSection2 />
-        <FeatureSection3 />
+        {/* <FeatureSection3 /> */}
         <BenefitSection />
         <TestimonialSection />
         <CTASection />
