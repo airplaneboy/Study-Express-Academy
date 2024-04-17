@@ -3,7 +3,7 @@ import { Fragment, useState, useContext, useEffect } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { HiCheck, HiChevronUpDown } from 'react-icons/hi2';
 import Image from 'next/image';
-import PersonalInformationContext from '@/context/PersonalInformationContext';
+// import PersonalInformationContext from '@/context/PersonalInformationContext';
 
 export default function ComboBox({ comboBoxArray, initialSelected }: { comboBoxArray: any[]; initialSelected?: {} }) {
   const [canChangeState, setCanChangeState] = useState(false);
@@ -11,14 +11,14 @@ export default function ComboBox({ comboBoxArray, initialSelected }: { comboBoxA
   const [selected, setSelected] = useState(initialSelected == undefined ? countries[0] : initialSelected);
   const [query, setQuery] = useState('');
 
-  const context = useContext(PersonalInformationContext);
+  // const context = useContext(PersonalInformationContext);
 
-  useEffect(() => {
-    context.setCountry(selected);
-    if (selected?.name?.includes('American Samoa') && canChangeState == false) context.setCountry();
+  // useEffect(() => {
+  //   context.setCountry(selected);
+  //   if (selected?.name?.includes('American Samoa') && canChangeState == false) context.setCountry();
 
-    return () => {};
-  }, [context, selected, canChangeState]);
+  //   return () => {};
+  // }, [context, selected, canChangeState]);
 
   const filteredCountries =
     query === ''

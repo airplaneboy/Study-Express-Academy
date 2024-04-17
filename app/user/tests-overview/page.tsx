@@ -3,7 +3,7 @@ import { DataTable } from '@/containers/DataTable';
 import { getCurrentUser } from '@/lib/data/user';
 
 export default async function TestsOverview() {
-  const data: UserTest[] = (await getCurrentUser()).contentProgress.tests;
+  const data: UserTest[] = (await getCurrentUser())?.contentProgress.tests;
   // const data: UserTest[] = [
   //   {
   //     testTitle: 'Math Test',
@@ -185,7 +185,7 @@ export default async function TestsOverview() {
 
   return (
     <div className='flex items-center mx-auto py-10 overflow-hidden'>
-      <DataTable columns={columns} data={data} />
+      {data ? <DataTable columns={columns} data={data} /> : <span>Login to see your data</span>}
     </div>
   );
 }

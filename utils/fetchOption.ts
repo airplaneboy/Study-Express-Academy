@@ -31,7 +31,7 @@ export async function fetchPOST({
   token,
   path,
   headers,
-  cache = 'default',
+  cache,
   revalidate = false,
 }: {
   data: {};

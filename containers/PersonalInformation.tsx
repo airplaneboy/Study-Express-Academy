@@ -9,8 +9,9 @@ import { updateUser } from '@/lib/data/user';
 import { useSession } from 'next-auth/react';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { format } from 'date-fns';
-import PersonalInformationContext from '@/context/PersonalInformationContext';
+// import PersonalInformationContext from '@/context/PersonalInformationContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import ComboBox from '@/components/ComboBox';
 
 // const countryState: { country: any; setCountry: any } = {
 //   country: null,
@@ -21,7 +22,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 const PersonalInformation = ({
   countryComboBox,
   user,
+  countries,
 }: {
+  countries: any[];
   countryComboBox?: React.ReactNode;
   user: {
     username: string;
@@ -237,12 +240,26 @@ const PersonalInformation = ({
                     </Select>
                   </div>
 
-                  <PersonalInformationContext.Provider value={{ country, setCountry }}>
+                  {/* <PersonalInformationContext.Provider value={{ country, setCountry }}>
                     <div className='col-span-6 sm:col-span-4'>
                       <label className='block text-sm font-medium text-gray-700'>Country</label>
                       {countryComboBox}
                     </div>
-                  </PersonalInformationContext.Provider>
+                  </PersonalInformationContext.Provider> */}
+                  {/* <PersonalInformationContext.Provider value={{ country, setCountry }}> */}
+                  <div className='col-span-6 sm:col-span-4'>
+                    <label className='block text-sm font-medium text-gray-700'>Country</label>
+                    <ComboBox
+                      initialSelected={
+                        user?.profile?.country || {
+                          name: 'Select Country',
+                          flag: { image: '/assets/icons8-expand-arrow-48.png' },
+                        }
+                      }
+                      comboBoxArray={countries}
+                    />
+                  </div>
+                  {/* </PersonalInformationContext.Provider> */}
 
                   <div className='col-span-6 sm:col-span-6 lg:col-span-2'>
                     <label htmlFor='datepicker' className='block text-sm font-medium text-gray-700'>
