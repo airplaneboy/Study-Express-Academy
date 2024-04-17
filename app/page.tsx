@@ -3,7 +3,7 @@ import ParallaxSection from '@/components/ParallaxSection';
 import FeatureSection from '@/containers/Landing Page/FeatureSection';
 import HeroSection from '@/containers/Landing Page/HeroSection';
 import FeatureSection2 from '@/containers/Landing Page/FeatureSection2';
-import FeatureSection3 from '@/containers/Landing Page/FeatureSection3';
+// import FeatureSection3 from '@/containers/Landing Page/FeatureSection3';
 import BenefitSection from '@/containers/Landing Page/BenefitsSection';
 import TestimonialSection from '@/containers/Landing Page/TestimonialSection';
 import CTASection from '@/containers/Landing Page/CTASection';

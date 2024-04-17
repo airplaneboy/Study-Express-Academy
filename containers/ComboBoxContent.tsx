@@ -1,6 +1,6 @@
 import getCountries from '@/lib/data/countries';
 import ComboBox from '@/components/ComboBox';
-import orderBy from 'lodash/orderby';
+import orderBy from 'lodash/orderBy';
 
 const ComboBoxContent = async ({ initialSelected }: { initialSelected?: {} }) => {
   const countries = await getCountries();

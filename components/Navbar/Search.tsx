@@ -5,7 +5,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import Fuse from 'fuse.js';
 import { useState } from 'react';
 import Link from 'next/link';
-import lowercase from 'lodash/lowercase';
+import lowercase from 'lodash/lowerCase';
 
 const Search = ({ searchList, options, otherLists }: { searchList: any[]; options?: {}; otherLists?: any[] }) => {
   const [showResult, setShowResult] = useState(false);

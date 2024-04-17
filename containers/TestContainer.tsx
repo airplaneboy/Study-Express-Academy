@@ -2,7 +2,7 @@ import { getCurrentUser, updateCurrentUser } from '@/lib/data/user';
 import { getTest } from '@/sanity/sanity-utils';
 import { fetchGET } from '@/utils/fetchOption';
 import shuffle from 'lodash/shuffle';
-import sampleSize from 'lodash/samplesize';
+import sampleSize from 'lodash/sampleSize';
 import sample from 'lodash/sample';
 import remove from 'lodash/remove';
 import DisplayQuestions from './DisplayQuestions';

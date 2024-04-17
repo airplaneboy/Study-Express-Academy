@@ -1,6 +1,6 @@
 'use client';
 import { useSelectedLayoutSegment } from 'next/navigation';
-import lowerCase from 'lodash/lowercase';
+import lowerCase from 'lodash/lowerCase';
 
 const MainContent = ({ children }: { children: any }) => {
   const segment = useSelectedLayoutSegment();
