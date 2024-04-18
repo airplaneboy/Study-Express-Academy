@@ -4,7 +4,9 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 //#region Use API
 export const getUser = async ({ userId }: { userId: string | null | undefined }) =>
-  await fetchGET({ path: `http://localhost:3000/api/v1/users/${userId}` });
+  await fetchGET({
+    path: `https://study-express-academy-git-master-airplaneboys-projects.vercel.app/api/v1/users/${userId}`,
+  });
 
 export const updateUser = async ({
   userId,
@@ -12,7 +14,11 @@ export const updateUser = async ({
 }: {
   userId: string | null | undefined;
   data: { [key: string]: any };
-}) => await fetchPATCH({ data, path: `http://localhost:3000/api/v1/users/${userId}` });
+}) =>
+  await fetchPATCH({
+    data,
+    path: `https://study-express-academy-git-master-airplaneboys-projects.vercel.app/api/v1/users/${userId}`,
+  });
 
 export const updateUserPassword = async ({
   userId,
@@ -25,7 +31,7 @@ export const updateUserPassword = async ({
 }) =>
   await fetchPATCH({
     data: { currentPassword, newPassword },
-    path: `http://localhost:3000/api/v1/users/${userId}/password`,
+    path: `https://study-express-academy-git-master-airplaneboys-projects.vercel.app/api/v1/users/${userId}/password`,
   });
 
 export default getUser;
@@ -43,7 +49,10 @@ export const getCurrentUser = async () => {
 
 export const updateCurrentUser = async ({ data }: { data: {} }) => {
   const userId = ((await getServerSession(authOptions))?.user as any)?.id;
-  return await fetchPATCH({ data, path: `http://localhost:3000/api/v1/users/${userId}` });
+  return await fetchPATCH({
+    data,
+    path: `https://study-express-academy-git-master-airplaneboys-projects.vercel.app/api/v1/users/${userId}`,
+  });
 };
 
 export const updateCurrentUserPassword = async ({
@@ -56,7 +65,7 @@ export const updateCurrentUserPassword = async ({
   const userId = ((await getServerSession(authOptions))?.user as any)?.id;
   return await fetchPATCH({
     data: { currentPassword, newPassword },
-    path: `http://localhost:3000/api/v1/users/${userId}/password`,
+    path: `https://study-express-academy-git-master-airplaneboys-projects.vercel.app/api/v1/users/${userId}/password`,
   });
 };
 //#endregion

@@ -108,7 +108,7 @@ Note: Ensure to follow the appropriate routes on the website for an immersive us
 
     bashCopy code
 
-    `http://localhost:3000`
+    `https://study-express-academy-git-master-airplaneboys-projects.vercel.app`
 
 ## Technologies Used
 

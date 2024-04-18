@@ -36,7 +36,7 @@ export const authOptions: NextAuthOptions = {
             email: credentials?.email,
             password: credentials?.password,
           },
-          path: 'http://localhost:3000/api/v1/auth/login',
+          path: 'https://study-express-academy-git-master-airplaneboys-projects.vercel.app/api/v1/auth/login',
         });
 
         if (user) return user;
@@ -108,7 +108,7 @@ export const authOptions: NextAuthOptions = {
         try {
           const loginResponse = await fetchPOST({
             data: loginData,
-            path: 'http://localhost:3000/api/v1/auth/login',
+            path: 'https://study-express-academy-git-master-airplaneboys-projects.vercel.app/api/v1/auth/login',
             headers: { 'X-Auth-Method': account?.type },
           });
 
@@ -121,7 +121,7 @@ export const authOptions: NextAuthOptions = {
         try {
           const registerResponse = await fetchPOST({
             data: userData,
-            path: 'http://localhost:3000/api/v1/auth/register',
+            path: 'https://study-express-academy-git-master-airplaneboys-projects.vercel.app/api/v1/auth/register',
             headers: { 'X-Auth-Method': account?.type },
           });
 

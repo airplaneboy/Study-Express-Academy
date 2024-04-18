@@ -38,7 +38,7 @@ const LoginForm = () => {
 
     if (res?.error) return toast.error(blacklist(res.error, '"'));
 
-    // if (document.referrer == 'http://localhost:3000/') return router.back();
+    // if (document.referrer == 'https://study-express-academy-git-master-airplaneboys-projects.vercel.app/') return router.back();
     toast.success('Login successful', { duration: 3000 });
     return router.push('/user');
   };
