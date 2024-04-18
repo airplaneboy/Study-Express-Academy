@@ -3,6 +3,7 @@ import React from 'react';
 import { motion, useAnimationFrame, useMotionTemplate, useMotionValue, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { cn } from '@/utils/cn';
+import Link from 'next/link';
 
 export function Button({
   borderRadius = '1.75rem',
@@ -24,7 +25,8 @@ export function Button({
   [key: string]: any;
 }) {
   return (
-    <Component
+    <Link
+      href='/auth/login'
       className={cn('bg-transparent relative text-xl  h-16 w-40 p-[1px] overflow-hidden ', containerClassName)}
       style={{
         borderRadius: borderRadius,
@@ -51,7 +53,7 @@ export function Button({
         }}>
         {children}
       </div>
-    </Component>
+    </Link>
   );
 }
 

@@ -4,6 +4,7 @@ import cx from 'clsx/lite';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link';
 
 const BenefitSection = () => {
   const ctaButton = 'capitalize border px-4 py-4 rounded-2xl items-center justify-center text-sm font-bold';
@@ -85,20 +86,22 @@ const BenefitSection = () => {
           apart!
         </p>
         <div className='flex w-full gap-5'>
-          <button
+          <Link
+            href='/auth/login'
             className={cx(
               ctaButton,
               'bg-blue-600 text-white hover:bg-gradient-to-r from-blue-400 via-fuchsia-500 to-orange-300 group flex gap-10 align-baseline transition-colors duration-100 border-none'
             )}>
             Start Your Learning Adventure
-          </button>
-          <button
+          </Link>
+          <Link
+            href='/auth/login'
             className={cx(
               ctaButton,
               'group flex gap-10 align-baseline hover:border-blue-500 hover:text-blue-500 hover:bg-blue-50 transition-colors text-blue-500 duration-100 bg-white'
             )}>
             Unlock Personalized Learning
-          </button>
+          </Link>
         </div>
       </div>
 
