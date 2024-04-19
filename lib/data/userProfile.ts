@@ -3,12 +3,15 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 const getProfile = async ({ userId }: { userId: string }) => {
-  const response = await fetchGET({ path: `http://localhost:3000/api/v1/users/${userId}/profile` });
+  const response = await fetchGET({ path: `${process.env.NEXT_PUBLIC_APP_URI}/api/v1/users/${userId}/profile` });
   return response?.profile;
 };
 
 export const updateProfile = async ({ userId, data }: { userId: any; data: { [key: string]: any } }) => {
-  const response = await fetchPATCH({ path: `http://localhost:3000/api/v1/users/${userId}/profile`, data });
+  const response = await fetchPATCH({
+    path: `${process.env.NEXT_PUBLIC_APP_URI}/api/v1/users/${userId}/profile`,
+    data,
+  });
   return response?.user?.profile;
 };
 
