@@ -3,12 +3,15 @@ import { RiDoubleQuotesR } from 'react-icons/ri';
 import Image from 'next/image';
 import Profile1 from '@/public/assets/profile-3 shadow.webp';
 import { useGSAP } from '@gsap/react';
-import { gsap } from 'gsap';
+// import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextPlugin } from 'gsap/TextPlugin';
 import { cormorantUpright } from '@/app/font';
 
 const TestimonialSection = () => {
+  //@ts-ignore
+  let gsap: any;
+  import('gsap').then((mod) => (gsap = mod.gsap));
   useGSAP(() => {
     gsap.registerPlugin(TextPlugin);
     gsap.registerPlugin(ScrollTrigger);

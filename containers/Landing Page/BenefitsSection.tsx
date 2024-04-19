@@ -108,6 +108,7 @@ const BenefitSection = () => {
       <div className='!flex-1 w-full flex flex-col items-center gap-[100vh]'>
         <div id='item-1' className=' z-[4] min-h-screen flex flex-col gap-5 items-center justify-center'>
           <video
+            playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
             autoPlay
@@ -128,6 +129,7 @@ const BenefitSection = () => {
 
         <div id='item-2' className='min-h-screen flex flex-col gap-5 items-center justify-center'>
           <video
+            playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
             autoPlay
@@ -147,6 +149,7 @@ const BenefitSection = () => {
 
         <div id='item-3' className='min-h-screen flex flex-col gap-5 items-center justify-center'>
           <video
+            playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
             autoPlay
@@ -166,6 +169,7 @@ const BenefitSection = () => {
 
         <div id='item-4' className='min-h-screen flex flex-col gap-5 items-center justify-center'>
           <video
+            playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
             autoPlay

@@ -11,7 +11,7 @@ import TestContainer from '@/containers/TestContainer';
 
 const Content = async ({ params }: { params: { content: string } }) => {
   if (params.content.endsWith('video')) {
-    return <VideoContainer params={params} />;
+    return <video playsInline Container params={params} />;
   }
 
   if (params.content.endsWith('article')) {

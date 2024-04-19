@@ -15,6 +15,7 @@ const FeatureSection = () => {
       </div>
       <div className='w-full h-full flex flex-col justify-center items-center gap-10 min-w-[496px] border-0 py-5'>
         <video
+          playsInline
           className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
           loop
           autoPlay

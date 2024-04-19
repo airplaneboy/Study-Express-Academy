@@ -46,7 +46,7 @@ const HeroSection = () => {
         </div>
 
         <div className='pointer-events-none w-full h-full flex items-center justify-center z-10'>
-          <video style={{ scale: 2 }} loop autoPlay muted width='720' height='720' preload='auto'>
+          <video playsInline style={{ scale: 2 }} loop autoPlay muted width='720' height='720' preload='auto'>
             <source src='/parallax/video.webm' type='video/webm' />
             Your browser does not support the video tag.
           </video>

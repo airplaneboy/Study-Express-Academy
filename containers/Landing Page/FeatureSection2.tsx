@@ -5,6 +5,7 @@ const FeatureSection2 = () => {
       <section className=' py-32 w-full h-full flex flex-col items-center justify-between gap-40 px-24 max-w-7xl mx-auto'>
         <div className=' flex flex-row justify-between items-center gap-20'>
           <video
+            playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
             autoPlay
@@ -36,6 +37,7 @@ const FeatureSection2 = () => {
             </p>
           </div>
           <video
+            playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
             autoPlay
@@ -48,6 +50,7 @@ const FeatureSection2 = () => {
 
         <div className=' flex flex-row justify-between items-center gap-20'>
           <video
+            playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
             autoPlay
