@@ -8,7 +8,9 @@ interface IRegister {
 }
 
 const registerUser = async (props: IRegister) => {
+
   const path = `${process.env.NEXT_PUBLIC_APP_URI}/api/v1/auth/register`;
+
   return await fetchPOST({ path, data: props });
 };
 

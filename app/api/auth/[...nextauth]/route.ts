@@ -36,7 +36,9 @@ export const authOptions: NextAuthOptions = {
             email: credentials?.email,
             password: credentials?.password,
           },
+
           path: `${process.env.NEXT_PUBLIC_APP_URI}/api/v1/auth/login`,
+
         });
 
         if (user) return user;
@@ -108,7 +110,9 @@ export const authOptions: NextAuthOptions = {
         try {
           const loginResponse = await fetchPOST({
             data: loginData,
+
             path: `${process.env.NEXT_PUBLIC_APP_URI}/api/v1/auth/login`,
+
             headers: { 'X-Auth-Method': account?.type },
           });
 
@@ -121,7 +125,9 @@ export const authOptions: NextAuthOptions = {
         try {
           const registerResponse = await fetchPOST({
             data: userData,
+
             path: `${process.env.NEXT_PUBLIC_APP_URI}/api/v1/auth/register`,
+
             headers: { 'X-Auth-Method': account?.type },
           });
 
