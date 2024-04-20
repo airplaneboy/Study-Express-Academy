@@ -6,7 +6,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-const IntersectionVideo = dynamic(() => import('./IntersectionVideoComponent'));
+import IntersectionVideo from './IntersectionVideoComponent';
+// const IntersectionVideo = dynamic(() => import('./IntersectionVideoComponent'));
 
 const BenefitSection = () => {
   const ctaButton = 'capitalize border px-4 py-4 rounded-2xl items-center justify-center text-sm font-bold';

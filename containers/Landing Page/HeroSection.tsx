@@ -4,8 +4,9 @@ import { HiChevronRight } from 'react-icons/hi2';
 import { WavyBackground } from '@/components/ui/wavy-background';
 import HeadingTypewritter from '@/components/gsap/heading-typewritter';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-const IntersectionVideo = dynamic(() => import('./IntersectionVideoComponent'), { ssr: false });
+// import dynamic from 'next/dynamic';
+import IntersectionVideo from './IntersectionVideoComponent';
+// const IntersectionVideo = dynamic(() => import('./IntersectionVideoComponent'), { ssr: false });
 
 const HeroSection = () => {
   const sectionContentStyle = 'w-full h-full flex flex-col items-center justify-center gap-10 z-[1]';
