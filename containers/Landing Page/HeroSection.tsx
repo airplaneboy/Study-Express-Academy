@@ -4,6 +4,8 @@ import { HiChevronRight } from 'react-icons/hi2';
 import { WavyBackground } from '@/components/ui/wavy-background';
 import HeadingTypewritter from '@/components/gsap/heading-typewritter';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+const IntersectionVideo = dynamic(() => import('./IntersectionVideoComponent'), { ssr: false });
 
 const HeroSection = () => {
   const sectionContentStyle = 'w-full h-full flex flex-col items-center justify-center gap-10 z-[1]';
@@ -46,10 +48,21 @@ const HeroSection = () => {
         </div>
 
         <div className='pointer-events-none w-full h-full flex items-center justify-center z-10'>
-          <video style={{ scale: 2 }} loop autoPlay muted width='720' height='720' preload='auto'>
+          {/* <video playsInline style={{ scale: 2 }} loop autoPlay muted width='720' height='720' preload='auto'>
             <source src='/parallax/video.webm' type='video/webm' />
             Your browser does not support the video tag.
-          </video>
+          </video> */}
+          <IntersectionVideo
+            src='/parallax/video.webm'
+            playsInline
+            style={{ scale: 2 }}
+            loop
+            autoPlay
+            muted
+            width='720'
+            height='720'
+            preload='auto'
+          />
         </div>
       </section>
     </WavyBackground>

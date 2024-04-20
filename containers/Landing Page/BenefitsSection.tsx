@@ -5,6 +5,8 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+const IntersectionVideo = dynamic(() => import('./IntersectionVideoComponent'));
 
 const BenefitSection = () => {
   const ctaButton = 'capitalize border px-4 py-4 rounded-2xl items-center justify-center text-sm font-bold';
@@ -107,7 +109,8 @@ const BenefitSection = () => {
 
       <div className='!flex-1 w-full flex flex-col items-center gap-[100vh]'>
         <div id='item-1' className=' z-[4] min-h-screen flex flex-col gap-5 items-center justify-center'>
-          <video
+          {/* <video
+            playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
             autoPlay
@@ -115,7 +118,16 @@ const BenefitSection = () => {
             preload='auto'>
             <source src='/assets/Article.webm' type='video/webm' />
             Your browser does not support the video tag.
-          </video>
+          </video> */}
+          <IntersectionVideo
+            src='/assets/Article.webm'
+            playsInline
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='auto'
+          />
           <div className='flex flex-col gap-3'>
             <span className=' font-bold text-xl text-gray-700'>Interactive Articles</span>
             <p className='text-sm  leading-6'>
@@ -127,7 +139,8 @@ const BenefitSection = () => {
         </div>
 
         <div id='item-2' className='min-h-screen flex flex-col gap-5 items-center justify-center'>
-          <video
+          {/* <video
+            playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
             autoPlay
@@ -135,7 +148,17 @@ const BenefitSection = () => {
             preload='auto'>
             <source src='/assets/Video.webm' type='video/webm' />
             Your browser does not support the video tag.
-          </video>
+          </video> */}
+
+          <IntersectionVideo
+            src='/assets/Video.webm'
+            playsInline
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='auto'
+          />
           <div className='flex flex-col gap-3'>
             <span className=' font-bold text-xl text-gray-700'>Engaging Video Courses</span>
             <p className='text-sm leading-6'>
@@ -146,7 +169,8 @@ const BenefitSection = () => {
         </div>
 
         <div id='item-3' className='min-h-screen flex flex-col gap-5 items-center justify-center'>
-          <video
+          {/* <video
+            playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
             autoPlay
@@ -154,7 +178,16 @@ const BenefitSection = () => {
             preload='auto'>
             <source src='/assets/Results.webm' type='video/webm' />
             Your browser does not support the video tag.
-          </video>
+          </video> */}
+          <IntersectionVideo
+            src='/assets/Results.webm'
+            playsInline
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='auto'
+          />
           <div className='flex flex-col gap-3'>
             <span className=' font-bold text-xl text-gray-700'>Structured Result Insights</span>
             <p className='text-sm leading-6'>
@@ -165,7 +198,8 @@ const BenefitSection = () => {
         </div>
 
         <div id='item-4' className='min-h-screen flex flex-col gap-5 items-center justify-center'>
-          <video
+          {/* <video
+            playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
             autoPlay
@@ -173,7 +207,16 @@ const BenefitSection = () => {
             preload='auto'>
             <source src='/assets/Tests.webm' type='video/webm' />
             Your browser does not support the video tag.
-          </video>
+          </video> */}
+          <IntersectionVideo
+            src='/assets/Tests.webm'
+            playsInline
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='auto'
+          />
           <div className='flex flex-col gap-3'>
             <span className=' font-bold text-xl text-gray-700'>Interactive Test Simulations</span>
             <p className='text-sm leading-6'>

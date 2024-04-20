@@ -8,7 +8,9 @@ interface IRegister {
 }
 
 const registerUser = async (props: IRegister) => {
-  const path = 'https://study-express-academy-git-master-airplaneboys-projects.vercel.app/api/v1/auth/register';
+
+  const path = `${process.env.NEXT_PUBLIC_APP_URI}/api/v1/auth/register`;
+
   return await fetchPOST({ path, data: props });
 };
 

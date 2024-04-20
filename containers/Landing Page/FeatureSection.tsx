@@ -1,3 +1,7 @@
+import dynamic from 'next/dynamic';
+
+const IntersectionVideo = dynamic(() => import('./IntersectionVideoComponent'));
+
 const FeatureSection = () => {
   return (
     <section
@@ -14,7 +18,8 @@ const FeatureSection = () => {
         </p>
       </div>
       <div className='w-full h-full flex flex-col justify-center items-center gap-10 min-w-[496px] border-0 py-5'>
-        <video
+        {/* <video
+          playsInline
           className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
           loop
           autoPlay
@@ -22,7 +27,16 @@ const FeatureSection = () => {
           preload='auto'>
           <source src='/assets/Subjects.webm' type='video/webm' />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
+        <IntersectionVideo
+          src='/assets/Subjects.webm'
+          playsInline
+          className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+          loop
+          autoPlay
+          muted
+          preload='auto'
+        />
       </div>
     </section>
   );
