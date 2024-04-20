@@ -38,7 +38,9 @@ const LoginForm = () => {
 
     if (res?.error) return toast.error(blacklist(res.error, '"'));
 
+
     // if (document.referrer == '${process.env.NEXT_PUBLIC_APP_URI}/') return router.back();
+
     toast.success('Login successful', { duration: 3000 });
     return router.push('/user');
   };
