@@ -1,0 +1,78 @@
+'use client';
+import React, { useRef, useEffect, useState } from 'react';
+
+const IntersectionVideo = ({
+  src,
+  playsInline,
+  style,
+  loop,
+  autoPlay,
+  muted,
+  width,
+  height,
+  preload,
+  controls,
+  className,
+}: {
+  src: string;
+  playsInline?: boolean | undefined;
+  style?: React.CSSProperties | undefined;
+  loop?: boolean | undefined;
+  autoPlay?: boolean | undefined;
+  muted?: boolean | undefined;
+  width?: string | number | undefined;
+  height?: string | number | undefined;
+  preload?: string | undefined;
+  controls?: boolean | undefined;
+  className?: string | undefined;
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const observer = useRef<IntersectionObserver>();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && videoRef.current) {
+          setIsVisible(true);
+
+          videoRef.current?.load();
+          console.log('i was loaded');
+        }
+      },
+      {
+        rootMargin: '0px',
+        threshold: 0.1,
+      }
+    );
+
+    if (videoRef.current) observer.current.observe(videoRef.current);
+
+    if (isVisible) observer.current.disconnect();
+
+    return () => {
+      observer?.current?.disconnect();
+    };
+  }, [isVisible]);
+
+  return (
+    <video
+      className={className}
+      playsInline={playsInline}
+      style={style}
+      loop={loop}
+      autoPlay={autoPlay}
+      muted={muted}
+      width={width}
+      height={height}
+      preload={preload}
+      ref={videoRef}
+      src={isVisible ? src : ''}
+      controls={controls}>
+      {/* <source src={isVisible ? src : ''} type='video/webm' />
+        Your browser does not support the video tag. */}
+    </video>
+  );
+};
+
+export default IntersectionVideo;

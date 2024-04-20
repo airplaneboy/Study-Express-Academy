@@ -90,9 +90,7 @@ const VideoContainer = async ({ params }: { params: { content: string } }) => {
       <header className='text-center md:text-left text-3xl sm:text-5xl mt-6 md:mt-8 mb-8 sm:mb-10 font-extrabold overflow-hidden text-ellipsis text-gray-900 pb-2'>
         {video.title}
       </header>
-      <video
-        playsInline
-        Player
+      <VideoPlayer
         lastSecond={user?.contentProgress.videos.find((items: Video) => items.id == video._id)?.lastSecondWatched}
         updateUserVideo={updateUserVideo}
         url={video.url}
