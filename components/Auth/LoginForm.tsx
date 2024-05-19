@@ -38,7 +38,6 @@ const LoginForm = () => {
 
     if (res?.error) return toast.error(blacklist(res.error, '"'));
 
-
     // if (document.referrer == '${process.env.NEXT_PUBLIC_APP_URI}/') return router.back();
 
     toast.success('Login successful', { duration: 3000 });
@@ -51,15 +50,20 @@ const LoginForm = () => {
 
     // setContent('');
 
-    await toast.promise(
-      signInUser(),
-      {
-        success: null,
-        loading: 'Verifying credentials...',
-        error: 'An Error occurred!',
-      },
-      { success: { duration: 50 } }
-    );
+    try {
+      await toast.promise(
+        signInUser(),
+        {
+          success: null,
+          loading: 'Verifying credentials...',
+          error: 'An Error occurred!',
+        },
+        { success: { duration: 50 } }
+      );
+      setLoading(false);
+    } catch (error: any) {
+      toast.error(error.message);
+    }
     setLoading(false);
   }
 
