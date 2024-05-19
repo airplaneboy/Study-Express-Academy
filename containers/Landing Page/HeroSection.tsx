@@ -6,6 +6,7 @@ import HeadingTypewritter from '@/components/gsap/heading-typewritter';
 import Link from 'next/link';
 // import dynamic from 'next/dynamic';
 import IntersectionVideo from './IntersectionVideoComponent';
+import IntersectionComponent from '@/components/IntersectionComponent';
 // const IntersectionVideo = dynamic(() => import('./IntersectionVideoComponent'), { ssr: false });
 
 const HeroSection = () => {
@@ -53,17 +54,20 @@ const HeroSection = () => {
             <source src='/parallax/video.webm' type='video/webm' />
             Your browser does not support the video tag.
           </video> */}
-          <IntersectionVideo
-            src='/parallax/video.webm'
-            playsInline
-            style={{ scale: 2 }}
-            loop
-            autoPlay
-            muted
-            width='720'
-            height='720'
-            preload='auto'
-          />
+
+          <IntersectionComponent>
+            <video
+              src='/parallax/video.webm'
+              playsInline
+              style={{ scale: 2 }}
+              loop
+              autoPlay
+              muted
+              width='720'
+              height='720'
+              preload='auto'
+            />
+          </IntersectionComponent>
         </div>
       </section>
     </WavyBackground>

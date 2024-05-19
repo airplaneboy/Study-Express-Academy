@@ -34,23 +34,25 @@ const IntersectionVideo = ({
     observer.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && videoRef.current) {
-          setIsVisible(true);
-
           videoRef.current?.load();
-          console.log('i was loaded');
+
+          setIsVisible(true);
+        } else {
+          videoRef.current?.pause();
+
+          setIsVisible(false);
         }
       },
       {
         rootMargin: '0px',
-        threshold: 0.1,
+        threshold: 0,
       }
     );
 
     if (videoRef.current) observer.current.observe(videoRef.current);
 
-    if (isVisible) observer.current.disconnect();
-
     return () => {
+      // videoRef.current?.pause();
       observer?.current?.disconnect();
     };
   }, [isVisible]);
