@@ -1,7 +1,13 @@
 'use client';
 import { useRef, useEffect, useState } from 'react';
 
-const IntersectionComponent = ({ children }: { children: React.ReactNode }) => {
+const IntersectionComponent = ({
+  children,
+  className = '',
+}: {
+  children: React.ReactNode;
+  className: string | undefined;
+}) => {
   const elementRef = useRef<HTMLDivElement>(null);
   const observer = useRef<IntersectionObserver>();
   const [isVisible, setIsVisible] = useState(false);
@@ -23,7 +29,11 @@ const IntersectionComponent = ({ children }: { children: React.ReactNode }) => {
     return () => observer?.current?.disconnect();
   }, [isVisible]);
 
-  return <div ref={elementRef}>{isVisible && children}</div>;
+  return (
+    <div ref={elementRef} className={className}>
+      {isVisible && children}
+    </div>
+  );
 };
 
 export default IntersectionComponent;

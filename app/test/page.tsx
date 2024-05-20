@@ -5,14 +5,16 @@ import CTASection from '@/containers/Landing Page/CTASection';
 import TestimonialSection from '@/containers/Landing Page/TestimonialSection';
 import ParallaxSection from '@/components/ParallaxSection';
 import IntersectionVideo from '@/containers/Landing Page/IntersectionVideoComponent';
+import HeroSection from '@/containers/Landing Page/HeroSection';
 const Test = async () => {
   return (
-    <div className='h-[300vh] flex flex-col gap-1 items-center justify-center'>
+    <div className='h-[300vh] w-full'>
       {/* <BenefitSection /> */}
       {/* <CTASection /> */}
       {/* <TestimonialSection /> */}
       {/* <ParallaxSection /> */}
-      <IntersectionVideo src='/parallax/video.webm' />
+      {/* <IntersectionVideo src='/parallax/video.webm' /> */}
+      <HeroSection />
     </div>
   );
 };

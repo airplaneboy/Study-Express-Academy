@@ -35,7 +35,7 @@ const HeadingTypewritter = ({ words }: { words: any[] }) => {
   return (
     <>
       <span id='typewritter' className=' text-blue-600 whitespace-nowrap overflow-hidden' />
-      <span id='cursor' className='text-[84px] absolute text-blue-600'>
+      <span id='cursor' className='text-[52px] lg:text-[84px] absolute text-blue-600'>
         |
       </span>
     </>
