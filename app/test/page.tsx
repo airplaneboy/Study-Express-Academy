@@ -6,15 +6,18 @@ import TestimonialSection from '@/containers/Landing Page/TestimonialSection';
 import ParallaxSection from '@/components/ParallaxSection';
 import IntersectionVideo from '@/containers/Landing Page/IntersectionVideoComponent';
 import HeroSection from '@/containers/Landing Page/HeroSection';
+import FeatureSection from '@/containers/Landing Page/FeatureSection';
 const Test = async () => {
   return (
     <div className='h-[300vh] w-full'>
       {/* <BenefitSection /> */}
       {/* <CTASection /> */}
       {/* <TestimonialSection /> */}
-      <ParallaxSection />
+      {/* <ParallaxSection /> */}
       {/* <IntersectionVideo src='/parallax/video.webm' /> */}
       {/* <HeroSection /> */}
+      <FeatureSection />
+      {/* <FeatureSection2/> */}
     </div>
   );
 };

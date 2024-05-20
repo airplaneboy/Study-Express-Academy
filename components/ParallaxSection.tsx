@@ -37,7 +37,7 @@ export default function ParallaxSection() {
       {/* <motion.div ref={ref} className='z-[1] w-screen h-screen overflow-hidden relative grid place-items-center'> */}
       <motion.div
         ref={ref}
-        className='z-[1] w-screen h-[calc(((5_/_9)_*_100vw)_+_80px)] pb-32 overflow-hidden relative grid place-items-center'>
+        className='z-[1] w-screen h-[calc(((5_/_9)_*_100vw)_+_80px)] overflow-hidden relative grid place-items-center'>
         <div className='z-10 inset-0 absolute w-full h-full bg-[linear-gradient(0deg,_rgba(255,255,255,0)_0%,_rgba(52,50,44,0)_30%,_rgba(255,255,255,1)_100%)]' />
 
         <motion.div

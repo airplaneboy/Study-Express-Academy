@@ -31,7 +31,7 @@ export default function ScrollPlane() {
   const scale = useTransform(scrollYProgress, [0, 0.3, 1], [2.5, 2.5, 5]);
   return (
     <motion.div
-      className='pointer-events-none overflow-visible fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full'
+      className='max-lg:!z-[999] pointer-events-none overflow-visible fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full'
       initial={{ zIndex: '0' }}
       animate={{ zIndex: zIndex.get() }}>
       {/* Core Line */}
