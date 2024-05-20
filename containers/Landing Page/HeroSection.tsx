@@ -4,15 +4,13 @@ import { HiChevronRight } from 'react-icons/hi2';
 import { WavyBackground } from '@/components/ui/wavy-background';
 import HeadingTypewritter from '@/components/gsap/heading-typewritter';
 import Link from 'next/link';
-// import dynamic from 'next/dynamic';
-import IntersectionVideo from './IntersectionVideoComponent';
+// import IntersectionVideo from './IntersectionVideoComponent';
 import IntersectionComponent from '@/components/IntersectionComponent';
-// const IntersectionVideo = dynamic(() => import('./IntersectionVideoComponent'), { ssr: false });
 
 const HeroSection = () => {
   const sectionContentStyle = 'w-full h-full flex flex-col items-center justify-center gap-10 z-[1] pt-24 lg:pt-12';
   const ctaButton =
-    'capitalize border px-4 lg:px-8 py-2 lg:py-4 rounded-2xl items-center justify-center font-bold block text-xs lg:text-base flex-1';
+    'capitalize border px-4 lg:px-8 py-2 lg:py-4 rounded-2xl items-center justify-center font-bold block text-xs lg:text-base max-lg:flex-1';
 
   const words = [' Now', ' Here', ' With Us', '...', '.'];
 
@@ -69,6 +67,8 @@ const HeroSection = () => {
               height='720'
               preload='auto'
             />
+            <source src='/parallax/video.webm' type='video/webm' />
+            Your browser does not support the video tag.
           </IntersectionComponent>
         </div>
       </section>
