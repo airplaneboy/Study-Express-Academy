@@ -65,10 +65,10 @@ const HeroSection = () => {
               muted
               width='720'
               height='720'
-              preload='auto'
-            />
-            <source src='/parallax/video.webm' type='video/webm' />
-            Your browser does not support the video tag.
+              preload='auto'>
+              <source src='/parallax/video.webm' type='video/webm' />
+              Your browser does not support the video tag.
+            </video>
           </IntersectionComponent>
         </div>
       </section>
