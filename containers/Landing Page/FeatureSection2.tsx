@@ -1,11 +1,14 @@
+import { cn } from '@/lib/utils';
 import IntersectionVideo from './IntersectionVideoComponent';
 
 const FeatureSection2 = () => {
+  const items: string | undefined =
+    'text-center lg:text-left flex flex-col-reverse lg:flex-row justify-between items-center gap-10 lg:gap-20';
   return (
     <>
       <div className='border-t-2 border-gray-300 border-dashed absolute w-full' />
-      <section className=' py-32 w-full h-full flex flex-col items-center justify-between gap-40 px-24 max-w-7xl mx-auto'>
-        <div className=' flex flex-row justify-between items-center gap-20'>
+      <section className=' py-32 w-full flex flex-col items-center justify-between gap-40 lg:gap-52 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto'>
+        <div className={items}>
           {/* <video
             playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
@@ -36,7 +39,7 @@ const FeatureSection2 = () => {
           </div>
         </div>
 
-        <div className=' flex flex-row justify-between items-center gap-20'>
+        <div className={cn(items, 'max-lg:!flex-col')}>
           <div className='w-full flex flex-col justify-center gap-5'>
             <h1 className='text-2xl leading-[1] font-extrabold text-gray-600 tracking-tight'>
               Personalized Dashboard and Progress Tracking
@@ -68,7 +71,7 @@ const FeatureSection2 = () => {
           />
         </div>
 
-        <div className=' flex flex-row justify-between items-center gap-20'>
+        <div className={items}>
           {/* <video
             playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'

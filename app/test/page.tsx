@@ -16,8 +16,8 @@ const Test = async () => {
       {/* <ParallaxSection /> */}
       {/* <IntersectionVideo src='/parallax/video.webm' /> */}
       {/* <HeroSection /> */}
-      <FeatureSection />
-      {/* <FeatureSection2/> */}
+      {/* <FeatureSection /> */}
+      <FeatureSection2 />
     </div>
   );
 };
