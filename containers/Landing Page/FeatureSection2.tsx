@@ -1,7 +1,4 @@
-import dynamic from 'next/dynamic';
-
 import IntersectionVideo from './IntersectionVideoComponent';
-// const IntersectionVideo = dynamic(() => import('./IntersectionVideoComponent'));
 
 const FeatureSection2 = () => {
   return (
