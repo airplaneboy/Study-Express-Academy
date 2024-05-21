@@ -10,9 +10,9 @@ import FeatureSection from '@/containers/Landing Page/FeatureSection';
 const Test = async () => {
   return (
     <div className='h-[200vh] pt-[100vh] w-full'>
-      <BenefitSection />
+      {/* <BenefitSection /> */}
       {/* <CTASection /> */}
-      {/* <TestimonialSection /> */}
+      <TestimonialSection />
       {/* <ParallaxSection /> */}
       {/* <IntersectionVideo src='/parallax/video.webm' /> */}
       {/* <HeroSection /> */}
