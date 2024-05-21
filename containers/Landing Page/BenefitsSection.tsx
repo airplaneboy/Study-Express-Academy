@@ -91,7 +91,7 @@ const BenefitSection = () => {
         pin: true, // pin the trigger element while active
         pinSpacing: false,
         start: 'top top',
-        end: 'bottom 90%',
+        end: 'bottom 25%',
         scrub: 1,
         snap: 1,
         markers: false,
@@ -104,7 +104,7 @@ const BenefitSection = () => {
       className={
         'min-h-screen border-t-8 max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-start py-12 lg:py-32 px-6 md:px-12 lg:px-24 lg:gap-20'
       }>
-      <div className='benefit-section max-h-[40vh] text-center lg:text-left z-10 bg-grid-black/[0.2] relative !flex-1 w-full h-full flex flex-col items-center justify-center gap-5 lg:gap-10'>
+      <div className='benefit-section min-h-[25vh] max-h-[40vh] text-center lg:text-left z-10 bg-grid-black/[0.2] relative !flex-1 w-full h-full flex flex-col items-center justify-center gap-5 lg:gap-10'>
         <div className='h-full w-full min-w-screen -z-[9] absolute pointer-events-none left-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
         <div
           id='backdrop-blur'
