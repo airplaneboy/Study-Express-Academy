@@ -95,7 +95,7 @@ const TestimonialSection = () => {
         id='profile-1-image'
         priority
         quality={100}
-        className='bg-transparent saturate-150 object-contain z-[1] rounded-r-2xl shadow-lg shadow-gray-300 overflow-hidden pointer-events-none absolute -left-24 lg:-left-[128px] w-[50vw] lg:w-fit lg:h-[80vh]'
+        className='bg-transparent saturate-150 object-contain z-[1] rounded-r-2xl shadow-lg shadow-gray-300 overflow-hidden pointer-events-none absolute -left-20 sm:-left-36 lg:-left-32 top-1/2 !-translate-y-1/2 w-[50vw] lg:w-fit lg:h-[80vh]'
         src={Profile1}
         alt='smiling man portrait with blurred background'
       />
