@@ -24,6 +24,10 @@ html.lenis body {
   height: auto !important;
 }
 
+.add-shadow {
+  @apply shadow-md shadow-gray-400 transition-shadow duration-300;
+}
+
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
