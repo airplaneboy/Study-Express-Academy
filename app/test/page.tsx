@@ -7,6 +7,8 @@ import ParallaxSection from '@/components/ParallaxSection';
 import IntersectionVideo from '@/containers/Landing Page/IntersectionVideoComponent';
 import HeroSection from '@/containers/Landing Page/HeroSection';
 import FeatureSection from '@/containers/Landing Page/FeatureSection';
+// import dynamic from 'next/dynamic';
+// const TestimonialSection = dynamic(() => import('@/containers/Landing Page/TestimonialSection'), { ssr: false });
 const Test = async () => {
   return (
     <div className='h-[200vh] pt-[100vh] w-full'>

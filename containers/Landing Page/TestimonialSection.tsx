@@ -18,6 +18,7 @@ const TestimonialSection = () => {
 
     gsap.to('#testimonial-section', {
       scrollTrigger: {
+        anticipatePin: 1,
         trigger: '#testimonial-section',
         // markers: true,
         pin: true,
@@ -66,6 +67,8 @@ const TestimonialSection = () => {
         type: 'diff',
         speed: 2,
         // delimiter: ' ',
+        // oldClass: '!text-right block',
+        // rtl: true,
         // newClass: 'text-blue-300 z-50',
       },
       onUpdate: () => {
@@ -85,25 +88,25 @@ const TestimonialSection = () => {
   return (
     <section
       id='testimonial-section'
-      className='relative max-w-7xl mx-auto bg-dot-gray-400 flex flex-row justify-between items-center min-h-screen px-32 gap-10 py-32 bg-white'>
+      className='relative max-w-7xl mx-auto bg-dot-gray-400 flex flex-col lg:flex-row justify-between items-center lg:min-h-screen px-6 md:px-12 lg:px-32 gap-10 py-12 lg:py-32 bg-white'>
       <div className='h-full w-full min-w-screen z-0 absolute pointer-events-none left-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
 
       <Image
         id='profile-1-image'
         priority
         quality={100}
-        className='bg-transparent saturate-150 object-contain z-[1] rounded-r-2xl shadow-lg shadow-gray-300 overflow-hidden pointer-events-none absolute -left-[128px] w-fit h-[80vh]'
+        className='bg-transparent saturate-150 object-contain z-[1] rounded-r-2xl shadow-lg shadow-gray-300 overflow-hidden pointer-events-none absolute -left-24 lg:-left-[128px] w-[50vw] lg:w-fit lg:h-[80vh]'
         src={Profile1}
         alt='smiling man portrait with blurred background'
       />
 
       <div
-        className={`bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 overflow-hidden p-[2px] relative ${cormorantUpright.className} rounded-2xl relative left-20 w-full flex flex-col justify-center gap-5`}>
+        className={`bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 overflow-hidden p-[2px] relative ${cormorantUpright.className} rounded-2xl relative lg:left-20 w-full flex flex-col justify-center gap-5`}>
         <div className=' h-full w-full min-w-screen absolute pointer-events-none inset-0 dark:bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] !bg-white bg-gradient-to-r from-green-50 via-blue-50 to-purple-50' />
         <div className='rounded-2xl shadow-inner shadow-purple-500 px-4 sm:px-10 md:px-20 py-10 bg-white'>
           <p
             className={
-              'relative z-[1] min-h-[250px] min-w-[60vw] tracking-tight leading-tight text-5xl word-spacing-1 font-semibold text-gray-700 select-none'
+              'relative z-[1] min-h-[12rem] lg:min-h-[16rem] min-w-[60vw] tracking-tight leading-tight text-xl sm:text-3xl lg:text-5xl word-spacing-1 font-semibold text-gray-700 select-none pl-10'
             }>
             <span id='typewriter' className='absolute text-black/20'>
               I&apos;ve learned a ton in such a short amount of time. The courses are top-notch quality, and I would
@@ -112,10 +115,10 @@ const TestimonialSection = () => {
             <span
               id='typewriter'
               className={
-                'z-50 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-fuchsia-500 to-rose-400 '
+                'z-50 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-fuchsia-500 to-rose-400'
               }
             />
-            <span id='cursor' className='text-6xl absolute text-blue-500'>
+            <span id='cursor' className='text-2xl md:text-4xl lg:text-6xl absolute text-blue-500'>
               |
             </span>
           </p>
