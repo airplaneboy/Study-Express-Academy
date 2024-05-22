@@ -56,6 +56,7 @@ const HeroSection = () => {
           </video> */}
 
           <IntersectionVideo
+            className='pb-24 lg:pb-0'
             src='/parallax/video.webm'
             playsInline
             style={{ scale: 2 }}
