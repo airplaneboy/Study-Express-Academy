@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <Lenis>
       <main className='overflow-x-hidden'>
-        <HeroSection />
+        {/* <HeroSection /> */}
         <ParallaxSection />
         <FeatureSection />
         <FeatureSection2 />
