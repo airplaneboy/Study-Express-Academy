@@ -13,7 +13,7 @@ import Footer from '@/components/Footer';
 
 const ParallaxSection = dynamic(() => import('@/components/ParallaxSection'));
 const BenefitSection = dynamic(() => import('@/containers/Landing Page/BenefitsSection'));
-const TestimonialSection = dynamic(() => import('@/containers/Landing Page/FooterSection'));
+const TestimonialSection = dynamic(() => import('@/containers/Landing Page/TestimonialSection'));
 const CTASection = dynamic(() => import('@/containers/Landing Page/CTASection'));
 
 export default function Home() {
