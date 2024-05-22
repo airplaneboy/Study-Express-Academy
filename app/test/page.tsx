@@ -13,8 +13,8 @@ const Test = async () => {
   return (
     <div className='h-[200vh] pt-[100vh] w-full'>
       {/* <BenefitSection /> */}
-      {/* <CTASection /> */}
-      <TestimonialSection />
+      <CTASection />
+      {/* <TestimonialSection /> */}
       {/* <ParallaxSection /> */}
       {/* <IntersectionVideo src='/parallax/video.webm' /> */}
       {/* <HeroSection /> */}
