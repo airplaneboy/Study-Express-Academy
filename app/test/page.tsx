@@ -18,10 +18,10 @@ const Test = async () => {
       {/* <TestimonialSection /> */}
       {/* <ParallaxSection /> */}
       {/* <IntersectionVideo src='/parallax/video.webm' /> */}
-      {/* <HeroSection /> */}
+      <HeroSection />
       {/* <FeatureSection /> */}
       {/* <FeatureSection2 /> */}
-      <FooterSection />
+      {/* <FooterSection /> */}
     </div>
   );
 };
