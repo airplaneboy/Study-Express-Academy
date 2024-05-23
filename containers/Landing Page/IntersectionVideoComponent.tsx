@@ -71,8 +71,8 @@ const IntersectionVideo = ({
       ref={videoRef}
       src={isVisible ? src : ''}
       controls={controls}>
-      {/* <source src={isVisible ? src : ''} type='video/webm' />
-        Your browser does not support the video tag. */}
+      <source src='/parallax/video_fallback.webp' type='image/webp' />
+      Your browser does not support the video tag.
     </video>
   );
 };
