@@ -66,6 +66,7 @@ const HeroSection = () => {
             width='720'
             height='720'
             preload='auto'
+            fallbackSrc='/parallax/video_fallback.webp'
           />
         </div>
       </section>

@@ -13,6 +13,7 @@ const IntersectionVideo = ({
   preload,
   controls,
   className,
+  fallbackSrc,
 }: {
   src: string;
   playsInline?: boolean | undefined;
@@ -25,6 +26,7 @@ const IntersectionVideo = ({
   preload?: string | undefined;
   controls?: boolean | undefined;
   className?: string | undefined;
+  fallbackSrc?: string;
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const observer = useRef<IntersectionObserver>();
@@ -71,8 +73,12 @@ const IntersectionVideo = ({
       ref={videoRef}
       src={isVisible ? src : ''}
       controls={controls}>
-      <source src='/parallax/video_fallback.webp' type='image/webp' />
-      Your browser does not support the video tag.
+      {fallbackSrc && (
+        <>
+          <source src={fallbackSrc} type='image/webp' />
+          Your browser does not support the video tag.
+        </>
+      )}
     </video>
   );
 };
