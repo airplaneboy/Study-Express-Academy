@@ -31,8 +31,11 @@ const IntersectionVideo = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const observer = useRef<IntersectionObserver>();
   const [isVisible, setIsVisible] = useState(false);
+  const [supportsHEVCAlphaValue, setSupportsHEVCAlpha] = useState('hello');
 
   useEffect(() => {
+    setSupportsHEVCAlpha(supportsHEVCAlpha().toString());
+
     observer.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && videoRef.current) {
@@ -70,7 +73,7 @@ const IntersectionVideo = ({
   return (
     <>
       {' '}
-      <span className='z-[999] text-5xl'>{supportsHEVCAlpha().toString()}</span>
+      <span className='z-[999] text-5xl'>{supportsHEVCAlphaValue || 'could not get it'}</span>
       <video
         className={className}
         playsInline={playsInline}
