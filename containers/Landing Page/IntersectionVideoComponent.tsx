@@ -31,11 +31,9 @@ const IntersectionVideo = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const observer = useRef<IntersectionObserver>();
   const [isVisible, setIsVisible] = useState(false);
-  const [supportsHEVCAlphaValue, setSupportsHEVCAlpha] = useState('hello');
+  const [supportsHEVCAlphaValue, setSupportsHEVCAlpha] = useState(supportsHEVCAlpha());
 
   useEffect(() => {
-    setSupportsHEVCAlpha(supportsHEVCAlpha().toString());
-
     observer.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && videoRef.current) {
@@ -71,30 +69,26 @@ const IntersectionVideo = ({
   }
 
   return (
-    <>
-      {' '}
-      <span className='z-[999] text-5xl'>{supportsHEVCAlphaValue || 'could not get it'}</span>
-      <video
-        className={className}
-        playsInline={playsInline}
-        style={style}
-        loop={loop}
-        autoPlay={autoPlay}
-        muted={muted}
-        width={width}
-        height={height}
-        preload={preload}
-        ref={videoRef}
-        src={isVisible ? src : ''}
-        controls={controls}>
-        {fallbackSrc && (
-          <>
-            <source src={fallbackSrc} type='image/webp' />
-            Your browser does not support the video tag.
-          </>
-        )}
-      </video>
-    </>
+    <video
+      className={className}
+      playsInline={playsInline}
+      style={style}
+      loop={loop}
+      autoPlay={autoPlay}
+      muted={muted}
+      width={width}
+      height={height}
+      preload={preload}
+      ref={videoRef}
+      src={supportsHEVCAlphaValue ? (isVisible ? src : '') : fallbackSrc}
+      controls={controls}>
+      {fallbackSrc && (
+        <>
+          <source src={fallbackSrc} type='image/webp' />
+          Your browser does not support the video tag.
+        </>
+      )}
+    </video>
   );
 };
 
