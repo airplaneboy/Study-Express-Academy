@@ -59,27 +59,39 @@ const IntersectionVideo = ({
     };
   }, [isVisible]);
 
+  function supportsHEVCAlpha() {
+    const navigator = window.navigator;
+    const ua = navigator.userAgent.toLowerCase();
+    const hasMediaCapabilities = !!(navigator.mediaCapabilities && navigator.mediaCapabilities.decodingInfo);
+    const isSafari = ua.indexOf('safari') != -1 && !(ua.indexOf('chrome') != -1) && ua.indexOf('version/') != -1;
+    return isSafari && hasMediaCapabilities;
+  }
+
   return (
-    <video
-      className={className}
-      playsInline={playsInline}
-      style={style}
-      loop={loop}
-      autoPlay={autoPlay}
-      muted={muted}
-      width={width}
-      height={height}
-      preload={preload}
-      ref={videoRef}
-      src={isVisible ? src : ''}
-      controls={controls}>
-      {fallbackSrc && (
-        <>
-          <source src={fallbackSrc} type='image/webp' />
-          Your browser does not support the video tag.
-        </>
-      )}
-    </video>
+    <>
+      {' '}
+      <span className='z-[999] text-5xl'>{supportsHEVCAlpha().toString()}</span>
+      <video
+        className={className}
+        playsInline={playsInline}
+        style={style}
+        loop={loop}
+        autoPlay={autoPlay}
+        muted={muted}
+        width={width}
+        height={height}
+        preload={preload}
+        ref={videoRef}
+        src={isVisible ? src : ''}
+        controls={controls}>
+        {fallbackSrc && (
+          <>
+            <source src={fallbackSrc} type='image/webp' />
+            Your browser does not support the video tag.
+          </>
+        )}
+      </video>
+    </>
   );
 };
 
