@@ -84,7 +84,7 @@ const IntersectionVideo = ({
       height={height}
       preload={preload}
       ref={videoRef}
-      src={supportsHEVCAlphaValue ? (isVisible ? src : '') : fallbackSrc}
+      src={supportsHEVCAlphaValue ? fallbackSrc : isVisible ? src : ''}
       controls={controls}>
       {fallbackSrc && (
         <>
