@@ -31,7 +31,11 @@ const IntersectionVideo = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const observer = useRef<IntersectionObserver>();
   const [isVisible, setIsVisible] = useState(false);
-  const [supportsHEVCAlphaValue, setSupportsHEVCAlpha] = useState(supportsHEVCAlpha());
+  const [supportsHEVCAlphaValue, setSupportsHEVCAlpha] = useState(false);
+
+  useEffect(() => {
+    setSupportsHEVCAlpha(supportsHEVCAlpha());
+  }, []);
 
   useEffect(() => {
     observer.current = new IntersectionObserver(
