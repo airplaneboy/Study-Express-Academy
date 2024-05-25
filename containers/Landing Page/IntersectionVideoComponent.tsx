@@ -1,6 +1,7 @@
 'use client';
 import React, { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
+import planeFallback from '../../public/parallax/video_fallback.webp';
 
 const IntersectionVideo = ({
   src,
@@ -75,7 +76,7 @@ const IntersectionVideo = ({
 
   return (
     <>
-      {supportsHEVCAlphaValue == false ? (
+      {supportsHEVCAlphaValue == false || !fallbackSrc ? (
         <video
           className={className}
           playsInline={playsInline}
@@ -97,7 +98,7 @@ const IntersectionVideo = ({
           )}
         </video>
       ) : (
-        <Image width={1254} height={1080} src='/parallax/video_fallback.webp' alt='blue plane flying' />
+        <Image src={planeFallback} alt='blue plane flying' />
       )}
     </>
   );
