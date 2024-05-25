@@ -76,6 +76,7 @@ const IntersectionVideo = ({
 
   return (
     <>
+      <div></div>
       {supportsHEVCAlphaValue == false || !fallbackSrc ? (
         <video
           className={className}
