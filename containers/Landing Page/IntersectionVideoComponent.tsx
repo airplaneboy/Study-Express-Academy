@@ -1,5 +1,6 @@
 'use client';
 import React, { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const IntersectionVideo = ({
   src,
@@ -73,26 +74,32 @@ const IntersectionVideo = ({
   }
 
   return (
-    <video
-      className={className}
-      playsInline={playsInline}
-      style={style}
-      loop={loop}
-      autoPlay={autoPlay}
-      muted={muted}
-      width={width}
-      height={height}
-      preload={preload}
-      ref={videoRef}
-      src={supportsHEVCAlphaValue ? fallbackSrc : isVisible ? src : ''}
-      controls={controls}>
-      {fallbackSrc && (
-        <>
-          <source src={fallbackSrc} type='image/webp' />
-          Your browser does not support the video tag.
-        </>
+    <>
+      {supportsHEVCAlphaValue == false ? (
+        <video
+          className={className}
+          playsInline={playsInline}
+          style={style}
+          loop={loop}
+          autoPlay={autoPlay}
+          muted={muted}
+          width={width}
+          height={height}
+          preload={preload}
+          ref={videoRef}
+          src={isVisible ? src : ''}
+          controls={controls}>
+          {fallbackSrc && (
+            <>
+              <source src={fallbackSrc} type='image/webp' />
+              Your browser does not support the video tag.
+            </>
+          )}
+        </video>
+      ) : (
+        <Image width={1254} height={1080} src='/parallax/video_fallback.webp' alt='blue plane flying' />
       )}
-    </video>
+    </>
   );
 };
 
