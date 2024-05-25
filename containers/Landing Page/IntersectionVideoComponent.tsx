@@ -1,7 +1,5 @@
 'use client';
 import React, { useRef, useEffect, useState } from 'react';
-import Image from 'next/image';
-import planeFallback from '../../public/parallax/video_fallback.webp';
 
 const IntersectionVideo = ({
   src,
@@ -15,7 +13,6 @@ const IntersectionVideo = ({
   preload,
   controls,
   className,
-  fallbackSrc,
 }: {
   src: string;
   playsInline?: boolean | undefined;
@@ -28,16 +25,10 @@ const IntersectionVideo = ({
   preload?: string | undefined;
   controls?: boolean | undefined;
   className?: string | undefined;
-  fallbackSrc?: string;
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const observer = useRef<IntersectionObserver>();
   const [isVisible, setIsVisible] = useState(false);
-  const [supportsHEVCAlphaValue, setSupportsHEVCAlpha] = useState(false);
-
-  useEffect(() => {
-    setSupportsHEVCAlpha(supportsHEVCAlpha());
-  }, []);
 
   useEffect(() => {
     observer.current = new IntersectionObserver(
@@ -66,42 +57,20 @@ const IntersectionVideo = ({
     };
   }, [isVisible]);
 
-  function supportsHEVCAlpha() {
-    const navigator = window.navigator;
-    const ua = navigator.userAgent.toLowerCase();
-    const hasMediaCapabilities = !!(navigator.mediaCapabilities && navigator.mediaCapabilities.decodingInfo);
-    const isSafari = ua.indexOf('safari') != -1 && !(ua.indexOf('chrome') != -1) && ua.indexOf('version/') != -1;
-    return isSafari && hasMediaCapabilities;
-  }
-
   return (
-    <>
-      <div></div>
-      {supportsHEVCAlphaValue == false || !fallbackSrc ? (
-        <video
-          className={className}
-          playsInline={playsInline}
-          style={style}
-          loop={loop}
-          autoPlay={autoPlay}
-          muted={muted}
-          width={width}
-          height={height}
-          preload={preload}
-          ref={videoRef}
-          src={isVisible ? src : ''}
-          controls={controls}>
-          {fallbackSrc && (
-            <>
-              <source src={fallbackSrc} type='image/webp' />
-              Your browser does not support the video tag.
-            </>
-          )}
-        </video>
-      ) : (
-        <Image src={planeFallback} alt='blue plane flying' />
-      )}
-    </>
+    <video
+      className={className}
+      playsInline={playsInline}
+      style={style}
+      loop={loop}
+      autoPlay={autoPlay}
+      muted={muted}
+      width={width}
+      height={height}
+      preload={preload}
+      ref={videoRef}
+      src={isVisible ? src : ''}
+      controls={controls}></video>
   );
 };
 

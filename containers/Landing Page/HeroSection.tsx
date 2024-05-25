@@ -4,7 +4,7 @@ import { HiChevronRight } from 'react-icons/hi2';
 import { WavyBackground } from '@/components/ui/wavy-background';
 import HeadingTypewritter from '@/components/gsap/heading-typewritter';
 import Link from 'next/link';
-import IntersectionVideo from './IntersectionVideoComponent';
+import HeroIntersectionVideo from './HeroIntersectionComponent';
 // import IntersectionComponent from '@/components/IntersectionComponent';
 
 const HeroSection = () => {
@@ -55,7 +55,7 @@ const HeroSection = () => {
             Your browser does not support the video tag.
           </video> */}
 
-          <IntersectionVideo
+          <HeroIntersectionVideo
             className='pb-24 lg:pb-0'
             src='/parallax/video.webm'
             playsInline
