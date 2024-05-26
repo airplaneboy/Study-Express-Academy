@@ -95,7 +95,7 @@ const HeroIntersectionVideo = ({
           Your browser does not support the video tag.
         </video>
       ) : (
-        <Image style={{ scale: 1.5 }} src={planeFallback} alt='blue plane flying' className={className} />
+        <Image src={planeFallback} alt='blue plane flying' className={className + ' scale-125'} />
       )}
     </>
   );
