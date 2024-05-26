@@ -91,15 +91,11 @@ const HeroIntersectionVideo = ({
           ref={videoRef}
           src={isVisible ? src : ''}
           controls={controls}>
-          {fallbackSrc && (
-            <>
-              <source src={fallbackSrc} type='image/webp' />
-              Your browser does not support the video tag.
-            </>
-          )}
+          <source src={fallbackSrc} type='image/webp' />
+          Your browser does not support the video tag.
         </video>
       ) : (
-        <Image src={planeFallback} alt='blue plane flying' className={className} />
+        <Image style={{ scale: 1.5 }} src={planeFallback} alt='blue plane flying' className={className} />
       )}
     </>
   );

@@ -18,7 +18,7 @@ const HeroSection = () => {
     <WavyBackground blur={0} containerClassName='relative' className='z-[0] static' backgroundFill='#fff'>
       <section className='w-full bg-dot-black/[0.3] max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center min-h-screen px-6 md:px-10 lg:px-24'>
         {/* <div className='inset-0 absolute w-full h-full bg-[linear-gradient(0deg,_rgba(52,50,44,0.7539390756302521)_0%,_rgba(46,100,97,0)_30%,_rgba(34,193,195,0)_100%)]' /> */}
-        <div className='h-full w-full min-w-screen z-0 absolute pointer-events-none left-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
+        <div className='inset-0 h-full w-full min-w-screen z-0 absolute pointer-events-none left-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
         <div className={sectionContentStyle}>
           <h1 className='min-h-[8rem] text-center lg:text-left text-5xl lg:text-[80px] leading-[1] font-extrabold bg-gradient-to-r from-teal-500 via-purple-500 to-blue-600 bg-clip-text text-transparent pb-3 lg:min-w-[580px]'>
             Your Learning Adventure Begins
