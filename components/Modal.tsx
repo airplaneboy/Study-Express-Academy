@@ -47,7 +47,7 @@ export default function Modal({
             <div className='fixed inset-0 bg-black/25' />
           </Transition.Child>
 
-          <div className='fixed inset-0 overflow-y-auto max-h-[100svh]'>
+          <div className='fixed inset-0 overflow-y-auto'>
             <div className='flex min-h-full items-center justify-center p-0 sm:p-4 text-center'>
               <Transition.Child
                 as={Fragment}
@@ -66,7 +66,7 @@ export default function Modal({
                   </Dialog.Title>
                   <div
                     id='add-subject'
-                    className='mt-4 sm:mt-2 max-h-[calc(100vh-56px-56px-10px)] sm:max-h-[55vh] overflow-y-scroll  shadow-inner sm:shadow-none shadow-gray-300 sm:border-none'>
+                    className='mt-4 sm:mt-2 max-h-[calc(100svh-56px-56px-10px)] sm:max-h-[55vh] overflow-y-scroll  shadow-inner sm:shadow-none shadow-gray-300 sm:border-none'>
                     {children}
                   </div>
 
