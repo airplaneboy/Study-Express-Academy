@@ -66,7 +66,7 @@ export default function Modal({
                   </Dialog.Title>
                   <div
                     id='add-subject'
-                    className='mt-4 sm:mt-2 max-h-[calc(100svh-56px-56px-10px)] sm:max-h-[55vh] overflow-y-scroll  shadow-inner sm:shadow-none shadow-gray-300 sm:border-none'>
+                    className='mt-4 sm:mt-2 max-h-[calc(100dvh-56px-56px-10px)] sm:max-h-[55vh] overflow-y-scroll  shadow-inner sm:shadow-none shadow-gray-300 sm:border-none'>
                     {children}
                   </div>
 
