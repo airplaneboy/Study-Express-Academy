@@ -83,7 +83,7 @@ const VideoPlayer = ({ url, updateUserVideo, lastSecond }: VideoPlayerProps) => 
       className={
         playerReady
           ? 'aspect-video rounded-lg overflow-hidden'
-          : 'aspect-video duration-75 animate-pulse bg-gray-200 rounded-lg overflow-hidden'
+          : 'aspect-video duration-1000 animate-pulse bg-gray-200 rounded-lg overflow-hidden'
       }>
       <DynamicReactPlayer
         className=' aspect-video !w-auto !h-auto'
