@@ -33,7 +33,7 @@ const BenefitSection = () => {
           end: 'bottom top',
           scrub: 1,
           snap: 1,
-          markers: false,
+          markers: true,
         },
       });
 
