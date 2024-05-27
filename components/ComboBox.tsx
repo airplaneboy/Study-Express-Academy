@@ -14,7 +14,7 @@ export default function ComboBox({
   initialSelected?: {};
   updateUserCountry?: any;
 }) {
-  const [canChangeState, setCanChangeState] = useState(false);
+  // const [canChangeState, setCanChangeState] = useState(false);
   const countries = comboBoxArray;
   const [selected, setSelected] = useState(initialSelected == undefined ? countries[0] : initialSelected);
   const [query, setQuery] = useState('');
@@ -58,7 +58,7 @@ export default function ComboBox({
               className='w-full border-none py-[6px] sm:py-2 pl-0 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 '
               placeholder={selected?.name}
               onChange={(event) => {
-                setCanChangeState(true);
+                // setCanChangeState(true);
                 setQuery(event.target.value);
               }}
             />
