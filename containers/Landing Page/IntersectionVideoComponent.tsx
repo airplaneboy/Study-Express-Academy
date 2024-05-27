@@ -34,9 +34,11 @@ const IntersectionVideo = ({
     observer.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && videoRef.current) {
-          videoRef.current?.load();
+          if (isVisible != true) {
+            videoRef.current?.load();
 
-          setIsVisible(true);
+            setIsVisible(true);
+          }
         } else {
           videoRef.current?.pause();
 

@@ -79,23 +79,25 @@ const BenefitSection = () => {
       });
     });
 
-    tl.to('.benefit-section', {
-      scrollTrigger: {
-        anticipatePin: 1,
-        toggleClass: {
-          targets: '#backdrop-blur',
-          className: 'add-shadow',
+    mm.add('(max-width: 1023px)', () => {
+      tl.to('.benefit-section', {
+        scrollTrigger: {
+          anticipatePin: 1,
+          toggleClass: {
+            targets: '#backdrop-blur',
+            className: 'add-shadow',
+          },
+          trigger: '.benefit-section',
+          endTrigger: '#item-4',
+          pin: true, // pin the trigger element while active
+          pinSpacing: false,
+          start: 'top top',
+          end: 'bottom 25%',
+          scrub: 1,
+          snap: 1,
+          markers: false,
         },
-        trigger: '.benefit-section',
-        endTrigger: '#item-4',
-        pin: true, // pin the trigger element while active
-        pinSpacing: false,
-        start: 'top top',
-        end: 'bottom 25%',
-        scrub: 1,
-        snap: 1,
-        markers: false,
-      },
+      });
     });
   });
 
