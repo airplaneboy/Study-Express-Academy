@@ -250,6 +250,7 @@ const PersonalInformation = ({
                   <div className='col-span-6 sm:col-span-4'>
                     <label className='block text-sm font-medium text-gray-700'>Country</label>
                     <ComboBox
+                      updateUserCountry={setCountry}
                       initialSelected={
                         user?.profile?.country || {
                           name: 'Select Country',
