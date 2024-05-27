@@ -28,21 +28,21 @@ const IntersectionVideo = ({
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const observer = useRef<IntersectionObserver>();
-  const [isVisible, setIsVisible] = useState({ value: false, show: false });
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     observer.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && videoRef.current) {
-          videoRef.current?.load();
+          if (isVisible != true) {
+            videoRef.current?.load();
 
-          setIsVisible({ value: true, show: true });
+            setIsVisible(true);
+          }
         } else {
           videoRef.current?.pause();
 
-          setIsVisible((prev: any) => {
-            return { ...prev, value: false };
-          });
+          setIsVisible(false);
         }
       },
       {
@@ -71,7 +71,7 @@ const IntersectionVideo = ({
       height={height}
       preload={preload}
       ref={videoRef}
-      // src={isVisible.show ? src : ''}
+      // src={isVisible ? src : ''}
       src={src}
       controls={controls}></video>
   );
