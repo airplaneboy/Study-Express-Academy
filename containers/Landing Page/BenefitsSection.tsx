@@ -148,7 +148,7 @@ const BenefitSection = () => {
             loop
             autoPlay
             muted
-            preload='auto'>
+            preload='none'>
             <source src='/assets/Article.webm' type='video/webm' />
             Your browser does not support the video tag.
           </video> */}
@@ -159,7 +159,7 @@ const BenefitSection = () => {
             loop
             autoPlay
             muted
-            preload='auto'
+            preload='none'
           />
           <div className='flex flex-col gap-3'>
             <span className=' font-bold text-xl text-gray-700'>Interactive Articles</span>
@@ -178,7 +178,7 @@ const BenefitSection = () => {
             loop
             autoPlay
             muted
-            preload='auto'>
+            preload='none'>
             <source src='/assets/Video.webm' type='video/webm' />
             Your browser does not support the video tag.
           </video> */}
@@ -190,7 +190,7 @@ const BenefitSection = () => {
             loop
             autoPlay
             muted
-            preload='auto'
+            preload='none'
           />
           <div className='flex flex-col gap-3'>
             <span className=' font-bold text-xl text-gray-700'>Engaging Video Courses</span>
@@ -208,7 +208,7 @@ const BenefitSection = () => {
             loop
             autoPlay
             muted
-            preload='auto'>
+            preload='none'>
             <source src='/assets/Results.webm' type='video/webm' />
             Your browser does not support the video tag.
           </video> */}
@@ -219,7 +219,7 @@ const BenefitSection = () => {
             loop
             autoPlay
             muted
-            preload='auto'
+            preload='none'
           />
           <div className='flex flex-col gap-3'>
             <span className=' font-bold text-xl text-gray-700'>Structured Result Insights</span>
@@ -237,7 +237,7 @@ const BenefitSection = () => {
             loop
             autoPlay
             muted
-            preload='auto'>
+            preload='none'>
             <source src='/assets/Tests.webm' type='video/webm' />
             Your browser does not support the video tag.
           </video> */}
@@ -248,7 +248,7 @@ const BenefitSection = () => {
             loop
             autoPlay
             muted
-            preload='auto'
+            preload='none'
           />
           <div className='flex flex-col gap-3'>
             <span className=' font-bold text-xl text-gray-700'>Interactive Test Simulations</span>

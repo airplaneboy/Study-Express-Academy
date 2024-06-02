@@ -23,7 +23,7 @@ const FeatureSection = () => {
           loop
           autoPlay
           muted
-          preload='auto'>
+          preload='none'>
           <source src='/assets/Subjects.webm' type='video/webm' />
           Your browser does not support the video tag.
         </video> */}
@@ -34,7 +34,7 @@ const FeatureSection = () => {
           loop
           autoPlay
           muted
-          preload='auto'
+          preload='none'
         />
       </div>
     </section>

@@ -15,7 +15,7 @@ const FeatureSection2 = () => {
             loop
             autoPlay
             muted
-            preload='auto'>
+            preload='none'>
             <source src='/assets/Streamlined-Test-Prep.webm' type='video/webm' />
             Your browser does not support the video tag.
           </video> */}
@@ -26,7 +26,7 @@ const FeatureSection2 = () => {
             loop
             autoPlay
             muted
-            preload='auto'
+            preload='none'
           />
           <div className='w-full flex flex-col justify-center gap-5'>
             <h2 className='text-2xl leading-[1] font-extrabold text-gray-600 tracking-tight'>
@@ -56,7 +56,7 @@ const FeatureSection2 = () => {
             loop
             autoPlay
             muted
-            preload='auto'>
+            preload='none'>
             <source src='/assets/Personalized-Dashboard.webm' type='video/webm' />
             Your browser does not support the video tag.
           </video> */}
@@ -67,7 +67,7 @@ const FeatureSection2 = () => {
             loop
             autoPlay
             muted
-            preload='auto'
+            preload='none'
           />
         </div>
 
@@ -78,7 +78,7 @@ const FeatureSection2 = () => {
             loop
             autoPlay
             muted
-            preload='auto'>
+            preload='none'>
             <source src='/assets/Analytics.webm' type='video/webm' />
             Your browser does not support the video tag.
           </video> */}
@@ -89,7 +89,7 @@ const FeatureSection2 = () => {
             loop
             autoPlay
             muted
-            preload='auto'
+            preload='none'
           />
           <div className='w-full flex flex-col justify-center gap-5'>
             <h1 className='text-2xl leading-[1] font-extrabold text-gray-600 tracking-tight'>

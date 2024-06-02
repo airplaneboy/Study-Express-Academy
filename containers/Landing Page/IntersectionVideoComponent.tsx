@@ -48,7 +48,7 @@ const IntersectionVideo = ({
             muted={muted}
             width={width}
             height={height}
-            preload='none'
+            preload={preload}
             src={src}
             controls={controls}></motion.video>
         )}
