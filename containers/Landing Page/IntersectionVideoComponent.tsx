@@ -32,7 +32,8 @@ const IntersectionVideo = ({
 
   const isInView = useInView(videoRef);
   return (
-    <div ref={videoRef} className='!h-[calc((9_/_15.98)_*_100vw)] !md:h-80'>
+    <>
+      <div ref={videoRef} className='!h-[calc((9_/_15.98)_*_100vw)] !md:h-80'></div>
       {isInView && (
         <video
           className={className}
@@ -47,7 +48,7 @@ const IntersectionVideo = ({
           src={src}
           controls={controls}></video>
       )}
-    </div>
+    </>
   );
 };
 
