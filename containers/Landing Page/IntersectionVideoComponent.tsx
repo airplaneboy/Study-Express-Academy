@@ -1,6 +1,7 @@
 'use client';
 import { useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 const IntersectionVideo = ({
   src,
@@ -40,7 +41,7 @@ const IntersectionVideo = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className={className}
+            className={cn(className, 'h-[calc((9_/_15.98)_*_100vw)] md:h-80')}
             playsInline={playsInline}
             style={style}
             loop={loop}
