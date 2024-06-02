@@ -33,21 +33,22 @@ const IntersectionVideo = ({
   const isInView = useInView(videoRef);
   return (
     <>
-      <div ref={videoRef} className='!h-[calc((9_/_15.98)_*_100vw)] !md:h-80'></div>
-      {isInView && (
-        <video
-          className={className}
-          playsInline={playsInline}
-          style={style}
-          loop={loop}
-          autoPlay={autoPlay}
-          muted={muted}
-          width={width}
-          height={height}
-          preload={preload}
-          src={src}
-          controls={controls}></video>
-      )}
+      <div ref={videoRef} className={'!h-[calc((9_/_15.98)_*_100vw)] !md:h-80 ' + className}>
+        {isInView && (
+          <video
+            // className={className}
+            playsInline={playsInline}
+            style={style}
+            loop={loop}
+            autoPlay={autoPlay}
+            muted={muted}
+            width={width}
+            height={height}
+            preload={preload}
+            src={src}
+            controls={controls}></video>
+        )}
+      </div>
     </>
   );
 };
