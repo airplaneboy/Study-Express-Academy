@@ -1,6 +1,6 @@
 'use client';
 import { useRef } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { useInView } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 const IntersectionVideo = ({
@@ -32,29 +32,22 @@ const IntersectionVideo = ({
 
   const isInView = useInView(videoRef);
   return (
-    <AnimatePresence initial={false}>
-      <div ref={videoRef} className='h-[calc((9_/_15.98)_*_100vw)] md:h-80'>
-        {isInView && (
-          <motion.video
-            key='video'
-            transition={{ duration: 1 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className={cn(className, 'h-[calc((9_/_15.98)_*_100vw)] md:h-80')}
-            playsInline={playsInline}
-            style={style}
-            loop={loop}
-            autoPlay={autoPlay}
-            muted={muted}
-            width={width}
-            height={height}
-            preload={preload}
-            src={src}
-            controls={controls}></motion.video>
-        )}
-      </div>
-    </AnimatePresence>
+    <div ref={videoRef} className='!h-[calc((9_/_15.98)_*_100vw)] !md:h-80'>
+      {isInView && (
+        <video
+          className={cn(className, '!h-[calc((9_/_15.98)_*_100vw)] !md:h-80')}
+          playsInline={playsInline}
+          style={style}
+          loop={loop}
+          autoPlay={autoPlay}
+          muted={muted}
+          width={width}
+          height={height}
+          preload={preload}
+          src={src}
+          controls={controls}></video>
+      )}
+    </div>
   );
 };
 
