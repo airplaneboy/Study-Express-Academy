@@ -1,5 +1,6 @@
 'use client';
-import { useRef, useEffect, useState } from 'react';
+import { useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 
 const IntersectionVideo = ({
   src,
@@ -26,54 +27,33 @@ const IntersectionVideo = ({
   controls?: boolean | undefined;
   className?: string | undefined;
 }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const observer = useRef<IntersectionObserver>();
-  const [isVisible, setIsVisible] = useState(false);
+  const videoRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    observer.current = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && videoRef.current) {
-          if (isVisible != true) {
-            videoRef.current?.load();
-
-            setIsVisible(true);
-          }
-        } else {
-          videoRef.current?.pause();
-
-          setIsVisible(false);
-        }
-      },
-      {
-        rootMargin: '0px',
-        threshold: 0,
-      }
-    );
-
-    if (videoRef.current) observer.current.observe(videoRef.current);
-
-    return () => {
-      // videoRef.current?.pause();
-      observer?.current?.disconnect();
-    };
-  }, [isVisible]);
-
+  const isInView = useInView(videoRef);
   return (
-    <video
-      className={className}
-      playsInline={playsInline}
-      style={style}
-      loop={loop}
-      autoPlay={autoPlay}
-      muted={muted}
-      width={width}
-      height={height}
-      preload={preload}
-      ref={videoRef}
-      // src={isVisible ? src : ''}
-      src={src}
-      controls={controls}></video>
+    <AnimatePresence initial={false}>
+      <div ref={videoRef} className='h-[calc((9_/_15.98)_*_100vw)] md:h-80'>
+        {isInView && (
+          <motion.video
+            key='video'
+            transition={{ duration: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={className}
+            playsInline={playsInline}
+            style={style}
+            loop={loop}
+            autoPlay={autoPlay}
+            muted={muted}
+            width={width}
+            height={height}
+            preload='none'
+            src={src}
+            controls={controls}></motion.video>
+        )}
+      </div>
+    </AnimatePresence>
   );
 };
 
