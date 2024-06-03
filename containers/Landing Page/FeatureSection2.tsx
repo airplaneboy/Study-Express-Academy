@@ -1,13 +1,6 @@
 import { cn } from '@/lib/utils';
 import IntersectionVideo from './IntersectionVideoComponent';
 
-//@ts-ignore
-import StreamlinedTestPrepSrc from '../../public/assets/Streamlined-Test-Prep.webm';
-//@ts-ignore
-import PersonalizedSrc from '../../public/assets/Personalized-Dashboard.webm';
-//@ts-ignore
-import AnalyticsSrc from '../../public/assets/Analytics.webm';
-
 const FeatureSection2 = () => {
   const items: string | undefined =
     'text-center lg:text-left flex flex-col-reverse lg:flex-row justify-between items-center gap-10 lg:gap-20';
@@ -16,8 +9,18 @@ const FeatureSection2 = () => {
       <div className='border-t-2 border-gray-300 border-dashed absolute w-full' />
       <section className=' py-32 w-full flex flex-col items-center justify-between gap-40 lg:gap-52 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto'>
         <div className={items}>
+          {/* <video
+            playsInline
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='none'>
+            <source src='/assets/Streamlined-Test-Prep.webm' type='video/webm' />
+            Your browser does not support the video tag.
+          </video> */}
           <IntersectionVideo
-            src={StreamlinedTestPrepSrc}
+            src='/assets/Streamlined-Test-Prep.webm'
             playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
@@ -47,9 +50,18 @@ const FeatureSection2 = () => {
               them.
             </p>
           </div>
-
+          {/* <video
+            playsInline
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='none'>
+            <source src='/assets/Personalized-Dashboard.webm' type='video/webm' />
+            Your browser does not support the video tag.
+          </video> */}
           <IntersectionVideo
-            src={PersonalizedSrc}
+            src='/assets/Personalized-Dashboard.webm'
             playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
@@ -60,8 +72,18 @@ const FeatureSection2 = () => {
         </div>
 
         <div className={items}>
+          {/* <video
+            playsInline
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='none'>
+            <source src='/assets/Analytics.webm' type='video/webm' />
+            Your browser does not support the video tag.
+          </video> */}
           <IntersectionVideo
-            src={AnalyticsSrc}
+            src='/assets/Analytics.webm'
             playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop

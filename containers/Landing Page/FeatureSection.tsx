@@ -1,6 +1,5 @@
 import IntersectionVideo from './IntersectionVideoComponent';
-//@ts-ignore
-import SubjectsSrc from '../../public/assets/Subjects.webm';
+// const IntersectionVideo = dynamic(() => import('./IntersectionVideoComponent'));
 
 const FeatureSection = () => {
   return (
@@ -18,8 +17,18 @@ const FeatureSection = () => {
         </p>
       </div>
       <div className='w-full h-full flex flex-col justify-center items-center gap-10 lg:min-w-[496px] border-0 py-5'>
+        {/* <video
+          playsInline
+          className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+          loop
+          autoPlay
+          muted
+          preload='none'>
+          <source src='/assets/Subjects.webm' type='video/webm' />
+          Your browser does not support the video tag.
+        </video> */}
         <IntersectionVideo
-          src={SubjectsSrc}
+          src='/assets/Subjects.webm'
           playsInline
           className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
           loop

@@ -7,14 +7,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import IntersectionVideo from './IntersectionVideoComponent';
 // const IntersectionVideo = dynamic(() => import('./IntersectionVideoComponent'));
-//@ts-ignore
-import ArticleSrc from '../../public/assets/Article.webm';
-//@ts-ignore
-import ResultsSrc from '../../public/assets/Results.webm';
-//@ts-ignore
-import TestsSrc from '../../public/assets/Tests.webm';
-//@ts-ignore
-import VideoSrc from '../../public/assets/Video.webm';
 
 const BenefitSection = () => {
   const items =
@@ -150,8 +142,18 @@ const BenefitSection = () => {
 
       <div className='!flex-1 w-full flex flex-col items-center gap-28 lg:gap-[100vh]'>
         <div id='item-1' className={items}>
+          {/* <video
+            playsInline
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='none'>
+            <source src='/assets/Article.webm' type='video/webm' />
+            Your browser does not support the video tag.
+          </video> */}
           <IntersectionVideo
-            src={ArticleSrc}
+            src='/assets/Article.webm'
             playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
@@ -170,8 +172,19 @@ const BenefitSection = () => {
         </div>
 
         <div id='item-2' className={items}>
+          {/* <video
+            playsInline
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='none'>
+            <source src='/assets/Video.webm' type='video/webm' />
+            Your browser does not support the video tag.
+          </video> */}
+
           <IntersectionVideo
-            src={VideoSrc}
+            src='/assets/Video.webm'
             playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
@@ -189,8 +202,18 @@ const BenefitSection = () => {
         </div>
 
         <div id='item-3' className={items}>
+          {/* <video
+            playsInline
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='none'>
+            <source src='/assets/Results.webm' type='video/webm' />
+            Your browser does not support the video tag.
+          </video> */}
           <IntersectionVideo
-            src={ResultsSrc}
+            src='/assets/Results.webm'
             playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
@@ -208,8 +231,18 @@ const BenefitSection = () => {
         </div>
 
         <div id='item-4' className={items}>
+          {/* <video
+            playsInline
+            className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
+            loop
+            autoPlay
+            muted
+            preload='none'>
+            <source src='/assets/Tests.webm' type='video/webm' />
+            Your browser does not support the video tag.
+          </video> */}
           <IntersectionVideo
-            src={TestsSrc}
+            src='/assets/Tests.webm'
             playsInline
             className='shadow-lg border-t shadow-gray-400 rounded-2xl w-full mr-[2px] border-0 overflow-hidden'
             loop
